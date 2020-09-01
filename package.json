@@ -1,0 +1,60 @@
+{
+  "private": true,
+  "name": "cookie-though-preact",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --noEmit && parcel build src/index.ts --no-source-maps --global CookieThough",
+    "dev": "parcel src/index.html",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "test": "jest ./tests"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{css,md,scss}": "prettier --write",
+    "*.{js,jsx,ts,tsx}": "eslint --fix"
+  },
+  "eslintIgnore": [
+    "dist/*"
+  ],
+  "dependencies": {
+    "preact": "^10.3.1",
+    "preact-jsx-chai": "^3.0.0",
+    "preact-router": "^3.2.1"
+  },
+  "browserslist": [
+    "> 0.25%",
+    "last 2 versions",
+    "IE >= 9"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "@types/enzyme": "^3.10.5",
+    "@types/jest": "^26.0.8",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "autoprefixer": "^9.8.6",
+    "css-loader": "^3.5.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-preact-pure": "^2.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "husky": "^4.2.1",
+    "jest": "^26.2.2",
+    "jest-preset-preact": "^4.0.2",
+    "lint-staged": "^10.0.7",
+    "parcel-bundler": "^1.12.4",
+    "postcss-modules": "^3.2.2",
+    "prettier": "^1.19.1",
+    "sirv-cli": "^1.0.0-next.3",
+    "typescript": "^3.7.5"
+  }
+}
