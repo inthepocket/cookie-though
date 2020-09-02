@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc --noEmit && parcel build src/index.ts --no-source-maps --global CookieThough",
-    "dev": "parcel src/index.html",
+    "dev": "parcel src/index.html --global CookieThough",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "test": "jest ./tests"
   },
