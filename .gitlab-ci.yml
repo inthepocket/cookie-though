@@ -1,0 +1,21 @@
+image: node:lts
+
+stages:
+  - dependencies
+  - deploy
+cache:
+  paths:
+    - node_modules/
+dependencies:
+  stage: dependencies
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - npm run deploy
