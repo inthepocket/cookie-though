@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --noEmit && parcel build src/index.ts --no-source-maps --global CookieThough",
+    "build": "tsc --noEmit && parcel build src/index.ts --no-source-maps --global CookieThough --out-dir public",
     "dev": "parcel src/index.html --global CookieThough",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "deploy": "firebase deploy --token $FIREBASE_TOKEN",
     "test": "jest ./tests"
   },
   "husky": {
@@ -47,6 +48,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
+    "firebase-tools": "^8.9.2",
     "husky": "^4.2.1",
     "jest": "^26.2.2",
     "jest-preset-preact": "^4.0.2",

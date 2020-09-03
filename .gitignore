@@ -3,3 +3,6 @@ node_modules
 /dist
 /*.log
 .DS_Store
+public/index.css
+public/index.js
+.firebase
