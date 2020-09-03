@@ -2,6 +2,7 @@ image: node:lts
 
 stages:
   - dependencies
+  - build
   - deploy
 cache:
   paths:
@@ -13,6 +14,10 @@ dependencies:
   artifacts:
     paths:
       - node_modules/
+build:
+  stage: build
+  script:
+    - npm run build
 deploy:
   stage: deploy
   only:
