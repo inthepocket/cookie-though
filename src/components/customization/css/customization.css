@@ -1,0 +1,8 @@
+.acceptance button:not(:first-child) {
+  margin-left: var(--seperator-padding);
+}
+
+:global(.ReactCollapse--collapse) {
+  transition: height 250ms;
+  margin-bottom: var(--default-padding);
+}

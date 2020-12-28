@@ -1,0 +1,26 @@
+.customizationButton {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  padding: 0;
+  color: var(--gray-400);
+  display: flex;
+  align-items: baseline;
+  cursor: pointer;
+}
+
+.customizationButton svg {
+  margin-left: 0.25rem;
+  transition: 250ms linear all;
+}
+
+.customizationButton svg path {
+  stroke: var(--gray-400);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.active svg {
+  transform: rotate(-180deg);
+  margin-bottom: var(--default-padding);
+}

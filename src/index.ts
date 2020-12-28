@@ -3,17 +3,29 @@ if (process.env.NODE_ENV === 'development') {
   require('preact/debug');
 }
 
-import { h, render } from 'preact';
-import './style/index.css';
-import App from './components/app';
+import './index.css';
 
-interface Config {
-  [key: string]: string | number | boolean;
-}
+import initCookieThough from './components/app';
+import { CookieOption } from './components/customization/option';
 
-export const init = (config: Config): void => {
-  const container = document.createElement('div');
-  document.body.append(container);
+const mockCookies: CookieOption[] = [
+  {
+    name: 'Functional cookies',
+    description: 'We’ll remember the basics such as language.',
+    isEnabled: false,
+  },
+  {
+    name: 'Analytics',
+    description: 'We’ll know where we should improve your experience.',
+    isEnabled: false,
+  },
+  {
+    name: 'Marketing',
+    description: 'We’ll only show you content that interests you.',
+    isEnabled: false,
+  },
+];
 
-  render(h(App, config), container);
-};
+window.addEventListener('DOMContentLoaded', () => {
+  initCookieThough({ manageId: 'manage-cookie-though', cookieOptions: mockCookies });
+});

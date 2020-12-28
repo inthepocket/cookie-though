@@ -1,0 +1,39 @@
+:global(.cookie-though) {
+  position: fixed;
+  bottom: -200px;
+  left: var(--default-padding);
+  /* left positioning and left/right padding */
+  width: calc(100% - calc(var(--default-padding) * 4));
+  border-radius: 20px;
+  box-shadow: 0px 2px 19px -4px rgba(1, 1, 63, 0.1);
+  background: #fff;
+  padding: var(--default-padding);
+  transition: bottom 250ms linear;
+}
+
+:global(.cookie-though.visible) {
+  bottom: var(--default-padding);
+}
+
+:global(.cookie-though),
+:global(.cookie-though) button {
+  font-family: 'Flama';
+  font-size: var(--text-font-size);
+}
+
+:root {
+  --blue-400: #000099;
+  --blue-300: #7676ec;
+  --blue-200: #e0e0ff;
+  --blue-100: #f0f0ff;
+  --gray-400: #78787a;
+  --gray-300: #d4d4d4;
+  --white: #ffffff;
+  --text-margin: 0.25rem;
+  --default-padding: 1rem;
+  --seperator-padding: 0.5rem;
+  --heading-font-size: 20px;
+  --sub-heading-font-size: 14px;
+  --text-font-size: 12px;
+  font-size: 16px;
+}
