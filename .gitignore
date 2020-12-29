@@ -6,3 +6,4 @@ node_modules
 public/index.css
 public/index.js
 .firebase
+/coverage
