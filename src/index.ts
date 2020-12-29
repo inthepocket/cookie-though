@@ -3,8 +3,6 @@ if (process.env.NODE_ENV === 'development') {
   require('preact/debug');
 }
 
-import './index.css';
-
 import initCookieThough from './components/app';
 import { CookieOption } from './components/customization/option';
 

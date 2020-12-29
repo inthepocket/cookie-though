@@ -3,7 +3,7 @@ import Banner from './banner/banner';
 import Customization from './customization/customization';
 import { useEffect, useState } from 'preact/hooks';
 import { CookieOption } from './customization/option';
-import Slider from './customization/slider';
+import './app.css';
 
 interface Props {
   manageId: string;

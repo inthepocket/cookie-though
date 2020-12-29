@@ -9,6 +9,13 @@
   background: #fff;
   padding: var(--default-padding);
   transition: bottom 250ms linear;
+  @include responsive-cookie-though;
+}
+
+@media only screen and (min-width: 640px) {
+  :global(.cookie-though) {
+    width: 311px;
+  }
 }
 
 :global(.cookie-though.visible) {
