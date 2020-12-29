@@ -1,6 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
-import Option, { CookieOption } from './option';
+import Option from './option';
 import styles from './css/options.css';
+import { CookieOption } from '../../types';
 
 const necessaryCookies = (
   <div className={`${styles.option} ${styles.optionSecondary}`}>

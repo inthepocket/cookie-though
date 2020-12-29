@@ -1,12 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import Slider from './slider';
 import styles from './css/options.css';
-
-export type CookieOption = {
-  name: string;
-  description: string;
-  isEnabled: boolean;
-};
+import { CookieOption } from '../../types';
 
 interface Props {
   option: CookieOption;
