@@ -7,7 +7,7 @@ interface Props {
   onClick: () => void;
 }
 
-const Button: FunctionalComponent<Props> = ({ label, className, onClick }) => {
+const Button: FunctionalComponent<Props> = ({ label, className = '', onClick }) => {
   return (
     <button className={`${styles.button}  ${className}`} onClick={onClick}>
       {label}

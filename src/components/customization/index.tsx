@@ -1,13 +1,14 @@
 import { FunctionalComponent, h } from 'preact';
 import ToggleButton from './toggleButton';
 import styles from './css/customization.css';
-import { useEffect, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 import Options from './options';
 import { Collapse } from 'react-collapse';
 import Button from '../button';
 import buttonStyles from '../button/style.css';
-import { CookieOption } from './option';
+import { CookieOption } from '../../types';
 import { hideCookieThough } from '../app';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 interface Props {
   cookieOptions: CookieOption[];
@@ -16,16 +17,7 @@ interface Props {
 const Customization: FunctionalComponent<Props> = ({ cookieOptions }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem(
-      'cookie-preferences',
-      JSON.stringify({
-        isCustomised: true,
-        cookieOptions: options,
-      }),
-    );
-  }, [options]);
+  const [, setCookiePreferences] = useLocalStorage(cookieOptions);
 
   const toggleOption = (key: number) => {
     options[key] = { ...options[key], isEnabled: !options[key].isEnabled };
@@ -37,15 +29,19 @@ const Customization: FunctionalComponent<Props> = ({ cookieOptions }) => {
     setOptions(declinedOptions);
     setIsActive(false);
     hideCookieThough();
+    setCookiePreferences({ cookieOptions: declinedOptions, isCustomised: true });
   };
 
   const acceptOptions = () => {
+    let acceptedOptions = options;
     if (!isActive) {
-      setOptions(options.map(option => ({ ...option, isEnabled: true })));
+      acceptedOptions = options.map(option => ({ ...option, isEnabled: true }));
+      setOptions(acceptedOptions);
     }
 
     setIsActive(false);
     hideCookieThough();
+    setCookiePreferences({ cookieOptions: acceptedOptions, isCustomised: true });
   };
 
   return (
