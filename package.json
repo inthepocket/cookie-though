@@ -23,11 +23,8 @@
     "dist/*"
   ],
   "dependencies": {
-    "@types/react-collapse": "^5.0.0",
     "lodash.throttle": "^4.1.1",
     "preact": "^10.5.7",
-    "preact-jsx-chai": "^3.0.0",
-    "preact-router": "^3.2.1",
     "react-collapse": "^5.1.0"
   },
   "alias": {
@@ -42,15 +39,19 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/plugin-transform-react-jsx": "^7.12.12",
+    "@sinonjs/fake-timers": "^6.0.1",
     "@types/enzyme": "^3.10.8",
     "@types/jest": "^26.0.19",
     "@types/lodash.throttle": "^4.1.6",
+    "@types/react-collapse": "^5.0.0",
+    "@types/sinonjs__fake-timers": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
     "autoprefixer": "^9.8.6",
     "css-loader": "^3.5.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^2.2.0",
+    "enzyme-to-json": "^3.6.1",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.3.0",
