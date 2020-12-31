@@ -1,10 +1,10 @@
 import { CookieOption } from '../types';
 import { CookiePreferences } from './../components/app';
 
-const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
+export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
 
 const useLocalStorage = (cookieOptions: CookieOption[]) => {
-  const defaultCookiePreferences: CookiePreferences = {
+  const DEFAULT_COOKIE_PREFERENCES: CookiePreferences = {
     cookieOptions,
     isCustomised: false,
   };
@@ -18,7 +18,7 @@ const useLocalStorage = (cookieOptions: CookieOption[]) => {
     const rawCookiePreferences = localStorage.getItem(COOKIE_PREFERENCES_KEY);
     return rawCookiePreferences
       ? (JSON.parse(rawCookiePreferences) as CookiePreferences)
-      : setCookiePreferences(defaultCookiePreferences);
+      : setCookiePreferences(DEFAULT_COOKIE_PREFERENCES);
   };
 
   return { getCookiePreferences, setCookiePreferences };
