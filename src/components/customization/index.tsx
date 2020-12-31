@@ -17,7 +17,7 @@ interface Props {
 const Customization: FunctionalComponent<Props> = ({ cookieOptions }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
-  const [, setCookiePreferences] = useLocalStorage(cookieOptions);
+  const { setCookiePreferences } = useLocalStorage(cookieOptions);
 
   const toggleOption = (key: number) => {
     options[key] = { ...options[key], isEnabled: !options[key].isEnabled };

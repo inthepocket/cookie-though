@@ -21,7 +21,7 @@ const useLocalStorage = (cookieOptions: CookieOption[]) => {
       : setCookiePreferences(defaultCookiePreferences);
   };
 
-  return [getCookiePreferences, setCookiePreferences];
+  return { getCookiePreferences, setCookiePreferences };
 };
 
 export default useLocalStorage;

@@ -1,8 +1,9 @@
 import { Fragment, FunctionalComponent, h, render } from 'preact';
-import Banner from './banner/banner';
-import Customization from './customization/customization';
+import Banner from './banner';
+import Customization from './customization';
 import { useEffect, useState } from 'preact/hooks';
-import { CookieOption } from './customization/option';
+import { CookieOption } from '../types';
+import useLocalStorage from '../hooks/useLocalStorage';
 import './app.css';
 
 interface Props {
@@ -30,12 +31,8 @@ export const hideCookieThough = () => {
 };
 
 const App: FunctionalComponent<Props> = ({ manageId, cookieOptions }) => {
-  const [cookiePreferences] = useState<CookiePreferences>(() => {
-    const rawCookiePreferences = localStorage.getItem('cookie-preferences');
-    return rawCookiePreferences
-      ? JSON.parse(rawCookiePreferences)
-      : { isCustomised: false, cookieOptions };
-  });
+  const { getCookiePreferences } = useLocalStorage(cookieOptions);
+  const [cookiePreferences] = useState(() => getCookiePreferences());
 
   useEffect(() => {
     const manageCookiesElement = document.getElementById(manageId);
@@ -43,19 +40,13 @@ const App: FunctionalComponent<Props> = ({ manageId, cookieOptions }) => {
       console.error('No valid id given to trigger the cookie though modal');
     }
 
-    if (!cookiePreferences) {
-      localStorage.setItem(
-        'cookie-preferences',
-        JSON.stringify({ isCustomised: false, cookieOptions }),
-      );
-      showCookieThough();
-    } else if (!cookiePreferences.isCustomised) {
-      showCookieThough();
-    }
-
     manageCookiesElement?.addEventListener('click', () => {
       showCookieThough();
     });
+
+    if (!cookiePreferences.isCustomised) {
+      showCookieThough();
+    }
   }, [manageId, cookiePreferences, cookieOptions]);
 
   return (
