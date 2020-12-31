@@ -3,27 +3,9 @@ if (process.env.NODE_ENV === 'development') {
   require('preact/debug');
 }
 
+// TODO: remove for production
 import initCookieThough from './components/app';
-import { CookieOption } from './components/customization/option';
-
-const mockCookies: CookieOption[] = [
-  {
-    name: 'Functional cookies',
-    description: 'We’ll remember the basics such as language.',
-    isEnabled: false,
-  },
-  {
-    name: 'Analytics',
-    description: 'We’ll know where we should improve your experience.',
-    isEnabled: false,
-  },
-  {
-    name: 'Marketing',
-    description: 'We’ll only show you content that interests you.',
-    isEnabled: false,
-  },
-];
-
+import mockCookies from './tests/__mocks__/cookieOptions';
 window.addEventListener('DOMContentLoaded', () => {
   initCookieThough({ manageId: 'manage-cookie-though', cookieOptions: mockCookies });
 });
