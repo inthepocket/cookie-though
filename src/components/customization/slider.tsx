@@ -1,6 +1,4 @@
-import throttle from 'lodash.throttle';
 import { FunctionalComponent, h } from 'preact';
-import { useCallback } from 'preact/hooks';
 import styles from './css/slider.css';
 
 interface Props {
@@ -9,16 +7,8 @@ interface Props {
 }
 
 const Slider: FunctionalComponent<Props> = ({ isEnabled, onToggle }) => {
-  const throttledOnToggle = useCallback(
-    throttle(() => onToggle(), 250),
-    [],
-  );
-  const handleClick = () => {
-    throttledOnToggle();
-  };
-
   return (
-    <button className={`${styles.slider} ${isEnabled ? styles.enabled : ''}`} onClick={handleClick}>
+    <button className={`${styles.slider} ${isEnabled ? styles.enabled : ''}`} onClick={onToggle}>
       <svg
         className={styles.orb}
         width="16"
