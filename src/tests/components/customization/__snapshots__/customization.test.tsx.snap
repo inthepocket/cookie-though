@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Customization should render properly 1`] = `
+<div>
+  <ToggleButton
+    isActive={false}
+    toggleCustomization={[Function]}
+  />
+  <Collapse
+    checkTimeout={50}
+    isOpened={false}
+    theme={
+      Object {
+        "collapse": "ReactCollapse--collapse",
+        "content": "ReactCollapse--content",
+      }
+    }
+  >
+    <Options
+      onToggle={[Function]}
+      options={
+        Array [
+          Object {
+            "description": "We’ll remember the basics such as language.",
+            "isEnabled": false,
+            "name": "Functional cookies",
+          },
+          Object {
+            "description": "We’ll know where we should improve your experience.",
+            "isEnabled": false,
+            "name": "Analytics",
+          },
+          Object {
+            "description": "We’ll only show you content that interests you.",
+            "isEnabled": false,
+            "name": "Marketing",
+          },
+        ]
+      }
+    />
+  </Collapse>
+  <div
+    className="acceptance"
+  >
+    <Button
+      class="secondary"
+      className="secondary"
+      label="Decline"
+      onClick={[Function]}
+    />
+    <Button
+      label="Accept all"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;

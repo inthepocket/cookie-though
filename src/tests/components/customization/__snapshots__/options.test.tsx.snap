@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Option should render properly 1`] = `
+<div
+  className="options"
+>
+  <div
+    className="option optionSecondary"
+  >
+    <div
+      className="optionInfo"
+    >
+      <p>
+        Stricly necessary cookies
+      </p>
+    </div>
+    <div
+      className="optionDefault"
+    >
+      Always on
+    </div>
+  </div>
+  <Option
+    onToggle={[Function]}
+    option={
+      Object {
+        "description": "We’ll remember the basics such as language.",
+        "isEnabled": false,
+        "name": "Functional cookies",
+      }
+    }
+  />
+  <Option
+    key={1}
+    onToggle={[Function]}
+    option={
+      Object {
+        "description": "We’ll know where we should improve your experience.",
+        "isEnabled": false,
+        "name": "Analytics",
+      }
+    }
+  />
+  <Option
+    key={2}
+    onToggle={[Function]}
+    option={
+      Object {
+        "description": "We’ll only show you content that interests you.",
+        "isEnabled": false,
+        "name": "Marketing",
+      }
+    }
+  />
+  <div
+    className="declaration"
+  >
+    <a
+      href="#"
+    >
+      Read the full cookie declaration
+    </a>
+  </div>
+</div>
+`;
