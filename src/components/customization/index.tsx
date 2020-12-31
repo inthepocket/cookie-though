@@ -1,7 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import ToggleButton from './toggleButton';
 import styles from './css/customization.css';
-import { useState } from 'preact/hooks';
+import { useMemo, useState } from 'preact/hooks';
 import Options from './options';
 import { Collapse } from 'react-collapse';
 import Button from '../button';
@@ -14,10 +14,21 @@ interface Props {
   cookieOptions: CookieOption[];
 }
 
+const isAnOptionEnabled = (cookieOptions: CookieOption[]) => {
+  return cookieOptions.some(cookieOption => cookieOption.isEnabled === true);
+};
+
 const Customization: FunctionalComponent<Props> = ({ cookieOptions }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
   const { setCookiePreferences } = useLocalStorage(cookieOptions);
+  const acceptButtonLabel = useMemo(() => {
+    if (!isActive && !isAnOptionEnabled(options)) {
+      return 'Accept all';
+    }
+
+    return 'Accept';
+  }, [isActive, options]);
 
   const toggleOption = (key: number) => {
     options[key] = { ...options[key], isEnabled: !options[key].isEnabled };
@@ -34,7 +45,7 @@ const Customization: FunctionalComponent<Props> = ({ cookieOptions }) => {
 
   const acceptOptions = () => {
     let acceptedOptions = options;
-    if (!isActive) {
+    if (!isActive && !isAnOptionEnabled(options)) {
       acceptedOptions = options.map(option => ({ ...option, isEnabled: true }));
       setOptions(acceptedOptions);
     }
@@ -55,7 +66,7 @@ const Customization: FunctionalComponent<Props> = ({ cookieOptions }) => {
       </Collapse>
       <div className={styles.acceptance}>
         <Button label="Decline" className={buttonStyles.secondary} onClick={declineAllOptions} />
-        <Button label={isActive ? 'Accept' : 'Accept all'} onClick={acceptOptions} />
+        <Button label={acceptButtonLabel} onClick={acceptOptions} />
       </div>
     </div>
   );
