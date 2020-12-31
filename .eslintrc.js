@@ -31,6 +31,7 @@ module.exports = {
       version: 'detect',
     },
   },
+  ignorePatterns: ['jest.config.js'],
   overrides: [
     {
       files: ['*.js', '*.ts', '*.tsx'],

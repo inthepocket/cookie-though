@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   preset: 'jest-preset-preact',
   setupFiles: [
     '<rootDir>/src/tests/__mocks__/setupTests.js',
