@@ -3,7 +3,7 @@ if (process.env.NODE_ENV === 'development') {
   require('preact/debug');
 }
 
-// TODO: remove for production
+// This initialises the app for development purposes
 import initCookieThough from './components/app';
 import mockCookies from './tests/__mocks__/cookieOptions';
 window.addEventListener('DOMContentLoaded', () => {
