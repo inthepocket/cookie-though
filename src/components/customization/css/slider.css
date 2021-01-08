@@ -1,0 +1,38 @@
+.slider {
+  margin-left: auto;
+  outline: none;
+  align-self: center;
+  color: var(--gray-400);
+  background: var(--gray-300);
+  border: 1 solid var(--gray-300);
+  border-radius: 9999px;
+  max-height: 8px;
+  width: 24px;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 250ms linear;
+}
+
+.orb {
+  position: relative;
+  left: -6px;
+  top: -4px;
+  transition: left 250ms linear;
+}
+
+.orb circle {
+  fill: var(--gray-400);
+  transition: fill 250ms linear;
+}
+
+.enabled {
+  background: #4c4cff;
+}
+
+.enabled .orb {
+  left: 6px;
+}
+
+.enabled .orb circle {
+  fill: #b3b3ff;
+}

@@ -1,12 +1,14 @@
-button {
-	padding: 10;
-	margin: 0;
-	text-decoration: none;
-	appearance: none;
-	cursor: pointer;
-	border: 0;
-	background: blue;
-	color: white;
-	box-shadow: none;
-	border-radius: 0px;
+.button {
+  background: var(--blue-400);
+  color: var(--white);
+  padding: 0.5rem;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  border-radius: 2px;
+}
+
+.secondary {
+  background: var(--blue-300);
 }

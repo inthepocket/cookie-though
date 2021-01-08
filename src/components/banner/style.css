@@ -1,0 +1,49 @@
+.banner {
+  font-size: var(--text-font-size);
+  margin-bottom: var(--default-padding);
+}
+
+.banner p,
+.banner h1 {
+  margin-top: 0;
+  margin-bottom: var(--text-margin);
+}
+
+.banner h1 {
+  font-size: var(--heading-font-size);
+  font-weight: 700;
+  color: var(--blue-400);
+}
+
+.banner p {
+  font-weight: 500;
+}
+
+.bannerIntro {
+  display: flex;
+  align-items: center;
+  margin-bottom: calc(0.5rem - var(--text-margin));
+}
+
+.bannerIntro p {
+  font-size: var(--sub-heading-font-size);
+  color: var(--blue-300);
+}
+
+.bannerLogo {
+  margin-left: auto;
+}
+
+.bannerLogo path {
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  fill: var(--blue-400);
+  stroke: var(--white);
+  stroke-width: 0;
+}
+
+.bannerExplanation {
+  color: var(--gray-400);
+  font-weight: 400;
+  font-family: 'Flama Basic';
+}

@@ -1,9 +1,69 @@
-import { FunctionalComponent, h } from 'preact';
+import { Fragment, FunctionalComponent, h, render } from 'preact';
+import Banner from './banner';
+import Customization from './customization';
+import { useEffect, useState } from 'preact/hooks';
+import { CookieOption } from '../types';
+import useLocalStorage from '../hooks/useLocalStorage';
+import './app.css';
 
-import Button from './button';
+interface Props {
+  manageId: string;
+  cookieOptions: CookieOption[];
+}
 
-const App: FunctionalComponent = () => {
-  return <Button />;
+export type CookiePreferences = {
+  isCustomised: boolean;
+  cookieOptions: CookieOption[];
 };
 
-export default App;
+interface Config {
+  [key: string]: string | number | boolean | CookieOption[];
+  manageId: string;
+  cookieOptions: CookieOption[];
+}
+
+const showCookieThough = () => {
+  document.querySelector('.cookie-though')?.classList.add('visible');
+};
+
+export const hideCookieThough = () => {
+  document.querySelector('.cookie-though')?.classList.remove('visible');
+};
+
+// TODO: cleanup event listener
+export const App: FunctionalComponent<Props> = ({ manageId, cookieOptions }) => {
+  const { getCookiePreferences } = useLocalStorage(cookieOptions);
+  const [cookiePreferences] = useState(() => getCookiePreferences());
+
+  useEffect(() => {
+    const manageCookiesElement = document.getElementById(manageId);
+    if (manageCookiesElement === null) {
+      throw new Error('No valid id given to trigger the cookie though modal');
+    }
+
+    manageCookiesElement?.addEventListener('click', () => {
+      showCookieThough();
+    });
+
+    if (!cookiePreferences.isCustomised) {
+      showCookieThough();
+    }
+  }, [manageId, cookiePreferences, cookieOptions]);
+
+  return (
+    <Fragment>
+      <Banner />
+      <Customization cookieOptions={cookiePreferences?.cookieOptions} />
+    </Fragment>
+  );
+};
+
+const initCookieThough = (config: Config): void => {
+  const container = document.createElement('div');
+  container.className = 'cookie-though';
+  document.body.append(container);
+
+  render(h(App, config), container);
+};
+
+export default initCookieThough;

@@ -2,6 +2,7 @@ image: node:lts
 
 stages:
   - dependencies
+  - test
   - build
   - deploy
 cache:
@@ -14,6 +15,13 @@ dependencies:
   artifacts:
     paths:
       - node_modules/
+test:
+  stage: test
+  script: npm run test:coverage
+  coverage: /All\sfiles.*?\s+(\d+.\d+)/
+  artifacts:
+    reports:
+      junit: junit.xml
 build:
   stage: build
   script:
