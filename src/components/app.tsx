@@ -30,14 +30,15 @@ export const hideCookieThough = () => {
   document.querySelector('.cookie-though')?.classList.remove('visible');
 };
 
-const App: FunctionalComponent<Props> = ({ manageId, cookieOptions }) => {
+// TODO: cleanup event listener
+export const App: FunctionalComponent<Props> = ({ manageId, cookieOptions }) => {
   const { getCookiePreferences } = useLocalStorage(cookieOptions);
   const [cookiePreferences] = useState(() => getCookiePreferences());
 
   useEffect(() => {
     const manageCookiesElement = document.getElementById(manageId);
     if (manageCookiesElement === null) {
-      console.error('No valid id given to trigger the cookie though modal');
+      throw new Error('No valid id given to trigger the cookie though modal');
     }
 
     manageCookiesElement?.addEventListener('click', () => {

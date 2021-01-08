@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cookie Though should render properly 1`] = `
+<body>
+  <button
+    id="manage-cookie-though"
+  />
+  <div
+    className="cookie-though"
+  >
+    <App
+      cookieOptions={
+        Array [
+          Object {
+            "description": "We’ll remember the basics such as language.",
+            "isEnabled": false,
+            "name": "Functional cookies",
+          },
+          Object {
+            "description": "We’ll know where we should improve your experience.",
+            "isEnabled": false,
+            "name": "Analytics",
+          },
+          Object {
+            "description": "We’ll only show you content that interests you.",
+            "isEnabled": false,
+            "name": "Marketing",
+          },
+        ]
+      }
+      manageId="manage-cookie-though"
+    />
+  </div>
+</body>
+`;
