@@ -26,9 +26,14 @@ build:
   stage: build
   script:
     - npm run build
+  artifacts:
+    paths:
+      - public
 deploy:
   stage: deploy
   only:
     - master
   script:
     - npm run deploy
+  dependencies:
+    - build
