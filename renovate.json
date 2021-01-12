@@ -2,5 +2,15 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
-  ]
+  ],
+  "packageRules": [
+    {
+      "depTypeList": ["devDependencies"],
+      "updateTypes": ["patch", "minor"],
+      "groupName": "devDependencies (non-major)"
+    }
+  ],
+  "stabilityDays": 14,
+  "dependencyDashboard": true,
+  "prConcurrentLimit": 10
 }
