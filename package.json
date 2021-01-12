@@ -7,18 +7,13 @@
     "build": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public",
     "dev": "parcel src/index.html --global CookieThough",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "markdown:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
+    "prettier:fix": "npm run prettier -- --write",
+    "prettier": "prettier \"src/**/*.{js,ts,tsx}\"",
+    "postinstall": "./scripts/postinstall-local.sh",
     "deploy": "firebase deploy --token $FIREBASE_TOKEN",
     "test": "jest",
     "test:coverage": "jest --coverage --reporters=jest-junit"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{css,md,scss}": "prettier --write",
-    "*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "eslintIgnore": [
     "dist/*"
@@ -55,14 +50,13 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^3.0.0",
     "firebase-tools": "^9.1.0",
-    "husky": "^4.3.6",
     "jest": "^26.6.3",
     "jest-junit": "^12.0.0",
     "jest-preset-preact": "^4.0.2",
-    "lint-staged": "^10.5.3",
+    "markdownlint-cli": "^0.26.0",
     "parcel-bundler": "^1.12.4",
     "postcss-modules": "^3.2.2",
-    "prettier": "^1.19.1",
+    "prettier": "^2.2.1",
     "sirv-cli": "^1.0.10",
     "typescript": "^3.7.5"
   }

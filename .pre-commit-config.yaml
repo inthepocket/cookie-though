@@ -1,0 +1,50 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  # region: pre-commit compatible repos
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.3.0
+    hooks:
+      - id: trailing-whitespace
+        stages:
+          - commit
+      - id: check-yaml
+        stages:
+          - commit
+      - id: check-added-large-files
+        args:
+          - "--maxkb=5120"
+        stages:
+          - commit
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.2.1
+    hooks:
+      - id: prettier
+        name: Run Prettier
+        files: \.[jt]sx?$
+        stages:
+          - commit
+  # endregion
+
+  # region: Custom scripts and executables
+  - repo: local
+    hooks:
+      - id: eslint
+        name: Lint files with ESLint
+        entry: ./node_modules/.bin/eslint --fix
+        language: script
+        files: \.[jt]sx?$
+        types: [file]
+        stages:
+          - commit
+
+      - id: markdownlint
+        name: Lint Markdown documentation
+        entry: ./node_modules/.bin/markdownlint
+        language: script
+        files: \.md$
+        types: [file]
+        stages:
+          - commit
+  # endregion
