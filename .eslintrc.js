@@ -28,7 +28,7 @@ module.exports = {
   settings: {
     react: {
       pragma: 'h',
-      version: 'detect',
+      version: 'latest',
     },
   },
   ignorePatterns: ['jest.config.js'],

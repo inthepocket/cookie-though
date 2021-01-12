@@ -43,23 +43,15 @@ describe('Customization', () => {
   test('clicking the ToggleButton component toggles the isActive state', () => {
     const wrapper = mount(<Customization {...defaultProps} />);
     const acceptButtonLabel = () => {
-      return wrapper
-        .find(Button)
-        .last()
-        .find('button')
-        .text();
+      return wrapper.find(Button).last().find('button').text();
     };
 
-    getToggleButton(wrapper)
-      .simulate('click')
-      .update();
+    getToggleButton(wrapper).simulate('click').update();
     expect(getToggleButton(wrapper).hasClass('active')).toBeTruthy();
     expect(isCustomizationCollapsed(wrapper)).toBeFalsy();
     expect(acceptButtonLabel()).toEqual('Accept');
 
-    getToggleButton(wrapper)
-      .simulate('click')
-      .update();
+    getToggleButton(wrapper).simulate('click').update();
     expect(getToggleButton(wrapper).hasClass('active')).toBeFalsy();
     expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
     expect(acceptButtonLabel()).toEqual('Accept all');
@@ -68,19 +60,13 @@ describe('Customization', () => {
   test('clicking the Slider in an Option will toggle the isEnabled state for that option', () => {
     const wrapper = mount(<Customization {...defaultProps} />);
     const getSlider = () => {
-      return getOptionalCookie(wrapper)
-        .find(Slider)
-        .find('button');
+      return getOptionalCookie(wrapper).find(Slider).find('button');
     };
 
-    getSlider()
-      .simulate('click')
-      .update();
+    getSlider().simulate('click').update();
     expect(getOptionalCookie(wrapper).hasClass('enabled')).toBeTruthy();
 
-    getSlider()
-      .simulate('click')
-      .update(),
+    getSlider().simulate('click').update(),
       expect(getOptionalCookie(wrapper).hasClass('enabled')).toBeFalsy();
   });
 
