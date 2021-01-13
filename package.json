@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "docs": "docsify serve",
     "build": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public",
     "dev": "parcel src/index.html --global CookieThough",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
@@ -41,6 +42,7 @@
     "@typescript-eslint/parser": "2.34.0",
     "autoprefixer": "9.8.6",
     "css-loader": "5.0.1",
+    "docsify-cli": "4.4.2",
     "enzyme": "3.11.0",
     "enzyme-adapter-preact-pure": "3.0.0",
     "enzyme-to-json": "3.6.1",
