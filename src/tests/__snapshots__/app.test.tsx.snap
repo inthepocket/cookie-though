@@ -28,7 +28,7 @@ exports[`Cookie Though should render properly 1`] = `
           },
         ]
       }
-      manageId="manage-cookie-though"
+      setVisible={[Function]}
     />
   </div>
 </body>
