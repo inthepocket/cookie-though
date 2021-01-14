@@ -7,8 +7,9 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import './app.css';
 
 interface Props {
-  manageId: string;
   cookieOptions: CookieOption[];
+  cookiePreferenceKey?: string;
+  setVisible(value: boolean): void;
 }
 
 export type CookiePreferences = {
@@ -17,53 +18,45 @@ export type CookiePreferences = {
 };
 
 interface Config {
-  [key: string]: string | number | boolean | CookieOption[];
-  manageId: string;
   cookieOptions: CookieOption[];
+  cookiePreferenceKey?: string;
 }
 
-const showCookieThough = () => {
-  document.querySelector('.cookie-though')?.classList.add('visible');
-};
-
-export const hideCookieThough = () => {
-  document.querySelector('.cookie-though')?.classList.remove('visible');
-};
-
 // TODO: cleanup event listener
-export const App: FunctionalComponent<Props> = ({ manageId, cookieOptions }) => {
-  const { getCookiePreferences } = useLocalStorage(cookieOptions);
+export const App: FunctionalComponent<Props> = ({
+  cookieOptions,
+  setVisible,
+  cookiePreferenceKey = '',
+}) => {
+  const { getCookiePreferences } = useLocalStorage({ cookieOptions, cookiePreferenceKey });
   const [cookiePreferences] = useState(() => getCookiePreferences());
-
   useEffect(() => {
-    const manageCookiesElement = document.getElementById(manageId);
-    if (manageCookiesElement === null) {
-      throw new Error('No valid id given to trigger the cookie though modal');
-    }
-
-    manageCookiesElement?.addEventListener('click', () => {
-      showCookieThough();
-    });
-
     if (!cookiePreferences.isCustomised) {
-      showCookieThough();
+      setVisible(true);
     }
-  }, [manageId, cookiePreferences, cookieOptions]);
+  }, [cookiePreferences, setVisible]);
 
   return (
     <Fragment>
       <Banner />
-      <Customization cookieOptions={cookiePreferences?.cookieOptions} />
+      <Customization cookieOptions={cookiePreferences?.cookieOptions} setVisible={setVisible} />
     </Fragment>
   );
 };
+const setVisible = function (value: boolean) {
+  if (value) {
+    return document.querySelector('.cookie-though')?.classList.add('visible');
+  }
+  document.querySelector('.cookie-though')?.classList.remove('visible');
+};
 
-const initCookieThough = (config: Config): void => {
+const initCookieThough = (config: Config) => {
   const container = document.createElement('div');
   container.className = 'cookie-though';
   document.body.append(container);
 
-  render(h(App, config), container);
+  render(h(App, { ...config, setVisible }), container);
+  return { setVisible };
 };
 
 export default initCookieThough;

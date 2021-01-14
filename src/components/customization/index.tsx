@@ -7,21 +7,21 @@ import { Collapse } from 'react-collapse';
 import Button from '../button';
 import buttonStyles from '../button/style.css';
 import { CookieOption } from '../../types';
-import { hideCookieThough } from '../app';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 interface Props {
   cookieOptions: CookieOption[];
+  setVisible(value: boolean): void;
 }
 
 const isAnOptionEnabled = (cookieOptions: CookieOption[]) => {
   return cookieOptions.some(cookieOption => cookieOption.isEnabled === true);
 };
 
-const Customization: FunctionalComponent<Props> = ({ cookieOptions }) => {
+const Customization: FunctionalComponent<Props> = ({ cookieOptions, setVisible }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
-  const { setCookiePreferences } = useLocalStorage(cookieOptions);
+  const { setCookiePreferences } = useLocalStorage({ cookieOptions: cookieOptions });
   const acceptButtonLabel = useMemo(() => {
     if (!isActive && !isAnOptionEnabled(options)) {
       return 'Accept all';
@@ -39,7 +39,7 @@ const Customization: FunctionalComponent<Props> = ({ cookieOptions }) => {
     const declinedOptions = options.map(option => ({ ...option, isEnabled: false }));
     setOptions(declinedOptions);
     setIsActive(false);
-    hideCookieThough();
+    setVisible(false);
     setCookiePreferences({ cookieOptions: declinedOptions, isCustomised: true });
   };
 
@@ -51,7 +51,7 @@ const Customization: FunctionalComponent<Props> = ({ cookieOptions }) => {
     }
 
     setIsActive(false);
-    hideCookieThough();
+    setVisible(false);
     setCookiePreferences({ cookieOptions: acceptedOptions, isCustomised: true });
   };
 

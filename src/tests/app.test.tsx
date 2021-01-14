@@ -18,38 +18,25 @@ describe('Cookie Though', () => {
       manageCookiesElement.id = 'manage-cookie-though';
       document.body.append(manageCookiesElement);
 
-      initCookieThough({ manageId: 'manage-cookie-though', cookieOptions: mockCookies });
+      initCookieThough({ cookieOptions: mockCookies });
 
       expect(document.querySelector('.cookie-though')).toBeDefined();
     });
   });
 
-  it('will log an error if no manage button is present', () => {
-    expect(() =>
-      mount(
-        <div className="cookie-though">
-          <App manageId="manage-cookie-though" cookieOptions={mockCookies} />
-        </div>,
-        { attachTo: document.body },
-      ),
-    ).toThrowError();
-  });
-
   describe('without user preferences stored in local storage', () => {
     it('should show the cookie wall', () => {
-      const manageButton = document.createElement('button');
-      manageButton.id = 'manage-cookie-though';
-      document.body.append(manageButton);
-
-      const wrapper = mount(
+      const setVisible = jest.fn((value: boolean) => {
+        expect(value).toBeTruthy();
+      });
+      mount(
         <div className="cookie-though">
-          <App manageId="manage-cookie-though" cookieOptions={mockCookies} />
+          <App cookieOptions={mockCookies} setVisible={setVisible} />
         </div>,
         { attachTo: document.body },
       );
 
-      const appRoot = wrapper.find('div').first();
-      expect(appRoot.render().hasClass('visible')).toBeTruthy();
+      expect(setVisible).toBeCalled();
     });
   });
 
@@ -64,55 +51,33 @@ describe('Cookie Though', () => {
         COOKIE_PREFERENCES_KEY,
         JSON.stringify({ ...DEFAULT_COOKIE_PREFERENCES, isCustomised: true }),
       );
-      const manageButton = document.createElement('button');
-      manageButton.id = 'manage-cookie-though';
-      document.body.append(manageButton);
-
-      const wrapper = mount(
+      const setVisible = function () {
+        throw new Error('should not be called');
+      };
+      mount(
         <div className="cookie-though">
-          <App manageId="manage-cookie-though" cookieOptions={mockCookies} />
+          <App cookieOptions={mockCookies} setVisible={setVisible} />
         </div>,
         { attachTo: document.body },
       );
-
-      const appRoot = wrapper.find('div').first();
-      expect(appRoot.render().hasClass('visible')).toBeFalsy();
     });
 
     it("should show the cookie wall if the cookie preferences aren't customised", () => {
-      const manageButton = document.createElement('button');
-      manageButton.id = 'manage-cookie-though';
-      document.body.append(manageButton);
+      const setVisible = jest.fn((value: boolean) => {
+        expect(value).toBeTruthy();
+      });
 
-      const wrapper = mount(
+      mount(
         <div className="cookie-though">
-          <App manageId="manage-cookie-though" cookieOptions={mockCookies} />
+          <App cookieOptions={mockCookies} setVisible={setVisible} />
         </div>,
         { attachTo: document.body },
       );
 
-      const appRoot = wrapper.find('div').first();
-      expect(appRoot.render().hasClass('visible')).toBeTruthy();
+      expect(setVisible).toBeCalled();
     });
 
     // TODO: localstorage
-    it('should show the cookie wall when clicking the element with the manage id', () => {
-      const manageButton = document.createElement('button');
-      manageButton.id = 'manage-cookie-though';
-      document.body.append(manageButton);
-
-      const wrapper = mount(
-        <div className="cookie-though">
-          <App manageId="manage-cookie-though" cookieOptions={mockCookies} />
-        </div>,
-        { attachTo: document.body },
-      );
-
-      manageButton.click();
-      wrapper.update();
-      const appRoot = wrapper.find('div').first();
-      expect(appRoot.render().hasClass('visible')).toBeTruthy();
-    });
   });
 
   it('should render properly', () => {
@@ -120,7 +85,12 @@ describe('Cookie Though', () => {
       <body>
         <button id="manage-cookie-though"></button>
         <div className="cookie-though">
-          <App manageId="manage-cookie-though" cookieOptions={mockCookies} />
+          <App
+            cookieOptions={mockCookies}
+            setVisible={() => {
+              return;
+            }}
+          />
         </div>
       </body>,
     );

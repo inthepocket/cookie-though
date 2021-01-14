@@ -12,6 +12,8 @@ import { COOKIE_PREFERENCES_KEY } from '../../../hooks/useLocalStorage';
 
 const defaultProps = {
   cookieOptions: mockCookies,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setVisible: jest.fn(() => {}),
 };
 
 describe('Customization', () => {
@@ -72,7 +74,7 @@ describe('Customization', () => {
 
   test('clicking the decline Button will decline all options and save the preferences', () => {
     const enabledCookies = mockCookies.map(mockCookie => ({ ...mockCookie, isEnabled: true }));
-    const wrapper = mount(<Customization cookieOptions={enabledCookies} />);
+    const wrapper = mount(<Customization {...defaultProps} cookieOptions={enabledCookies} />);
     const declineButton = wrapper.find('button.secondary');
 
     declineButton.simulate('click').update();
@@ -91,7 +93,7 @@ describe('Customization', () => {
         { ...mockCookies[0], isEnabled: true },
         ...mockCookies.splice(1, mockCookies.length),
       ];
-      const wrapper = mount(<Customization cookieOptions={customisedCookies} />);
+      const wrapper = mount(<Customization {...defaultProps} cookieOptions={customisedCookies} />);
       const acceptButton = wrapper.find('button').last();
 
       acceptButton.simulate('click').update();
@@ -102,6 +104,7 @@ describe('Customization', () => {
       expect(getToggleButton(wrapper).hasClass('active')).toBeFalsy();
       expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
       expect(getOptionalCookie(wrapper).hasClass('enabled')).toBeTruthy();
+      expect(defaultProps.setVisible).toBeCalledWith(false);
     });
 
     it('will accept all options if the user has none enabled and save the preferences', () => {
@@ -119,6 +122,7 @@ describe('Customization', () => {
       optionalCookies.forEach(optionalCookie => {
         expect(optionalCookie.hasClass('enabled')).toBeTruthy();
       });
+      expect(defaultProps.setVisible).toBeCalledWith(false);
     });
   });
 });

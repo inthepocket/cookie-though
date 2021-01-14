@@ -3,14 +3,19 @@ import { CookiePreferences } from './../components/app';
 
 export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
 
-const useLocalStorage = (cookieOptions: CookieOption[]) => {
-  const DEFAULT_COOKIE_PREFERENCES: CookiePreferences = {
+interface Options {
+  cookieOptions: CookieOption[];
+  cookiePreferenceKey?: string;
+}
+const useLocalStorage = ({ cookieOptions, cookiePreferenceKey }: Options) => {
+  const preferences: CookiePreferences = {
     cookieOptions,
     isCustomised: false,
   };
+  const key = cookiePreferenceKey ?? COOKIE_PREFERENCES_KEY;
 
   const setCookiePreferences = (cookiePreferences: CookiePreferences) => {
-    localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(cookiePreferences));
+    localStorage.setItem(key, JSON.stringify(cookiePreferences));
     return cookiePreferences;
   };
 
@@ -18,7 +23,7 @@ const useLocalStorage = (cookieOptions: CookieOption[]) => {
     const rawCookiePreferences = localStorage.getItem(COOKIE_PREFERENCES_KEY);
     return rawCookiePreferences
       ? (JSON.parse(rawCookiePreferences) as CookiePreferences)
-      : setCookiePreferences(DEFAULT_COOKIE_PREFERENCES);
+      : setCookiePreferences(preferences);
   };
 
   return { getCookiePreferences, setCookiePreferences };

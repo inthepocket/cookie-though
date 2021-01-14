@@ -7,5 +7,13 @@ if (process.env.NODE_ENV === 'development') {
 import initCookieThough from './components/app';
 import mockCookies from './tests/__mocks__/cookieOptions';
 window.addEventListener('DOMContentLoaded', () => {
-  initCookieThough({ manageId: 'manage-cookie-though', cookieOptions: mockCookies });
+  const { setVisible } = initCookieThough({
+    cookieOptions: mockCookies,
+  });
+
+  window.cookieThough = { setVisible };
+  const manageCookiesElement = document.getElementById('manage-cookie-though');
+  manageCookiesElement?.addEventListener('click', () => {
+    setVisible(true);
+  });
 });

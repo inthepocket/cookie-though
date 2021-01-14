@@ -34,7 +34,7 @@ module.exports = {
   ignorePatterns: ['jest.config.js'],
   overrides: [
     {
-      files: ['*.js', '*.ts', '*.tsx'],
+      files: ['*.js', '*.ts', '*.tsx', '*.d.ts'],
       rules: {
         '@typescript-eslint/explicit-function-return-type': 'off',
       },

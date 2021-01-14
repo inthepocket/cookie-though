@@ -15,17 +15,17 @@ describe('useLocalStorage', () => {
 
   it('can get the options', () => {
     localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(DEFAULT_COOKIE_PREFERENCES));
-    const { getCookiePreferences } = useLocalStorage(mockCookies);
+    const { getCookiePreferences } = useLocalStorage({ cookieOptions: mockCookies });
     expect(getCookiePreferences()).toEqual({ isCustomised: false, cookieOptions: mockCookies });
   });
 
   it('will set the default options when initialised and getting the cookie preferences for the first time', () => {
-    const { getCookiePreferences } = useLocalStorage(mockCookies);
+    const { getCookiePreferences } = useLocalStorage({ cookieOptions: mockCookies });
     expect(getCookiePreferences()).toEqual(DEFAULT_COOKIE_PREFERENCES);
   });
 
   it('can set the options', () => {
-    const { setCookiePreferences } = useLocalStorage(mockCookies);
+    const { setCookiePreferences } = useLocalStorage({ cookieOptions: mockCookies });
     setCookiePreferences(DEFAULT_COOKIE_PREFERENCES);
     expect(JSON.parse(localStorage.getItem(COOKIE_PREFERENCES_KEY) as string)).toEqual(
       DEFAULT_COOKIE_PREFERENCES,
