@@ -10,5 +10,6 @@ module.exports = {
       '<rootDir>/src/tests/__mocks__/fileMocks.js',
   },
   snapshotSerializers: ['enzyme-to-json/serializer'],
+  coverageReporters: ['cobertura'],
   coveragePathIgnorePatterns: ['<rootDir>/src/index.ts', '<rootDir>/src/types.ts'],
 };
