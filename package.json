@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "preact": "10.5.9",
-    "react-collapse": "5.1.0"
+    "react-tiny-collapse": "^1.0.0"
   },
   "alias": {
     "react": "preact/compat",

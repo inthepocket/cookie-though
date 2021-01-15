@@ -7,14 +7,17 @@ exports[`Customization should render properly 1`] = `
     toggleCustomization={[Function]}
   />
   <Collapse
-    checkTimeout={50}
-    isOpened={false}
-    theme={
-      Object {
-        "collapse": "ReactCollapse--collapse",
-        "content": "ReactCollapse--content",
-      }
-    }
+    animateChildren={false}
+    class="collapse"
+    className="collapse"
+    component="div"
+    componentProps={Object {}}
+    duration={250}
+    easing="cubic-bezier(0.3,0,0,1)"
+    forceInitialAnimation={false}
+    isOpen={false}
+    onMeasure={[Function]}
+    unmountChildren={false}
   >
     <Options
       onToggle={[Function]}

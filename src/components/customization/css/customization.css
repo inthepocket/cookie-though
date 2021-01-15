@@ -2,7 +2,6 @@
   margin-left: var(--seperator-padding);
 }
 
-:global(.ReactCollapse--collapse) {
-  transition: height 250ms;
+.collapse {
   margin-bottom: var(--default-padding);
 }

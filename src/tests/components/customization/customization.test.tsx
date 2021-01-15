@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import toJson from 'enzyme-to-json';
 import { mount, ReactWrapper, shallow } from 'enzyme';
-import { Collapse } from 'react-collapse';
+import TinyCollapse from 'react-tiny-collapse';
 import mockCookies from '../../__mocks__/cookieOptions';
 
 import Button from '../../../components/button';
@@ -32,7 +32,7 @@ describe('Customization', () => {
   const getToggleButton = (wrapper: ReactWrapper) => wrapper.find(ToggleButton).find('button');
 
   const isCustomizationCollapsed = (wrapper: ReactWrapper) => {
-    return !wrapper.find(Collapse).prop('isOpened');
+    return !wrapper.find(TinyCollapse).prop('isOpen');
   };
 
   const getOptionalCookie = (wrapper: ReactWrapper) => wrapper.find('.option').at(1);
