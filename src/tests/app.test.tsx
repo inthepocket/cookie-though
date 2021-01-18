@@ -76,8 +76,6 @@ describe('Cookie Though', () => {
 
       expect(setVisible).toBeCalled();
     });
-
-    // TODO: localstorage
   });
 
   it('should render properly', () => {
