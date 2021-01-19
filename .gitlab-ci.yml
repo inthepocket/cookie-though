@@ -60,6 +60,6 @@ publish:
     - tags
   script:
     - npx npe version $CI_COMMIT_TAG
-    - NPM_TOKEN=$GITLAB_NPM_TOKEN npm publish --dry-run
+    - NPM_TOKEN=$GITLAB_NPM_TOKEN npm publish
   dependencies:
     - build:lib
