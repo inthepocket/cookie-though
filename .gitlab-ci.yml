@@ -59,6 +59,7 @@ publish:
   only:
     - tags
   script:
-    - NPM_TOKEN=${GITLAB_NPM_TOKEN} npm publish from-git dist
+    - npm version from-git
+    - NPM_TOKEN=${GITLAB_NPM_TOKEN} npm publish dist --dry-run
   dependencies:
     - build:lib
