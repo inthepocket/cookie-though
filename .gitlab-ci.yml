@@ -5,6 +5,7 @@ stages:
   - test
   - build
   - deploy
+  - publish
 cache:
   paths:
     - node_modules/
@@ -21,17 +22,30 @@ test:
   stage: test
   script: npm run test:coverage
   coverage: /All\sfiles.*?\s+(\d+.\d+)/
+  dependencies:
+      - dependencies
   artifacts:
     reports:
       junit: junit.xml
       cobertura: coverage/cobertura-coverage.xml
-build:
+build:site:
   stage: build
   script:
-    - npm run build
+    - npm run build:site
   artifacts:
     paths:
       - public
+  dependencies:
+    - dependencies
+build:lib:
+  stage: build
+  script:
+    - npm run build:lib
+  artifacts:
+      paths:
+        - dist
+  dependencies:
+    - dependencies
 deploy:
   stage: deploy
   only:
@@ -39,4 +53,12 @@ deploy:
   script:
     - npm run deploy
   dependencies:
-    - build
+    - build:site
+publish:
+  stage: publish
+  only:
+    - tags
+  script:
+    - NPM_TOKEN=${GITLAB_NPM_TOKEN} npm publish from-git
+  dependencies:
+    - build:lib

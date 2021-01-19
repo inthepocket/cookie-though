@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "docs": "docsify serve",
-    "build": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public",
+    "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public",
+    "build:lib": "parcel build src/components/app.tsx --no-source-maps --global CookieThough --out-dir dist",
     "dev": "parcel src/index.html --global CookieThough",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "markdown:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
