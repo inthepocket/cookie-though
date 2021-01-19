@@ -7,14 +7,7 @@ exports[`Customization should render properly 1`] = `
     toggleCustomization={[Function]}
   />
   <Collapse
-    checkTimeout={50}
-    isOpened={false}
-    theme={
-      Object {
-        "collapse": "ReactCollapse--collapse",
-        "content": "ReactCollapse--content",
-      }
-    }
+    isOpen={false}
   >
     <Options
       onToggle={[Function]}
@@ -43,7 +36,6 @@ exports[`Customization should render properly 1`] = `
     className="acceptance"
   >
     <Button
-      class="secondary"
       className="secondary"
       label="Decline"
       onClick={[Function]}

@@ -20,12 +20,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "preact": "10.5.9",
-    "react-collapse": "5.1.0"
-  },
-  "alias": {
-    "react": "preact/compat",
-    "react-dom": "preact/compat"
+    "preact": "10.5.9"
   },
   "browserslist": [
     "> 0.25%",
@@ -37,7 +32,6 @@
     "@babel/plugin-transform-react-jsx": "7.12.12",
     "@types/enzyme": "3.10.8",
     "@types/jest": "26.0.20",
-    "@types/react-collapse": "5.0.0",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
     "autoprefixer": "9.8.6",

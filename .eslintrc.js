@@ -31,11 +31,12 @@ module.exports = {
       version: 'latest',
     },
   },
-  ignorePatterns: ['jest.config.js'],
+  ignorePatterns: ['jest.config.js', '.eslintrc.js'],
   overrides: [
     {
       files: ['*.js', '*.ts', '*.tsx', '*.d.ts'],
       rules: {
+        '@typescript-eslint/ban-ts-ignore': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
       },
     },

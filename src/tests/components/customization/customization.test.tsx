@@ -1,13 +1,13 @@
 import { h } from 'preact';
 import toJson from 'enzyme-to-json';
 import { mount, ReactWrapper, shallow } from 'enzyme';
-import { Collapse } from 'react-collapse';
 import mockCookies from '../../__mocks__/cookieOptions';
 
 import Button from '../../../components/button';
 import Customization from '../../../components/customization';
 import Slider from '../../../components/customization/slider';
 import ToggleButton from '../../../components/customization/toggleButton';
+import Collapse from '../../../components/customization/collapse';
 import { COOKIE_PREFERENCES_KEY } from '../../../hooks/useLocalStorage';
 
 const defaultProps = {
@@ -32,7 +32,7 @@ describe('Customization', () => {
   const getToggleButton = (wrapper: ReactWrapper) => wrapper.find(ToggleButton).find('button');
 
   const isCustomizationCollapsed = (wrapper: ReactWrapper) => {
-    return !wrapper.find(Collapse).prop('isOpened');
+    return !wrapper.find(Collapse).prop('isOpen');
   };
 
   const getOptionalCookie = (wrapper: ReactWrapper) => wrapper.find('.option').at(1);

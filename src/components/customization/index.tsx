@@ -3,7 +3,7 @@ import ToggleButton from './toggleButton';
 import styles from './css/customization.css';
 import { useMemo, useState } from 'preact/hooks';
 import Options from './options';
-import { Collapse } from 'react-collapse';
+import Collapse from './collapse';
 import Button from '../button';
 import buttonStyles from '../button/style.css';
 import { CookieOption } from '../../types';
@@ -61,7 +61,7 @@ const Customization: FunctionalComponent<Props> = ({ cookieOptions, setVisible }
         isActive={isActive}
         toggleCustomization={() => setIsActive(prevState => !prevState)}
       />
-      <Collapse isOpened={isActive}>
+      <Collapse isOpen={isActive}>
         <Options options={options} onToggle={toggleOption} />
       </Collapse>
       <div className={styles.acceptance}>
