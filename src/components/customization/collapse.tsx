@@ -13,31 +13,20 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children }) => {
   const expand = () => {
     const height = collapsibleDiv.current.scrollHeight;
     collapsibleDiv.current.style.height = `${height}px`;
-    collapsibleDiv.current.addEventListener(
-      'transitioned',
-      () => {
-        collapsibleDiv.current.style.height = '';
-      },
-      { once: true },
-    );
-
-    collapsibleDiv.current.setAttribute('data-collapsed', 'false');
   };
 
   const collapse = () => {
     const sectionHeight = collapsibleDiv.current.scrollHeight;
     const elementTransition = collapsibleDiv.current.style.transition;
     collapsibleDiv.current.style.transition = '';
-    requestAnimationFrame(function () {
+    requestAnimationFrame(() => {
       collapsibleDiv.current.style.height = `${sectionHeight}px`;
       collapsibleDiv.current.style.transition = elementTransition;
 
-      requestAnimationFrame(function () {
+      requestAnimationFrame(() => {
         collapsibleDiv.current.style.height = '0px';
       });
     });
-
-    collapsibleDiv.current.setAttribute('data-collapsed', 'true');
   };
 
   useEffect(() => {
@@ -48,7 +37,7 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children }) => {
   }, [isOpen]);
 
   return (
-    <div className={styles.collapse} ref={collapsibleDiv}>
+    <div className={styles.collapse} ref={collapsibleDiv} aria-expanded={isOpen}>
       {children}
     </div>
   );
