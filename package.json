@@ -11,7 +11,7 @@
     "markdown:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
     "prettier:fix": "npm run prettier -- --write",
     "prettier": "prettier \"src/**/*.{js,ts,tsx}\"",
-    "postinstall": "./scripts/postinstall-local.sh",
+    "prepare": "./scripts/postinstall-local.sh",
     "deploy": "firebase deploy --token $FIREBASE_TOKEN",
     "test": "jest",
     "test:coverage": "jest --coverage --reporters=jest-junit"
