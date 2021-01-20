@@ -2,13 +2,11 @@ import { Fragment, FunctionalComponent, h, render } from 'preact';
 import Banner from './banner';
 import Customization from './customization';
 import { useEffect, useState } from 'preact/hooks';
-import { CookieOption } from '../types';
+import { Config, CookieOption } from '../types';
 import useLocalStorage from '../hooks/useLocalStorage';
 import './app.css';
 
-interface Props {
-  cookieOptions: CookieOption[];
-  cookiePreferenceKey?: string;
+interface Props extends Config {
   setVisible(value: boolean): void;
 }
 
@@ -17,18 +15,18 @@ export type CookiePreferences = {
   cookieOptions: CookieOption[];
 };
 
-interface Config {
-  cookieOptions: CookieOption[];
-  cookiePreferenceKey?: string;
-}
-
-// TODO: cleanup event listener
 export const App: FunctionalComponent<Props> = ({
-  cookieOptions,
-  setVisible,
+  policies,
   cookiePreferenceKey = '',
+  header,
+  cookiePolicy,
+  permissionLabels,
+  setVisible,
 }) => {
-  const { getCookiePreferences } = useLocalStorage({ cookieOptions, cookiePreferenceKey });
+  const { getCookiePreferences } = useLocalStorage({
+    cookieOptions: policies.map(policy => ({ ...policy, isEnabled: false })),
+    cookiePreferenceKey,
+  });
   const [cookiePreferences] = useState(() => getCookiePreferences());
   useEffect(() => {
     if (!cookiePreferences.isCustomised) {
@@ -38,25 +36,39 @@ export const App: FunctionalComponent<Props> = ({
 
   return (
     <Fragment>
-      <Banner />
-      <Customization cookieOptions={cookiePreferences?.cookieOptions} setVisible={setVisible} />
+      <Banner header={header} />
+      <Customization
+        cookieOptions={cookiePreferences.cookieOptions}
+        cookiePolicy={cookiePolicy}
+        permissionLabels={permissionLabels}
+        setVisible={setVisible}
+      />
     </Fragment>
   );
 };
-const setVisible = function (value: boolean) {
+
+const setVisible = (value: boolean) => {
   if (value) {
     return document.querySelector('.cookie-though')?.classList.add('visible');
   }
   document.querySelector('.cookie-though')?.classList.remove('visible');
 };
 
-const initCookieThough = (config: Config) => {
-  const container = document.createElement('div');
-  container.className = 'cookie-though';
-  document.body.append(container);
+const CookieThough = {
+  init(config: Config) {
+    const container = document.createElement('div');
+    container.className = 'cookie-though';
 
-  render(h(App, { ...config, setVisible }), container);
-  return { setVisible };
+    const previousInstance = document.querySelector('.cookie-though');
+    if (previousInstance) {
+      render(h(App, { ...config, setVisible }), previousInstance);
+      return { setVisible };
+    }
+
+    document.body.append(container);
+    render(h(App, { ...config, setVisible }), container);
+    return { setVisible };
+  },
 };
 
-export default initCookieThough;
+export default CookieThough;

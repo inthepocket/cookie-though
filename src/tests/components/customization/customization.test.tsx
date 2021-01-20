@@ -1,32 +1,32 @@
 import { h } from 'preact';
 import toJson from 'enzyme-to-json';
 import { mount, ReactWrapper, shallow } from 'enzyme';
-import mockCookies from '../../__mocks__/cookieOptions';
+import { COOKIE_PREFERENCES_KEY } from '../../../hooks/useLocalStorage';
+import mockConfig from '../../__mocks__/config';
 
 import Button from '../../../components/button';
 import Customization from '../../../components/customization';
 import Slider from '../../../components/customization/slider';
 import ToggleButton from '../../../components/customization/toggleButton';
 import Collapse from '../../../components/customization/collapse';
-import { COOKIE_PREFERENCES_KEY } from '../../../hooks/useLocalStorage';
 
 const defaultProps = {
-  cookieOptions: mockCookies,
+  cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
+  permissionLabels: mockConfig.permissionLabels,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setVisible: jest.fn(() => {}),
 };
 
 describe('Customization', () => {
+  afterEach(() => {
+    defaultProps.cookieOptions = mockConfig.policies.map(policy => ({
+      ...policy,
+      isEnabled: false,
+    }));
+  });
   it('should render properly', () => {
     const wrapper = shallow(<Customization {...defaultProps} />);
     expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  afterEach(() => {
-    defaultProps.cookieOptions = mockCookies.map(mockCookie => ({
-      ...mockCookie,
-      isEnabled: false,
-    }));
   });
 
   const getToggleButton = (wrapper: ReactWrapper) => wrapper.find(ToggleButton).find('button');
@@ -73,12 +73,21 @@ describe('Customization', () => {
   });
 
   test('clicking the decline Button will decline all options and save the preferences', () => {
-    const enabledCookies = mockCookies.map(mockCookie => ({ ...mockCookie, isEnabled: true }));
+    const enabledCookies = mockConfig.policies.map(mockCookie => ({
+      ...mockCookie,
+      isEnabled: true,
+    }));
     const wrapper = mount(<Customization {...defaultProps} cookieOptions={enabledCookies} />);
     const declineButton = wrapper.find('button.secondary');
 
     declineButton.simulate('click').update();
-    expect(getCookiePreferences()).toEqual({ isCustomised: true, cookieOptions: mockCookies });
+    expect(getCookiePreferences()).toEqual({
+      isCustomised: true,
+      cookieOptions: defaultProps.cookieOptions.map(cookieOption => ({
+        ...cookieOption,
+        isEnabled: false,
+      })),
+    });
     expect(getToggleButton(wrapper).hasClass('active')).toBeFalsy();
     expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
     const optionalCookies = wrapper.find('.option').not('.optionSecondary');
@@ -90,8 +99,8 @@ describe('Customization', () => {
   describe('when clicking the accept button', () => {
     it('will only accept the options a user has enabled and save the preferences', () => {
       const customisedCookies = [
-        { ...mockCookies[0], isEnabled: true },
-        ...mockCookies.splice(1, mockCookies.length),
+        { ...defaultProps.cookieOptions[0], isEnabled: true },
+        ...defaultProps.cookieOptions.splice(1, defaultProps.cookieOptions.length),
       ];
       const wrapper = mount(<Customization {...defaultProps} cookieOptions={customisedCookies} />);
       const acceptButton = wrapper.find('button').last();
@@ -114,7 +123,10 @@ describe('Customization', () => {
       acceptButton.simulate('click').update();
       expect(getCookiePreferences()).toEqual({
         isCustomised: true,
-        cookieOptions: mockCookies.map(mockCookie => ({ ...mockCookie, isEnabled: true })),
+        cookieOptions: defaultProps.cookieOptions.map(cookieOption => ({
+          ...cookieOption,
+          isEnabled: true,
+        })),
       });
       expect(getToggleButton(wrapper).hasClass('active')).toBeFalsy();
       expect(isCustomizationCollapsed(wrapper)).toBeTruthy();

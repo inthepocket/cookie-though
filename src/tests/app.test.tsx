@@ -1,10 +1,11 @@
 import { h } from 'preact';
 import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import mockCookies from './__mocks__/cookieOptions';
-
-import initCookieThough, { App, CookiePreferences } from '../components/app';
+import mockPolicies from './__mocks__/policies';
 import { COOKIE_PREFERENCES_KEY } from '../hooks/useLocalStorage';
+import mockConfig, { dutchMockConfig } from './__mocks__/config';
+
+import CookieThough, { App, CookiePreferences } from '../components/app';
 
 describe('Cookie Though', () => {
   afterEach(() => {
@@ -13,14 +14,37 @@ describe('Cookie Though', () => {
   });
 
   describe('init function', () => {
-    it('can render the app based on the initCookieThough function', () => {
+    beforeEach(() => {
       const manageCookiesElement = document.createElement('button');
       manageCookiesElement.id = 'manage-cookie-though';
       document.body.append(manageCookiesElement);
+    });
 
-      initCookieThough({ cookieOptions: mockCookies });
+    it('can render the app based on the initCookieThough function', () => {
+      CookieThough.init(mockConfig);
 
       expect(document.querySelector('.cookie-though')).toBeDefined();
+    });
+
+    it('can switch the config', () => {
+      CookieThough.init(mockConfig);
+
+      let cookiePolicyLink = document.querySelector('a');
+      expect(cookiePolicyLink?.text).toEqual(mockConfig.cookiePolicy.label);
+
+      CookieThough.init(dutchMockConfig);
+      expect(document.getElementsByClassName('cookie-though').length).toEqual(1);
+      cookiePolicyLink = document.querySelector('a');
+      expect(cookiePolicyLink?.text).toEqual(dutchMockConfig.cookiePolicy.label);
+    });
+
+    it('can hide the cookie wall with the setVisible function', () => {
+      const { setVisible } = CookieThough.init(mockConfig);
+
+      expect(document.querySelector('.cookie-though')).toBeDefined();
+      expect(document.querySelector('.visible')).toBeDefined();
+      setVisible(false);
+      expect(document.querySelector('.visible')).toBeNull();
     });
   });
 
@@ -31,7 +55,11 @@ describe('Cookie Though', () => {
       });
       mount(
         <div className="cookie-though">
-          <App cookieOptions={mockCookies} setVisible={setVisible} />
+          <App
+            policies={mockConfig.policies}
+            permissionLabels={mockConfig.permissionLabels}
+            setVisible={setVisible}
+          />
         </div>,
         { attachTo: document.body },
       );
@@ -43,7 +71,7 @@ describe('Cookie Though', () => {
   describe('with user preferences stored in local storage', () => {
     const DEFAULT_COOKIE_PREFERENCES: CookiePreferences = {
       isCustomised: false,
-      cookieOptions: mockCookies,
+      cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
     };
 
     it('should not show the cookie wall', () => {
@@ -56,7 +84,11 @@ describe('Cookie Though', () => {
       };
       mount(
         <div className="cookie-though">
-          <App cookieOptions={mockCookies} setVisible={setVisible} />
+          <App
+            policies={mockPolicies}
+            permissionLabels={mockConfig.permissionLabels}
+            setVisible={setVisible}
+          />
         </div>,
         { attachTo: document.body },
       );
@@ -69,7 +101,11 @@ describe('Cookie Though', () => {
 
       mount(
         <div className="cookie-though">
-          <App cookieOptions={mockCookies} setVisible={setVisible} />
+          <App
+            policies={mockPolicies}
+            permissionLabels={mockConfig.permissionLabels}
+            setVisible={setVisible}
+          />
         </div>,
         { attachTo: document.body },
       );
@@ -84,7 +120,8 @@ describe('Cookie Though', () => {
         <button id="manage-cookie-though"></button>
         <div className="cookie-though">
           <App
-            cookieOptions={mockCookies}
+            policies={mockPolicies}
+            permissionLabels={mockConfig.permissionLabels}
             setVisible={() => {
               return;
             }}

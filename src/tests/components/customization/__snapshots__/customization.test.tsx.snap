@@ -14,19 +14,28 @@ exports[`Customization should render properly 1`] = `
       options={
         Array [
           Object {
+            "category": "functional",
             "description": "We’ll remember the basics such as language.",
+            "id": "functional",
             "isEnabled": false,
-            "name": "Functional cookies",
+            "isRequired": false,
+            "label": "Functional cookies",
           },
           Object {
+            "category": "statistics",
             "description": "We’ll know where we should improve your experience.",
+            "id": "analytics",
             "isEnabled": false,
-            "name": "Analytics",
+            "isRequired": false,
+            "label": "Analytics",
           },
           Object {
+            "category": "marketing",
             "description": "We’ll only show you content that interests you.",
+            "id": "marketing",
             "isEnabled": false,
-            "name": "Marketing",
+            "isRequired": false,
+            "label": "Marketing",
           },
         ]
       }
