@@ -14,7 +14,6 @@ export interface Policy {
   label: string;
   description: string;
   category: Category;
-  isRequired: boolean;
 }
 
 export interface Config {

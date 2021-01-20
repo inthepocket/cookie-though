@@ -10,7 +10,6 @@ const defaultProps = (isEnabled: boolean) => ({
     label: 'foo',
     description: 'bar',
     category: Category.Essential,
-    isRequired: false,
     isEnabled,
   },
   onToggle: jest.fn(),

@@ -18,7 +18,6 @@ exports[`Customization should render properly 1`] = `
             "description": "We’ll remember the basics such as language.",
             "id": "functional",
             "isEnabled": false,
-            "isRequired": false,
             "label": "Functional cookies",
           },
           Object {
@@ -26,7 +25,6 @@ exports[`Customization should render properly 1`] = `
             "description": "We’ll know where we should improve your experience.",
             "id": "analytics",
             "isEnabled": false,
-            "isRequired": false,
             "label": "Analytics",
           },
           Object {
@@ -34,7 +32,6 @@ exports[`Customization should render properly 1`] = `
             "description": "We’ll only show you content that interests you.",
             "id": "marketing",
             "isEnabled": false,
-            "isRequired": false,
             "label": "Marketing",
           },
         ]
