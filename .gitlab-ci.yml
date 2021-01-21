@@ -60,7 +60,7 @@ publish:
     - tags
   script:
     - npm set registry "http://registry.npmjs.org"
-    - npm set //registry.npmjs.org/:_authToken $GITLAB_NPM_TOKEN
+    - npm set //registry.npmjs.org/:_authToken $COOKIETHOUGH_GITLAB_NPM_TOKEN
     - npx npe version $CI_COMMIT_TAG
     - npm publish
   dependencies:
