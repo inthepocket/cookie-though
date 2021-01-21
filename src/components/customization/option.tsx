@@ -12,7 +12,7 @@ const Option: FunctionalComponent<Props> = ({ option, onToggle }) => {
   return (
     <div className={`${styles.option} ${option.isEnabled ? styles.enabled : ''}`}>
       <div className={styles.optionInfo}>
-        <p>{option.name}</p>
+        <p>{option.label}</p>
         <p>{option.description}</p>
       </div>
       <Slider isEnabled={option.isEnabled} onToggle={onToggle} />

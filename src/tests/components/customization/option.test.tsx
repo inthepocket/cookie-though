@@ -2,11 +2,14 @@ import { h } from 'preact';
 import { shallow, mount } from 'enzyme';
 
 import Option from '../../../components/customization/option';
+import { Category } from '../../../types';
 
 const defaultProps = (isEnabled: boolean) => ({
   option: {
-    name: 'foo',
+    id: 'foo',
+    label: 'foo',
     description: 'bar',
+    category: Category.Essential,
     isEnabled,
   },
   onToggle: jest.fn(),

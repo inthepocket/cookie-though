@@ -1,21 +1,31 @@
 import { h } from 'preact';
-import toJson from 'enzyme-to-json';
 import { shallow, mount } from 'enzyme';
-import mockCookies from '../../__mocks__/cookieOptions';
+import mockConfig from '../../__mocks__/config';
+import { Config } from '../../../types';
 
 import Options from '../../../components/customization/options';
 import Option from '../../../components/customization/option';
 
 const defaultProps = {
-  options: mockCookies,
+  options: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
   onToggle: jest.fn(),
 };
 
 describe('Option', () => {
-  it('should render properly', () => {
+  it('can render without a cookie policy', () => {
     const wrapper = shallow(<Options {...defaultProps} />);
     expect(wrapper.find(Option)).toHaveLength(3);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper.find('.declaration').exists()).toBeFalsy();
+  });
+
+  it('can render with a cookie policy', () => {
+    const cookiePolicy: NonNullable<Config['cookiePolicy']> = {
+      url: '#',
+      label: 'Read the full cookie declaration',
+    };
+    const wrapper = shallow(<Options {...defaultProps} cookiePolicy={cookiePolicy} />);
+    expect(wrapper.find(Option)).toHaveLength(3);
+    expect(wrapper.find('.declaration').exists()).toBeTruthy();
   });
 
   it('calls the correct function when an option is toggled', () => {

@@ -1,12 +1,19 @@
 import { h } from 'preact';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import mockConfig from '../../__mocks__/config';
 
 import Banner from '../../../components/banner';
 
 describe('Banner', () => {
-  it('should render properly', () => {
+  it('can render without a header', () => {
     const wrapper = shallow(<Banner />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper.find('.bannerHeader').children().exists()).toBeFalsy();
+  });
+
+  it('can render with a header', () => {
+    const wrapper = shallow(<Banner header={mockConfig.header} />);
+    expect(wrapper.find('.bannerHeader').find('p').text()).toEqual(mockConfig.header.subTitle);
+    expect(wrapper.find('.bannerHeader').find('h1').text()).toEqual(mockConfig.header.title);
+    expect(wrapper.find('.bannerExplanation').text()).toEqual(mockConfig.header.description);
   });
 });

@@ -32,6 +32,7 @@
 
 .bannerLogo {
   margin-left: auto;
+  align-self: flex-start;
 }
 
 .bannerLogo path {

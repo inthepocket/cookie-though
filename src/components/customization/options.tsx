@@ -1,7 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import Option from './option';
 import styles from './css/options.css';
-import { CookieOption } from '../../types';
+import { Config, CookieOption } from '../../types';
 
 const necessaryCookies = (
   <div className={`${styles.option} ${styles.optionSecondary}`}>
@@ -14,10 +14,11 @@ const necessaryCookies = (
 
 interface Props {
   options: CookieOption[];
+  cookiePolicy?: Config['cookiePolicy'];
   onToggle: (key: number) => void;
 }
 
-const Options: FunctionalComponent<Props> = ({ options, onToggle }) => {
+const Options: FunctionalComponent<Props> = ({ options, cookiePolicy, onToggle }) => {
   const optionalCookies = options.map((option, i) => (
     <Option key={i} option={option} onToggle={() => onToggle(i)} />
   ));
@@ -26,9 +27,11 @@ const Options: FunctionalComponent<Props> = ({ options, onToggle }) => {
     <div className={styles.options}>
       {necessaryCookies}
       {optionalCookies}
-      <div className={styles.declaration}>
-        <a href="#">Read the full cookie declaration</a>
-      </div>
+      {cookiePolicy && (
+        <div className={styles.declaration}>
+          <a href={cookiePolicy.url}>{cookiePolicy.label}</a>
+        </div>
+      )}
     </div>
   );
 };

@@ -9,22 +9,32 @@ exports[`Cookie Though should render properly 1`] = `
     className="cookie-though"
   >
     <App
-      cookieOptions={
+      permissionLabels={
+        Object {
+          "accept": "Accept",
+          "acceptAll": "Accept all",
+          "decline": "Decline",
+        }
+      }
+      policies={
         Array [
           Object {
+            "category": "functional",
             "description": "We’ll remember the basics such as language.",
-            "isEnabled": false,
-            "name": "Functional cookies",
+            "id": "functional",
+            "label": "Functional cookies",
           },
           Object {
+            "category": "statistics",
             "description": "We’ll know where we should improve your experience.",
-            "isEnabled": false,
-            "name": "Analytics",
+            "id": "analytics",
+            "label": "Analytics",
           },
           Object {
+            "category": "marketing",
             "description": "We’ll only show you content that interests you.",
-            "isEnabled": false,
-            "name": "Marketing",
+            "id": "marketing",
+            "label": "Marketing",
           },
         ]
       }

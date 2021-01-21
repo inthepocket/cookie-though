@@ -1,13 +1,27 @@
 import { FunctionalComponent, h } from 'preact';
+import { Config } from '../../types';
 import styles from './style.css';
 
-const Banner: FunctionalComponent = () => {
+interface Props {
+  header?: Config['header'];
+}
+
+const Banner: FunctionalComponent<Props> = ({ header }) => {
+  const keyExists = (key: keyof NonNullable<Config['header']>) => {
+    if (!header || !Object.keys(header).length) {
+      return false;
+    }
+
+    return key in header;
+  };
+  const getValue = (key: keyof NonNullable<Config['header']>) => header![key];
+
   return (
     <div className={styles.banner}>
       <div className={styles.bannerIntro}>
-        <div>
-          <p>You&apos;re probably fed up with these banners...</p>
-          <h1>cookie though?</h1>
+        <div className={styles.bannerHeader}>
+          {keyExists('subTitle') && <p>{getValue('subTitle')}</p>}
+          {keyExists('title') && <h1>{getValue('title')}</h1>}
         </div>
         <div className={styles.bannerLogo}>
           <svg width="33" height="33" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg">
@@ -15,10 +29,9 @@ const Banner: FunctionalComponent = () => {
           </svg>
         </div>
       </div>
-      <div className={styles.bannerExplanation}>
-        Everybody wants to show his best side - and so do we. That’s why we use cookies to guarantee
-        you a better experience.
-      </div>
+      {keyExists('description') && (
+        <div className={styles.bannerExplanation}>{getValue('description')}</div>
+      )}
     </div>
   );
 };

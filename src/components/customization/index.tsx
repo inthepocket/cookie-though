@@ -6,11 +6,13 @@ import Options from './options';
 import Collapse from './collapse';
 import Button from '../button';
 import buttonStyles from '../button/style.css';
-import { CookieOption } from '../../types';
+import { Config, CookieOption } from '../../types';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 interface Props {
   cookieOptions: CookieOption[];
+  permissionLabels: Config['permissionLabels'];
+  cookiePolicy?: Config['cookiePolicy'];
   setVisible(value: boolean): void;
 }
 
@@ -18,17 +20,22 @@ const isAnOptionEnabled = (cookieOptions: CookieOption[]) => {
   return cookieOptions.some(cookieOption => cookieOption.isEnabled === true);
 };
 
-const Customization: FunctionalComponent<Props> = ({ cookieOptions, setVisible }) => {
+const Customization: FunctionalComponent<Props> = ({
+  cookieOptions,
+  permissionLabels,
+  cookiePolicy,
+  setVisible,
+}) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
-  const { setCookiePreferences } = useLocalStorage({ cookieOptions: cookieOptions });
+  const { setCookiePreferences } = useLocalStorage({ cookieOptions });
   const acceptButtonLabel = useMemo(() => {
     if (!isActive && !isAnOptionEnabled(options)) {
-      return 'Accept all';
+      return permissionLabels.acceptAll;
     }
 
-    return 'Accept';
-  }, [isActive, options]);
+    return permissionLabels.accept;
+  }, [isActive, options, permissionLabels.accept, permissionLabels.acceptAll]);
 
   const toggleOption = (key: number) => {
     options[key] = { ...options[key], isEnabled: !options[key].isEnabled };
@@ -62,10 +69,14 @@ const Customization: FunctionalComponent<Props> = ({ cookieOptions, setVisible }
         toggleCustomization={() => setIsActive(prevState => !prevState)}
       />
       <Collapse isOpen={isActive}>
-        <Options options={options} onToggle={toggleOption} />
+        <Options options={options} onToggle={toggleOption} cookiePolicy={cookiePolicy} />
       </Collapse>
       <div className={styles.acceptance}>
-        <Button label="Decline" className={buttonStyles.secondary} onClick={declineAllOptions} />
+        <Button
+          label={permissionLabels.decline}
+          className={buttonStyles.secondary}
+          onClick={declineAllOptions}
+        />
         <Button label={acceptButtonLabel} onClick={acceptOptions} />
       </div>
     </div>
