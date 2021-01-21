@@ -1,8 +1,8 @@
+# Cookie Though
+
 <div align="center">
     <img src="./assets/logo.png" width="100" height="auto"/>
 </div>
-
-# Cookie Though
 
 ## Getting started
 
