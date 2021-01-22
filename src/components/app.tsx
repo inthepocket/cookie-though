@@ -29,9 +29,18 @@ export const App: FunctionalComponent<Props> = ({
   });
   const [cookiePreferences] = useState(() => getCookiePreferences());
   useEffect(() => {
+    window.cookieThough.getCookiePreferences = (id?: CookieOption['id']) => {
+      return id
+        ? cookiePreferences.cookieOptions.filter(option => option.id === id)[0]
+        : cookiePreferences;
+    };
     if (!cookiePreferences.isCustomised) {
       setVisible(true);
     }
+
+    return () => {
+      window.cookieThough.getCookiePreferences = undefined;
+    };
   }, [cookiePreferences, setVisible]);
 
   return (
