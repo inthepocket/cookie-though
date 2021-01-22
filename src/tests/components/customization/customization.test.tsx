@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import toJson from 'enzyme-to-json';
 import { mount, ReactWrapper, shallow } from 'enzyme';
-import { COOKIE_PREFERENCES_KEY } from '../../../hooks/useLocalStorage';
+import { COOKIE_PREFERENCES_KEY, getCookie } from '../../../hooks/useCookie';
 import mockConfig from '../../__mocks__/config';
 
 import Button from '../../../components/button';
@@ -38,8 +38,7 @@ describe('Customization', () => {
   const getOptionalCookie = (wrapper: ReactWrapper) => wrapper.find('.option').at(1);
 
   const getCookiePreferences = () => {
-    const cookiePreferences = localStorage.getItem(COOKIE_PREFERENCES_KEY);
-    return cookiePreferences ? JSON.parse(cookiePreferences) : 'NO_PREFERENCES';
+    return getCookie(COOKIE_PREFERENCES_KEY) ?? 'NO_PREFERENCES';
   };
 
   test('clicking the ToggleButton component toggles the isActive state', () => {

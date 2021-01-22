@@ -3,7 +3,7 @@ import Banner from './banner';
 import Customization from './customization';
 import { useEffect, useState } from 'preact/hooks';
 import { Config, CookieOption } from '../types';
-import useLocalStorage from '../hooks/useLocalStorage';
+import useCookie from '../hooks/useCookie';
 import './app.css';
 
 interface Props extends Config {
@@ -17,13 +17,13 @@ export type CookiePreferences = {
 
 export const App: FunctionalComponent<Props> = ({
   policies,
-  cookiePreferenceKey = '',
+  cookiePreferenceKey,
   header,
   cookiePolicy,
   permissionLabels,
   setVisible,
 }) => {
-  const { getCookiePreferences } = useLocalStorage({
+  const { getCookiePreferences } = useCookie({
     cookieOptions: policies.map(policy => ({ ...policy, isEnabled: false })),
     cookiePreferenceKey,
   });

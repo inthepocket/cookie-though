@@ -2,14 +2,14 @@ import { h } from 'preact';
 import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import mockPolicies from './__mocks__/policies';
-import { COOKIE_PREFERENCES_KEY } from '../hooks/useLocalStorage';
+import { COOKIE_PREFERENCES_KEY } from '../hooks/useCookie';
 import mockConfig, { dutchMockConfig } from './__mocks__/config';
-
 import CookieThough, { App, CookiePreferences } from '../components/app';
+import clearCookies from './utils/clearCookies';
 
 describe('Cookie Though', () => {
   afterEach(() => {
-    localStorage.clear();
+    clearCookies();
     document.getElementsByTagName('html')[0].innerHTML = '';
   });
 
@@ -68,17 +68,17 @@ describe('Cookie Though', () => {
     });
   });
 
-  describe('with user preferences stored in local storage', () => {
+  describe('with user preferences stored in a cookie', () => {
     const DEFAULT_COOKIE_PREFERENCES: CookiePreferences = {
       isCustomised: false,
       cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
     };
 
     it('should not show the cookie wall', () => {
-      localStorage.setItem(
-        COOKIE_PREFERENCES_KEY,
-        JSON.stringify({ ...DEFAULT_COOKIE_PREFERENCES, isCustomised: true }),
-      );
+      document.cookie = `${COOKIE_PREFERENCES_KEY}=${JSON.stringify({
+        ...DEFAULT_COOKIE_PREFERENCES,
+        isCustomised: true,
+      })}`;
       const setVisible = function () {
         throw new Error('should not be called');
       };

@@ -7,7 +7,7 @@ import Collapse from './collapse';
 import Button from '../button';
 import buttonStyles from '../button/style.css';
 import { Config, CookieOption } from '../../types';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import useCookie from '../../hooks/useCookie';
 
 interface Props {
   cookieOptions: CookieOption[];
@@ -28,7 +28,7 @@ const Customization: FunctionalComponent<Props> = ({
 }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
-  const { setCookiePreferences } = useLocalStorage({ cookieOptions });
+  const { setCookiePreferences } = useCookie({ cookieOptions });
   const acceptButtonLabel = useMemo(() => {
     if (!isActive && !isAnOptionEnabled(options)) {
       return permissionLabels.acceptAll;
