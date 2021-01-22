@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "cookie-though"
+  },
+  "targets": {
+    "cookie-though": {
+      "hosting": {
+        "docs": [
+          "cookie-though-docs"
+        ],
+        "site": [
+          "cookie-though"
+        ]
+      }
+    }
   }
 }

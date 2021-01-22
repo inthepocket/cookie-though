@@ -6,4 +6,5 @@ node_modules
 /public
 .firebase
 /coverage
-junit.xml
+junit.xmldocs/README.md
+doc

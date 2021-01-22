@@ -1,5 +1,3 @@
-# Navigation
-
 * [Home](/)
-* Architecture
-  * [Config](/architecture/config_proposal)
+* [Configuration](/docs/config)
+* [Development](/docs/development)
