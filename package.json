@@ -2,6 +2,7 @@
   "name": "cookie-though",
   "version": "0.0.0",
   "license": "MIT",
+  "homepage": "https://cookie-though-docs.web.app",
   "scripts": {
     "docs": "docsify serve",
     "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public",
@@ -12,7 +13,8 @@
     "prettier:fix": "npm run prettier -- --write",
     "prettier": "prettier \"src/**/*.{js,ts,tsx}\"",
     "prepare": "./scripts/postinstall-local.sh",
-    "deploy": "firebase deploy --token $FIREBASE_TOKEN",
+    "deploy:site": "firebase deploy --token $FIREBASE_TOKEN --only hosting:site",
+    "deploy:docs": "./scripts/docsify.sh && firebase deploy --token $FIREBASE_TOKEN --only hosting:docs",
     "test": "jest",
     "test:coverage": "jest --coverage --reporters=jest-junit"
   },

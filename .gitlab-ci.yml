@@ -46,14 +46,20 @@ build:lib:
         - dist
   dependencies:
     - dependencies
-deploy:
+deploy:site:
   stage: deploy
   only:
     - master
   script:
-    - npm run deploy
+    - npm run deploy:site
   dependencies:
     - build:site
+deploy:docs:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - npm run deploy:docs
 publish:
   stage: publish
   only:
