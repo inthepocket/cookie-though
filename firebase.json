@@ -1,6 +1,6 @@
 {
   "hosting": [{
-    "target":"demo",
+    "target":"site",
     "public": "public",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   },
