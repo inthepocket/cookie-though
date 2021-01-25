@@ -1,10 +1,9 @@
-import { CookieOption } from '../types';
-import { CookiePreferences } from '../components/app';
+import { CookiePreference, CookiePreferences } from '../types';
 
 export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
 
 interface Options {
-  cookieOptions: CookieOption[];
+  cookieOptions: CookiePreference[];
   cookiePreferenceKey?: string;
 }
 
@@ -24,13 +23,16 @@ export const getNextYear = () => {
 };
 
 const policiesHaveChanged = (
-  policyIds: CookieOption['id'][],
-  preferenceIds: CookieOption['id'][],
+  policyIds: CookiePreference['id'][],
+  preferenceIds: CookiePreference['id'][],
 ) => {
   return policyIds.some(id => !policyIds.includes(id)) || policyIds.length !== preferenceIds.length;
 };
 
-const mergePolicies = (policies: CookieOption[], preferences: CookieOption[]): CookieOption[] => {
+const mergePolicies = (
+  policies: CookiePreference[],
+  preferences: CookiePreference[],
+): CookiePreference[] => {
   return policies.map(policy => {
     const isEnabled = preferences.reduce((isPreferenceEnabled, preference) => {
       return preference.id === policy.id ? preference.isEnabled : isPreferenceEnabled;

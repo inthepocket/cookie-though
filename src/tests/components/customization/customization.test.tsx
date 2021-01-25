@@ -13,8 +13,7 @@ import Collapse from '../../../components/customization/collapse';
 const defaultProps = {
   cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
   permissionLabels: mockConfig.permissionLabels,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setVisible: jest.fn(() => {}),
+  setVisible: jest.fn(),
 };
 
 describe('Customization', () => {
@@ -83,7 +82,7 @@ describe('Customization', () => {
     expect(getCookiePreferences()).toEqual({
       isCustomised: true,
       cookieOptions: defaultProps.cookieOptions.map(cookieOption => ({
-        ...cookieOption,
+        id: cookieOption.id,
         isEnabled: false,
       })),
     });
@@ -107,7 +106,10 @@ describe('Customization', () => {
       acceptButton.simulate('click').update();
       expect(getCookiePreferences()).toEqual({
         isCustomised: true,
-        cookieOptions: customisedCookies,
+        cookieOptions: customisedCookies.map(customisedCookie => ({
+          id: customisedCookie.id,
+          isEnabled: customisedCookie.isEnabled,
+        })),
       });
       expect(getToggleButton(wrapper).hasClass('active')).toBeFalsy();
       expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
@@ -123,7 +125,7 @@ describe('Customization', () => {
       expect(getCookiePreferences()).toEqual({
         isCustomised: true,
         cookieOptions: defaultProps.cookieOptions.map(cookieOption => ({
-          ...cookieOption,
+          id: cookieOption.id,
           isEnabled: true,
         })),
       });

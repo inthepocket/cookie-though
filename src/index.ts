@@ -8,12 +8,11 @@ if (process.env.NODE_ENV === 'development') {
 // import CookieThough from '../dist/app';
 import CookieThough from './components/app';
 window.addEventListener('DOMContentLoaded', () => {
-  const { setVisible } = CookieThough.init(englishMockConfig);
+  CookieThough.init(englishMockConfig);
 
-  window.cookieThough = { setVisible };
   const manageCookiesElement = document.getElementById('manage-cookie-though');
   manageCookiesElement?.addEventListener('click', () => {
-    setVisible(true);
+    window.cookieThough.setVisible(true);
   });
 
   const switchCookiesElement = document.getElementById('switch-config');

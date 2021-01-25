@@ -1,7 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import ToggleButton from './toggleButton';
 import styles from './css/customization.css';
-import { useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useState } from 'preact/hooks';
 import Options from './options';
 import Collapse from './collapse';
 import Button from '../button';
@@ -37,6 +37,10 @@ const Customization: FunctionalComponent<Props> = ({
     return permissionLabels.accept;
   }, [isActive, options, permissionLabels.accept, permissionLabels.acceptAll]);
 
+  useEffect(() => {
+    setOptions(cookieOptions);
+  }, [cookieOptions]);
+
   const toggleOption = (key: number) => {
     options[key] = { ...options[key], isEnabled: !options[key].isEnabled };
     setOptions([...options]);
@@ -47,19 +51,31 @@ const Customization: FunctionalComponent<Props> = ({
     setOptions(declinedOptions);
     setIsActive(false);
     setVisible(false);
-    setCookiePreferences({ cookieOptions: declinedOptions, isCustomised: true });
+    setCookiePreferences({
+      cookieOptions: declinedOptions.map(declinedOption => ({
+        id: declinedOption.id,
+        isEnabled: declinedOption.isEnabled,
+      })),
+      isCustomised: true,
+    });
   };
 
   const acceptOptions = () => {
-    let acceptedOptions = options;
+    let acceptedOptions = options.map(option => ({ ...option, isEnabled: option.isEnabled }));
     if (!isActive && !isAnOptionEnabled(options)) {
-      acceptedOptions = options.map(option => ({ ...option, isEnabled: true }));
+      acceptedOptions = acceptedOptions.map(option => ({ ...option, isEnabled: true }));
       setOptions(acceptedOptions);
     }
 
     setIsActive(false);
     setVisible(false);
-    setCookiePreferences({ cookieOptions: acceptedOptions, isCustomised: true });
+    setCookiePreferences({
+      cookieOptions: acceptedOptions.map(acceptedOption => ({
+        id: acceptedOption.id,
+        isEnabled: acceptedOption.isEnabled,
+      })),
+      isCustomised: true,
+    });
   };
 
   return (

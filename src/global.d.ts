@@ -1,13 +1,11 @@
-import { CookieOption } from './types';
-import { CookiePreferences } from './components/app';
+import { CookiePreference, CookiePreferences } from './types';
+
 export {};
 declare global {
   interface Window {
     cookieThough: {
       setVisible(value: boolean): void;
-      getCookiePreferences?:
-        | undefined
-        | ((id?: CookieOption['id']) => CookiePreferences | CookieOption);
+      getPreferences: (id?: CookiePreference['id']) => CookiePreferences | boolean;
     };
   }
 }

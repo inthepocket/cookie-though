@@ -1,5 +1,4 @@
-import { Category } from './../../types';
-import { CookiePreferences } from '../../components/app';
+import { Category, CookiePreferences } from './../../types';
 import { COOKIE_PREFERENCES_KEY, getCookie } from '../../hooks/useCookie';
 import useCookie from '../../hooks/useCookie';
 import mockConfig from '../__mocks__/config';

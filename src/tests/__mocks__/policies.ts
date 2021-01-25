@@ -1,6 +1,27 @@
 import { Category } from './../../types';
 import { Policy } from '../../types';
 
+export const dutchMockPolicies: Policy[] = [
+  {
+    id: 'functional',
+    label: 'Functionele cookies',
+    description: 'We onthouden de enkel basisdingen, zoals taal.',
+    category: Category.Functional,
+  },
+  {
+    id: 'analytics',
+    label: 'Analyses',
+    description: 'We zullen weten hoe we je ervaring kunnen verbeteren.',
+    category: Category.Statistics,
+  },
+  {
+    id: 'marketing',
+    label: 'Marketing',
+    description: 'We zullen je enkel content tonen dat je interesseerd.',
+    category: Category.Marketing,
+  },
+];
+
 const mockPolicies: Policy[] = [
   {
     id: 'functional',

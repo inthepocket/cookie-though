@@ -1,8 +1,8 @@
 import { Fragment, FunctionalComponent, h, render } from 'preact';
 import Banner from './banner';
 import Customization from './customization';
-import { useEffect, useState } from 'preact/hooks';
-import { Config, CookieOption } from '../types';
+import { useEffect } from 'preact/hooks';
+import { Config, CookieOption, CookieOptions, CookiePreference, CookiePreferences } from '../types';
 import useCookie from '../hooks/useCookie';
 import './app.css';
 
@@ -10,9 +10,11 @@ interface Props extends Config {
   setVisible(value: boolean): void;
 }
 
-export type CookiePreferences = {
-  isCustomised: boolean;
-  cookieOptions: CookieOption[];
+const setVisible = (value: boolean) => {
+  if (value) {
+    return document.querySelector('.cookie-though')?.classList.add('visible');
+  }
+  document.querySelector('.cookie-though')?.classList.remove('visible');
 };
 
 export const App: FunctionalComponent<Props> = ({
@@ -24,23 +26,39 @@ export const App: FunctionalComponent<Props> = ({
   setVisible,
 }) => {
   const { getCookiePreferences } = useCookie({
-    cookieOptions: policies.map(policy => ({ ...policy, isEnabled: false })),
+    cookieOptions: policies.map(policy => ({ id: policy.id, isEnabled: false })),
     cookiePreferenceKey,
   });
-  const [cookiePreferences] = useState(() => getCookiePreferences());
+  const getCookieOptions = (): CookieOptions => {
+    const preferences = getCookiePreferences();
+    const cookieOptions = preferences.cookieOptions.map(option => {
+      const policyToMerge = policies.find(policy => policy.id === option.id);
+      return { ...policyToMerge, ...option } as CookieOption;
+    });
+
+    return { ...preferences, cookieOptions };
+  };
+  const cookiePreferences = getCookieOptions();
+
   useEffect(() => {
-    window.cookieThough.getCookiePreferences = (id?: CookieOption['id']) => {
+    const getPreferences = (id?: CookiePreference['id']) => {
       return id
-        ? cookiePreferences.cookieOptions.filter(option => option.id === id)[0]
-        : cookiePreferences;
+        ? cookiePreferences.cookieOptions.filter(option => option.id === id)[0].isEnabled
+        : ({
+            ...cookiePreferences,
+            cookieOptions: cookiePreferences.cookieOptions.map<CookiePreference>(
+              cookiePreference => ({
+                id: cookiePreference.id,
+                isEnabled: cookiePreference.isEnabled,
+              }),
+            ),
+          } as CookiePreferences);
     };
     if (!cookiePreferences.isCustomised) {
       setVisible(true);
     }
 
-    return () => {
-      window.cookieThough.getCookiePreferences = undefined;
-    };
+    window.cookieThough = { setVisible, getPreferences };
   }, [cookiePreferences, setVisible]);
 
   return (
@@ -56,13 +74,6 @@ export const App: FunctionalComponent<Props> = ({
   );
 };
 
-const setVisible = (value: boolean) => {
-  if (value) {
-    return document.querySelector('.cookie-though')?.classList.add('visible');
-  }
-  document.querySelector('.cookie-though')?.classList.remove('visible');
-};
-
 const CookieThough = {
   init(config: Config) {
     const container = document.createElement('div');
@@ -70,13 +81,11 @@ const CookieThough = {
 
     const previousInstance = document.querySelector('.cookie-though');
     if (previousInstance) {
-      render(h(App, { ...config, setVisible }), previousInstance);
-      return { setVisible };
+      return render(h(App, { ...config, setVisible }), previousInstance);
     }
 
     document.body.append(container);
-    render(h(App, { ...config, setVisible }), container);
-    return { setVisible };
+    return render(h(App, { ...config, setVisible }), container);
   },
 };
 

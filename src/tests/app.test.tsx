@@ -4,8 +4,9 @@ import toJson from 'enzyme-to-json';
 import mockPolicies from './__mocks__/policies';
 import { COOKIE_PREFERENCES_KEY } from '../hooks/useCookie';
 import mockConfig, { dutchMockConfig } from './__mocks__/config';
-import CookieThough, { App, CookiePreferences } from '../components/app';
+import CookieThough, { App } from '../components/app';
 import clearCookies from './utils/clearCookies';
+import { CookiePreferences } from '../types';
 
 describe('Cookie Though', () => {
   afterEach(() => {
@@ -39,12 +40,38 @@ describe('Cookie Though', () => {
     });
 
     it('can hide the cookie wall with the setVisible function', () => {
-      const { setVisible } = CookieThough.init(mockConfig);
+      CookieThough.init(mockConfig);
 
       expect(document.querySelector('.cookie-though')).toBeDefined();
       expect(document.querySelector('.visible')).toBeDefined();
-      setVisible(false);
+      window.cookieThough.setVisible(false);
       expect(document.querySelector('.visible')).toBeNull();
+    });
+
+    it('can get the current policies with the getCookiePreferences function', () => {
+      CookieThough.init(mockConfig);
+      expect(window.cookieThough.getPreferences()).toEqual({
+        cookieOptions: [
+          {
+            id: 'functional',
+            isEnabled: false,
+          },
+          {
+            id: 'analytics',
+            isEnabled: false,
+          },
+          {
+            id: 'marketing',
+            isEnabled: false,
+          },
+        ],
+        isCustomised: false,
+      });
+    });
+
+    it("can get a single preference based on it's id", () => {
+      CookieThough.init(mockConfig);
+      expect(window.cookieThough.getPreferences(mockPolicies[0].id)).toBeFalsy();
     });
   });
 
