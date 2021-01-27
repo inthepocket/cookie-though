@@ -19,7 +19,7 @@ export const App: FunctionalComponent<Props> = ({
   setVisible,
   onPreferencesChanged,
 }) => {
-  const { getCookiePreferences } = useCookie({
+  const { getCookiePreferences, setCookiePreferences } = useCookie({
     cookieOptions: policies.map(policy => ({ id: policy.id, isEnabled: false })),
     cookiePreferenceKey,
     onPreferencesChanged,
@@ -48,9 +48,8 @@ export const App: FunctionalComponent<Props> = ({
         cookieOptions={cookiePreferences.cookieOptions}
         cookiePolicy={cookiePolicy}
         permissionLabels={permissionLabels}
-        cookiePreferenceKey={cookiePreferenceKey}
         setVisible={setVisible}
-        onPreferencesChanged={onPreferencesChanged}
+        setCookiePreferences={setCookiePreferences}
       />
     </Fragment>
   );

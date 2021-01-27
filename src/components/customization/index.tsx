@@ -6,16 +6,14 @@ import Options from './options';
 import Collapse from './collapse';
 import Button from '../button';
 import buttonStyles from '../button/style.css';
-import { Config, CookieOption } from '../../types';
-import useCookie from '../../hooks/useCookie';
+import { Config, CookieOption, CookiePreferences } from '../../types';
 
 interface Props {
   cookieOptions: CookieOption[];
   permissionLabels: Config['permissionLabels'];
   cookiePolicy?: Config['cookiePolicy'];
-  cookiePreferenceKey?: Config['cookiePreferenceKey'];
   setVisible(value: boolean): void;
-  onPreferencesChanged: Config['onPreferencesChanged'];
+  setCookiePreferences(cookiePreferences: CookiePreferences): CookiePreferences;
 }
 
 const isAnOptionEnabled = (cookieOptions: CookieOption[]) => {
@@ -26,17 +24,11 @@ const Customization: FunctionalComponent<Props> = ({
   cookieOptions,
   permissionLabels,
   cookiePolicy,
-  cookiePreferenceKey,
   setVisible,
-  onPreferencesChanged,
+  setCookiePreferences,
 }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
-  const { setCookiePreferences } = useCookie({
-    cookieOptions,
-    cookiePreferenceKey,
-    onPreferencesChanged,
-  });
   const acceptButtonLabel = useMemo(() => {
     if (!isActive && !isAnOptionEnabled(options)) {
       return permissionLabels.acceptAll;
