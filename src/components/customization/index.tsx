@@ -1,23 +1,36 @@
 import { FunctionalComponent, h } from 'preact';
 import ToggleButton from './toggleButton';
 import styles from './css/customization.css';
-import { useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useState } from 'preact/hooks';
 import Options from './options';
 import Collapse from './collapse';
 import Button from '../button';
 import buttonStyles from '../button/style.css';
-import { Config, CookieOption } from '../../types';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import { Config, CookieOption, CookiePreferences } from '../../types';
+import { isEssential } from '../app';
 
 interface Props {
   cookieOptions: CookieOption[];
   permissionLabels: Config['permissionLabels'];
   cookiePolicy?: Config['cookiePolicy'];
   setVisible(value: boolean): void;
+  setCookiePreferences(cookiePreferences: CookiePreferences): CookiePreferences;
 }
 
 const isAnOptionEnabled = (cookieOptions: CookieOption[]) => {
-  return cookieOptions.some(cookieOption => cookieOption.isEnabled === true);
+  return cookieOptions.some(
+    cookieOption => !isEssential(cookieOption.category) && cookieOption.isEnabled === true,
+  );
+};
+
+const formatCookieOptions = (cookieOptions: CookieOption[]): CookiePreferences => {
+  return {
+    cookieOptions: cookieOptions.map(cookieOption => ({
+      id: cookieOption.id,
+      isEnabled: cookieOption.isEnabled,
+    })),
+    isCustomised: true,
+  };
 };
 
 const Customization: FunctionalComponent<Props> = ({
@@ -25,10 +38,10 @@ const Customization: FunctionalComponent<Props> = ({
   permissionLabels,
   cookiePolicy,
   setVisible,
+  setCookiePreferences,
 }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
-  const { setCookiePreferences } = useLocalStorage({ cookieOptions });
   const acceptButtonLabel = useMemo(() => {
     if (!isActive && !isAnOptionEnabled(options)) {
       return permissionLabels.acceptAll;
@@ -37,29 +50,36 @@ const Customization: FunctionalComponent<Props> = ({
     return permissionLabels.accept;
   }, [isActive, options, permissionLabels.accept, permissionLabels.acceptAll]);
 
+  useEffect(() => {
+    setOptions(cookieOptions);
+  }, [cookieOptions]);
+
   const toggleOption = (key: number) => {
     options[key] = { ...options[key], isEnabled: !options[key].isEnabled };
     setOptions([...options]);
   };
 
   const declineAllOptions = () => {
-    const declinedOptions = options.map(option => ({ ...option, isEnabled: false }));
+    const declinedOptions = options.map(option => ({
+      ...option,
+      isEnabled: isEssential(option.category) ? true : false,
+    }));
     setOptions(declinedOptions);
     setIsActive(false);
     setVisible(false);
-    setCookiePreferences({ cookieOptions: declinedOptions, isCustomised: true });
+    setCookiePreferences(formatCookieOptions(declinedOptions));
   };
 
   const acceptOptions = () => {
-    let acceptedOptions = options;
+    let acceptedOptions = options.map(option => ({ ...option, isEnabled: option.isEnabled }));
     if (!isActive && !isAnOptionEnabled(options)) {
-      acceptedOptions = options.map(option => ({ ...option, isEnabled: true }));
+      acceptedOptions = acceptedOptions.map(option => ({ ...option, isEnabled: true }));
       setOptions(acceptedOptions);
     }
 
     setIsActive(false);
     setVisible(false);
-    setCookiePreferences({ cookieOptions: acceptedOptions, isCustomised: true });
+    setCookiePreferences(formatCookieOptions(acceptedOptions));
   };
 
   return (

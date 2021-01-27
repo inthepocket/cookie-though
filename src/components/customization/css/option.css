@@ -1,0 +1,115 @@
+.option {
+  border: 1px solid var(--blue-200);
+  border-radius: 5px;
+  margin-bottom: var(--seperator-padding);
+  display: flex;
+  font-size: var(--text-font-size);
+  font-family: 'Flama Basic';
+  transition: background-color 250ms linear, color 250ms linear, border-color 250ms linear;
+}
+
+.enabled {
+  background-color: var(--blue-400);
+  border-color: var(--blue-400);
+}
+
+.essential {
+  background-color: var(--blue-100);
+  border-color: var(--blue-100);
+}
+
+.essential .slider {
+  color: var(--gray-400);
+}
+
+.enabled .optionInfo p {
+  color: var(--white);
+}
+
+.optionSecondary {
+  border-color: var(--blue-100);
+  background: var(--blue-100);
+}
+
+.option input[type="checkbox"]{
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.optionInfo {
+  width: 100%;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.optionInfo p, .essential strong {
+  color: var(--blue-400);
+}
+
+.optionInfo p {
+  margin: 0;
+  max-width: 70%;
+}
+
+.optionInfo strong {
+  display: block;
+}
+
+input[type="checkbox"]:not(:disabled) + .optionInfo strong {
+  margin-bottom: var(--text-margin);
+}
+
+.optionInfo strong,
+.declaration {
+  font-family: 'Flama';
+}
+
+.optionDefault {
+  margin-left: auto;
+  align-self: center;
+  color: var(--gray-400);
+}
+
+.slider {
+  margin-left: auto;
+}
+
+input[type="checkbox"]:not(:disabled) + label .slider {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  background: var(--gray-300);
+  width: 1.625rem;
+  height: .5rem;
+  border-radius: 9999px;
+  transition: 250ms ease-in background;
+  outline: 0;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:not(:disabled) + label .slider::after {
+  content: '';
+  position: absolute;
+  top: -.25rem;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  background: var(--gray-400);
+  border-radius: 2rem;
+  transition: 250ms ease-out background, 250ms ease-out left;
+}
+
+input[type="checkbox"]:not(:disabled):checked + label .slider {
+  background-color: #4c4cff;
+}
+
+input[type="checkbox"]:not(:disabled):checked + label .slider::after {
+  background: #b3b3ff;
+  left: 50%;
+}

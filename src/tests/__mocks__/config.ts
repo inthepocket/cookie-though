@@ -1,7 +1,7 @@
-import mockPolicies from './policies';
+import mockPolicies, { dutchMockPolicies } from './policies';
 
 export const dutchMockConfig = {
-  policies: mockPolicies,
+  policies: dutchMockPolicies,
   header: {
     subTitle: 'Je hebt waarschijnlijk genoeg van deze banners...',
     title: 'cookie though?',
