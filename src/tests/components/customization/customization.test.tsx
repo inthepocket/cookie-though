@@ -14,6 +14,7 @@ const defaultProps = {
   cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
   permissionLabels: mockConfig.permissionLabels,
   setVisible: jest.fn(),
+  setCookiePreferences: jest.fn(),
 };
 
 describe('Customization', () => {
@@ -75,11 +76,18 @@ describe('Customization', () => {
       ...mockCookie,
       isEnabled: true,
     }));
-    const wrapper = mount(<Customization {...defaultProps} cookieOptions={enabledCookies} />);
+    const setCookiePreferences = jest.fn();
+    const wrapper = mount(
+      <Customization
+        {...defaultProps}
+        cookieOptions={enabledCookies}
+        setCookiePreferences={setCookiePreferences}
+      />,
+    );
     const declineButton = wrapper.find('button.secondary');
 
     declineButton.simulate('click').update();
-    expect(getCookiePreferences()).toEqual({
+    expect(setCookiePreferences).toBeCalledWith({
       isCustomised: true,
       cookieOptions: defaultProps.cookieOptions.map(cookieOption => ({
         id: cookieOption.id,
@@ -100,11 +108,18 @@ describe('Customization', () => {
         { ...defaultProps.cookieOptions[0], isEnabled: true },
         ...defaultProps.cookieOptions.splice(1, defaultProps.cookieOptions.length),
       ];
-      const wrapper = mount(<Customization {...defaultProps} cookieOptions={customisedCookies} />);
+      const setCookiePreferences = jest.fn();
+      const wrapper = mount(
+        <Customization
+          {...defaultProps}
+          cookieOptions={customisedCookies}
+          setCookiePreferences={setCookiePreferences}
+        />,
+      );
       const acceptButton = wrapper.find('button').last();
 
       acceptButton.simulate('click').update();
-      expect(getCookiePreferences()).toEqual({
+      expect(setCookiePreferences).toBeCalledWith({
         isCustomised: true,
         cookieOptions: customisedCookies.map(customisedCookie => ({
           id: customisedCookie.id,
@@ -118,11 +133,14 @@ describe('Customization', () => {
     });
 
     it('will accept all options if the user has none enabled and save the preferences', () => {
-      const wrapper = mount(<Customization {...defaultProps} />);
+      const setCookiePreferences = jest.fn();
+      const wrapper = mount(
+        <Customization {...defaultProps} setCookiePreferences={setCookiePreferences} />,
+      );
       const acceptButton = wrapper.find('button').last();
 
       acceptButton.simulate('click').update();
-      expect(getCookiePreferences()).toEqual({
+      expect(setCookiePreferences).toBeCalledWith({
         isCustomised: true,
         cookieOptions: defaultProps.cookieOptions.map(cookieOption => ({
           id: cookieOption.id,

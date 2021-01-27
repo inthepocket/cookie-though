@@ -22,56 +22,62 @@ describe('Cookie Though', () => {
     });
 
     it('can render the app based on the initCookieThough function', () => {
-      CookieThough.init(mockConfig);
+      CookieThough.init({ ...mockConfig, onPreferencesChanged: () => jest.fn() });
 
       expect(document.querySelector('.cookie-though')).toBeDefined();
     });
 
     it('can switch the config', () => {
-      CookieThough.init(mockConfig);
+      CookieThough.init({ ...mockConfig, onPreferencesChanged: () => jest.fn() });
 
       let cookiePolicyLink = document.querySelector('a');
       expect(cookiePolicyLink?.text).toEqual(mockConfig.cookiePolicy.label);
 
-      CookieThough.init(dutchMockConfig);
+      CookieThough.init({ ...dutchMockConfig, onPreferencesChanged: () => jest.fn() });
       expect(document.getElementsByClassName('cookie-though').length).toEqual(1);
       cookiePolicyLink = document.querySelector('a');
       expect(cookiePolicyLink?.text).toEqual(dutchMockConfig.cookiePolicy.label);
     });
 
     it('can hide the cookie wall with the setVisible function', () => {
-      CookieThough.init(mockConfig);
+      const { setVisible } = CookieThough.init({
+        ...mockConfig,
+        onPreferencesChanged: () => jest.fn(),
+      });
 
       expect(document.querySelector('.cookie-though')).toBeDefined();
       expect(document.querySelector('.visible')).toBeDefined();
-      window.cookieThough.setVisible(false);
+      setVisible(false);
       expect(document.querySelector('.visible')).toBeNull();
     });
 
-    it('can get the current policies with the getCookiePreferences function', () => {
-      CookieThough.init(mockConfig);
-      expect(window.cookieThough.getPreferences()).toEqual({
-        cookieOptions: [
-          {
-            id: 'functional',
-            isEnabled: false,
-          },
-          {
-            id: 'analytics',
-            isEnabled: false,
-          },
-          {
-            id: 'marketing',
-            isEnabled: false,
-          },
-        ],
-        isCustomised: false,
+    it('will call the onPreferencesChanged callback when the preferences are updated', () => {
+      const onPreferencesChanged = jest.fn((preferences: CookiePreferences) => {
+        expect(preferences).toEqual({
+          cookieOptions: [
+            {
+              id: 'functional',
+              isEnabled: true,
+            },
+            {
+              id: 'analytics',
+              isEnabled: true,
+            },
+            {
+              id: 'marketing',
+              isEnabled: true,
+            },
+          ],
+          isCustomised: true,
+        });
       });
-    });
+      CookieThough.init({ ...mockConfig, onPreferencesChanged });
 
-    it("can get a single preference based on it's id", () => {
-      CookieThough.init(mockConfig);
-      expect(window.cookieThough.getPreferences(mockPolicies[0].id)).toBeFalsy();
+      const acceptAllButton = Array.from(document.querySelectorAll('button')).find(
+        button => button.textContent === 'Accept all',
+      );
+      acceptAllButton?.click();
+      expect(onPreferencesChanged).toBeCalledTimes(1);
     });
   });
 
@@ -86,6 +92,7 @@ describe('Cookie Though', () => {
             policies={mockConfig.policies}
             permissionLabels={mockConfig.permissionLabels}
             setVisible={setVisible}
+            onPreferencesChanged={jest.fn()}
           />
         </div>,
         { attachTo: document.body },
@@ -115,6 +122,7 @@ describe('Cookie Though', () => {
             policies={mockPolicies}
             permissionLabels={mockConfig.permissionLabels}
             setVisible={setVisible}
+            onPreferencesChanged={jest.fn()}
           />
         </div>,
         { attachTo: document.body },
@@ -132,6 +140,7 @@ describe('Cookie Though', () => {
             policies={mockPolicies}
             permissionLabels={mockConfig.permissionLabels}
             setVisible={setVisible}
+            onPreferencesChanged={jest.fn()}
           />
         </div>,
         { attachTo: document.body },
@@ -152,6 +161,7 @@ describe('Cookie Though', () => {
             setVisible={() => {
               return;
             }}
+            onPreferencesChanged={jest.fn()}
           />
         </div>
       </body>,

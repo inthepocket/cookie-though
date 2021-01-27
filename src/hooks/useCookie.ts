@@ -49,7 +49,7 @@ const useCookie = ({
   cookiePreferenceKey = COOKIE_PREFERENCES_KEY,
   onPreferencesChanged,
 }: Options) => {
-  const preferences: CookiePreferences = {
+  const defaultPreferences: CookiePreferences = {
     cookieOptions,
     isCustomised: false,
   };
@@ -67,13 +67,16 @@ const useCookie = ({
   const getCookiePreferences = () => {
     const cookiePreferences = getCookie(cookiePreferenceKey);
 
-    if (!cookiePreferences) return setCookiePreferences(preferences);
+    if (!cookiePreferences) return defaultPreferences;
 
-    const policyIds = preferences.cookieOptions.map(cookieOption => cookieOption.id);
+    const policyIds = defaultPreferences.cookieOptions.map(cookieOption => cookieOption.id);
     const preferenceIds = cookiePreferences.cookieOptions.map(cookieOption => cookieOption.id);
     if (!policiesHaveChanged(policyIds, preferenceIds)) return cookiePreferences;
 
-    const cookieOptions = mergePolicies(preferences.cookieOptions, cookiePreferences.cookieOptions);
+    const cookieOptions = mergePolicies(
+      defaultPreferences.cookieOptions,
+      cookiePreferences.cookieOptions,
+    );
 
     return { cookieOptions, isCustomised: false };
   };
