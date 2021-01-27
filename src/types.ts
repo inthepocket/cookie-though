@@ -1,6 +1,19 @@
+export type CookiePreference = Pick<Policy, 'id'> & {
+  isEnabled: boolean;
+};
+
+export interface CookiePreferences {
+  isCustomised: boolean;
+  cookieOptions: CookiePreference[];
+}
+
 export type CookieOption = Policy & {
   isEnabled: boolean;
 };
+
+export interface CookieOptions extends CookiePreferences {
+  cookieOptions: CookieOption[];
+}
 
 export enum Category {
   Essential = 'essential',
@@ -33,4 +46,5 @@ export interface Config {
     url: string;
     label: string;
   };
+  onPreferencesChanged(preferences: CookiePreferences): void;
 }

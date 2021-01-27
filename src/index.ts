@@ -1,16 +1,21 @@
-import englishMockConfig, { dutchMockConfig } from './tests/__mocks__/config';
 // Must be the first import
 if (process.env.NODE_ENV === 'development') {
   require('preact/debug');
 }
+import { CookiePreferences } from './types';
+import englishMockConfig, { dutchMockConfig } from './tests/__mocks__/config';
 
 // This initialises the app for development purposes
 // import CookieThough from '../dist/app';
 import CookieThough from './components/app';
 window.addEventListener('DOMContentLoaded', () => {
-  const { setVisible } = CookieThough.init(englishMockConfig);
+  const { setVisible } = CookieThough.init({
+    ...englishMockConfig,
+    onPreferencesChanged: (preferences: CookiePreferences) => {
+      console.log({ preferences });
+    },
+  });
 
-  window.cookieThough = { setVisible };
   const manageCookiesElement = document.getElementById('manage-cookie-though');
   manageCookiesElement?.addEventListener('click', () => {
     setVisible(true);
@@ -21,10 +26,20 @@ window.addEventListener('DOMContentLoaded', () => {
   switchCookiesElement?.addEventListener('click', () => {
     if (language === 'english') {
       language = 'dutch';
-      CookieThough.init(dutchMockConfig);
+      CookieThough.init({
+        ...dutchMockConfig,
+        onPreferencesChanged: (preferences: CookiePreferences) => {
+          console.log({ preferences });
+        },
+      });
     } else {
       language = 'english';
-      CookieThough.init(englishMockConfig);
+      CookieThough.init({
+        ...englishMockConfig,
+        onPreferencesChanged: (preferences: CookiePreferences) => {
+          console.log({ preferences });
+        },
+      });
     }
   });
 });

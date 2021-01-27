@@ -1,5 +1,4 @@
-import { Category } from './../../types';
-import { CookiePreferences } from '../../components/app';
+import { Category, CookiePreferences } from './../../types';
 import { COOKIE_PREFERENCES_KEY, getCookie } from '../../hooks/useCookie';
 import useCookie from '../../hooks/useCookie';
 import mockConfig from '../__mocks__/config';
@@ -20,6 +19,7 @@ describe('useCookie', () => {
     document.cookie = `foo=bar`;
     const { getCookiePreferences } = useCookie({
       cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+      onPreferencesChanged: () => jest.fn(),
     });
     expect(getCookiePreferences()).toEqual({
       isCustomised: false,
@@ -27,19 +27,26 @@ describe('useCookie', () => {
     });
   });
 
-  it('will set the default options when initialised and getting the cookie preferences for the first time', () => {
+  it('will return the default preferences when initialised and getting the cookie preferences for the first time', () => {
     const { getCookiePreferences } = useCookie({
       cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+      onPreferencesChanged: () => jest.fn(),
     });
     expect(getCookiePreferences()).toEqual(DEFAULT_COOKIE_PREFERENCES);
+    expect(getCookie(COOKIE_PREFERENCES_KEY)).toBeUndefined();
   });
 
-  it('can set the options', () => {
+  test('when setting the options it will call the onPreferencesChanged callback', () => {
+    const onPreferencesChanged = jest.fn((preferences: CookiePreferences) => {
+      expect(preferences).toEqual(DEFAULT_COOKIE_PREFERENCES);
+    });
     const { setCookiePreferences } = useCookie({
       cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+      onPreferencesChanged,
     });
     setCookiePreferences(DEFAULT_COOKIE_PREFERENCES);
     expect(getCookie(COOKIE_PREFERENCES_KEY)).toEqual(DEFAULT_COOKIE_PREFERENCES);
+    expect(onPreferencesChanged).toBeCalledTimes(1);
   });
 
   describe('when the policies get updated', () => {
@@ -53,6 +60,7 @@ describe('useCookie', () => {
     it('will do nothing if the policy have remained the same', () => {
       const { getCookiePreferences } = useCookie({
         cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+        onPreferencesChanged: () => jest.fn(),
       });
       expect(getCookiePreferences()).toEqual({ ...DEFAULT_COOKIE_PREFERENCES, isCustomised: true });
     });
@@ -68,7 +76,10 @@ describe('useCookie', () => {
           isEnabled: false,
         },
       ];
-      const { getCookiePreferences } = useCookie({ cookieOptions: newCookieOptions });
+      const { getCookiePreferences } = useCookie({
+        cookieOptions: newCookieOptions,
+        onPreferencesChanged: () => jest.fn(),
+      });
       expect(getCookiePreferences()).toEqual({
         cookieOptions: newCookieOptions,
         isCustomised: false,

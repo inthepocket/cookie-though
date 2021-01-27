@@ -1,8 +1,8 @@
 import { Fragment, FunctionalComponent, h, render } from 'preact';
 import Banner from './banner';
 import Customization from './customization';
-import { useEffect, useState } from 'preact/hooks';
-import { Config, CookieOption } from '../types';
+import { useEffect } from 'preact/hooks';
+import { Category, Config, CookieOption, CookieOptions } from '../types';
 import useCookie from '../hooks/useCookie';
 import './app.css';
 
@@ -10,10 +10,7 @@ interface Props extends Config {
   setVisible(value: boolean): void;
 }
 
-export type CookiePreferences = {
-  isCustomised: boolean;
-  cookieOptions: CookieOption[];
-};
+export const isEssential = (category: Category) => category === Category.Essential;
 
 export const App: FunctionalComponent<Props> = ({
   policies,
@@ -22,12 +19,27 @@ export const App: FunctionalComponent<Props> = ({
   cookiePolicy,
   permissionLabels,
   setVisible,
+  onPreferencesChanged,
 }) => {
-  const { getCookiePreferences } = useCookie({
-    cookieOptions: policies.map(policy => ({ ...policy, isEnabled: false })),
+  const { getCookiePreferences, setCookiePreferences } = useCookie({
+    cookieOptions: policies.map(policy => ({
+      id: policy.id,
+      isEnabled: isEssential(policy.category) ? true : false,
+    })),
     cookiePreferenceKey,
+    onPreferencesChanged,
   });
-  const [cookiePreferences] = useState(() => getCookiePreferences());
+  const getCookieOptions = (): CookieOptions => {
+    const preferences = getCookiePreferences();
+    const cookieOptions = preferences.cookieOptions.map(option => {
+      const policyToMerge = policies.find(policy => policy.id === option.id);
+      return { ...policyToMerge, ...option } as CookieOption;
+    });
+
+    return { ...preferences, cookieOptions };
+  };
+  const cookiePreferences = getCookieOptions();
+
   useEffect(() => {
     if (!cookiePreferences.isCustomised) {
       setVisible(true);
@@ -42,6 +54,7 @@ export const App: FunctionalComponent<Props> = ({
         cookiePolicy={cookiePolicy}
         permissionLabels={permissionLabels}
         setVisible={setVisible}
+        setCookiePreferences={setCookiePreferences}
       />
     </Fragment>
   );
