@@ -13,7 +13,9 @@ interface Props {
   cookieOptions: CookieOption[];
   permissionLabels: Config['permissionLabels'];
   cookiePolicy?: Config['cookiePolicy'];
+  cookiePreferenceKey?: Config['cookiePreferenceKey'];
   setVisible(value: boolean): void;
+  onPreferencesChanged: Config['onPreferencesChanged'];
 }
 
 const isAnOptionEnabled = (cookieOptions: CookieOption[]) => {
@@ -24,11 +26,17 @@ const Customization: FunctionalComponent<Props> = ({
   cookieOptions,
   permissionLabels,
   cookiePolicy,
+  cookiePreferenceKey,
   setVisible,
+  onPreferencesChanged,
 }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
-  const { setCookiePreferences } = useCookie({ cookieOptions });
+  const { setCookiePreferences } = useCookie({
+    cookieOptions,
+    cookiePreferenceKey,
+    onPreferencesChanged,
+  });
   const acceptButtonLabel = useMemo(() => {
     if (!isActive && !isAnOptionEnabled(options)) {
       return permissionLabels.acceptAll;

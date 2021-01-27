@@ -1,3 +1,4 @@
+import { CookiePreferences } from './types';
 import englishMockConfig, { dutchMockConfig } from './tests/__mocks__/config';
 // Must be the first import
 if (process.env.NODE_ENV === 'development') {
@@ -8,11 +9,16 @@ if (process.env.NODE_ENV === 'development') {
 // import CookieThough from '../dist/app';
 import CookieThough from './components/app';
 window.addEventListener('DOMContentLoaded', () => {
-  CookieThough.init(englishMockConfig);
+  const { setVisible } = CookieThough.init({
+    ...englishMockConfig,
+    onPreferencesChanged: (preferences: CookiePreferences) => {
+      console.log({ preferences });
+    },
+  });
 
   const manageCookiesElement = document.getElementById('manage-cookie-though');
   manageCookiesElement?.addEventListener('click', () => {
-    window.cookieThough.setVisible(true);
+    setVisible(true);
   });
 
   const switchCookiesElement = document.getElementById('switch-config');
@@ -20,10 +26,20 @@ window.addEventListener('DOMContentLoaded', () => {
   switchCookiesElement?.addEventListener('click', () => {
     if (language === 'english') {
       language = 'dutch';
-      CookieThough.init(dutchMockConfig);
+      CookieThough.init({
+        ...dutchMockConfig,
+        onPreferencesChanged: (preferences: CookiePreferences) => {
+          console.log({ preferences });
+        },
+      });
     } else {
       language = 'english';
-      CookieThough.init(englishMockConfig);
+      CookieThough.init({
+        ...englishMockConfig,
+        onPreferencesChanged: (preferences: CookiePreferences) => {
+          console.log({ preferences });
+        },
+      });
     }
   });
 });

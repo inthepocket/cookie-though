@@ -1,3 +1,4 @@
+import { Config } from './../types';
 import { CookiePreference, CookiePreferences } from '../types';
 
 export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
@@ -5,6 +6,7 @@ export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
 interface Options {
   cookieOptions: CookiePreference[];
   cookiePreferenceKey?: string;
+  onPreferencesChanged: Config['onPreferencesChanged'];
 }
 
 export const getCookie = (cookieKey: string): CookiePreferences | undefined => {
@@ -42,7 +44,11 @@ const mergePolicies = (
   });
 };
 
-const useCookie = ({ cookieOptions, cookiePreferenceKey = COOKIE_PREFERENCES_KEY }: Options) => {
+const useCookie = ({
+  cookieOptions,
+  cookiePreferenceKey = COOKIE_PREFERENCES_KEY,
+  onPreferencesChanged,
+}: Options) => {
   const preferences: CookiePreferences = {
     cookieOptions,
     isCustomised: false,
@@ -54,6 +60,7 @@ const useCookie = ({ cookieOptions, cookiePreferenceKey = COOKIE_PREFERENCES_KEY
       cookiePreferences,
     )}; expires=${expires}; path=/`;
 
+    onPreferencesChanged(cookiePreferences);
     return cookiePreferences;
   };
 
