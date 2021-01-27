@@ -2,13 +2,15 @@ import { Fragment, FunctionalComponent, h, render } from 'preact';
 import Banner from './banner';
 import Customization from './customization';
 import { useEffect } from 'preact/hooks';
-import { Config, CookieOption, CookieOptions } from '../types';
+import { Category, Config, CookieOption, CookieOptions } from '../types';
 import useCookie from '../hooks/useCookie';
 import './app.css';
 
 interface Props extends Config {
   setVisible(value: boolean): void;
 }
+
+export const isEssential = (category: Category) => category === Category.Essential;
 
 export const App: FunctionalComponent<Props> = ({
   policies,
@@ -20,7 +22,10 @@ export const App: FunctionalComponent<Props> = ({
   onPreferencesChanged,
 }) => {
   const { getCookiePreferences, setCookiePreferences } = useCookie({
-    cookieOptions: policies.map(policy => ({ id: policy.id, isEnabled: false })),
+    cookieOptions: policies.map(policy => ({
+      id: policy.id,
+      isEnabled: isEssential(policy.category) ? true : false,
+    })),
     cookiePreferenceKey,
     onPreferencesChanged,
   });

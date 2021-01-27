@@ -1,13 +1,13 @@
 import { h } from 'preact';
 import toJson from 'enzyme-to-json';
 import { mount, ReactWrapper, shallow } from 'enzyme';
-import { COOKIE_PREFERENCES_KEY, getCookie } from '../../../hooks/useCookie';
 import mockConfig from '../../__mocks__/config';
 
 import Button from '../../../components/button';
 import Customization from '../../../components/customization';
 import ToggleButton from '../../../components/customization/toggleButton';
 import Collapse from '../../../components/customization/collapse';
+import { isEssential } from '../../../components/app';
 
 const defaultProps = {
   cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
@@ -86,14 +86,16 @@ describe('Customization', () => {
       isCustomised: true,
       cookieOptions: defaultProps.cookieOptions.map(cookieOption => ({
         id: cookieOption.id,
-        isEnabled: false,
+        isEnabled: isEssential(cookieOption.category) ? true : false,
       })),
     });
     expect(getToggleButton(wrapper).hasClass('active')).toBeFalsy();
     expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
-    const optionalCookies = wrapper.find('.option').not('.optionSecondary');
+    const optionalCookies = wrapper.find('.option');
     optionalCookies.forEach(optionalCookie => {
-      expect(optionalCookie.hasClass('enabled')).toBeFalsy();
+      if (!optionalCookie.find('input').prop('disabled')) {
+        expect(optionalCookie.hasClass('enabled')).toBeFalsy();
+      }
     });
   });
 

@@ -7,6 +7,7 @@ import Collapse from './collapse';
 import Button from '../button';
 import buttonStyles from '../button/style.css';
 import { Config, CookieOption, CookiePreferences } from '../../types';
+import { isEssential } from '../app';
 
 interface Props {
   cookieOptions: CookieOption[];
@@ -17,7 +18,9 @@ interface Props {
 }
 
 const isAnOptionEnabled = (cookieOptions: CookieOption[]) => {
-  return cookieOptions.some(cookieOption => cookieOption.isEnabled === true);
+  return cookieOptions.some(
+    cookieOption => !isEssential(cookieOption.category) && cookieOption.isEnabled === true,
+  );
 };
 
 const formatCookieOptions = (cookieOptions: CookieOption[]): CookiePreferences => {
@@ -57,7 +60,10 @@ const Customization: FunctionalComponent<Props> = ({
   };
 
   const declineAllOptions = () => {
-    const declinedOptions = options.map(option => ({ ...option, isEnabled: false }));
+    const declinedOptions = options.map(option => ({
+      ...option,
+      isEnabled: isEssential(option.category) ? true : false,
+    }));
     setOptions(declinedOptions);
     setIsActive(false);
     setVisible(false);

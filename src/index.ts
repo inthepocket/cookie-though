@@ -1,9 +1,9 @@
-import { CookiePreferences } from './types';
-import englishMockConfig, { dutchMockConfig } from './tests/__mocks__/config';
 // Must be the first import
 if (process.env.NODE_ENV === 'development') {
   require('preact/debug');
 }
+import { CookiePreferences } from './types';
+import englishMockConfig, { dutchMockConfig } from './tests/__mocks__/config';
 
 // This initialises the app for development purposes
 // import CookieThough from '../dist/app';

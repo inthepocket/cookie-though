@@ -48,9 +48,12 @@
   user-select: none;
 }
 
+.optionInfo p, .essential strong {
+  color: var(--blue-400);
+}
+
 .optionInfo p {
   margin: 0;
-  color: var(--blue-400);
   max-width: 70%;
 }
 
