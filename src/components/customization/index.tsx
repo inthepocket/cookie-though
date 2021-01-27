@@ -20,6 +20,16 @@ const isAnOptionEnabled = (cookieOptions: CookieOption[]) => {
   return cookieOptions.some(cookieOption => cookieOption.isEnabled === true);
 };
 
+const formatCookieOptions = (cookieOptions: CookieOption[]): CookiePreferences => {
+  return {
+    cookieOptions: cookieOptions.map(cookieOption => ({
+      id: cookieOption.id,
+      isEnabled: cookieOption.isEnabled,
+    })),
+    isCustomised: true,
+  };
+};
+
 const Customization: FunctionalComponent<Props> = ({
   cookieOptions,
   permissionLabels,
@@ -51,13 +61,7 @@ const Customization: FunctionalComponent<Props> = ({
     setOptions(declinedOptions);
     setIsActive(false);
     setVisible(false);
-    setCookiePreferences({
-      cookieOptions: declinedOptions.map(declinedOption => ({
-        id: declinedOption.id,
-        isEnabled: declinedOption.isEnabled,
-      })),
-      isCustomised: true,
-    });
+    setCookiePreferences(formatCookieOptions(declinedOptions));
   };
 
   const acceptOptions = () => {
@@ -69,13 +73,7 @@ const Customization: FunctionalComponent<Props> = ({
 
     setIsActive(false);
     setVisible(false);
-    setCookiePreferences({
-      cookieOptions: acceptedOptions.map(acceptedOption => ({
-        id: acceptedOption.id,
-        isEnabled: acceptedOption.isEnabled,
-      })),
-      isCustomised: true,
-    });
+    setCookiePreferences(formatCookieOptions(acceptedOptions));
   };
 
   return (
