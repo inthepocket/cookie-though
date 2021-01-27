@@ -58,7 +58,7 @@ const useCookie = ({
     const expires = getNextYear();
     document.cookie = `${cookiePreferenceKey}=${JSON.stringify(
       cookiePreferences,
-    )}; expires=${expires}; path=/`;
+    )}; expires=${expires}; path=/; SameSite=Strict`;
 
     onPreferencesChanged(cookiePreferences);
     return cookiePreferences;
