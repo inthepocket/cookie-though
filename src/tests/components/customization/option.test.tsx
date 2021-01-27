@@ -29,7 +29,7 @@ describe('Option', () => {
   it('calls the correct function when clicked', () => {
     const onToggle = jest.fn();
     const wrapper = mount(<Option {...defaultProps(false)} onToggle={onToggle} />);
-    wrapper.find('button').simulate('click');
+    wrapper.find('input').simulate('click');
 
     expect(onToggle).toBeCalledTimes(1);
   });

@@ -1,7 +1,6 @@
 import { FunctionalComponent, h } from 'preact';
-import Slider from './slider';
-import styles from './css/options.css';
-import { CookieOption } from '../../types';
+import styles from './css/option.css';
+import { Category, CookieOption } from '../../types';
 
 interface Props {
   option: CookieOption;
@@ -9,13 +8,29 @@ interface Props {
 }
 
 const Option: FunctionalComponent<Props> = ({ option, onToggle }) => {
+  const isEssential = option.category === Category.Essential;
+
   return (
-    <div className={`${styles.option} ${option.isEnabled ? styles.enabled : ''}`}>
-      <div className={styles.optionInfo}>
-        <p>{option.label}</p>
-        <p>{option.description}</p>
-      </div>
-      <Slider isEnabled={option.isEnabled} onToggle={onToggle} />
+    <div
+      className={`${styles.option} ${option.isEnabled ? styles.enabled : ''} ${
+        isEssential ? styles.essential : ''
+      }`}
+    >
+      <input
+        type="checkbox"
+        id={option.id}
+        name={option.id}
+        disabled={isEssential}
+        checked={option.isEnabled}
+        onClick={onToggle}
+      />
+      <label htmlFor={option.id} className={styles.optionInfo}>
+        <p>
+          <strong>{option.label}</strong>
+          {option.description}
+        </p>
+        <span className={styles.slider}>{isEssential && 'Always on'}</span>
+      </label>
     </div>
   );
 };

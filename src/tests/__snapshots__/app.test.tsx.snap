@@ -20,6 +20,12 @@ exports[`Cookie Though should render properly 1`] = `
       policies={
         Array [
           Object {
+            "category": "essential",
+            "description": "",
+            "id": "essential",
+            "label": "Strictly necessary cookies",
+          },
+          Object {
             "category": "functional",
             "description": "We’ll remember the basics such as language.",
             "id": "functional",

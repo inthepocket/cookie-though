@@ -6,7 +6,6 @@ import mockConfig from '../../__mocks__/config';
 
 import Button from '../../../components/button';
 import Customization from '../../../components/customization';
-import Slider from '../../../components/customization/slider';
 import ToggleButton from '../../../components/customization/toggleButton';
 import Collapse from '../../../components/customization/collapse';
 
@@ -37,10 +36,6 @@ describe('Customization', () => {
 
   const getOptionalCookie = (wrapper: ReactWrapper) => wrapper.find('.option').at(1);
 
-  const getCookiePreferences = () => {
-    return getCookie(COOKIE_PREFERENCES_KEY) ?? 'NO_PREFERENCES';
-  };
-
   test('clicking the ToggleButton component toggles the isActive state', () => {
     const wrapper = mount(<Customization {...defaultProps} />);
     const acceptButtonLabel = () => {
@@ -60,15 +55,15 @@ describe('Customization', () => {
 
   test('clicking the Slider in an Option will toggle the isEnabled state for that option', () => {
     const wrapper = mount(<Customization {...defaultProps} />);
-    const getSlider = () => {
-      return getOptionalCookie(wrapper).find(Slider).find('button');
+    const getOptionCheckbox = () => {
+      return getOptionalCookie(wrapper).find('input').first();
     };
 
-    getSlider().simulate('click').update();
+    getOptionCheckbox().simulate('click').update();
     expect(getOptionalCookie(wrapper).hasClass('enabled')).toBeTruthy();
 
-    getSlider().simulate('click').update(),
-      expect(getOptionalCookie(wrapper).hasClass('enabled')).toBeFalsy();
+    getOptionCheckbox().simulate('click').update();
+    expect(getOptionalCookie(wrapper).hasClass('enabled')).toBeFalsy();
   });
 
   test('clicking the decline Button will decline all options and save the preferences', () => {
@@ -105,8 +100,9 @@ describe('Customization', () => {
   describe('when clicking the accept button', () => {
     it('will only accept the options a user has enabled and save the preferences', () => {
       const customisedCookies = [
-        { ...defaultProps.cookieOptions[0], isEnabled: true },
-        ...defaultProps.cookieOptions.splice(1, defaultProps.cookieOptions.length),
+        defaultProps.cookieOptions[0],
+        { ...defaultProps.cookieOptions[1], isEnabled: true },
+        ...defaultProps.cookieOptions.filter((_, index) => ![0, 1].includes(index)),
       ];
       const setCookiePreferences = jest.fn();
       const wrapper = mount(
