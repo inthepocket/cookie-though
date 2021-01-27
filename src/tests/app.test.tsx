@@ -56,6 +56,10 @@ describe('Cookie Though', () => {
         expect(preferences).toEqual({
           cookieOptions: [
             {
+              id: 'essential',
+              isEnabled: true,
+            },
+            {
               id: 'functional',
               isEnabled: true,
             },

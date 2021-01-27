@@ -3,6 +3,12 @@ import { Policy } from '../../types';
 
 export const dutchMockPolicies: Policy[] = [
   {
+    id: 'essential',
+    label: 'Strict noodzakelijke cookies',
+    description: '',
+    category: Category.Essential,
+  },
+  {
     id: 'functional',
     label: 'Functionele cookies',
     description: 'We onthouden de enkel basisdingen, zoals taal.',
@@ -23,6 +29,12 @@ export const dutchMockPolicies: Policy[] = [
 ];
 
 const mockPolicies: Policy[] = [
+  {
+    id: 'essential',
+    label: 'Strictly necessary cookies',
+    description: '',
+    category: Category.Essential,
+  },
   {
     id: 'functional',
     label: 'Functional cookies',

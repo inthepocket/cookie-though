@@ -11,10 +11,10 @@ const defaultProps = {
   onToggle: jest.fn(),
 };
 
-describe('Option', () => {
+describe('Options', () => {
   it('can render without a cookie policy', () => {
     const wrapper = shallow(<Options {...defaultProps} />);
-    expect(wrapper.find(Option)).toHaveLength(3);
+    expect(wrapper.find(Option)).toHaveLength(4);
     expect(wrapper.find('.declaration').exists()).toBeFalsy();
   });
 
@@ -24,7 +24,7 @@ describe('Option', () => {
       label: 'Read the full cookie declaration',
     };
     const wrapper = shallow(<Options {...defaultProps} cookiePolicy={cookiePolicy} />);
-    expect(wrapper.find(Option)).toHaveLength(3);
+    expect(wrapper.find(Option)).toHaveLength(4);
     expect(wrapper.find('.declaration').exists()).toBeTruthy();
   });
 
@@ -32,7 +32,7 @@ describe('Option', () => {
     const onToggle = jest.fn();
     const wrapper = mount(<Options {...defaultProps} onToggle={onToggle} />);
     const option = wrapper.find(Option).first();
-    option.find('button').simulate('click');
+    option.find('input').simulate('click');
 
     expect(onToggle).toBeCalledTimes(1);
   });
