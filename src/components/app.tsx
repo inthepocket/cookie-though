@@ -71,15 +71,23 @@ const CookieThough = {
   init(config: Config) {
     const container = document.createElement('div');
     container.className = 'cookie-though';
+    const shadowRoot = container.attachShadow({ mode: 'open' });
+    const cssLink = document.createElement('link');
+    cssLink.setAttribute('rel', 'stylesheet');
+    cssLink.setAttribute(
+      'href',
+      `https://unpkg.com/cookie-though@${process.env.GIT_TAG}/dist/app.css`,
+    );
+    shadowRoot.appendChild(cssLink);
 
-    const previousInstance = document.querySelector('.cookie-though');
-    if (previousInstance) {
-      render(h(App, { ...config, setVisible }), previousInstance);
+    const previousInstance = document.querySelector('.cookie-though') as HTMLElement;
+    if (previousInstance && previousInstance.shadowRoot) {
+      render(h(App, { ...config, setVisible }), previousInstance.shadowRoot);
       return { setVisible };
     }
 
     document.body.append(container);
-    render(h(App, { ...config, setVisible }), container);
+    render(h(App, { ...config, setVisible }), shadowRoot);
     return { setVisible };
   },
 };
