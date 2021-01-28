@@ -3,7 +3,7 @@ import mockPolicies, { dutchMockPolicies } from './policies';
 export const dutchMockConfig = {
   policies: dutchMockPolicies,
   header: {
-    subTitle: 'Je hebt waarschijnlijk genoeg van deze banners...',
+    subTitle: 'Je hebt wellicht genoeg van deze banners...',
     title: 'cookie though?',
     description:
       'Iedereen wil zijn beste kant tonen - en wij ook. Daarom gebruiken we cookies om je een betere ervaring te garanderen',
