@@ -18,12 +18,12 @@ const defaultProps = (isEnabled: boolean) => ({
 describe('Option', () => {
   it('should render properly', () => {
     const wrapper = shallow(<Option {...defaultProps(false)} />);
-    expect(wrapper.hasClass('enabled')).toBeFalsy();
+    expect(wrapper.hasClass('ct-enabled')).toBeFalsy();
   });
 
   it('can render in an enabled state', () => {
     const wrapper = shallow(<Option {...defaultProps(true)} />);
-    expect(wrapper.hasClass('enabled')).toBeTruthy();
+    expect(wrapper.hasClass('ct-enabled')).toBeTruthy();
   });
 
   it('calls the correct function when clicked', () => {

@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from 'preact';
-import styles from './style.css';
+import './style.css';
 
 interface Props {
   label: string;
@@ -9,7 +9,7 @@ interface Props {
 
 const Button: FunctionalComponent<Props> = ({ label, className = '', onClick }) => {
   return (
-    <button className={`${styles.button}  ${className}`} onClick={onClick}>
+    <button className={`ct-button  ${className}`} onClick={onClick}>
       {label}
     </button>
   );

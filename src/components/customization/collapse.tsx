@@ -1,6 +1,6 @@
 import { ComponentChild, FunctionalComponent, h } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
-import styles from './css/collapse.css';
+import './css/collapse.css';
 
 interface Props {
   isOpen: boolean;
@@ -37,7 +37,7 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children }) => {
   }, [isOpen]);
 
   return (
-    <div className={styles.collapse} ref={collapsibleDiv} aria-expanded={isOpen}>
+    <div className="ct-collapse" ref={collapsibleDiv} aria-expanded={isOpen}>
       {children}
     </div>
   );

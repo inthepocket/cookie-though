@@ -34,7 +34,7 @@ describe('Customization', () => {
     return !wrapper.find(Collapse).prop('isOpen');
   };
 
-  const getOptionalCookie = (wrapper: ReactWrapper) => wrapper.find('.option').at(1);
+  const getOptionalCookie = (wrapper: ReactWrapper) => wrapper.find('.ct-option').at(1);
 
   test('clicking the ToggleButton component toggles the isActive state', () => {
     const wrapper = mount(<Customization {...defaultProps} />);
@@ -43,12 +43,12 @@ describe('Customization', () => {
     };
 
     getToggleButton(wrapper).simulate('click').update();
-    expect(getToggleButton(wrapper).hasClass('active')).toBeTruthy();
+    expect(getToggleButton(wrapper).hasClass('ct-active')).toBeTruthy();
     expect(isCustomizationCollapsed(wrapper)).toBeFalsy();
     expect(acceptButtonLabel()).toEqual('Accept');
 
     getToggleButton(wrapper).simulate('click').update();
-    expect(getToggleButton(wrapper).hasClass('active')).toBeFalsy();
+    expect(getToggleButton(wrapper).hasClass('ct-active')).toBeFalsy();
     expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
     expect(acceptButtonLabel()).toEqual('Accept all');
   });
@@ -60,10 +60,10 @@ describe('Customization', () => {
     };
 
     getOptionCheckbox().simulate('click').update();
-    expect(getOptionalCookie(wrapper).hasClass('enabled')).toBeTruthy();
+    expect(getOptionalCookie(wrapper).hasClass('ct-enabled')).toBeTruthy();
 
     getOptionCheckbox().simulate('click').update();
-    expect(getOptionalCookie(wrapper).hasClass('enabled')).toBeFalsy();
+    expect(getOptionalCookie(wrapper).hasClass('ct-enabled')).toBeFalsy();
   });
 
   test('clicking the decline Button will decline all options and save the preferences', () => {
@@ -79,7 +79,7 @@ describe('Customization', () => {
         setCookiePreferences={setCookiePreferences}
       />,
     );
-    const declineButton = wrapper.find('button.secondary');
+    const declineButton = wrapper.find('button.ct-button-secondary');
 
     declineButton.simulate('click').update();
     expect(setCookiePreferences).toBeCalledWith({
@@ -89,12 +89,12 @@ describe('Customization', () => {
         isEnabled: isEssential(cookieOption.category) ? true : false,
       })),
     });
-    expect(getToggleButton(wrapper).hasClass('active')).toBeFalsy();
+    expect(getToggleButton(wrapper).hasClass('ct-active')).toBeFalsy();
     expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
     const optionalCookies = wrapper.find('.option');
     optionalCookies.forEach(optionalCookie => {
       if (!optionalCookie.find('input').prop('disabled')) {
-        expect(optionalCookie.hasClass('enabled')).toBeFalsy();
+        expect(optionalCookie.hasClass('ct-enabled')).toBeFalsy();
       }
     });
   });
@@ -124,9 +124,9 @@ describe('Customization', () => {
           isEnabled: customisedCookie.isEnabled,
         })),
       });
-      expect(getToggleButton(wrapper).hasClass('active')).toBeFalsy();
+      expect(getToggleButton(wrapper).hasClass('ct-active')).toBeFalsy();
       expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
-      expect(getOptionalCookie(wrapper).hasClass('enabled')).toBeTruthy();
+      expect(getOptionalCookie(wrapper).hasClass('ct-enabled')).toBeTruthy();
       expect(defaultProps.setVisible).toBeCalledWith(false);
     });
 
@@ -145,11 +145,11 @@ describe('Customization', () => {
           isEnabled: true,
         })),
       });
-      expect(getToggleButton(wrapper).hasClass('active')).toBeFalsy();
+      expect(getToggleButton(wrapper).hasClass('ct-active')).toBeFalsy();
       expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
       const optionalCookies = wrapper.find('.option').not('.optionSecondary');
       optionalCookies.forEach(optionalCookie => {
-        expect(optionalCookie.hasClass('enabled')).toBeTruthy();
+        expect(optionalCookie.hasClass('ct-enabled')).toBeTruthy();
       });
       expect(defaultProps.setVisible).toBeCalledWith(false);
     });

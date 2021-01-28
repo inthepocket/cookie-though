@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from 'preact';
-import styles from './css/option.css';
+import './css/option.css';
 import { CookieOption } from '../../types';
 import { isEssential } from '../app';
 
@@ -13,8 +13,8 @@ const Option: FunctionalComponent<Props> = ({ option, onToggle }) => {
 
   return (
     <div
-      className={`${styles.option} ${option.isEnabled ? styles.enabled : ''} ${
-        isEssentialCookie ? styles.essential : ''
+      className={`ct-option ${option.isEnabled ? 'ct-enabled' : ''} ${
+        isEssentialCookie ? 'ct-essential' : ''
       }`}
     >
       <input
@@ -25,12 +25,12 @@ const Option: FunctionalComponent<Props> = ({ option, onToggle }) => {
         checked={option.isEnabled}
         onClick={onToggle}
       />
-      <label htmlFor={option.id} className={styles.optionInfo}>
+      <label htmlFor={option.id} className="ct-option-info">
         <p>
           <strong>{option.label}</strong>
           {!isEssentialCookie && option.description}
         </p>
-        <span className={styles.slider}>{isEssentialCookie && option.description}</span>
+        <span className="ct-slider">{isEssentialCookie && option.description}</span>
       </label>
     </div>
   );

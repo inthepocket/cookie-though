@@ -1,4 +1,4 @@
-.option {
+.ct-option {
   border: 1px solid var(--blue-200);
   border-radius: 5px;
   margin-bottom: var(--seperator-padding);
@@ -8,30 +8,25 @@
   transition: background-color 250ms linear, color 250ms linear, border-color 250ms linear;
 }
 
-.enabled {
+.ct-enabled {
   background-color: var(--blue-400);
   border-color: var(--blue-400);
 }
 
-.essential {
+.ct-essential {
   background-color: var(--blue-100);
   border-color: var(--blue-100);
 }
 
-.essential .slider {
+.ct-essential .ct-slider {
   color: var(--gray-400);
 }
 
-.enabled .optionInfo p {
+.ct-enabled .ct-option-info p {
   color: var(--white);
 }
 
-.optionSecondary {
-  border-color: var(--blue-100);
-  background: var(--blue-100);
-}
-
-.option input[type="checkbox"]{
+.ct-option input[type="checkbox"]{
   position: absolute;
   height: 1px;
   width: 1px;
@@ -39,7 +34,7 @@
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-.optionInfo {
+.ct-option-info {
   width: 100%;
   padding: 0.75rem;
   display: flex;
@@ -48,39 +43,33 @@
   user-select: none;
 }
 
-.optionInfo p, .essential strong {
+.ct-option-info p, .ct-essential strong {
   color: var(--blue-400);
 }
 
-.optionInfo p {
+.ct-option-info p {
   margin: 0;
   max-width: 70%;
 }
 
-.optionInfo strong {
+.ct-option-info strong {
   display: block;
 }
 
-input[type="checkbox"]:not(:disabled) + .optionInfo strong {
+input[type="checkbox"]:not(:disabled) + .ct-option-info strong {
   margin-bottom: var(--text-margin);
 }
 
-.optionInfo strong,
+.ct-option-info strong,
 .declaration {
   font-family: 'Flama';
 }
 
-.optionDefault {
-  margin-left: auto;
-  align-self: center;
-  color: var(--gray-400);
-}
-
-.slider {
+.ct-slider {
   margin-left: auto;
 }
 
-input[type="checkbox"]:not(:disabled) + label .slider {
+input[type="checkbox"]:not(:disabled) + label .ct-slider {
   appearance: none;
   -webkit-appearance: none;
   position: relative;
@@ -93,7 +82,7 @@ input[type="checkbox"]:not(:disabled) + label .slider {
   cursor: pointer;
 }
 
-input[type="checkbox"]:not(:disabled) + label .slider::after {
+input[type="checkbox"]:not(:disabled) + label .ct-slider::after {
   content: '';
   position: absolute;
   top: -.25rem;
@@ -105,11 +94,11 @@ input[type="checkbox"]:not(:disabled) + label .slider::after {
   transition: 250ms ease-out background, 250ms ease-out left;
 }
 
-input[type="checkbox"]:not(:disabled):checked + label .slider {
+input[type="checkbox"]:not(:disabled):checked + label .ct-slider {
   background-color: #4c4cff;
 }
 
-input[type="checkbox"]:not(:disabled):checked + label .slider::after {
+input[type="checkbox"]:not(:disabled):checked + label .ct-slider::after {
   background: #b3b3ff;
   left: 50%;
 }

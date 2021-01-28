@@ -1,11 +1,10 @@
 import { FunctionalComponent, h } from 'preact';
 import ToggleButton from './toggleButton';
-import styles from './css/customization.css';
+import './css/customization.css';
 import { useEffect, useMemo, useState } from 'preact/hooks';
 import Options from './options';
 import Collapse from './collapse';
 import Button from '../button';
-import buttonStyles from '../button/style.css';
 import { Config, CookieOption, CookiePreferences } from '../../types';
 import { isEssential } from '../app';
 
@@ -91,10 +90,10 @@ const Customization: FunctionalComponent<Props> = ({
       <Collapse isOpen={isActive}>
         <Options options={options} onToggle={toggleOption} cookiePolicy={cookiePolicy} />
       </Collapse>
-      <div className={styles.acceptance}>
+      <div className="ct-acceptance">
         <Button
           label={permissionLabels.decline}
-          className={buttonStyles.secondary}
+          className="ct-button-secondary"
           onClick={declineAllOptions}
         />
         <Button label={acceptButtonLabel} onClick={acceptOptions} />

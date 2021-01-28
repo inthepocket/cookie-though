@@ -1,4 +1,4 @@
-:global(.cookie-though) {
+.cookie-though {
   position: fixed;
   bottom: -200px;
   left: var(--default-padding);
@@ -12,17 +12,17 @@
 }
 
 @media only screen and (min-width: 640px) {
-  :global(.cookie-though) {
+  .cookie-though {
     width: 311px;
   }
 }
 
-:global(.cookie-though.visible) {
+.cookie-though.visible {
   bottom: var(--default-padding);
 }
 
-:global(.cookie-though),
-:global(.cookie-though) button {
+.cookie-though,
+.cookie-though button {
   font-family: 'Flama';
   font-size: var(--text-font-size);
 }

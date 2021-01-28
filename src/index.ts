@@ -6,8 +6,8 @@ import { CookiePreferences } from './types';
 import englishMockConfig, { dutchMockConfig } from './tests/__mocks__/config';
 
 // This initialises the app for development purposes
-// import CookieThough from '../dist/app';
 import CookieThough from './components/app';
+
 window.addEventListener('DOMContentLoaded', () => {
   const { setVisible } = CookieThough.init({
     ...englishMockConfig,

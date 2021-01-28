@@ -46,10 +46,10 @@ exports[`Customization should render properly 1`] = `
     />
   </Collapse>
   <div
-    className="acceptance"
+    className="ct-acceptance"
   >
     <Button
-      className="secondary"
+      className="ct-button-secondary"
       label="Decline"
       onClick={[Function]}
     />

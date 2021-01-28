@@ -11,12 +11,12 @@ const defaultProps = {
 describe('ToggleButton', () => {
   it('should render properly', () => {
     const wrapper = shallow(<ToggleButton {...defaultProps} />);
-    expect(wrapper.hasClass('active')).toBeFalsy();
+    expect(wrapper.hasClass('ct-active')).toBeFalsy();
   });
 
   it('should render properly in an active state', () => {
     const wrapper = shallow(<ToggleButton {...defaultProps} isActive={true} />);
-    expect(wrapper.hasClass('active')).toBeTruthy();
+    expect(wrapper.hasClass('ct-active')).toBeTruthy();
   });
 
   it('calls the correct function when clicked', () => {

@@ -1,41 +1,41 @@
-.banner {
+.ct-banner {
   font-size: var(--text-font-size);
   margin-bottom: var(--default-padding);
 }
 
-.banner p,
-.banner h1 {
+.ct-banner p,
+.ct-banner h1 {
   margin-top: 0;
   margin-bottom: var(--text-margin);
 }
 
-.banner h1 {
+.ct-banner h1 {
   font-size: var(--heading-font-size);
   font-weight: 700;
   color: var(--blue-400);
 }
 
-.banner p {
+.ct-banner p {
   font-weight: 500;
 }
 
-.bannerIntro {
+.ct-banner-intro {
   display: flex;
   align-items: center;
   margin-bottom: calc(0.5rem - var(--text-margin));
 }
 
-.bannerIntro p {
+.ct-banner-intro p {
   font-size: var(--sub-heading-font-size);
   color: var(--blue-300);
 }
 
-.bannerLogo {
+.ct-banner-logo {
   margin-left: auto;
   align-self: flex-start;
 }
 
-.bannerLogo path {
+.ct-banner-logo path {
   fill-rule: evenodd;
   clip-rule: evenodd;
   fill: var(--blue-400);
@@ -43,7 +43,7 @@
   stroke-width: 0;
 }
 
-.bannerExplanation {
+.ct-banner-explanation {
   color: var(--gray-400);
   font-weight: 400;
   font-family: 'Flama Basic';

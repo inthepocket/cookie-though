@@ -1,4 +1,4 @@
-.button {
+.ct-button {
   background: var(--blue-400);
   color: var(--white);
   padding: 0.5rem;
@@ -9,6 +9,6 @@
   border-radius: 2px;
 }
 
-.secondary {
+.ct-button-secondary {
   background: var(--blue-300);
 }

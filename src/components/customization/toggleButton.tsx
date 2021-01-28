@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from 'preact';
-import styles from './css/toggleButton.css';
+import './css/toggleButton.css';
 
 interface Props {
   isActive: boolean;
@@ -13,7 +13,7 @@ const ToggleButton: FunctionalComponent<Props> = ({ isActive, toggleCustomizatio
 
   return (
     <button
-      className={`${styles.customizationButton} ${isActive ? styles.active : ''}`}
+      className={`ct-customization-button ${isActive ? 'ct-active' : ''}`}
       onClick={handleClick}
     >
       Customize{' '}

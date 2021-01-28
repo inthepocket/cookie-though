@@ -15,7 +15,7 @@ describe('Options', () => {
   it('can render without a cookie policy', () => {
     const wrapper = shallow(<Options {...defaultProps} />);
     expect(wrapper.find(Option)).toHaveLength(4);
-    expect(wrapper.find('.declaration').exists()).toBeFalsy();
+    expect(wrapper.find('.ct-declaration').exists()).toBeFalsy();
   });
 
   it('can render with a cookie policy', () => {
@@ -25,7 +25,7 @@ describe('Options', () => {
     };
     const wrapper = shallow(<Options {...defaultProps} cookiePolicy={cookiePolicy} />);
     expect(wrapper.find(Option)).toHaveLength(4);
-    expect(wrapper.find('.declaration').exists()).toBeTruthy();
+    expect(wrapper.find('.ct-declaration').exists()).toBeTruthy();
   });
 
   it('calls the correct function when an option is toggled', () => {

@@ -1,6 +1,6 @@
 import { FunctionalComponent, h } from 'preact';
 import Option from './option';
-import styles from './css/options.css';
+import './css/options.css';
 import { Config, CookieOption } from '../../types';
 
 interface Props {
@@ -18,7 +18,7 @@ const Options: FunctionalComponent<Props> = ({ options, cookiePolicy, onToggle }
     <div>
       {cookies}
       {cookiePolicy && (
-        <div className={styles.declaration}>
+        <div className="ct-declaration">
           <a href={cookiePolicy.url}>{cookiePolicy.label}</a>
         </div>
       )}

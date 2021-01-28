@@ -1,7 +1,3 @@
-.acceptance button:not(:first-child) {
+.ct-acceptance button:not(:first-child) {
   margin-left: var(--seperator-padding);
-}
-
-.collapse {
-  margin-bottom: var(--default-padding);
 }
