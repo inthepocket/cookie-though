@@ -28,9 +28,9 @@ const Option: FunctionalComponent<Props> = ({ option, onToggle }) => {
       <label htmlFor={option.id} className={styles.optionInfo}>
         <p>
           <strong>{option.label}</strong>
-          {option.description}
+          {!isEssentialCookie && option.description}
         </p>
-        <span className={styles.slider}>{isEssentialCookie && 'Always on'}</span>
+        <span className={styles.slider}>{isEssentialCookie && option.description}</span>
       </label>
     </div>
   );

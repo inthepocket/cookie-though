@@ -15,7 +15,7 @@ exports[`Customization should render properly 1`] = `
         Array [
           Object {
             "category": "essential",
-            "description": "",
+            "description": "Always on",
             "id": "essential",
             "isEnabled": false,
             "label": "Strictly necessary cookies",

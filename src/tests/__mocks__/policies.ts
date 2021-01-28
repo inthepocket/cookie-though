@@ -5,7 +5,7 @@ export const dutchMockPolicies: Policy[] = [
   {
     id: 'essential',
     label: 'Strict noodzakelijke cookies',
-    description: '',
+    description: 'Altijd aan',
     category: Category.Essential,
   },
   {
@@ -32,7 +32,7 @@ const mockPolicies: Policy[] = [
   {
     id: 'essential',
     label: 'Strictly necessary cookies',
-    description: '',
+    description: 'Always on',
     category: Category.Essential,
   },
   {
