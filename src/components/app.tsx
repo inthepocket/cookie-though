@@ -99,6 +99,8 @@ const CookieThough = {
       'href',
       process.env.NODE_ENV === 'development'
         ? 'src.77de5100.css'
+        : process.env.NODE_ENV == 'staging'
+        ? 'src.f4517102.css'
         : `https://unpkg.com/cookie-though@${process.env.GIT_TAG}/dist/app.css`,
     );
 
