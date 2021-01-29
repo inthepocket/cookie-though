@@ -2,8 +2,6 @@
   font-family: var(--ct-primary-font);
   font-size: 16px;
   position: fixed;
-  /* TODO: make this dynamic */
-  bottom: -200px;
   left: var(--ct-default-padding);
   /* left positioning and left/right padding */
   width: calc(100% - calc(var(--ct-default-padding) * 4));
@@ -23,7 +21,7 @@
 }
 
 :host(.cookie-though.visible) {
-  bottom: var(--ct-default-padding);
+  bottom: var(--ct-default-padding) !important;
 }
 
 :host(.cookie-though),
