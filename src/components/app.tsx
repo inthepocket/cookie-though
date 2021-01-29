@@ -3,7 +3,10 @@ import Banner from './banner';
 import Customization from './customization';
 import { useEffect } from 'preact/hooks';
 import { Category, Config, CookieOption, CookieOptions, CookiePreferences } from '../types';
-import useCookie, { getCookiePreferences as getPreferences } from '../hooks/useCookie';
+import useCookie, {
+  COOKIE_PREFERENCES_KEY,
+  getCookiePreferences as getPreferences,
+} from '../hooks/useCookie';
 import './app.css';
 
 import { EventEmitter } from 'events';
@@ -83,7 +86,7 @@ const getCookiePreferences = () => {
       id: policy.id,
       isEnabled: isEssential(policy.category) ? true : false,
     })),
-    config.cookiePreferenceKey,
+    config.cookiePreferenceKey ?? COOKIE_PREFERENCES_KEY,
   );
 };
 
@@ -97,6 +100,7 @@ const CookieThough = {
     cssLink.setAttribute('rel', 'stylesheet');
     cssLink.setAttribute(
       'href',
+      /* istanbul ignore next */
       ['staging', 'development'].find(x => x == process.env.NODE_ENV)
         ? 'src.77de5100.css'
         : `https://unpkg.com/cookie-though@${process.env.GIT_TAG}/dist/app.css`,

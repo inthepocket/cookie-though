@@ -45,10 +45,7 @@ const mergePolicies = (
   });
 };
 
-export const getCookiePreferences = (
-  options: CookiePreference[],
-  cookiePreferenceKey: string | undefined = COOKIE_PREFERENCES_KEY,
-) => {
+export const getCookiePreferences = (options: CookiePreference[], cookiePreferenceKey: string) => {
   const defaultPreferences: CookiePreferences = {
     cookieOptions: options,
     isCustomised: false,
