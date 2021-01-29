@@ -6,11 +6,19 @@ import { Category, Config, CookieOption, CookieOptions } from '../types';
 import useCookie from '../hooks/useCookie';
 import './app.css';
 
+import { EventEmitter } from 'events';
+
+const ee = new EventEmitter();
+
 interface Props extends Config {
   setVisible(value: boolean): void;
 }
 
 export const isEssential = (category: Category) => category === Category.Essential;
+
+export const listen = (cb: () => void) => {
+  ee.on('ct:cookies_changed', cb);
+};
 
 export const App: FunctionalComponent<Props> = ({
   policies,

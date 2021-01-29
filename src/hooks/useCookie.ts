@@ -3,6 +3,10 @@ import { CookiePreference, CookiePreferences } from '../types';
 
 export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
 
+import { EventEmitter } from 'events';
+
+const ee = new EventEmitter();
+
 interface Options {
   cookieOptions: CookiePreference[];
   cookiePreferenceKey?: string;
@@ -59,7 +63,7 @@ const useCookie = ({
     document.cookie = `${cookiePreferenceKey}=${JSON.stringify(
       cookiePreferences,
     )}; expires=${expires}; path=/; SameSite=Strict`;
-
+    ee.emit('ct:cookies_changed', cookiePreferences);
     onPreferencesChanged(cookiePreferences);
     return cookiePreferences;
   };
