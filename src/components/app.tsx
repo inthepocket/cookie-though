@@ -2,15 +2,23 @@ import { Fragment, FunctionalComponent, h, render } from 'preact';
 import Banner from './banner';
 import Customization from './customization';
 import { useEffect } from 'preact/hooks';
-import { Category, Config, CookieOption, CookieOptions } from '../types';
-import useCookie from '../hooks/useCookie';
+import { Category, Config, CookieOption, CookieOptions, CookiePreferences } from '../types';
+import useCookie, { getCookiePreferences as getPreferences } from '../hooks/useCookie';
 import './app.css';
+
+import { EventEmitter } from 'events';
+
+const ee = new EventEmitter();
 
 interface Props extends Config {
   setVisible(value: boolean): void;
 }
 
 export const isEssential = (category: Category) => category === Category.Essential;
+
+const listen = (cb: (cookiePreferences: CookiePreferences) => void) => {
+  ee.on('cookies_changed', cb);
+};
 
 export const App: FunctionalComponent<Props> = ({
   policies,
@@ -19,15 +27,14 @@ export const App: FunctionalComponent<Props> = ({
   cookiePolicy,
   permissionLabels,
   setVisible,
-  onPreferencesChanged,
 }) => {
   const { getCookiePreferences, setCookiePreferences } = useCookie({
     cookieOptions: policies.map(policy => ({
       id: policy.id,
       isEnabled: isEssential(policy.category) ? true : false,
     })),
+    ee,
     cookiePreferenceKey,
-    onPreferencesChanged,
   });
   const getCookieOptions = (): CookieOptions => {
     const preferences = getCookiePreferences();
@@ -68,9 +75,21 @@ const setVisible = (value: boolean) => {
   }
   document.querySelector('.cookie-though')?.classList.remove('visible');
 };
+let config: Config;
+
+const getCookiePreferences = () => {
+  return getPreferences(
+    config.policies.map(policy => ({
+      id: policy.id,
+      isEnabled: isEssential(policy.category) ? true : false,
+    })),
+    config.cookiePreferenceKey,
+  );
+};
 
 const CookieThough = {
-  init(config: Config) {
+  init(conf: Config) {
+    config = conf;
     const container = document.createElement('div');
     container.className = 'cookie-though';
     const shadowRoot = container.attachShadow({ mode: 'open' });
@@ -78,8 +97,11 @@ const CookieThough = {
     cssLink.setAttribute('rel', 'stylesheet');
     cssLink.setAttribute(
       'href',
-      `https://unpkg.com/cookie-though@${process.env.GIT_TAG}/dist/app.css`,
+      process.env.NODE_ENV === 'development'
+        ? 'src.77de5100.css'
+        : `https://unpkg.com/cookie-though@${process.env.GIT_TAG}/dist/app.css`,
     );
+
     shadowRoot.appendChild(cssLink);
 
     const previousInstance = document.querySelector('.cookie-though') as HTMLElement;
@@ -92,6 +114,8 @@ const CookieThough = {
     render(h(App, { ...config, setVisible }), shadowRoot);
     return { setVisible };
   },
+  listen,
+  getCookiePreferences,
 };
 
 export default CookieThough;

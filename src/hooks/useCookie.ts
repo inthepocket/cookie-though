@@ -1,12 +1,13 @@
-import { Config } from './../types';
 import { CookiePreference, CookiePreferences } from '../types';
 
 export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
 
+import { EventEmitter } from 'events';
+
 interface Options {
   cookieOptions: CookiePreference[];
   cookiePreferenceKey?: string;
-  onPreferencesChanged: Config['onPreferencesChanged'];
+  ee: EventEmitter;
 }
 
 export const getCookie = (cookieKey: string): CookiePreferences | undefined => {
@@ -44,44 +45,48 @@ const mergePolicies = (
   });
 };
 
+export const getCookiePreferences = (
+  options: CookiePreference[],
+  cookiePreferenceKey: string | undefined = COOKIE_PREFERENCES_KEY,
+) => {
+  const defaultPreferences: CookiePreferences = {
+    cookieOptions: options,
+    isCustomised: false,
+  };
+  const cookiePreferences = getCookie(cookiePreferenceKey);
+
+  if (!cookiePreferences) return defaultPreferences;
+
+  const policyIds = defaultPreferences.cookieOptions.map(cookieOption => cookieOption.id);
+  const preferenceIds = cookiePreferences.cookieOptions.map(cookieOption => cookieOption.id);
+  if (!policiesHaveChanged(policyIds, preferenceIds)) return cookiePreferences;
+
+  const cookieOptions = mergePolicies(
+    defaultPreferences.cookieOptions,
+    cookiePreferences.cookieOptions,
+  );
+
+  return { cookieOptions, isCustomised: false };
+};
+
 const useCookie = ({
   cookieOptions,
   cookiePreferenceKey = COOKIE_PREFERENCES_KEY,
-  onPreferencesChanged,
+  ee,
 }: Options) => {
-  const defaultPreferences: CookiePreferences = {
-    cookieOptions,
-    isCustomised: false,
-  };
-
   const setCookiePreferences = (cookiePreferences: CookiePreferences) => {
     const expires = getNextYear();
     document.cookie = `${cookiePreferenceKey}=${JSON.stringify(
       cookiePreferences,
     )}; expires=${expires}; path=/; SameSite=Strict`;
-
-    onPreferencesChanged(cookiePreferences);
+    ee.emit('cookies_changed', cookiePreferences);
     return cookiePreferences;
   };
 
-  const getCookiePreferences = () => {
-    const cookiePreferences = getCookie(cookiePreferenceKey);
-
-    if (!cookiePreferences) return defaultPreferences;
-
-    const policyIds = defaultPreferences.cookieOptions.map(cookieOption => cookieOption.id);
-    const preferenceIds = cookiePreferences.cookieOptions.map(cookieOption => cookieOption.id);
-    if (!policiesHaveChanged(policyIds, preferenceIds)) return cookiePreferences;
-
-    const cookieOptions = mergePolicies(
-      defaultPreferences.cookieOptions,
-      cookiePreferences.cookieOptions,
-    );
-
-    return { cookieOptions, isCustomised: false };
+  return {
+    getCookiePreferences: () => getCookiePreferences(cookieOptions, cookiePreferenceKey),
+    setCookiePreferences,
   };
-
-  return { getCookiePreferences, setCookiePreferences };
 };
 
 export default useCookie;
