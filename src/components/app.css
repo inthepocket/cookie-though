@@ -27,7 +27,7 @@
   font-size: var(--text-font-size);
 }
 
-:root {
+:host {
   --blue-400: #000099;
   --blue-300: #7676ec;
   --blue-200: #e0e0ff;

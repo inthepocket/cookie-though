@@ -40,7 +40,7 @@ build:site:
 build:lib:
   stage: build
   script:
-    - npm run build:lib
+    - GIT_TAG=$CI_COMMIT_TAG npm run build:lib
   artifacts:
       paths:
         - dist
