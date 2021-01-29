@@ -107,14 +107,14 @@ const CookieThough = {
     const previousInstance = document.querySelector('.cookie-though') as HTMLElement;
     if (previousInstance && previousInstance.shadowRoot) {
       render(h(App, { ...config, setVisible }), previousInstance.shadowRoot);
-      return { setVisible };
+      return;
     }
 
     document.body.append(container);
     render(h(App, { ...config, setVisible }), shadowRoot);
-    return { setVisible };
   },
   listen,
+  setVisible,
   getCookiePreferences,
 };
 

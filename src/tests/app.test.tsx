@@ -41,13 +41,13 @@ describe('Cookie Though', () => {
     });
 
     it('can hide the cookie wall with the setVisible function', () => {
-      const { setVisible } = CookieThough.init({
+      CookieThough.init({
         ...mockConfig,
       });
 
       expect(document.querySelector('.cookie-though')).toBeDefined();
       expect(document.querySelector('.visible')).toBeDefined();
-      setVisible(false);
+      CookieThough.setVisible(false);
       expect(document.querySelector('.visible')).toBeNull();
     });
 
