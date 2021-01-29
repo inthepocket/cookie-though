@@ -29,13 +29,14 @@ describe('Cookie Though', () => {
 
     it('can switch the config', () => {
       CookieThough.init({ ...mockConfig, onPreferencesChanged: () => jest.fn() });
+      const shadowRoot = document.querySelector('.cookie-though')?.shadowRoot as ShadowRoot;
 
-      let cookiePolicyLink = document.querySelector('a');
+      let cookiePolicyLink = shadowRoot.querySelector('a');
       expect(cookiePolicyLink?.text).toEqual(mockConfig.cookiePolicy.label);
 
       CookieThough.init({ ...dutchMockConfig, onPreferencesChanged: () => jest.fn() });
       expect(document.getElementsByClassName('cookie-though').length).toEqual(1);
-      cookiePolicyLink = document.querySelector('a');
+      cookiePolicyLink = shadowRoot.querySelector('a');
       expect(cookiePolicyLink?.text).toEqual(dutchMockConfig.cookiePolicy.label);
     });
 
@@ -76,8 +77,9 @@ describe('Cookie Though', () => {
         });
       });
       CookieThough.init({ ...mockConfig, onPreferencesChanged });
+      const shadowRoot = document.querySelector('.cookie-though')?.shadowRoot as ShadowRoot;
 
-      const acceptAllButton = Array.from(document.querySelectorAll('button')).find(
+      const acceptAllButton = Array.from(shadowRoot.querySelectorAll('button')).find(
         button => button.textContent === 'Accept all',
       );
       acceptAllButton?.click();

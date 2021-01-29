@@ -1,10 +1,11 @@
 .ct-declaration {
   width: 100%;
   text-align: center;
-  padding-top: var(--seperator-padding);
+  padding-top: var(--ct-seperator-padding);
+  font-size: var(--ct-text-font-size);
 }
 
 .ct-declaration a {
-  color: var(--gray-400);
+  color: var(--ct-gray-400);
   outline: 0;
 }

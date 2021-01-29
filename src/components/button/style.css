@@ -1,6 +1,7 @@
 .ct-button {
-  background: var(--blue-400);
-  color: var(--white);
+  font-family: inherit;
+  background: var(--ct-primary-400);
+  color: var(--ct-white);
   padding: 0.5rem;
   appearance: none;
   outline: none;
@@ -10,5 +11,5 @@
 }
 
 .ct-button-secondary {
-  background: var(--blue-300);
+  background: var(--ct-primary-300);
 }
