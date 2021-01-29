@@ -1,5 +1,5 @@
 .ct-collapse {
-  margin-bottom: var(--default-padding);
+  margin-bottom: var(--ct-default-padding);
   overflow: hidden;
   transition: height 250ms ease-out;
   height: 0;

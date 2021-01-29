@@ -4,7 +4,7 @@
   outline: none;
   background-color: inherit;
   padding: 0;
-  color: var(--gray-400);
+  color: var(--ct-gray-400);
   display: flex;
   align-items: baseline;
   cursor: pointer;
@@ -16,12 +16,12 @@
 }
 
 .ct-customization-button svg path {
-  stroke: var(--gray-400);
+  stroke: var(--ct-gray-400);
   stroke-width: 1.4;
   stroke-linecap: round;
 }
 
 .ct-active svg {
   transform: rotate(-180deg);
-  margin-bottom: var(--default-padding);
+  margin-bottom: var(--ct-default-padding);
 }

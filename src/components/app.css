@@ -1,16 +1,17 @@
 :host(.cookie-though) {
+  font-family: var(--ct-primary-font);
+  font-size: 16px;
   position: fixed;
   /* TODO: make this dynamic */
   bottom: -200px;
-  left: var(--default-padding);
+  left: var(--ct-default-padding);
   /* left positioning and left/right padding */
-  width: calc(100% - calc(var(--default-padding) * 4));
+  width: calc(100% - calc(var(--ct-default-padding) * 4));
   border-radius: 20px;
   box-shadow: 0px 2px 19px -4px rgba(1, 1, 63, 0.1);
-  font-family: inherit;
   box-sizing: content-box;
   background: #fff;
-  padding: var(--default-padding);
+  padding: var(--ct-default-padding);
   transition: bottom 250ms linear;
 }
 
@@ -21,28 +22,29 @@
 }
 
 :host(.cookie-though.visible) {
-  bottom: var(--default-padding);
+  bottom: var(--ct-default-padding);
 }
 
 :host(.cookie-though),
 :host(.cookie-though button) {
-  font-family: inherit;
-  font-size: var(--text-font-size);
+  font-family: var(--ct-primary-font);
+  font-size: var(--ct-text-font-size);
 }
 
 :host {
-  --blue-400: #000099;
-  --blue-300: #7676ec;
-  --blue-200: #e0e0ff;
-  --blue-100: #f0f0ff;
-  --gray-400: #78787a;
-  --gray-300: #d4d4d4;
-  --white: #ffffff;
-  --text-margin: 0.25rem;
-  --default-padding: 1rem;
-  --seperator-padding: 0.5rem;
-  --heading-font-size: 20px;
-  --sub-heading-font-size: 14px;
-  --text-font-size: 12px;
-  font-size: 16px;
+  --ct-primary-400: #000099;
+  --ct-primary-300: #7676ec;
+  --ct-primary-200: #e0e0ff;
+  --ct-primary-100: #f0f0ff;
+  --ct-gray-400: #78787a;
+  --ct-gray-300: #d4d4d4;
+  --ct-white: #ffffff;
+  --ct-text-margin: 0.25rem;
+  --ct-default-padding: 1rem;
+  --ct-seperator-padding: 0.5rem;
+  --ct-heading-font-size: 20px;
+  --ct-sub-heading-font-size: 14px;
+  --ct-text-font-size: 12px;
+  --ct-primary-font: 'Arial';
+  --ct-secondary-font: 'Times';
 }

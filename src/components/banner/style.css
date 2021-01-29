@@ -1,6 +1,6 @@
 .ct-banner {
-  font-size: var(--text-font-size);
-  margin-bottom: var(--default-padding);
+  font-size: var(--ct-text-font-size);
+  margin-bottom: var(--ct-default-padding);
 }
 
 .ct-banner-header {
@@ -10,13 +10,13 @@
 .ct-banner p,
 .ct-banner h1 {
   margin-top: 0;
-  margin-bottom: var(--text-margin);
+  margin-bottom: var(--ct-text-margin);
 }
 
 .ct-banner h1 {
-  font-size: var(--heading-font-size);
+  font-size: var(--ct-heading-font-size);
   font-weight: 700;
-  color: var(--blue-400);
+  color: var(--ct-primary-400);
 }
 
 .ct-banner p {
@@ -26,12 +26,12 @@
 .ct-banner-intro {
   display: flex;
   align-items: center;
-  margin-bottom: calc(0.5rem - var(--text-margin));
+  margin-bottom: calc(0.5rem - var(--ct-text-margin));
 }
 
 .ct-banner-intro p {
-  font-size: var(--sub-heading-font-size);
-  color: var(--blue-300);
+  font-size: var(--ct-sub-heading-font-size);
+  color: var(--ct-primary-300);
 }
 
 .ct-banner-logo {
@@ -42,12 +42,13 @@
 .ct-banner-logo path {
   fill-rule: evenodd;
   clip-rule: evenodd;
-  fill: var(--blue-400);
-  stroke: var(--white);
+  fill: var(--ct-primary-400);
+  stroke: var(--ct-white);
   stroke-width: 0;
 }
 
 .ct-banner-explanation {
-  color: var(--gray-400);
+  font-family: var(--ct-secondary-font);
+  color: var(--ct-gray-400);
   font-weight: 400;
 }
