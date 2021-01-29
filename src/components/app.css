@@ -1,4 +1,4 @@
-.cookie-though {
+:host(.cookie-though) {
   position: fixed;
   bottom: -200px;
   left: var(--default-padding);
@@ -12,17 +12,17 @@
 }
 
 @media only screen and (min-width: 640px) {
-  .cookie-though {
+  :host(.cookie-though) {
     width: 311px;
   }
 }
 
-.cookie-though.visible {
+:host(.cookie-though.visible) {
   bottom: var(--default-padding);
 }
 
-.cookie-though,
-.cookie-though button {
+:host(.cookie-though),
+:host(.cookie-though button) {
   font-family: 'Flama';
   font-size: var(--text-font-size);
 }
