@@ -9,10 +9,11 @@
   width: calc(100% - calc(var(--ct-default-padding) * 4));
   border-radius: 20px;
   box-shadow: 0px 2px 19px -4px rgba(1, 1, 63, 0.1);
-  box-sizing: content-box;
-  background: #fff;
+  background: var(--ct-white);
   padding: var(--ct-default-padding);
   transition: bottom 250ms linear;
+  box-sizing: content-box !important;
+  z-index: var(--ct-z-index);
 }
 
 @media only screen and (min-width: 640px) {
@@ -47,4 +48,5 @@
   --ct-text-font-size: 12px;
   --ct-primary-font: 'Arial';
   --ct-secondary-font: 'Times';
+  --ct-z-index: 9999;
 }
