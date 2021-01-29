@@ -6,13 +6,12 @@ import Options from './options';
 import Collapse from './collapse';
 import Button from '../button';
 import { Config, CookieOption, CookiePreferences } from '../../types';
-import { isEssential } from '../app';
+import { isEssential, setVisible } from '../app';
 
 interface Props {
   cookieOptions: CookieOption[];
   permissionLabels: Config['permissionLabels'];
   cookiePolicy?: Config['cookiePolicy'];
-  setVisible(value: boolean): void;
   setCookiePreferences(cookiePreferences: CookiePreferences): CookiePreferences;
 }
 
@@ -36,7 +35,6 @@ const Customization: FunctionalComponent<Props> = ({
   cookieOptions,
   permissionLabels,
   cookiePolicy,
-  setVisible,
   setCookiePreferences,
 }) => {
   const [options, setOptions] = useState(() => cookieOptions);

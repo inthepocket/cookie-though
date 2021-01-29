@@ -10,14 +10,19 @@ import { EventEmitter } from 'events';
 
 const ee = new EventEmitter();
 
-interface Props extends Config {
-  setVisible(value: boolean): void;
-}
+type Props = Config;
 
 export const isEssential = (category: Category) => category === Category.Essential;
 
 const listen = (cb: (cookiePreferences: CookiePreferences) => void) => {
   ee.on('cookies_changed', cb);
+};
+
+export const setVisible = (value: boolean) => {
+  if (value) {
+    return document.querySelector('.cookie-though')?.classList.add('visible');
+  }
+  document.querySelector('.cookie-though')?.classList.remove('visible');
 };
 
 export const App: FunctionalComponent<Props> = ({
@@ -26,7 +31,6 @@ export const App: FunctionalComponent<Props> = ({
   header,
   cookiePolicy,
   permissionLabels,
-  setVisible,
 }) => {
   const { getCookiePreferences, setCookiePreferences } = useCookie({
     cookieOptions: policies.map(policy => ({
@@ -53,7 +57,7 @@ export const App: FunctionalComponent<Props> = ({
     if (!cookiePreferences.isCustomised) {
       setVisible(true);
     }
-  }, [cookiePreferences, setVisible]);
+  }, [cookiePreferences]);
 
   return (
     <Fragment>
@@ -62,19 +66,12 @@ export const App: FunctionalComponent<Props> = ({
         cookieOptions={cookiePreferences.cookieOptions}
         cookiePolicy={cookiePolicy}
         permissionLabels={permissionLabels}
-        setVisible={setVisible}
         setCookiePreferences={setCookiePreferences}
       />
     </Fragment>
   );
 };
 
-const setVisible = (value: boolean) => {
-  if (value) {
-    return document.querySelector('.cookie-though')?.classList.add('visible');
-  }
-  document.querySelector('.cookie-though')?.classList.remove('visible');
-};
 let config: Config;
 
 const getCookiePreferences = () => {
@@ -106,12 +103,12 @@ const CookieThough = {
 
     const previousInstance = document.querySelector('.cookie-though') as HTMLElement;
     if (previousInstance && previousInstance.shadowRoot) {
-      render(h(App, { ...config, setVisible }), previousInstance.shadowRoot);
+      render(h(App, { ...config }), previousInstance.shadowRoot);
       return;
     }
 
     document.body.append(container);
-    render(h(App, { ...config, setVisible }), shadowRoot);
+    render(h(App, { ...config }), shadowRoot);
   },
   listen,
   setVisible,
