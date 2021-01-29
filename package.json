@@ -5,7 +5,7 @@
   "homepage": "https://cookie-though-docs.web.app",
   "scripts": {
     "docs": "docsify serve",
-    "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public",
+    "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public --no-content-hash",
     "build:lib": "parcel build src/components/app.tsx --no-source-maps --global CookieThough --out-dir dist",
     "dev": "parcel src/index.html --global CookieThough",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
