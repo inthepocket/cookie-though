@@ -22,19 +22,19 @@ describe('Cookie Though', () => {
     });
 
     it('can render the app based on the initCookieThough function', () => {
-      CookieThough.init({ ...mockConfig, onPreferencesChanged: () => jest.fn() });
+      CookieThough.init({ ...mockConfig });
 
       expect(document.querySelector('.cookie-though')).toBeDefined();
     });
 
     it('can switch the config', () => {
-      CookieThough.init({ ...mockConfig, onPreferencesChanged: () => jest.fn() });
+      CookieThough.init({ ...mockConfig });
       const shadowRoot = document.querySelector('.cookie-though')?.shadowRoot as ShadowRoot;
 
       let cookiePolicyLink = shadowRoot.querySelector('a');
       expect(cookiePolicyLink?.text).toEqual(mockConfig.cookiePolicy.label);
 
-      CookieThough.init({ ...dutchMockConfig, onPreferencesChanged: () => jest.fn() });
+      CookieThough.init({ ...dutchMockConfig });
       expect(document.getElementsByClassName('cookie-though').length).toEqual(1);
       cookiePolicyLink = shadowRoot.querySelector('a');
       expect(cookiePolicyLink?.text).toEqual(dutchMockConfig.cookiePolicy.label);
@@ -43,7 +43,6 @@ describe('Cookie Though', () => {
     it('can hide the cookie wall with the setVisible function', () => {
       const { setVisible } = CookieThough.init({
         ...mockConfig,
-        onPreferencesChanged: () => jest.fn(),
       });
 
       expect(document.querySelector('.cookie-though')).toBeDefined();
@@ -76,12 +75,13 @@ describe('Cookie Though', () => {
           isCustomised: true,
         });
       });
-      CookieThough.init({ ...mockConfig, onPreferencesChanged });
+      CookieThough.init({ ...mockConfig });
       const shadowRoot = document.querySelector('.cookie-though')?.shadowRoot as ShadowRoot;
 
       const acceptAllButton = Array.from(shadowRoot.querySelectorAll('button')).find(
         button => button.textContent === 'Accept all',
       );
+      CookieThough.listen(onPreferencesChanged);
       acceptAllButton?.click();
       expect(onPreferencesChanged).toBeCalledTimes(1);
     });
@@ -98,7 +98,6 @@ describe('Cookie Though', () => {
             policies={mockConfig.policies}
             permissionLabels={mockConfig.permissionLabels}
             setVisible={setVisible}
-            onPreferencesChanged={jest.fn()}
           />
         </div>,
         { attachTo: document.body },
@@ -128,7 +127,6 @@ describe('Cookie Though', () => {
             policies={mockPolicies}
             permissionLabels={mockConfig.permissionLabels}
             setVisible={setVisible}
-            onPreferencesChanged={jest.fn()}
           />
         </div>,
         { attachTo: document.body },
@@ -146,7 +144,6 @@ describe('Cookie Though', () => {
             policies={mockPolicies}
             permissionLabels={mockConfig.permissionLabels}
             setVisible={setVisible}
-            onPreferencesChanged={jest.fn()}
           />
         </div>,
         { attachTo: document.body },
@@ -167,7 +164,6 @@ describe('Cookie Though', () => {
             setVisible={() => {
               return;
             }}
-            onPreferencesChanged={jest.fn()}
           />
         </div>
       </body>,

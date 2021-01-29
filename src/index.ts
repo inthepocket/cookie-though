@@ -11,15 +11,15 @@ import CookieThough from './components/app';
 window.addEventListener('DOMContentLoaded', () => {
   const { setVisible } = CookieThough.init({
     ...englishMockConfig,
-    onPreferencesChanged: (preferences: CookiePreferences) => {
-      console.log({ preferences });
-    },
   });
-
+  CookieThough.listen((preferences: CookiePreferences) => {
+    console.log('preferences have changed via Event Emitter', preferences);
+  });
   const manageCookiesElement = document.getElementById('manage-cookie-though');
   manageCookiesElement?.addEventListener('click', () => {
     setVisible(true);
   });
+  console.log('state', CookieThough.getCookiePreferences());
 
   const switchCookiesElement = document.getElementById('switch-config');
   let language = 'english';
@@ -28,17 +28,11 @@ window.addEventListener('DOMContentLoaded', () => {
       language = 'dutch';
       CookieThough.init({
         ...dutchMockConfig,
-        onPreferencesChanged: (preferences: CookiePreferences) => {
-          console.log({ preferences });
-        },
       });
     } else {
       language = 'english';
       CookieThough.init({
         ...englishMockConfig,
-        onPreferencesChanged: (preferences: CookiePreferences) => {
-          console.log({ preferences });
-        },
       });
     }
   });

@@ -9,7 +9,6 @@ exports[`Cookie Though should render properly 1`] = `
     className="cookie-though"
   >
     <App
-      onPreferencesChanged={[MockFunction]}
       permissionLabels={
         Object {
           "accept": "Accept",

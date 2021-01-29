@@ -46,5 +46,4 @@ export interface Config {
     url: string;
     label: string;
   };
-  onPreferencesChanged(preferences: CookiePreferences): void;
 }
