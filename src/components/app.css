@@ -37,6 +37,9 @@
   --ct-primary-100: #f0f0ff;
   --ct-gray-400: #78787a;
   --ct-gray-300: #d4d4d4;
+  --ct-slider-400: #4c4cff;
+  --ct-slider-300: #b3b3ff;
+  --ct-enabled-option-color: var(--ct-white);
   --ct-white: #ffffff;
   --ct-text-margin: 0.25rem;
   --ct-default-padding: 1rem;
