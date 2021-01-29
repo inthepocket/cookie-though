@@ -23,7 +23,7 @@
 }
 
 .ct-enabled .ct-option-info p {
-  color: var(--ct-white);
+  color: var(--ct-enabled-option-color);
 }
 
 .ct-option input[type="checkbox"]{
@@ -90,10 +90,10 @@ input[type="checkbox"]:not(:disabled) + label .ct-slider::after {
 }
 
 input[type="checkbox"]:not(:disabled):checked + label .ct-slider {
-  background-color: #4c4cff;
+  background-color: var(--ct-slider-400);
 }
 
 input[type="checkbox"]:not(:disabled):checked + label .ct-slider::after {
-  background: #b3b3ff;
+  background: var(--ct-slider-300);
   left: 50%;
 }
