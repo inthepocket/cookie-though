@@ -2,6 +2,10 @@ import { h } from 'preact';
 import toJson from 'enzyme-to-json';
 import { mount, ReactWrapper, shallow } from 'enzyme';
 import mockConfig from '../../__mocks__/config';
+jest.mock('../../utils/dom', () => ({
+  setVisible: jest.fn(),
+}));
+import { setVisible } from '../../utils/dom';
 
 import Button from '../../../components/button';
 import Customization from '../../../components/customization';
@@ -12,7 +16,6 @@ import { isEssential } from '../../../components/app';
 const defaultProps = {
   cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
   permissionLabels: mockConfig.permissionLabels,
-  setVisible: jest.fn(),
   setCookiePreferences: jest.fn(),
 };
 
@@ -127,10 +130,13 @@ describe('Customization', () => {
       expect(getToggleButton(wrapper).hasClass('ct-active')).toBeFalsy();
       expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
       expect(getOptionalCookie(wrapper).hasClass('ct-enabled')).toBeTruthy();
-      expect(defaultProps.setVisible).toBeCalledWith(false);
+      expect(setVisible).toBeCalledWith(false);
     });
 
     it('will accept all options if the user has none enabled and save the preferences', () => {
+      jest.mock('../../../components/app', () => ({
+        setVisible: jest.fn(),
+      }));
       const setCookiePreferences = jest.fn();
       const wrapper = mount(
         <Customization {...defaultProps} setCookiePreferences={setCookiePreferences} />,
@@ -151,7 +157,7 @@ describe('Customization', () => {
       optionalCookies.forEach(optionalCookie => {
         expect(optionalCookie.hasClass('ct-enabled')).toBeTruthy();
       });
-      expect(defaultProps.setVisible).toBeCalledWith(false);
+      expect(setVisible).toBeCalledWith(false);
     });
   });
 });
