@@ -44,7 +44,6 @@ exports[`Cookie Though should render properly 1`] = `
           },
         ]
       }
-      setVisible={[Function]}
     />
   </div>
 </body>

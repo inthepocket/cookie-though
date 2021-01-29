@@ -8,6 +8,11 @@ import CookieThough, { App } from '../components/app';
 import clearCookies from './utils/clearCookies';
 import { CookiePreferences } from '../types';
 
+jest.mock('./utils/dom', () => ({
+  setVisible: jest.fn().mockImplementation(() => 'You have called setVisible'),
+}));
+import { setVisible } from './utils/dom';
+
 describe('Cookie Though', () => {
   afterEach(() => {
     clearCookies();
@@ -113,16 +118,9 @@ describe('Cookie Though', () => {
 
   describe('without user preferences stored in local storage', () => {
     it('should show the cookie wall', () => {
-      const setVisible = jest.fn((value: boolean) => {
-        expect(value).toBeTruthy();
-      });
       mount(
         <div className="cookie-though">
-          <App
-            policies={mockConfig.policies}
-            permissionLabels={mockConfig.permissionLabels}
-            setVisible={setVisible}
-          />
+          <App policies={mockConfig.policies} permissionLabels={mockConfig.permissionLabels} />
         </div>,
         { attachTo: document.body },
       );
@@ -142,33 +140,21 @@ describe('Cookie Though', () => {
         ...DEFAULT_COOKIE_PREFERENCES,
         isCustomised: true,
       })}`;
-      const setVisible = function () {
-        throw new Error('should not be called');
-      };
       mount(
         <div className="cookie-though">
-          <App
-            policies={mockPolicies}
-            permissionLabels={mockConfig.permissionLabels}
-            setVisible={setVisible}
-          />
+          <App policies={mockPolicies} permissionLabels={mockConfig.permissionLabels} />
         </div>,
         { attachTo: document.body },
       );
     });
 
     it("should show the cookie wall if the cookie preferences aren't customised", () => {
-      const setVisible = jest.fn((value: boolean) => {
-        expect(value).toBeTruthy();
-      });
-
+      jest.mock('./utils/dom', () => ({
+        setVisible: jest.fn().mockImplementation(() => 'You have called setVisible'),
+      }));
       mount(
         <div className="cookie-though">
-          <App
-            policies={mockPolicies}
-            permissionLabels={mockConfig.permissionLabels}
-            setVisible={setVisible}
-          />
+          <App policies={mockPolicies} permissionLabels={mockConfig.permissionLabels} />
         </div>,
         { attachTo: document.body },
       );
@@ -182,13 +168,7 @@ describe('Cookie Though', () => {
       <body>
         <button id="manage-cookie-though"></button>
         <div className="cookie-though">
-          <App
-            policies={mockPolicies}
-            permissionLabels={mockConfig.permissionLabels}
-            setVisible={() => {
-              return;
-            }}
-          />
+          <App policies={mockPolicies} permissionLabels={mockConfig.permissionLabels} />
         </div>
       </body>,
     );
