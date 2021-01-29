@@ -13,9 +13,6 @@ dependencies:
   stage: dependencies
   script:
     - npm ci
-  artifacts:
-    paths:
-      - node_modules/
   variables:
     SYSTEM: "build"
 test:
