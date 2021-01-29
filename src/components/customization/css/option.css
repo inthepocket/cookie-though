@@ -4,7 +4,6 @@
   margin-bottom: var(--seperator-padding);
   display: flex;
   font-size: var(--text-font-size);
-  font-family: 'Flama Basic';
   transition: background-color 250ms linear, color 250ms linear, border-color 250ms linear;
 }
 
@@ -58,11 +57,6 @@
 
 input[type="checkbox"]:not(:disabled) + .ct-option-info strong {
   margin-bottom: var(--text-margin);
-}
-
-.ct-option-info strong,
-.declaration {
-  font-family: 'Flama';
 }
 
 .ct-slider {

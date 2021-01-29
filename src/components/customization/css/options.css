@@ -2,6 +2,7 @@
   width: 100%;
   text-align: center;
   padding-top: var(--seperator-padding);
+  font-size: var(--text-font-size);
 }
 
 .ct-declaration a {

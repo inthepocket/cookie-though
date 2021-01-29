@@ -1,11 +1,14 @@
 :host(.cookie-though) {
   position: fixed;
+  /* TODO: make this dynamic */
   bottom: -200px;
   left: var(--default-padding);
   /* left positioning and left/right padding */
   width: calc(100% - calc(var(--default-padding) * 4));
   border-radius: 20px;
   box-shadow: 0px 2px 19px -4px rgba(1, 1, 63, 0.1);
+  font-family: inherit;
+  box-sizing: content-box;
   background: #fff;
   padding: var(--default-padding);
   transition: bottom 250ms linear;
@@ -23,7 +26,7 @@
 
 :host(.cookie-though),
 :host(.cookie-though button) {
-  font-family: 'Flama';
+  font-family: inherit;
   font-size: var(--text-font-size);
 }
 

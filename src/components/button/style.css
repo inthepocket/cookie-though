@@ -1,4 +1,5 @@
 .ct-button {
+  font-family: inherit;
   background: var(--blue-400);
   color: var(--white);
   padding: 0.5rem;
