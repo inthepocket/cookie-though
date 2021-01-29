@@ -9,7 +9,7 @@ import englishMockConfig, { dutchMockConfig } from './tests/__mocks__/config';
 import CookieThough from './components/app';
 
 window.addEventListener('DOMContentLoaded', () => {
-  const { setVisible } = CookieThough.init({
+  CookieThough.init({
     ...englishMockConfig,
   });
   CookieThough.listen((preferences: CookiePreferences) => {
@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   const manageCookiesElement = document.getElementById('manage-cookie-though');
   manageCookiesElement?.addEventListener('click', () => {
-    setVisible(true);
+    CookieThough.setVisible(true);
   });
   console.log('state', CookieThough.getCookiePreferences());
 
