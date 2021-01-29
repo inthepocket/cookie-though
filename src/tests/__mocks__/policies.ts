@@ -11,7 +11,7 @@ export const dutchMockPolicies: Policy[] = [
   {
     id: 'functional',
     label: 'Functionele cookies',
-    description: 'We onthouden de enkel basisdingen, zoals taal.',
+    description: 'We onthouden enkel de basisdingen, zoals taal.',
     category: Category.Functional,
   },
   {
@@ -23,7 +23,7 @@ export const dutchMockPolicies: Policy[] = [
   {
     id: 'marketing',
     label: 'Marketing',
-    description: 'We zullen je enkel content tonen dat je interesseerd.',
+    description: 'We zullen je enkel content tonen die je interesseert.',
     category: Category.Marketing,
   },
 ];
