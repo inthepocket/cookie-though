@@ -7,7 +7,7 @@ import { EventEmitter } from 'events';
 interface Options {
   cookieOptions: CookiePreference[];
   cookiePreferenceKey?: string;
-  ee: EventEmitter;
+  ee?: EventEmitter;
 }
 
 export const getCookie = (cookieKey: string): CookiePreferences | undefined => {
@@ -76,7 +76,9 @@ const useCookie = ({
     document.cookie = `${cookiePreferenceKey}=${JSON.stringify(
       cookiePreferences,
     )}; expires=${expires}; path=/; SameSite=Strict`;
-    ee.emit('cookies_changed', cookiePreferences);
+    if (ee) {
+      ee.emit('cookies_changed', cookiePreferences);
+    }
     return cookiePreferences;
   };
 

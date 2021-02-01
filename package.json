@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "docsify serve",
     "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public --no-content-hash",
-    "build:lib": "parcel build src/components/app.tsx --no-source-maps --global CookieThough --out-dir dist",
+    "build:lib": "parcel build src/lib.ts --no-source-maps --global CookieThough --out-dir dist --experimental-scope-hoisting",
     "dev": "parcel src/index.html --global CookieThough",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "markdown:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
