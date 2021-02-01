@@ -1,6 +1,10 @@
 import { EventEmitter } from 'events';
 import { CookiePreferences } from './../../types';
-import { COOKIE_PREFERENCES_KEY, getCookie } from '../../hooks/useCookie';
+import {
+  COOKIE_PREFERENCES_CHANGED_EVENT,
+  COOKIE_PREFERENCES_KEY,
+  getCookie,
+} from '../../hooks/useCookie';
 import useCookie from '../../hooks/useCookie';
 import mockConfig from '../__mocks__/config';
 import clearCookies from '../utils/clearCookies';
@@ -37,7 +41,7 @@ describe('useCookie', () => {
     expect(getCookie(COOKIE_PREFERENCES_KEY)).toBeUndefined();
   });
 
-  test('when setting the options it will call the onPreferencesChanged callback', () => {
+  it('will call the listener when the options are set', () => {
     const onPreferencesChanged = jest.fn((preferences: CookiePreferences) => {
       expect(preferences).toEqual(DEFAULT_COOKIE_PREFERENCES);
     });
@@ -46,11 +50,19 @@ describe('useCookie', () => {
       cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
       ee,
     });
-    ee.on('cookies_changed', onPreferencesChanged);
+    ee.on(COOKIE_PREFERENCES_CHANGED_EVENT, onPreferencesChanged);
     setCookiePreferences(DEFAULT_COOKIE_PREFERENCES);
     expect(getCookie(COOKIE_PREFERENCES_KEY)).toEqual(DEFAULT_COOKIE_PREFERENCES);
 
     expect(onPreferencesChanged).toBeCalledTimes(1);
+  });
+
+  it('will not call the cookies_changed event when there is no event emitter', () => {
+    const { setCookiePreferences } = useCookie({
+      cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+    });
+    setCookiePreferences(DEFAULT_COOKIE_PREFERENCES);
+    expect(getCookie(COOKIE_PREFERENCES_KEY)).toEqual(DEFAULT_COOKIE_PREFERENCES);
   });
 
   describe('when the policies get updated', () => {
