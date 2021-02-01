@@ -9,4 +9,11 @@ module.exports = {
   snapshotSerializers: ['enzyme-to-json/serializer'],
   coverageReporters: ['json', 'lcov', 'text', 'clover', 'cobertura'],
   coveragePathIgnorePatterns: ['<rootDir>/src/index.ts', '<rootDir>/src/types.ts'],
+  coverageThreshold: {
+    global: {
+      branches: 90,
+      functions: 90,
+      lines: 90,
+    },
+  },
 };
