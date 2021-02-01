@@ -2,7 +2,7 @@ import { h } from 'preact';
 import toJson from 'enzyme-to-json';
 import { mount, ReactWrapper, shallow } from 'enzyme';
 import mockConfig from '../../__mocks__/config';
-jest.mock('../../utils/dom', () => ({
+jest.mock('../../../utils/dom', () => ({
   setVisible: jest.fn(),
 }));
 import { setVisible } from '../../../utils/dom';
@@ -11,7 +11,7 @@ import Button from '../../../components/button';
 import Customization from '../../../components/customization';
 import ToggleButton from '../../../components/customization/toggleButton';
 import Collapse from '../../../components/customization/collapse';
-import { isEssential } from '../../../components/app';
+import { isEssential } from '../../../utils';
 
 const defaultProps = {
   cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),

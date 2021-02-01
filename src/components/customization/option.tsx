@@ -1,7 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import './css/option.css';
 import { CookieOption } from '../../types';
-import { isEssential } from '../app';
+import { isEssential } from '../../utils';
 
 interface Props {
   option: CookieOption;

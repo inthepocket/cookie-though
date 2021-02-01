@@ -1,9 +1,9 @@
 import mockConfig, { dutchMockConfig } from './__mocks__/config';
-import CookieThough from '../lib';
+import { init, get, listen, hide } from '../lib';
 import clearCookies from './utils/clearCookies';
 import { CookiePreferences } from '../types';
 
-jest.mock('./utils/dom', () => ({
+jest.mock('../utils/dom', () => ({
   setVisible: jest.fn().mockImplementation(() => 'You have called setVisible'),
 }));
 
@@ -21,37 +21,37 @@ describe('Cookie Though', () => {
     });
 
     it('can render the app based on the init function', () => {
-      CookieThough.init({ ...mockConfig });
+      init({ ...mockConfig });
 
       expect(document.querySelector('.cookie-though')).toBeDefined();
     });
 
     it('can switch the config', () => {
-      CookieThough.init({ ...mockConfig });
+      init({ ...mockConfig });
       const shadowRoot = document.querySelector('.cookie-though')?.shadowRoot as ShadowRoot;
 
       let cookiePolicyLink = shadowRoot.querySelector('a');
       expect(cookiePolicyLink?.text).toEqual(mockConfig.cookiePolicy.label);
 
-      CookieThough.init({ ...dutchMockConfig });
+      init({ ...dutchMockConfig });
       expect(document.getElementsByClassName('cookie-though').length).toEqual(1);
       cookiePolicyLink = shadowRoot.querySelector('a');
       expect(cookiePolicyLink?.text).toEqual(dutchMockConfig.cookiePolicy.label);
     });
 
     it('can hide the cookie wall with the setVisible function', () => {
-      CookieThough.init({ ...mockConfig });
+      init({ ...mockConfig });
 
       expect(document.querySelector('.cookie-though')).toBeDefined();
       expect(document.querySelector('.visible')).toBeDefined();
-      CookieThough.setVisible(false);
+      hide();
       expect(document.querySelector('.visible')).toBeNull();
     });
 
     it('will return the preferences with the getCookiePreferences function', () => {
-      CookieThough.init({ ...mockConfig });
+      init({ ...mockConfig });
 
-      expect(CookieThough.getCookiePreferences()).toEqual({
+      expect(get()).toEqual({
         cookieOptions: [
           {
             id: 'essential',
@@ -98,13 +98,13 @@ describe('Cookie Though', () => {
           isCustomised: true,
         });
       });
-      CookieThough.init({ ...mockConfig });
+      init({ ...mockConfig });
       const shadowRoot = document.querySelector('.cookie-though')?.shadowRoot as ShadowRoot;
 
       const acceptAllButton = Array.from(shadowRoot.querySelectorAll('button')).find(
         button => button.textContent === 'Accept all',
       );
-      CookieThough.listen(onPreferencesChanged);
+      listen(onPreferencesChanged);
       acceptAllButton?.click();
       expect(onPreferencesChanged).toBeCalledTimes(1);
     });

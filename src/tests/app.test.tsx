@@ -8,7 +8,7 @@ import App from '../components/app';
 import clearCookies from './utils/clearCookies';
 import { CookiePreferences } from '../types';
 
-jest.mock('./utils/dom', () => ({
+jest.mock('../utils/dom', () => ({
   setVisible: jest.fn().mockImplementation(() => 'You have called setVisible'),
 }));
 import { setVisible } from '../utils/dom';
@@ -60,7 +60,7 @@ describe('Cookie Though', () => {
     });
 
     it("should show the cookie wall if the cookie preferences aren't customised", () => {
-      jest.mock('./utils/dom', () => ({
+      jest.mock('../utils/dom', () => ({
         setVisible: jest.fn().mockImplementation(() => 'You have called setVisible'),
       }));
       mount(
