@@ -44,15 +44,15 @@ import { hide } from 'cookie-though';
 hide();
 ```
 
-## useCt
+## useCookieThough
 
 This hook allows you to easily track the enabled state of a certain policy or option.
 
 ```js
-import { useCt } from 'cookie-though';
+import { useCookieThough } from 'cookie-though';
 
 function App() {
-    const enabled = useCt('analytics');
+    const enabled = useCookieThough('analytics');
     if (!enabled) {
         return <p>Consent has not been given</p>
     }

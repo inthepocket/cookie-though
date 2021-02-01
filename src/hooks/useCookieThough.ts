@@ -9,7 +9,7 @@ function isEnabled(preferences: CookiePreferences, microPolicy: string): boolean
   return option.isEnabled;
 }
 
-export default function useCt(
+export default function useCookieThough(
   listen: (cb: (preferences: CookiePreferences) => void) => void,
   getCookiePreferences: () => CookiePreferences,
   micropolicy: string,
