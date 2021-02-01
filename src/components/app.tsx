@@ -6,9 +6,8 @@ import { Config, CookieOption, CookieOptions } from '../types';
 import useCookie from '../hooks/useCookie';
 import './app.css';
 
-import { setVisible } from '../utils/dom';
+import { setVisible, isEssential } from '../utils';
 import { EventEmitter } from 'events';
-import { isEssential } from '../utils/category';
 
 interface Props extends Config {
   ee?: EventEmitter;
@@ -25,7 +24,7 @@ const App: FunctionalComponent<Props> = ({
   const { getCookiePreferences, setCookiePreferences } = useCookie({
     cookieOptions: policies.map(policy => ({
       id: policy.id,
-      isEnabled: isEssential(policy.category) ? true : false,
+      isEnabled: isEssential(policy.category),
     })),
     ee,
     cookiePreferenceKey,

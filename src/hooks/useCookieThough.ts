@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
-import { CookiePreferences } from '../types';
+import { CookiePreferences, Policy } from '../types';
 
-function isEnabled(preferences: CookiePreferences, microPolicy: string): boolean {
+function isEnabled(preferences: CookiePreferences, microPolicy: Policy['id']): boolean {
   const option = preferences.cookieOptions.find(x => x.id === microPolicy);
   if (!option) {
     return false;
@@ -12,7 +12,7 @@ function isEnabled(preferences: CookiePreferences, microPolicy: string): boolean
 export default function useCookieThough(
   listen: (cb: (preferences: CookiePreferences) => void) => void,
   getCookiePreferences: () => CookiePreferences,
-  micropolicy: string,
+  micropolicy: Policy['id'],
 ) {
   const [hasConsent, setConsentState] = useState<boolean>(false);
 
