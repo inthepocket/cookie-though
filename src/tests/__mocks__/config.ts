@@ -1,19 +1,5 @@
-import defaultPolicies, { dutchMockPolicies, englishMockPolicies } from './policies';
-
-const defaultConfig = {
-  policies: defaultPolicies,
-  header: {
-    subTitle: "You're probably fed up with these banners...",
-    title: 'cookie though?',
-    description:
-      "Everybody wants to show his best side - and so do we. That's why we use cookies to guarantee you a better experience.",
-  },
-  permissionLabels: {
-    accept: 'Accept',
-    acceptAll: 'Accept all',
-    decline: 'Decline',
-  },
-};
+import defaultConfig from '../../config/defaultConfig';
+import { dutchMockPolicies, englishMockPolicies } from './policies';
 
 export const englishMockConfig = {
   ...defaultConfig,

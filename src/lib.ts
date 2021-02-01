@@ -9,7 +9,7 @@ import {
 } from './hooks/useCookie';
 import { h, render } from 'preact';
 import { isEssential } from './utils/category';
-import defaultConfig from './tests/__mocks__/config';
+import defaultConfig from './config/defaultConfig';
 
 let config: Config;
 const ee = new EventEmitter();
