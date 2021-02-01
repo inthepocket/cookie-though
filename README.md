@@ -1,4 +1,7 @@
-# Cookie Though
+# Cookie Though 🍪
+
+Easy to use, minimal footprint and looks good in any website or app.
+You'll never need another library again 😄
 
 [![Package Version](https://img.shields.io/npm/v/cookie-though.svg)](https://npm.im/cookie-though)
 
@@ -6,10 +9,12 @@
     <img src="https://cookie-though-docs.web.app/assets/logo.png" width="100" height="auto"/>
 </div>
 
-Easily installable GDPR compliant cookie widget.
-
 Benefits:
 
-* Easily configurable
-* Installable via standalone js bundle or via npm
-* Small bundle size
+* simplicity: easily usable from a developer perspective
+* accessibility: needs to be accessible
+* adaptability: can be easily tweaked or adjusted to the needs of a project
+* standards compliance: GDPR compliant, fine grained cookie control
+* low footprint: size of the widget should be minimal
+
+<a href="#" onclick='CookieThough.default.setVisible(true)'>Show Cookie</a>

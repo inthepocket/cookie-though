@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Cookie Though</title>
+  <link rel="icon" href="/assets/favicon.ico" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -20,5 +21,51 @@
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="https://unpkg.com/cookie-though/dist/app.js"></script>
+  <script type="text/javascript">
+    CookieThough.default.init({
+    policies: [
+      {
+        id: 'essential',
+        label: 'Strict noodzakelijke cookies',
+        description: 'Altijd aan',
+        category: 'essential',
+      },
+      {
+        id: 'functional',
+        label: 'Functionele cookies',
+        description: 'We onthouden enkel de basisdingen, zoals taal.',
+        category: 'functional',
+      },
+      {
+        id: 'analytics',
+        label: 'Analyses',
+        description: 'We zullen weten hoe we je ervaring kunnen verbeteren.',
+        category: 'statistics',
+      },
+      {
+        id: 'marketing',
+        label: 'Marketing',
+        description: 'We zullen je enkel content tonen die je interesseert.',
+        category: 'marketing',
+      },
+    ],
+    header: {
+      subTitle: 'Je hebt wellicht genoeg van deze banners...',
+      title: 'cookie though?',
+      description:
+        'Iedereen wil zijn beste kant tonen - en wij ook. Daarom gebruiken we cookies om je een betere ervaring te garanderen',
+    },
+    permissionLabels: {
+      accept: 'Accepteer',
+      acceptAll: 'Accepteer alle',
+      decline: 'Wijs af',
+    },
+    cookiePolicy: {
+      url: '#',
+      label: 'Lees onze volledige cookie policy',
+    },
+  });
+  </script>
 </body>
 </html>
