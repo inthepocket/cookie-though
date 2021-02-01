@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { Category, CookiePreferences } from './../../types';
+import { CookiePreferences } from './../../types';
 import { COOKIE_PREFERENCES_KEY, getCookie } from '../../hooks/useCookie';
 import useCookie from '../../hooks/useCookie';
 import mockConfig from '../__mocks__/config';
@@ -76,7 +76,7 @@ describe('useCookie', () => {
           id: 'id',
           label: 'label',
           description: 'description',
-          category: Category.Functional,
+          category: 'functional',
           isEnabled: false,
         },
       ];

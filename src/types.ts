@@ -14,19 +14,11 @@ export type CookieOption = Policy & {
 export interface CookieOptions extends CookiePreferences {
   cookieOptions: CookieOption[];
 }
-
-export enum Category {
-  Essential = 'essential',
-  Functional = 'functional',
-  Statistics = 'statistics',
-  Marketing = 'marketing',
-}
-
 export interface Policy {
   id: string;
   label: string;
   description: string;
-  category: Category;
+  category: 'essential' | 'social' | 'analytics' | 'marketing' | 'statistics' | 'functional';
 }
 
 export interface Config {

@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { h } from 'preact';
 import { shallow, mount } from 'enzyme';
 
+import { Policy } from '../../../types';
 import Option from '../../../components/customization/option';
-import { Category } from '../../../types';
 
 const defaultProps = (isEnabled: boolean) => ({
   option: {
     id: 'foo',
     label: 'foo',
     description: 'bar',
-    category: Category.Essential,
+    category: 'essential' as Policy['category'],
     isEnabled,
   },
   onToggle: jest.fn(),
