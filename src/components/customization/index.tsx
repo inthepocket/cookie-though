@@ -7,7 +7,7 @@ import Collapse from './collapse';
 import Button from '../button';
 import { Config, CookieOption, CookiePreferences } from '../../types';
 import { isEssential } from '../app';
-import { setVisible } from '../../tests/utils/dom';
+import { setVisible } from '../../utils/dom';
 
 interface Props {
   cookieOptions: CookieOption[];

@@ -5,7 +5,7 @@ import mockConfig from '../../__mocks__/config';
 jest.mock('../../utils/dom', () => ({
   setVisible: jest.fn(),
 }));
-import { setVisible } from '../../utils/dom';
+import { setVisible } from '../../../utils/dom';
 
 import Button from '../../../components/button';
 import Customization from '../../../components/customization';

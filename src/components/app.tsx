@@ -1,33 +1,26 @@
-import { Fragment, FunctionalComponent, h, render } from 'preact';
+import { Fragment, FunctionalComponent, h } from 'preact';
 import Banner from './banner';
 import Customization from './customization';
 import { useEffect } from 'preact/hooks';
-import { Category, Config, CookieOption, CookieOptions, CookiePreferences } from '../types';
-import useCookie, {
-  COOKIE_PREFERENCES_KEY,
-  getCookiePreferences as getPreferences,
-} from '../hooks/useCookie';
+import { Config, CookieOption, CookieOptions } from '../types';
+import useCookie from '../hooks/useCookie';
 import './app.css';
 
+import { setVisible } from '../utils/dom';
 import { EventEmitter } from 'events';
-import { setVisible } from '../tests/utils/dom';
+import { isEssential } from '../utils/category';
 
-const ee = new EventEmitter();
+interface Props extends Config {
+  ee?: EventEmitter;
+}
 
-type Props = Config;
-
-export const isEssential = (category: Category) => category === Category.Essential;
-
-const listen = (cb: (cookiePreferences: CookiePreferences) => void) => {
-  ee.on('cookies_changed', cb);
-};
-
-export const App: FunctionalComponent<Props> = ({
+const App: FunctionalComponent<Props> = ({
   policies,
   cookiePreferenceKey,
   header,
   cookiePolicy,
   permissionLabels,
+  ee,
 }) => {
   const { getCookiePreferences, setCookiePreferences } = useCookie({
     cookieOptions: policies.map(policy => ({
@@ -68,49 +61,4 @@ export const App: FunctionalComponent<Props> = ({
     </Fragment>
   );
 };
-
-let config: Config;
-
-const getCookiePreferences = () => {
-  return getPreferences(
-    config.policies.map(policy => ({
-      id: policy.id,
-      isEnabled: isEssential(policy.category) ? true : false,
-    })),
-    config.cookiePreferenceKey ?? COOKIE_PREFERENCES_KEY,
-  );
-};
-
-const CookieThough = {
-  init(conf: Config) {
-    config = conf;
-    const container = document.createElement('div');
-    container.className = 'cookie-though';
-    const shadowRoot = container.attachShadow({ mode: 'open' });
-    const cssLink = document.createElement('link');
-    cssLink.setAttribute('rel', 'stylesheet');
-    cssLink.setAttribute(
-      'href',
-      /* istanbul ignore next */
-      ['staging', 'development'].find(x => x == process.env.NODE_ENV)
-        ? 'src.77de5100.css'
-        : `https://unpkg.com/cookie-though@${process.env.GIT_TAG}/dist/app.css`,
-    );
-
-    shadowRoot.appendChild(cssLink);
-
-    const previousInstance = document.querySelector('.cookie-though') as HTMLElement;
-    if (previousInstance && previousInstance.shadowRoot) {
-      render(h(App, { ...config }), previousInstance.shadowRoot);
-      return;
-    }
-
-    document.body.append(container);
-    render(h(App, { ...config }), shadowRoot);
-  },
-  listen,
-  setVisible,
-  getCookiePreferences,
-};
-
-export default CookieThough;
+export default App;
