@@ -7,7 +7,6 @@ import { Config, CookiePreferences } from './types';
 import { COOKIE_PREFERENCES_KEY, getCookiePreferences } from './hooks/useCookie';
 import { h, render } from 'preact';
 import { isEssential } from './utils/category';
-import useHook from './hooks/useCookieThough';
 const ee = new EventEmitter();
 
 export const listen = (cb: (cookiePreferences: CookiePreferences) => void) => {
@@ -49,7 +48,6 @@ export const configure = (conf: Config) => {
   render(h(App, { ...config, ee }), shadowRoot);
 };
 export const init = configure;
-export const useCookieThough = (policy: string) => useHook(listen, get, policy);
 export const show = () => setVisible(true);
 export const hide = () => setVisible(false);
 export default init;

@@ -44,22 +44,6 @@ import { hide } from 'cookie-though';
 hide();
 ```
 
-## useCookieThough
-
-This hook allows you to easily track the enabled state of a certain policy or option.
-
-```js
-import { useCookieThough } from 'cookie-though';
-
-function App() {
-    const enabled = useCookieThough('analytics');
-    if (!enabled) {
-        return <p>Consent has not been given</p>
-    }
-    return <p>Consent has been given</p>
-}
-```
-
 ## get
 
 This method allows you to retrieve the state of all the user preferences.
