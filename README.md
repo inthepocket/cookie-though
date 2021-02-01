@@ -16,5 +16,3 @@ Benefits:
 * adaptability: can be easily tweaked or adjusted to the needs of a project
 * standards compliance: GDPR compliant, fine grained cookie control
 * low footprint: size of the widget should be minimal
-
-<a href="#" onclick='CookieThough.default.setVisible(true)'>Show Cookie</a>
