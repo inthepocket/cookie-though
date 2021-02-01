@@ -17,7 +17,7 @@ export const get = () => {
   return getCookiePreferences(
     config.policies.map(policy => ({
       id: policy.id,
-      isEnabled: isEssential(policy.category) ? true : false,
+      isEnabled: isEssential(policy.category),
     })),
     config.cookiePreferenceKey ?? COOKIE_PREFERENCES_KEY,
   );
