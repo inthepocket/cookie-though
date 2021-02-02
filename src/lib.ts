@@ -1,26 +1,19 @@
 import App from './components/app';
-
-let config: Config;
 import { EventEmitter } from 'events';
 import { setVisible } from './utils/dom';
 import { Config, CookiePreferences } from './types';
-import { COOKIE_PREFERENCES_KEY, getCookiePreferences } from './hooks/useCookie';
+import {
+  COOKIE_PREFERENCES_CHANGED_EVENT,
+  COOKIE_PREFERENCES_KEY,
+  getCookiePreferences,
+} from './hooks/useCookie';
 import { h, render } from 'preact';
 import { isEssential } from './utils/category';
+import defaultConfig from './config/defaultConfig';
+
+let config: Config;
 const ee = new EventEmitter();
 
-export const listen = (cb: (cookiePreferences: CookiePreferences) => void) => {
-  ee.on('cookies_changed', cb);
-};
-export const get = () => {
-  return getCookiePreferences(
-    config.policies.map(policy => ({
-      id: policy.id,
-      isEnabled: isEssential(policy.category),
-    })),
-    config.cookiePreferenceKey ?? COOKIE_PREFERENCES_KEY,
-  );
-};
 export const configure = (conf: Config) => {
   config = conf;
   const container = document.createElement('div');
@@ -47,7 +40,37 @@ export const configure = (conf: Config) => {
   document.body.append(container);
   render(h(App, { ...config, ee }), shadowRoot);
 };
-export const init = configure;
-export const show = () => setVisible(true);
-export const hide = () => setVisible(false);
+
+const init = configure;
+
+export const onPreferencesChanged = (listener: (cookiePreferences: CookiePreferences) => void) => {
+  if (!config) init(defaultConfig);
+
+  ee.on(COOKIE_PREFERENCES_CHANGED_EVENT, listener);
+};
+
+export const getPreferences = () => {
+  if (!config) configure(defaultConfig);
+
+  return getCookiePreferences(
+    config.policies.map(policy => ({
+      id: policy.id,
+      isEnabled: isEssential(policy.category),
+    })),
+    config.cookiePreferenceKey ?? COOKIE_PREFERENCES_KEY,
+  );
+};
+
+export const show = () => {
+  if (!config) init(defaultConfig);
+
+  return setVisible(true);
+};
+
+export const hide = () => {
+  if (!config) init(defaultConfig);
+
+  return setVisible(false);
+};
+
 export default init;

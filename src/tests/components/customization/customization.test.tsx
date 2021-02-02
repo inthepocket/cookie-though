@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import toJson from 'enzyme-to-json';
 import { mount, ReactWrapper, shallow } from 'enzyme';
-import mockConfig from '../../__mocks__/config';
+import { englishMockConfig } from '../../__mocks__/config';
 jest.mock('../../../utils/dom', () => ({
   setVisible: jest.fn(),
 }));
@@ -14,14 +14,14 @@ import Collapse from '../../../components/customization/collapse';
 import { isEssential } from '../../../utils';
 
 const defaultProps = {
-  cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
-  permissionLabels: mockConfig.permissionLabels,
+  cookieOptions: englishMockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
+  permissionLabels: englishMockConfig.permissionLabels,
   setCookiePreferences: jest.fn(),
 };
 
 describe('Customization', () => {
   afterEach(() => {
-    defaultProps.cookieOptions = mockConfig.policies.map(policy => ({
+    defaultProps.cookieOptions = englishMockConfig.policies.map(policy => ({
       ...policy,
       isEnabled: false,
     }));
@@ -70,7 +70,7 @@ describe('Customization', () => {
   });
 
   test('clicking the decline Button will decline all options and save the preferences', () => {
-    const enabledCookies = mockConfig.policies.map(mockCookie => ({
+    const enabledCookies = englishMockConfig.policies.map(mockCookie => ({
       ...mockCookie,
       isEnabled: true,
     }));

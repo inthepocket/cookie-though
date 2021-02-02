@@ -1,13 +1,13 @@
 import { h } from 'preact';
 import { shallow, mount } from 'enzyme';
-import mockConfig from '../../__mocks__/config';
+import { englishMockConfig } from '../../__mocks__/config';
 import { Config } from '../../../types';
 
 import Options from '../../../components/customization/options';
 import Option from '../../../components/customization/option';
 
 const defaultProps = {
-  options: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
+  options: englishMockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
   onToggle: jest.fn(),
 };
 

@@ -44,24 +44,24 @@ import { hide } from 'cookie-though';
 hide();
 ```
 
-## get
+## getPreferences
 
 This method allows you to retrieve the state of all the user preferences.
 
 ```js
-import { get } from 'cookie-though';
+import { getPreferences } from 'cookie-though';
 
-console.log('preferences', get());
+console.log('preferences', getPreferences());
 ```
 
-## listen
+## onPreferencesChanged
 
 This method allows you to listen for changes of user preferneces.
 
 ```js
-import { listen } from 'cookie-though';
+import { onPreferencesChanged } from 'cookie-though';
 
-listen((preferences)=> {
+onPreferencesChanged((preferences)=> {
     console.log('preferences', preferences);
 })
 ```

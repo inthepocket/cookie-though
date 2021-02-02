@@ -6,5 +6,6 @@
   * [configure](/docs/api#configure)
   * [show](/docs/api#show)
   * [hide](/docs/api#hide)
-  * [liten](/docs/api#listen)
+  * [getPreferences](/docs/api#getPreferences)
+  * [onPreferencesChanged](/docs/api#onPreferencesChanged)
 * [Development](/docs/development)

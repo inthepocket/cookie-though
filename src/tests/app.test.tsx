@@ -1,9 +1,9 @@
 import { h } from 'preact';
 import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import mockPolicies from './__mocks__/policies';
+import { englishMockPolicies } from './__mocks__/policies';
 import { COOKIE_PREFERENCES_KEY } from '../hooks/useCookie';
-import mockConfig from './__mocks__/config';
+import { englishMockConfig } from './__mocks__/config';
 import App from '../components/app';
 import clearCookies from './utils/clearCookies';
 import { CookiePreferences } from '../types';
@@ -27,11 +27,14 @@ describe('Cookie Though', () => {
     });
   });
 
-  describe('without user preferences stored in local storage', () => {
+  describe('without cookie preferences stored in a cookie', () => {
     it('should show the cookie wall', () => {
       mount(
         <div className="cookie-though">
-          <App policies={mockConfig.policies} permissionLabels={mockConfig.permissionLabels} />
+          <App
+            policies={englishMockConfig.policies}
+            permissionLabels={englishMockConfig.permissionLabels}
+          />
         </div>,
         { attachTo: document.body },
       );
@@ -43,7 +46,7 @@ describe('Cookie Though', () => {
   describe('with user preferences stored in a cookie', () => {
     const DEFAULT_COOKIE_PREFERENCES: CookiePreferences = {
       isCustomised: false,
-      cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
+      cookieOptions: englishMockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
     };
 
     it('should not show the cookie wall', () => {
@@ -53,7 +56,10 @@ describe('Cookie Though', () => {
       })}`;
       mount(
         <div className="cookie-though">
-          <App policies={mockPolicies} permissionLabels={mockConfig.permissionLabels} />
+          <App
+            policies={englishMockPolicies}
+            permissionLabels={englishMockConfig.permissionLabels}
+          />
         </div>,
         { attachTo: document.body },
       );
@@ -65,7 +71,10 @@ describe('Cookie Though', () => {
       }));
       mount(
         <div className="cookie-though">
-          <App policies={mockPolicies} permissionLabels={mockConfig.permissionLabels} />
+          <App
+            policies={englishMockPolicies}
+            permissionLabels={englishMockConfig.permissionLabels}
+          />
         </div>,
         { attachTo: document.body },
       );
@@ -79,7 +88,10 @@ describe('Cookie Though', () => {
       <body>
         <button id="manage-cookie-though"></button>
         <div className="cookie-though">
-          <App policies={mockPolicies} permissionLabels={mockConfig.permissionLabels} />
+          <App
+            policies={englishMockPolicies}
+            permissionLabels={englishMockConfig.permissionLabels}
+          />
         </div>
       </body>,
     );

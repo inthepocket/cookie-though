@@ -1,6 +1,7 @@
 import { CookiePreference, CookiePreferences } from '../types';
 
 export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
+export const COOKIE_PREFERENCES_CHANGED_EVENT = 'preferences_changed';
 
 import { EventEmitter } from 'events';
 
@@ -77,7 +78,7 @@ const useCookie = ({
       cookiePreferences,
     )}; expires=${expires}; path=/; SameSite=Strict`;
     if (ee) {
-      ee.emit('cookies_changed', cookiePreferences);
+      ee.emit(COOKIE_PREFERENCES_CHANGED_EVENT, cookiePreferences);
     }
     return cookiePreferences;
   };

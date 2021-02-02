@@ -18,7 +18,7 @@ export interface Policy {
   id: string;
   label: string;
   description: string;
-  category: 'essential' | 'social' | 'analytics' | 'marketing' | 'statistics' | 'functional';
+  category: 'essential' | 'social' | 'personalisation' | 'marketing' | 'statistics' | 'functional';
 }
 
 export interface Config {

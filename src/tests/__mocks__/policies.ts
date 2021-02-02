@@ -14,10 +14,10 @@ export const dutchMockPolicies: Policy[] = [
     category: 'functional',
   },
   {
-    id: 'analytics',
-    label: 'Analyses',
+    id: 'statistics',
+    label: 'Statistieken',
     description: 'We zullen weten hoe we je ervaring kunnen verbeteren.',
-    category: 'analytics',
+    category: 'statistics',
   },
   {
     id: 'marketing',
@@ -27,7 +27,7 @@ export const dutchMockPolicies: Policy[] = [
   },
 ];
 
-const mockPolicies: Policy[] = [
+export const englishMockPolicies: Policy[] = [
   {
     id: 'essential',
     label: 'Strictly necessary cookies',
@@ -53,5 +53,3 @@ const mockPolicies: Policy[] = [
     category: 'marketing',
   },
 ];
-
-export default mockPolicies;
