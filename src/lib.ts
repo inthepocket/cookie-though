@@ -41,7 +41,7 @@ export const configure = (conf: Config) => {
   render(h(App, { ...config, ee }), shadowRoot);
 };
 
-const init = configure;
+export const init = configure;
 
 export const onPreferencesChanged = (listener: (cookiePreferences: CookiePreferences) => void) => {
   if (!config) init(defaultConfig);
@@ -72,5 +72,3 @@ export const hide = () => {
 
   return setVisible(false);
 };
-
-export default init;
