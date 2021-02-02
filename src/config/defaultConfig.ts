@@ -1,41 +1,41 @@
-import { Category, Policy } from '../types';
+import { Policy } from '../types';
 
 export const defaultPolicies: Policy[] = [
   {
     id: 'essential',
     label: 'Strictly necessary cookies',
     description: 'Always on',
-    category: Category.Essential,
+    category: 'essential',
   },
   {
     id: 'functional',
     label: 'Functional cookies',
     description: 'We’ll remember the basics such as language.',
-    category: Category.Functional,
+    category: 'functional',
   },
   {
     id: 'statistics',
     label: 'Statistics',
     description: 'We’ll know where we should improve your experience.',
-    category: Category.Statistics,
+    category: 'statistics',
   },
   {
-    id: 'advertisement',
-    label: 'Advertisement',
+    id: 'marketing',
+    label: 'Marketing',
     description: "We'll only show you ads you're interested in.",
-    category: Category.Advertisement,
+    category: 'marketing',
   },
   {
     id: 'social',
     label: 'Social',
-    description: 'This allows track your social activity on this site',
-    category: Category.Social,
+    description: 'This allows us to track your social activity',
+    category: 'social',
   },
   {
     id: 'personalisation',
     label: 'Personalisation',
     description: 'We’ll only show you content that interests you.',
-    category: Category.Personalisation,
+    category: 'personalisation',
   },
 ];
 

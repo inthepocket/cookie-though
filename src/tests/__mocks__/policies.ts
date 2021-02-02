@@ -14,13 +14,13 @@ export const dutchMockPolicies: Policy[] = [
     category: 'functional',
   },
   {
-    id: 'analytics',
-    label: 'Analyses',
+    id: 'statistics',
+    label: 'Statistieken',
     description: 'We zullen weten hoe we je ervaring kunnen verbeteren.',
-    category: 'analytics',
+    category: 'statistics',
   },
   {
-    id: 'advertisement',
+    id: 'marketing',
     label: 'Marketing',
     description: 'We zullen je enkel content tonen die je interesseert.',
     category: 'marketing',
@@ -47,7 +47,7 @@ export const englishMockPolicies: Policy[] = [
     category: 'statistics',
   },
   {
-    id: 'advertisement',
+    id: 'marketing',
     label: 'Marketing',
     description: 'We’ll only show you content that interests you.',
     category: 'marketing',

@@ -63,7 +63,7 @@ describe('Cookie Though', () => {
             isEnabled: false,
           },
           {
-            id: 'advertisement',
+            id: 'marketing',
             isEnabled: false,
           },
         ],
@@ -88,7 +88,7 @@ describe('Cookie Though', () => {
               isEnabled: true,
             },
             {
-              id: 'advertisement',
+              id: 'marketing',
               isEnabled: true,
             },
           ],
@@ -142,7 +142,7 @@ describe('Cookie Though', () => {
             isEnabled: false,
           },
           {
-            id: 'advertisement',
+            id: 'marketing',
             isEnabled: false,
           },
           {
