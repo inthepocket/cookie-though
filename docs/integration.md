@@ -15,11 +15,11 @@ Add the following script tags in your html:
 
 ```html
 <head>
-  <script src="https://unpkg.com/cookie-though@<version>/dist/lib.js"></script>
+  <script src="https://unpkg.com/cookie-though@<version>"></script>
 </head>
 <html>
   <body>
-    <script>window.CookieThough.default(/* <config> */)</script>
+    <script>CookieThough.init(/* <config> */)</script>
   </body>
 </html>
 ```
@@ -29,7 +29,7 @@ Add the following script tags in your html:
 Install the package with:
 
 ```bash
-npm i cookie-though
+npm install --save cookie-though
 yarn add cookie-though
 ```
 

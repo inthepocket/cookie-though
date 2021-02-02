@@ -1,14 +1,14 @@
-# Config of the app
+# Configuration of the app
 
 The plugin will not support multiple languages. In order to switch languages at runtime, you will have to call the configure function with a new config.
 
 The plugin also comes with a default english config, which implements a policy from each of the categories listed further below.
 
-More information about the model:
+More information about the configuration options:
 
-## Model
+## Config
 
-The root config object consists of (? means it's optional):
+The config object consists of (? means it's optional):
 
 * policies: [policy](###policy)[]
 * [permissionLabels](###permissionLabels)
@@ -41,7 +41,7 @@ The labels consist of:
 
 ### cookiePreferenceKey
 
-This is an an optional string that allows the developer to define under what key the cookie is stored that holds the user preferences.
+This is an an optional string that allows the developer to specify the name of the cookie that stores the user preferences.
 
 ### header
 
