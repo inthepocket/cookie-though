@@ -26,7 +26,7 @@ configure(config);
 
 ## show
 
-Allows you to show the Cookie Though dialog. Can be useful to bound to your own logic.
+Allows you to show the Cookie Though dialog. Can be useful to bind to your own logic.
 
 ```js
 import { show } from 'cookie-though';
@@ -36,7 +36,7 @@ show();
 
 ## hide
 
-Allows you to hide the Cookie Though dialog. Can be  useful to bound to your own logic.
+Allows you to hide the Cookie Though dialog. Can be useful to bind to your own logic.
 
 ```js
 import { hide } from 'cookie-though';
