@@ -1,5 +1,5 @@
 * [Home](/)
-* [Integration](/docs/integration)
+* [Installation](/docs/installation)
 * [Configuration](/docs/config)
 * [Styling](/docs/styling)
 * [API](/docs/api)
