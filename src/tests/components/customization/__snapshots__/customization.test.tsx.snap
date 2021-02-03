@@ -30,9 +30,9 @@ exports[`Customization should render properly 1`] = `
           Object {
             "category": "statistics",
             "description": "We’ll know where we should improve your experience.",
-            "id": "analytics",
+            "id": "statistics",
             "isEnabled": false,
-            "label": "Analytics",
+            "label": "Statistics",
           },
           Object {
             "category": "marketing",

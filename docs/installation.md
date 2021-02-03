@@ -1,6 +1,6 @@
-# Integration of the app
+# Installation of the app
 
-There's 2 ways of integration the app within your site/platform:
+There's 2 ways of installing the app within your site/platform:
 
 * By installing the package through the [cdn](##cdn)
 * By installing the package through [npm/yarn](##npm/yarn)
@@ -19,7 +19,7 @@ Add the following script tags in your html:
 </head>
 <html>
   <body>
-    <script>CookieThough.init(/* <config> */)</script>
+    <script>CookieThough.init(config)</script>
   </body>
 </html>
 ```
@@ -38,5 +38,5 @@ Import the functions you need in your app
 ```js
 import { init } from 'cookie-though';
 
-init(/* <config> */)
+init(config)
 ```

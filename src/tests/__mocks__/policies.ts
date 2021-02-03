@@ -41,8 +41,8 @@ export const englishMockPolicies: Policy[] = [
     category: 'functional',
   },
   {
-    id: 'analytics',
-    label: 'Analytics',
+    id: 'statistics',
+    label: 'Statistics',
     description: 'We’ll know where we should improve your experience.',
     category: 'statistics',
   },

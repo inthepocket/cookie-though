@@ -33,8 +33,8 @@ exports[`Cookie Though should render properly 1`] = `
           Object {
             "category": "statistics",
             "description": "We’ll know where we should improve your experience.",
-            "id": "analytics",
-            "label": "Analytics",
+            "id": "statistics",
+            "label": "Statistics",
           },
           Object {
             "category": "marketing",
