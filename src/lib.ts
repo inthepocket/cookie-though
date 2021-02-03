@@ -18,6 +18,7 @@ export const configure = (conf: Config) => {
   config = conf;
   const container = document.createElement('div');
   container.className = 'cookie-though';
+  container.style.bottom = '-250px';
   const shadowRoot = container.attachShadow({ mode: 'open' });
   const cssLink = document.createElement('link');
   cssLink.setAttribute('rel', 'stylesheet');
