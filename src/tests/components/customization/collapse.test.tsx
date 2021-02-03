@@ -4,16 +4,14 @@ import { shallow } from 'enzyme';
 import Collapse from '../../../components/customization/collapse';
 
 describe('collapse', () => {
+  let animationSpy: jest.SpyInstance<number, [callback: FrameRequestCallback]>;
   beforeEach(() => {
-    // make requestAnimationFrame synchronous
-    // @ts-ignore
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
+    // @ts-expect-error: make requestAnimationFrame synchronous
+    animationSpy = jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
   });
 
   afterEach(() => {
-    // restore the original behavious
-    // @ts-ignore
-    window.requestAnimationFrame.mockRestore();
+    animationSpy.mockRestore();
   });
   it('can render in a collapsed state', () => {
     const wrapper = shallow(
