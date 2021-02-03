@@ -16,17 +16,7 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children }) => {
   };
 
   const collapse = () => {
-    const sectionHeight = collapsibleDiv.current.scrollHeight;
-    const elementTransition = collapsibleDiv.current.style.transition;
-    collapsibleDiv.current.style.transition = '';
-    requestAnimationFrame(() => {
-      collapsibleDiv.current.style.height = `${sectionHeight}px`;
-      collapsibleDiv.current.style.transition = elementTransition;
-
-      requestAnimationFrame(() => {
-        collapsibleDiv.current.style.height = '0px';
-      });
-    });
+    collapsibleDiv.current.style.height = '0px';
   };
 
   useEffect(() => {
