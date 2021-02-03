@@ -18,6 +18,7 @@ export const configure = (conf: Config) => {
   config = conf;
   const container = document.createElement('div');
   container.className = 'cookie-though';
+  container.style.bottom = '-250px';
   const shadowRoot = container.attachShadow({ mode: 'open' });
   const cssLink = document.createElement('link');
   cssLink.setAttribute('rel', 'stylesheet');
@@ -26,7 +27,7 @@ export const configure = (conf: Config) => {
     /* istanbul ignore next */
     ['staging', 'development'].find(x => x == process.env.NODE_ENV)
       ? 'src.77de5100.css'
-      : `https://unpkg.com/cookie-though@${process.env.GIT_TAG}/dist/lib.css`,
+      : `https://unpkg.com/cookie-though@${process.env.GIT_TAG!}/dist/lib.css`,
   );
 
   shadowRoot.appendChild(cssLink);

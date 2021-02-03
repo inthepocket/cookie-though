@@ -41,8 +41,6 @@ const App: FunctionalComponent<Props> = ({
   const cookiePreferences = getCookieOptions();
 
   useEffect(() => {
-    const container = document.querySelector('.cookie-though') as HTMLElement;
-    container.style.bottom = `-${container.clientHeight}px`;
     if (!cookiePreferences.isCustomised) {
       setVisible(true);
     }

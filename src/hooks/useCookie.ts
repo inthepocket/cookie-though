@@ -11,13 +11,13 @@ interface Options {
   ee?: EventEmitter;
 }
 
-export const getCookie = (cookieKey: string): CookiePreferences | undefined => {
+export const getCookie = (cookieKey: string) => {
   const rawCookies = decodeURIComponent(document.cookie).split(';');
-  return rawCookies.reduce((cookiePreferences, cookie) => {
+  return rawCookies.reduce<CookiePreferences | undefined>((cookiePreferences, cookie) => {
     if (cookiePreferences) return cookiePreferences;
 
     const [key, value] = cookie.split('=');
-    if (key === cookieKey) return JSON.parse(value);
+    if (key === cookieKey) return JSON.parse(value) as CookiePreferences;
   }, undefined);
 };
 
@@ -76,7 +76,7 @@ const useCookie = ({
     const expires = getNextYear();
     document.cookie = `${cookiePreferenceKey}=${JSON.stringify(
       cookiePreferences,
-    )}; expires=${expires}; path=/; SameSite=Strict`;
+    )}; expires=${expires.toISOString()}; path=/; SameSite=Strict`;
     if (ee) {
       ee.emit(COOKIE_PREFERENCES_CHANGED_EVENT, cookiePreferences);
     }
