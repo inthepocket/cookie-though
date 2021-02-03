@@ -59,7 +59,7 @@ describe('Cookie Though', () => {
             isEnabled: false,
           },
           {
-            id: 'analytics',
+            id: 'statistics',
             isEnabled: false,
           },
           {
@@ -84,7 +84,7 @@ describe('Cookie Though', () => {
               isEnabled: true,
             },
             {
-              id: 'analytics',
+              id: 'statistics',
               isEnabled: true,
             },
             {
@@ -118,6 +118,7 @@ describe('Cookie Though', () => {
     let lib: Lib;
     beforeEach(() => {
       jest.resetModules();
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       lib = require('../lib');
     });
     it('will initialise the app when a listener is attached to the cookie preferences changed event', () => {
