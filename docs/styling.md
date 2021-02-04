@@ -34,16 +34,16 @@ You can easily define your own CSS on top of the CSS that is already included by
   --ct-seperator-padding: 0.5rem;
 
   /* The font size of the header title */
-  --ct-heading-font-size: 20px;
+  --ct-heading-font-size: 1.25rem;
 
   /* The font size of the header sub title */
-  --ct-sub-heading-font-size: 14px;
+  --ct-sub-heading-font-size: 0.875rem;;
 
   /* The font size of text */
-  --ct-text-font-size: 12px;
+  --ct-text-font-size: 0.75rem;
 
   /* The font size of the customize button and permission button labels */
-  --ct-button-font-size: 13px;
+  --ct-button-font-size: 0.8125rem;
 
   /* The font used in the app */
   --ct-primary-font: 'Arial';

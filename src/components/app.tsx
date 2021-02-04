@@ -13,6 +13,22 @@ interface Props extends Config {
   ee?: EventEmitter;
 }
 
+/**
+ * Sets the width of the modal in case the user has a larger font size
+ */
+const setModalWidth = () => {
+  const container = document.querySelector('.cookie-though') as HTMLElement;
+  const fontSize = +window.getComputedStyle(container, ':host')?.fontSize?.slice(0, 2);
+
+  if (fontSize >= 18) {
+    container.style.width = '500px';
+  }
+
+  if (12 < fontSize && fontSize < 18) {
+    container.style.width = '400px';
+  }
+};
+
 const App: FunctionalComponent<Props> = ({
   policies,
   cookiePreferenceKey,
@@ -41,6 +57,7 @@ const App: FunctionalComponent<Props> = ({
   const cookiePreferences = getCookieOptions();
 
   useEffect(() => {
+    setModalWidth();
     if (!cookiePreferences.isCustomised) {
       setVisible(true);
     }
