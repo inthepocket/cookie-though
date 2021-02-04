@@ -89,7 +89,12 @@ const Customization: FunctionalComponent<Props> = ({
         toggleCustomization={() => setIsActive(prevState => !prevState)}
       />
       <Collapse isOpen={isActive}>
-        <Options options={options} onToggle={toggleOption} cookiePolicy={cookiePolicy} />
+        <Options
+          isOpen={isActive}
+          options={options}
+          onToggle={toggleOption}
+          cookiePolicy={cookiePolicy}
+        />
       </Collapse>
       <div className="ct-acceptance">
         <Button

@@ -1,6 +1,9 @@
 export const setVisible = (value: boolean) => {
+  const container = document.querySelector('.cookie-though');
   if (value) {
-    return document.querySelector('.cookie-though')?.classList.add('visible');
+    container?.removeAttribute('tabindex');
+    return container?.classList.add('visible');
   }
-  document.querySelector('.cookie-though')?.classList.remove('visible');
+  container?.setAttribute('tabindex', '-1');
+  container?.classList.remove('visible');
 };

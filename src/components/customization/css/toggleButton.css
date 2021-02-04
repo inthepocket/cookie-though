@@ -9,11 +9,23 @@
   display: flex;
   align-items: baseline;
   cursor: pointer;
+  margin-bottom: var(--ct-seperator-padding);
+}
+
+.ct-customization-button:focus-visible {
+  outline: 3px solid var(--ct-primary-200);
+  outline-offset: 3px;
 }
 
 .ct-customization-button svg {
   margin-left: 0.25rem;
   transition: 250ms linear all;
+}
+
+@media(prefers-reduced-motion) {
+  .ct-customization-button svg {
+    transition: none;
+  }
 }
 
 .ct-customization-button svg path {
@@ -22,7 +34,10 @@
   stroke-linecap: round;
 }
 
+.ct-active {
+  margin-bottom: var(--ct-default-padding);
+}
+
 .ct-active svg {
   transform: rotate(-180deg);
-  margin-bottom: var(--ct-default-padding);
 }

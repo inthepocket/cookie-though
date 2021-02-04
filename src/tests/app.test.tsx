@@ -14,17 +14,21 @@ jest.mock('../utils/dom', () => ({
 import { setVisible } from '../utils/dom';
 
 describe('Cookie Though', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'getComputedStyle', {
+      value: () => ({ fontSize: '12px' }),
+    });
+  });
+
+  beforeEach(() => {
+    const manageCookiesElement = document.createElement('button');
+    manageCookiesElement.id = 'manage-cookie-though';
+    document.body.append(manageCookiesElement);
+  });
+
   afterEach(() => {
     clearCookies();
     document.getElementsByTagName('html')[0].innerHTML = '';
-  });
-
-  describe('init function', () => {
-    beforeEach(() => {
-      const manageCookiesElement = document.createElement('button');
-      manageCookiesElement.id = 'manage-cookie-though';
-      document.body.append(manageCookiesElement);
-    });
   });
 
   describe('without cookie preferences stored in a cookie', () => {
@@ -100,5 +104,41 @@ describe('Cookie Though', () => {
       </body>,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  describe('if the user has a different browser font setting', () => {
+    const renderApp = (fontSize: string) => {
+      mount(
+        <body>
+          <button id="manage-cookie-though"></button>
+          <div className="cookie-though" style={`:host(.cookie-though) {font-size: ${fontSize}}`}>
+            <App
+              policies={englishMockPolicies}
+              permissionLabels={englishMockConfig.permissionLabels}
+            />
+          </div>
+        </body>,
+        { attachTo: document.body },
+      );
+    };
+    it('should adjust the width with a large font', () => {
+      const fontSize = '15px';
+      Object.defineProperty(window, 'getComputedStyle', {
+        value: () => ({ fontSize }),
+      });
+      renderApp(fontSize);
+      const container = document.querySelector('.cookie-though') as HTMLElement;
+      expect(container.style.width).toEqual('400px');
+    });
+
+    it('should adjust the width with a very large font', () => {
+      const fontSize = '18px';
+      Object.defineProperty(window, 'getComputedStyle', {
+        value: () => ({ fontSize }),
+      });
+      renderApp(fontSize);
+      const container = document.querySelector('.cookie-though') as HTMLElement;
+      expect(container.style.width).toEqual('500px');
+    });
   });
 });

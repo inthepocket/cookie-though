@@ -4,6 +4,12 @@ import clearCookies from './utils/clearCookies';
 import { CookiePreferences } from '../types';
 
 describe('Cookie Though', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'getComputedStyle', {
+      value: () => ({ fontSize: '12px' }),
+    });
+  });
+
   beforeEach(() => {
     const manageCookiesElement = document.createElement('button');
     manageCookiesElement.id = 'manage-cookie-though';

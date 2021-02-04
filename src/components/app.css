@@ -20,6 +20,12 @@
   }
 }
 
+@media (prefers-reduced-motion) {
+  :host(.cookie-though) {
+    transition: none;
+  }
+}
+
 :host(.cookie-though.visible) {
   bottom: var(--ct-default-padding) !important;
 }
@@ -43,10 +49,10 @@
   --ct-text-margin: 0.25rem;
   --ct-default-padding: 1rem;
   --ct-seperator-padding: 0.5rem;
-  --ct-heading-font-size: 20px;
-  --ct-sub-heading-font-size: 14px;
-  --ct-text-font-size: 12px;
-  --ct-button-font-size: 13px;
+  --ct-heading-font-size: 1.25rem;
+  --ct-sub-heading-font-size: 0.875rem;
+  --ct-text-font-size: 0.75rem;
+  --ct-button-font-size: 0.8125rem;
   --ct-primary-font: 'Arial';
   --ct-secondary-font: 'Times';
   --ct-z-index: 9999;

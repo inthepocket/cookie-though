@@ -4,22 +4,25 @@ import './css/options.css';
 import { Config, CookieOption } from '../../types';
 
 interface Props {
+  isOpen: boolean;
   options: CookieOption[];
   cookiePolicy?: Config['cookiePolicy'];
   onToggle: (key: number) => void;
 }
 
-const Options: FunctionalComponent<Props> = ({ options, cookiePolicy, onToggle }) => {
+const Options: FunctionalComponent<Props> = ({ isOpen, options, cookiePolicy, onToggle }) => {
   const cookies = options.map((option, i) => (
     <Option key={i} option={option} onToggle={() => onToggle(i)} />
   ));
 
   return (
-    <div>
+    <div className={isOpen ? '' : 'ct-options-hidden'}>
       {cookies}
       {cookiePolicy && (
         <div className="ct-declaration">
-          <a href={cookiePolicy.url}>{cookiePolicy.label}</a>
+          <a tabIndex={0} href={cookiePolicy.url} role="link">
+            {cookiePolicy.label}
+          </a>
         </div>
       )}
     </div>

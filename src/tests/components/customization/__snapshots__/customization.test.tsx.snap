@@ -11,6 +11,7 @@ exports[`Customization should render properly 1`] = `
     isOpen={false}
   >
     <Options
+      isOpen={false}
       onToggle={[Function]}
       options={
         Array [
