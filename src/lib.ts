@@ -38,7 +38,7 @@ export const configure = (conf: Config) => {
     return;
   }
 
-  document.body.append(container);
+  document.body.prepend(container);
   render(h(App, { ...config, ee }), shadowRoot);
 };
 
