@@ -1,6 +1,7 @@
 * [Home](/)
 * [Installation](/docs/installation)
 * [Configuration](/docs/configuration)
+* [GTM Support](/docs/gtm-support)
 * [Styling](/docs/styling)
 * [API](/docs/api)
   * [init](/docs/api#init)
