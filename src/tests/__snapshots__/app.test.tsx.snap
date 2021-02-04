@@ -9,6 +9,7 @@ exports[`Cookie Though should render properly 1`] = `
     className="cookie-though"
   >
     <App
+      customizeLabel="customize"
       permissionLabels={
         Object {
           "accept": "Accept",

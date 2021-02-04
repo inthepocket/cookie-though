@@ -4,6 +4,7 @@ exports[`Customization should render properly 1`] = `
 <div>
   <ToggleButton
     isActive={false}
+    label="Customize"
     toggleCustomization={[Function]}
   />
   <Collapse

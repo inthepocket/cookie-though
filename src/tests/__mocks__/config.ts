@@ -18,6 +18,7 @@ export const dutchMockConfig = {
     description:
       'Iedereen wil zijn beste kant tonen - en wij ook. Daarom gebruiken we cookies om je een betere ervaring te garanderen',
   },
+  customizeLabel: 'Pas aan',
   permissionLabels: {
     accept: 'Accepteer',
     acceptAll: 'Accepteer alle',

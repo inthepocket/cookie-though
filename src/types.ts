@@ -34,6 +34,7 @@ export interface Config {
     subTitle?: string;
     description?: string;
   };
+  customizeLabel: string;
   cookiePolicy?: {
     url: string;
     label: string;
