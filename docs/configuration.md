@@ -12,7 +12,7 @@ The config object consists of (? means it's optional):
 
 * policies: [policy](###policy)[]
 * [permissionLabels](###permissionLabels)
-* cookiePreferenceKey?: string
+* [cookiePreferenceKey?](###cookiePreferenceKey): string
 * [header?](###header)
 * [cookiePolicy](###cookiePolicy)?
 
