@@ -16,6 +16,12 @@
   transition: 250ms linear all;
 }
 
+@media(prefers-reduced-motion) {
+  .ct-customization-button svg {
+    transition: none;
+  }
+}
+
 .ct-customization-button svg path {
   stroke: var(--ct-gray-400);
   stroke-width: 1.4;

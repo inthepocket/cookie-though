@@ -20,6 +20,12 @@
   }
 }
 
+@media (prefers-reduced-motion) {
+  :host(.cookie-though) {
+    transition: none;
+  }
+}
+
 :host(.cookie-though.visible) {
   bottom: var(--ct-default-padding) !important;
 }

@@ -4,3 +4,9 @@
   transition: height 250ms ease-out;
   height: 0;
 }
+
+@media(prefers-reduced-motion) {
+  .ct-collapse {
+    transition: none;
+  }
+}

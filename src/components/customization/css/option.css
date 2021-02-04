@@ -97,3 +97,11 @@ input[type="checkbox"]:not(:disabled):checked + label .ct-slider::after {
   background: var(--ct-slider-300);
   left: 50%;
 }
+
+@media(prefers-reduced-motion) {
+  .ct-option,
+  input[type="checkbox"]:not(:disabled) + label .ct-slider,
+  input[type="checkbox"]:not(:disabled) + label .ct-slider::after {
+    transition: none;
+  }
+}
