@@ -10,6 +10,7 @@ import { isEssential, setVisible } from '../../utils';
 
 interface Props {
   cookieOptions: CookieOption[];
+  customizeLabel: Config['customizeLabel'];
   permissionLabels: Config['permissionLabels'];
   cookiePolicy?: Config['cookiePolicy'];
   setCookiePreferences(cookiePreferences: CookiePreferences): CookiePreferences;
@@ -33,6 +34,7 @@ const formatCookieOptions = (cookieOptions: CookieOption[]): CookiePreferences =
 
 const Customization: FunctionalComponent<Props> = ({
   cookieOptions,
+  customizeLabel,
   permissionLabels,
   cookiePolicy,
   setCookiePreferences,
@@ -82,6 +84,7 @@ const Customization: FunctionalComponent<Props> = ({
   return (
     <div>
       <ToggleButton
+        label={customizeLabel}
         isActive={isActive}
         toggleCustomization={() => setIsActive(prevState => !prevState)}
       />

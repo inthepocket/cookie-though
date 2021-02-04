@@ -17,6 +17,7 @@ const App: FunctionalComponent<Props> = ({
   policies,
   cookiePreferenceKey,
   header,
+  customizeLabel,
   cookiePolicy,
   permissionLabels,
   ee,
@@ -52,6 +53,7 @@ const App: FunctionalComponent<Props> = ({
       <Customization
         cookieOptions={cookiePreferences.cookieOptions}
         cookiePolicy={cookiePolicy}
+        customizeLabel={customizeLabel}
         permissionLabels={permissionLabels}
         setCookiePreferences={setCookiePreferences}
       />

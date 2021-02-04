@@ -14,6 +14,7 @@ The config object consists of (? means it's optional):
 * [permissionLabels](###permissionLabels)
 * [cookiePreferenceKey?](###cookiePreferenceKey): string
 * [header?](###header)
+* [customizeLabel](###customizeLabel): string
 * [cookiePolicy](###cookiePolicy)?
 
 ### policy
@@ -50,6 +51,10 @@ An optional object that contains the values that are show in the banner of the c
 * title: string
 * subtitle: string
 * description: string
+
+### customizeLabel
+
+The label that is shown on the toggleButton for the policies.
 
 ### cookiePolicy
 

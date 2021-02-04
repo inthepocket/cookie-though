@@ -52,6 +52,7 @@ const defaultConfig = {
     acceptAll: 'Accept all',
     decline: 'Decline',
   },
+  customizeLabel: 'Customize',
 };
 
 export default defaultConfig;

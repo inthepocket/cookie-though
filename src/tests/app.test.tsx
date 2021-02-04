@@ -32,6 +32,7 @@ describe('Cookie Though', () => {
       mount(
         <div className="cookie-though">
           <App
+            customizeLabel="customize"
             policies={englishMockConfig.policies}
             permissionLabels={englishMockConfig.permissionLabels}
           />
@@ -57,6 +58,7 @@ describe('Cookie Though', () => {
       mount(
         <div className="cookie-though">
           <App
+            customizeLabel="customize"
             policies={englishMockPolicies}
             permissionLabels={englishMockConfig.permissionLabels}
           />
@@ -72,6 +74,7 @@ describe('Cookie Though', () => {
       mount(
         <div className="cookie-though">
           <App
+            customizeLabel="customize"
             policies={englishMockPolicies}
             permissionLabels={englishMockConfig.permissionLabels}
           />
@@ -89,6 +92,7 @@ describe('Cookie Though', () => {
         <button id="manage-cookie-though"></button>
         <div className="cookie-though">
           <App
+            customizeLabel="customize"
             policies={englishMockPolicies}
             permissionLabels={englishMockConfig.permissionLabels}
           />

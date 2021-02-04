@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import ToggleButton from '../../../components/customization/toggleButton';
 
 const defaultProps = {
+  label: 'Customize',
   isActive: false,
   toggleCustomization: jest.fn(),
 };
