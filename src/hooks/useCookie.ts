@@ -17,7 +17,7 @@ export const getCookie = (cookieKey: string) => {
     if (cookiePreferences) return cookiePreferences;
 
     const [key, value] = cookie.split('=');
-    if (key === cookieKey) return JSON.parse(value) as CookiePreferences;
+    if (key.trim() === cookieKey) return JSON.parse(value) as CookiePreferences;
   }, undefined);
 };
 
