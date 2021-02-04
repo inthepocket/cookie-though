@@ -113,6 +113,7 @@ describe('Cookie Though', () => {
           <button id="manage-cookie-though"></button>
           <div className="cookie-though" style={`:host(.cookie-though) {font-size: ${fontSize}}`}>
             <App
+              customizeLabel="customize"
               policies={englishMockPolicies}
               permissionLabels={englishMockConfig.permissionLabels}
             />
