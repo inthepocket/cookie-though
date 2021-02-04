@@ -20,6 +20,7 @@ describe('useCookie', () => {
   });
 
   it('can get the cookie preferences', () => {
+    document.cookie = `cookie=value`;
     document.cookie = `cookie-preferences=${JSON.stringify(DEFAULT_COOKIE_PREFERENCES)}`;
     document.cookie = `foo=bar`;
     const { getCookiePreferences } = useCookie({
@@ -29,6 +30,26 @@ describe('useCookie', () => {
     expect(getCookiePreferences()).toEqual({
       isCustomised: false,
       cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+    });
+  });
+
+  it('can get the customised cookie preferences', () => {
+    const cookieOptions = DEFAULT_COOKIE_PREFERENCES.cookieOptions.map(cookieOption => ({
+      ...cookieOption,
+      isEnabled: true,
+    }));
+    document.cookie = `cookie=value`;
+    document.cookie = `cookie-preferences=${JSON.stringify({
+      cookieOptions,
+      isCustomised: true,
+    })}`;
+    const { getCookiePreferences } = useCookie({
+      cookieOptions: cookieOptions,
+      ee: new EventEmitter(),
+    });
+    expect(getCookiePreferences()).toEqual({
+      isCustomised: true,
+      cookieOptions: cookieOptions,
     });
   });
 
