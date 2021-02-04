@@ -43,6 +43,10 @@
   user-select: none;
 }
 
+.ct-essential .ct-option-info {
+  cursor: default;
+}
+
 .ct-option-info p, .ct-essential strong {
   color: var(--ct-primary-400);
 }
@@ -58,6 +62,11 @@
 
 input[type="checkbox"]:not(:disabled) + .ct-option-info strong {
   margin-bottom: var(--ct-text-margin);
+}
+
+input[type="checkbox"]:not(:disabled):focus-visible + .ct-option-info {
+  outline: 3px solid var(--ct-primary-200);
+  outline-offset: -1px;
 }
 
 .ct-slider {
