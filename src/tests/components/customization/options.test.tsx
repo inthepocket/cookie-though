@@ -7,6 +7,7 @@ import Options from '../../../components/customization/options';
 import Option from '../../../components/customization/option';
 
 const defaultProps = {
+  isOpen: false,
   options: englishMockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
   onToggle: jest.fn(),
 };
