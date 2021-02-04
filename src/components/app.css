@@ -24,8 +24,7 @@
   bottom: var(--ct-default-padding) !important;
 }
 
-:host(.cookie-though),
-:host(.cookie-though button) {
+:host(.cookie-though) {
   font-family: var(--ct-primary-font);
   font-size: var(--ct-text-font-size);
 }
@@ -47,6 +46,7 @@
   --ct-heading-font-size: 20px;
   --ct-sub-heading-font-size: 14px;
   --ct-text-font-size: 12px;
+  --ct-button-font-size: 13px;
   --ct-primary-font: 'Arial';
   --ct-secondary-font: 'Times';
   --ct-z-index: 9999;
