@@ -24,7 +24,7 @@ const setModalWidth = () => {
     container.style.width = '500px';
   }
 
-  if (12 < fontSize && fontSize < 18) {
+  if (13 < fontSize && fontSize < 18) {
     container.style.width = '400px';
   }
 };
