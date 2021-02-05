@@ -21,21 +21,25 @@ export const CONTAINER_WIDTHS = ['360px', '380px', '425px', '500px'];
 const setModalWidth = () => {
   const container = document.querySelector('.cookie-though') as HTMLElement;
   const fontSize = +window.getComputedStyle(container, ':host')?.fontSize?.slice(0, 2);
+  const isMobile = window.innerWidth < 640;
 
   if (12 < fontSize && fontSize < 14) {
-    container.style.width = CONTAINER_WIDTHS[0];
+    if (!isMobile) container.style.width = CONTAINER_WIDTHS[0];
   }
 
   if (14 < fontSize && fontSize < 16) {
-    container.style.width = CONTAINER_WIDTHS[1];
+    container.style.bottom = '-300px';
+    if (!isMobile) container.style.width = CONTAINER_WIDTHS[1];
   }
 
   if (16 < fontSize && fontSize < 18) {
-    container.style.width = CONTAINER_WIDTHS[2];
+    if (isMobile) container.style.bottom = '-350px';
+    if (!isMobile) container.style.width = CONTAINER_WIDTHS[2];
   }
 
   if (fontSize >= 18) {
-    container.style.width = CONTAINER_WIDTHS[3];
+    isMobile ? (container.style.bottom = '-400px') : (container.style.bottom = '-300px');
+    if (!isMobile) container.style.width = CONTAINER_WIDTHS[3];
   }
 };
 

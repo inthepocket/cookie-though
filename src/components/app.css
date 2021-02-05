@@ -1,10 +1,10 @@
 :host(.cookie-though) {
   font-family: var(--ct-primary-font);
-  font-size: 16px;
   position: fixed;
   left: var(--ct-default-padding);
   /* left positioning and left/right padding */
   width: calc(100% - calc(var(--ct-default-padding) * 4));
+  max-height: calc(100% - calc(var(--ct-default-padding) * 4));
   border-radius: 20px;
   box-shadow: 0px 2px 19px -4px rgba(1, 1, 63, 0.1);
   background: var(--ct-white);
