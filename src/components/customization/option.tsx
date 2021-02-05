@@ -4,11 +4,12 @@ import { CookieOption } from '../../types';
 import { isEssential } from '../../utils';
 
 interface Props {
+  isOpen: boolean;
   option: CookieOption;
   onToggle: () => void;
 }
 
-const Option: FunctionalComponent<Props> = ({ option, onToggle }) => {
+const Option: FunctionalComponent<Props> = ({ isOpen, option, onToggle }) => {
   const isEssentialCookie = isEssential(option.category);
 
   return (
@@ -24,6 +25,7 @@ const Option: FunctionalComponent<Props> = ({ option, onToggle }) => {
         disabled={isEssentialCookie}
         checked={option.isEnabled}
         onClick={onToggle}
+        tabIndex={isOpen ? 0 : -1}
       />
       <label htmlFor={option.id} className="ct-option-info">
         <p>

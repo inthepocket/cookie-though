@@ -12,11 +12,11 @@ interface Props {
 
 const Options: FunctionalComponent<Props> = ({ isOpen, options, cookiePolicy, onToggle }) => {
   const cookies = options.map((option, i) => (
-    <Option key={i} option={option} onToggle={() => onToggle(i)} />
+    <Option key={i} isOpen={isOpen} option={option} onToggle={() => onToggle(i)} />
   ));
 
   return (
-    <div className={isOpen ? '' : 'ct-options-hidden'}>
+    <div>
       {cookies}
       {cookiePolicy && (
         <div className="ct-declaration">

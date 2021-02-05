@@ -6,6 +6,7 @@ import { Policy } from '../../../types';
 import Option from '../../../components/customization/option';
 
 const defaultProps = (isEnabled: boolean) => ({
+  isOpen: true,
   option: {
     id: 'foo',
     label: 'foo',
