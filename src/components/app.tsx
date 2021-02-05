@@ -23,7 +23,7 @@ const setModalWidth = () => {
   const fontSize = +window.getComputedStyle(container, ':host')?.fontSize?.slice(0, 2);
   const isMobile = window.innerWidth < 640;
 
-  if (12 < fontSize && fontSize < 14) {
+  if (13 < fontSize && fontSize < 14) {
     if (!isMobile) container.style.width = CONTAINER_WIDTHS[0];
   }
 

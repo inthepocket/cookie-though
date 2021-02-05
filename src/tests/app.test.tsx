@@ -137,5 +137,16 @@ describe('Cookie Though', () => {
         expect(container.style.width).toEqual(CONTAINER_WIDTHS[i]);
       });
     });
+
+    it('should not adjust the width of the container if the width is smaller than the breakpoint', () => {
+      global.innerWidth = 375;
+      const fontSize = '15px';
+      Object.defineProperty(window, 'getComputedStyle', {
+        value: () => ({ fontSize }),
+      });
+      renderApp(fontSize);
+      const container = document.querySelector('.cookie-though') as HTMLElement;
+      expect(container.style.width).toBe('');
+    });
   });
 });
