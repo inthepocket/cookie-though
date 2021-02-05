@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import { englishMockPolicies } from './__mocks__/policies';
 import { COOKIE_PREFERENCES_KEY } from '../hooks/useCookie';
 import { englishMockConfig } from './__mocks__/config';
-import App from '../components/app';
+import App, { CONTAINER_WIDTHS } from '../components/app';
 import clearCookies from './utils/clearCookies';
 import { CookiePreferences } from '../types';
 
@@ -122,24 +122,20 @@ describe('Cookie Though', () => {
         { attachTo: document.body },
       );
     };
-    it('should adjust the width with a large font', () => {
-      const fontSize = '15px';
-      Object.defineProperty(window, 'getComputedStyle', {
-        value: () => ({ fontSize }),
-      });
-      renderApp(fontSize);
-      const container = document.querySelector('.cookie-though') as HTMLElement;
-      expect(container.style.width).toEqual('400px');
-    });
 
-    it('should adjust the width with a very large font', () => {
-      const fontSize = '18px';
-      Object.defineProperty(window, 'getComputedStyle', {
-        value: () => ({ fontSize }),
+    it('should adjust the width of the container based on the font', () => {
+      const fontSizes = [13, 15, 17, 19];
+      const mockGetComputedStyle = (size: number) => {
+        Object.defineProperty(window, 'getComputedStyle', {
+          value: () => ({ fontSize: `${size}px` }),
+        });
+      };
+      fontSizes.forEach((fontSize, i) => {
+        mockGetComputedStyle(fontSize);
+        renderApp(`${fontSize}px`);
+        const container = document.querySelector('.cookie-though') as HTMLElement;
+        expect(container.style.width).toEqual(CONTAINER_WIDTHS[i]);
       });
-      renderApp(fontSize);
-      const container = document.querySelector('.cookie-though') as HTMLElement;
-      expect(container.style.width).toEqual('500px');
     });
   });
 });

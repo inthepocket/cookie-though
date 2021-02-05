@@ -13,6 +13,8 @@ interface Props extends Config {
   ee?: EventEmitter;
 }
 
+export const CONTAINER_WIDTHS = ['360px', '380px', '425px', '500px'];
+
 /**
  * Sets the width of the modal in case the user has a larger font size
  */
@@ -20,12 +22,20 @@ const setModalWidth = () => {
   const container = document.querySelector('.cookie-though') as HTMLElement;
   const fontSize = +window.getComputedStyle(container, ':host')?.fontSize?.slice(0, 2);
 
-  if (fontSize >= 18) {
-    container.style.width = '500px';
+  if (12 < fontSize && fontSize < 14) {
+    container.style.width = CONTAINER_WIDTHS[0];
   }
 
-  if (12 < fontSize && fontSize < 18) {
-    container.style.width = '400px';
+  if (14 < fontSize && fontSize < 16) {
+    container.style.width = CONTAINER_WIDTHS[1];
+  }
+
+  if (16 < fontSize && fontSize < 18) {
+    container.style.width = CONTAINER_WIDTHS[2];
+  }
+
+  if (fontSize >= 18) {
+    container.style.width = CONTAINER_WIDTHS[3];
   }
 };
 
