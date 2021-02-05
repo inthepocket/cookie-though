@@ -26,6 +26,7 @@ const Option: FunctionalComponent<Props> = ({ isOpen, option, onToggle }) => {
         checked={option.isEnabled}
         onClick={onToggle}
         tabIndex={isOpen ? 0 : -1}
+        aria-hidden={!isOpen}
       />
       <label htmlFor={option.id} className="ct-option-info">
         <p>
