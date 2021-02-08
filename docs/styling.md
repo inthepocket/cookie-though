@@ -6,13 +6,13 @@ You can easily define your own CSS on top of the CSS that is already included by
 .cookie-though {
   /* The colors used to style the modal */
   --ct-primary-400: #000099;
-  --ct-primary-300: #7676ec;
+  --ct-primary-300: #6161e8;
   --ct-primary-200: #e0e0ff;
   --ct-primary-100: #f0f0ff;
 
   /* The colors used to style the text and the disabled pill button colors */
-  --ct-gray-400: #78787a;
-  --ct-gray-300: #d4d4d4;
+  --ct-gray-400: #6b7280;
+  --ct-gray-300: #d1d5db;
 
   /* The colors used to style the pill buttons when they are enabled */
   --ct-slider-400: #4c4cff;

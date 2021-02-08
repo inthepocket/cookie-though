@@ -1,10 +1,10 @@
 :host(.cookie-though) {
   font-family: var(--ct-primary-font);
-  font-size: 16px;
   position: fixed;
   left: var(--ct-default-padding);
   /* left positioning and left/right padding */
   width: calc(100% - calc(var(--ct-default-padding) * 4));
+  max-height: calc(100% - calc(var(--ct-default-padding) * 4));
   border-radius: 20px;
   box-shadow: 0px 2px 19px -4px rgba(1, 1, 63, 0.1);
   background: var(--ct-white);
@@ -37,11 +37,11 @@
 
 :host {
   --ct-primary-400: #000099;
-  --ct-primary-300: #7676ec;
+  --ct-primary-300: #6161e8;
   --ct-primary-200: #e0e0ff;
   --ct-primary-100: #f0f0ff;
-  --ct-gray-400: #78787a;
-  --ct-gray-300: #d4d4d4;
+  --ct-gray-400: #6b7280;
+  --ct-gray-300: #d1d5db;
   --ct-slider-400: #4c4cff;
   --ct-slider-300: #b3b3ff;
   --ct-enabled-option-color: var(--ct-white);

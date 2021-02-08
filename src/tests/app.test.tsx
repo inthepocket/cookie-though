@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import { englishMockPolicies } from './__mocks__/policies';
 import { COOKIE_PREFERENCES_KEY } from '../hooks/useCookie';
 import { englishMockConfig } from './__mocks__/config';
-import App from '../components/app';
+import App, { CONTAINER_WIDTHS, MOBILE_CONTAINER_BOTTOMS } from '../components/app';
 import clearCookies from './utils/clearCookies';
 import { CookiePreferences } from '../types';
 
@@ -16,7 +16,7 @@ import { setVisible } from '../utils/dom';
 describe('Cookie Though', () => {
   beforeAll(() => {
     Object.defineProperty(window, 'getComputedStyle', {
-      value: () => ({ fontSize: '12px' }),
+      value: () => ({ fontSize: '12px', height: '0px', bottom: '0px' }),
     });
   });
 
@@ -108,38 +108,56 @@ describe('Cookie Though', () => {
 
   describe('if the user has a different browser font setting', () => {
     const renderApp = (fontSize: string) => {
-      mount(
-        <body>
-          <button id="manage-cookie-though"></button>
-          <div className="cookie-though" style={`:host(.cookie-though) {font-size: ${fontSize}}`}>
-            <App
-              customizeLabel="customize"
-              policies={englishMockPolicies}
-              permissionLabels={englishMockConfig.permissionLabels}
-            />
-          </div>
-        </body>,
-        { attachTo: document.body },
+      const container = document.createElement('div');
+      container.className = 'cookie-though';
+      container.style.fontSize = fontSize;
+      document.body.prepend(container);
+      return mount(
+        <App
+          customizeLabel="customize"
+          policies={englishMockPolicies}
+          permissionLabels={englishMockConfig.permissionLabels}
+        />,
+        { attachTo: container },
       );
     };
-    it('should adjust the width with a large font', () => {
-      const fontSize = '15px';
+
+    const mockGetComputedStyle = (size: number) => {
       Object.defineProperty(window, 'getComputedStyle', {
-        value: () => ({ fontSize }),
+        value: () => ({ fontSize: `${size}px`, height: '0px', bottom: '0px' }),
       });
-      renderApp(fontSize);
-      const container = document.querySelector('.cookie-though') as HTMLElement;
-      expect(container.style.width).toEqual('400px');
+    };
+
+    it('should adjust the width of the container based on the font', () => {
+      const fontSizes = [13.5, 15, 17, 19];
+      fontSizes.forEach((fontSize, i) => {
+        mockGetComputedStyle(fontSize);
+        renderApp(`${fontSize}px`);
+        const container = document.querySelector('.cookie-though') as HTMLElement;
+        expect(container.style.width).toEqual(CONTAINER_WIDTHS[i]);
+      });
     });
 
-    it('should adjust the width with a very large font', () => {
-      const fontSize = '18px';
-      Object.defineProperty(window, 'getComputedStyle', {
-        value: () => ({ fontSize }),
+    it('should not adjust the width of the container if the width is smaller than the breakpoint', () => {
+      global.innerWidth = 375;
+      const fontSizes = [13.5, 15, 17, 19];
+      fontSizes.forEach(fontSize => {
+        mockGetComputedStyle(fontSize);
+        renderApp(`${fontSize}px`);
+        const container = document.querySelector('.cookie-though') as HTMLElement;
+        expect(container.style.width).toBe('');
       });
-      renderApp(fontSize);
-      const container = document.querySelector('.cookie-though') as HTMLElement;
-      expect(container.style.width).toEqual('500px');
+    });
+
+    it('should set the bottom attribute if the width is smaller than the breakpoint and the font size is large', () => {
+      const fontSizes = [17, 19];
+      global.innerWidth = 375;
+      fontSizes.forEach((fontSize, i) => {
+        mockGetComputedStyle(fontSize);
+        renderApp(`${fontSize}px`);
+        const container = document.querySelector('.cookie-though') as HTMLElement;
+        expect(container.style.bottom).toEqual(MOBILE_CONTAINER_BOTTOMS[i]);
+      });
     });
   });
 });

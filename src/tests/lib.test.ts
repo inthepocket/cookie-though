@@ -6,7 +6,7 @@ import { CookiePreferences } from '../types';
 describe('Cookie Though', () => {
   beforeAll(() => {
     Object.defineProperty(window, 'getComputedStyle', {
-      value: () => ({ fontSize: '12px' }),
+      value: () => ({ fontSize: '12px', height: '1px', bottom: '1px' }),
     });
   });
 

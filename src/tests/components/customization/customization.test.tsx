@@ -14,6 +14,10 @@ import Collapse from '../../../components/customization/collapse';
 import { isEssential } from '../../../utils';
 
 const defaultProps = {
+  rootStyles: {
+    height: 1,
+    bottom: 1,
+  },
   customizeLabel: 'Customize',
   cookieOptions: englishMockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
   permissionLabels: englishMockConfig.permissionLabels,

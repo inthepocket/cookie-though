@@ -13,19 +13,40 @@ interface Props extends Config {
   ee?: EventEmitter;
 }
 
+export type RootStyles = {
+  height: number;
+  bottom: number;
+};
+
+export const CONTAINER_WIDTHS = ['360px', '380px', '425px', '500px'];
+export const MOBILE_CONTAINER_BOTTOMS = ['-350px', '-400px'];
+
 /**
  * Sets the width of the modal in case the user has a larger font size
  */
-const setModalWidth = () => {
-  const container = document.querySelector('.cookie-though') as HTMLElement;
-  const fontSize = +window.getComputedStyle(container, ':host')?.fontSize?.slice(0, 2);
+const setModalWidth = (rootNode: HTMLDivElement, rootFontSize: number) => {
+  const isMobile = window.innerWidth < 640;
 
-  if (fontSize >= 18) {
-    container.style.width = '500px';
+  if (14 < rootFontSize) {
+    rootNode.style.bottom = '-300px';
   }
 
-  if (12 < fontSize && fontSize < 18) {
-    container.style.width = '400px';
+  if (13 < rootFontSize && rootFontSize < 14) {
+    if (!isMobile) rootNode.style.width = CONTAINER_WIDTHS[0];
+  }
+
+  if (14 < rootFontSize && rootFontSize < 16) {
+    if (!isMobile) rootNode.style.width = CONTAINER_WIDTHS[1];
+  }
+
+  if (16 < rootFontSize && rootFontSize < 18) {
+    if (isMobile) rootNode.style.bottom = MOBILE_CONTAINER_BOTTOMS[0];
+    if (!isMobile) rootNode.style.width = CONTAINER_WIDTHS[2];
+  }
+
+  if (rootFontSize >= 18) {
+    if (isMobile) rootNode.style.bottom = MOBILE_CONTAINER_BOTTOMS[1];
+    if (!isMobile) rootNode.style.width = CONTAINER_WIDTHS[3];
   }
 };
 
@@ -56,18 +77,21 @@ const App: FunctionalComponent<Props> = ({
     return { ...preferences, cookieOptions };
   };
   const cookiePreferences = getCookieOptions();
+  const rootNode = document.querySelector('.cookie-though') as HTMLDivElement;
+  const { fontSize, height, bottom } = window.getComputedStyle(rootNode);
 
   useEffect(() => {
-    setModalWidth();
+    setModalWidth(rootNode, +fontSize.slice(0, -2));
     if (!cookiePreferences.isCustomised) {
       setVisible(true);
     }
-  }, [cookiePreferences]);
+  }, [cookiePreferences, fontSize, rootNode]);
 
   return (
     <Fragment>
       <Banner header={header} />
       <Customization
+        rootStyles={{ height: +height.slice(0, -2), bottom: +bottom.slice(0, -2) }}
         cookieOptions={cookiePreferences.cookieOptions}
         cookiePolicy={cookiePolicy}
         customizeLabel={customizeLabel}
