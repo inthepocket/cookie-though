@@ -7,10 +7,8 @@ import Collapse from './collapse';
 import Button from '../button';
 import { Config, CookieOption, CookiePreferences } from '../../types';
 import { isEssential, setVisible } from '../../utils';
-import { RootStyles } from '../app';
 
 interface Props {
-  rootStyles: RootStyles;
   cookieOptions: CookieOption[];
   customizeLabel: Config['customizeLabel'];
   permissionLabels: Config['permissionLabels'];
@@ -35,7 +33,6 @@ const formatCookieOptions = (cookieOptions: CookieOption[]): CookiePreferences =
 };
 
 const Customization: FunctionalComponent<Props> = ({
-  rootStyles,
   cookieOptions,
   customizeLabel,
   permissionLabels,
@@ -91,7 +88,7 @@ const Customization: FunctionalComponent<Props> = ({
         isActive={isActive}
         toggleCustomization={() => setIsActive(prevState => !prevState)}
       />
-      <Collapse isOpen={isActive} rootStyles={rootStyles}>
+      <Collapse isOpen={isActive}>
         <Options
           isOpen={isActive}
           options={options}

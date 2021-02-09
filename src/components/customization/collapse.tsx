@@ -1,15 +1,13 @@
 import { ComponentChild, FunctionalComponent, h } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
-import { RootStyles } from '../app';
 import './css/collapse.css';
 
 interface Props {
-  rootStyles: RootStyles;
   isOpen: boolean;
   children: ComponentChild;
 }
 
-const Collapse: FunctionalComponent<Props> = ({ rootStyles, isOpen, children }) => {
+const Collapse: FunctionalComponent<Props> = ({ isOpen, children }) => {
   const collapsibleDiv = useRef<HTMLDivElement>(null);
 
   const collapse = () => {
@@ -19,12 +17,17 @@ const Collapse: FunctionalComponent<Props> = ({ rootStyles, isOpen, children }) 
 
   useEffect(() => {
     const expand = () => {
+      const rootNode = document.querySelector('.visible') as HTMLDivElement;
+      const acceptance = rootNode.shadowRoot!.querySelector('.ct-acceptance') as HTMLDivElement;
+      const { height, bottom } = window.getComputedStyle(rootNode);
       const windowHeight = window.innerHeight;
       const collapseHeight = collapsibleDiv.current.scrollHeight;
-      const rootHeight = rootStyles.height;
-      const rootPadding = rootStyles.bottom * 4;
+      const acceptanceHeight = +window.getComputedStyle(acceptance).height.slice(0, -2);
 
-      const maxCollapseHeight = windowHeight - rootHeight - rootPadding;
+      const rootHeight = +height.slice(0, -2);
+      const rootPadding = +bottom.slice(0, -2) * 2;
+
+      const maxCollapseHeight = windowHeight - rootHeight - rootPadding - acceptanceHeight;
       if (maxCollapseHeight < collapseHeight) {
         collapsibleDiv.current.style.height = `${maxCollapseHeight}px`;
         collapsibleDiv.current.style.overflow = 'scroll';
@@ -37,7 +40,7 @@ const Collapse: FunctionalComponent<Props> = ({ rootStyles, isOpen, children }) 
       return expand();
     }
     return collapse();
-  }, [isOpen, rootStyles]);
+  }, [isOpen]);
 
   return (
     <div className="ct-collapse" ref={collapsibleDiv} aria-expanded={isOpen}>
