@@ -4,10 +4,11 @@ import './css/collapse.css';
 
 interface Props {
   isOpen: boolean;
+  acceptanceHeight: number;
   children: ComponentChild;
 }
 
-const Collapse: FunctionalComponent<Props> = ({ isOpen, children }) => {
+const Collapse: FunctionalComponent<Props> = ({ isOpen, acceptanceHeight, children }) => {
   const collapsibleDiv = useRef<HTMLDivElement>(null);
 
   const collapse = () => {
@@ -18,11 +19,9 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children }) => {
   useEffect(() => {
     const expand = () => {
       const rootNode = document.querySelector('.visible') as HTMLDivElement;
-      const acceptance = rootNode.shadowRoot!.querySelector('.ct-acceptance') as HTMLDivElement;
       const { height, bottom } = window.getComputedStyle(rootNode);
       const windowHeight = window.innerHeight;
       const collapseHeight = collapsibleDiv.current.scrollHeight;
-      const acceptanceHeight = +window.getComputedStyle(acceptance).height.slice(0, -2);
 
       const rootHeight = +height.slice(0, -2);
       const rootPadding = +bottom.slice(0, -2) * 2;
@@ -40,7 +39,7 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children }) => {
       return expand();
     }
     return collapse();
-  }, [isOpen]);
+  }, [acceptanceHeight, isOpen]);
 
   return (
     <div className="ct-collapse" ref={collapsibleDiv} aria-expanded={isOpen}>

@@ -1,7 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import ToggleButton from './toggleButton';
 import './css/customization.css';
-import { useEffect, useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import Options from './options';
 import Collapse from './collapse';
 import Button from '../button';
@@ -41,6 +41,8 @@ const Customization: FunctionalComponent<Props> = ({
 }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
+  const acceptance = useRef<HTMLDivElement>();
+  const acceptanceHeight = useRef<number>(undefined);
   const acceptButtonLabel = useMemo(() => {
     if (!isActive && !isAnOptionEnabled(options)) {
       return permissionLabels.acceptAll;
@@ -50,6 +52,7 @@ const Customization: FunctionalComponent<Props> = ({
   }, [isActive, options, permissionLabels.accept, permissionLabels.acceptAll]);
 
   useEffect(() => {
+    acceptanceHeight.current = +getComputedStyle(acceptance.current).height.slice(0, -2);
     setOptions(cookieOptions);
   }, [cookieOptions]);
 
@@ -88,7 +91,7 @@ const Customization: FunctionalComponent<Props> = ({
         isActive={isActive}
         toggleCustomization={() => setIsActive(prevState => !prevState)}
       />
-      <Collapse isOpen={isActive}>
+      <Collapse isOpen={isActive} acceptanceHeight={acceptanceHeight.current}>
         <Options
           isOpen={isActive}
           options={options}
@@ -96,7 +99,7 @@ const Customization: FunctionalComponent<Props> = ({
           cookiePolicy={cookiePolicy}
         />
       </Collapse>
-      <div className="ct-acceptance">
+      <div className="ct-acceptance" ref={acceptance}>
         <Button
           label={permissionLabels.decline}
           className="ct-button-secondary"
