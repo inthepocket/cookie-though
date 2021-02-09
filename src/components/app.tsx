@@ -35,17 +35,17 @@ const setModalWidth = (rootNode: HTMLDivElement, textFontSize: number) => {
   }
 
   if (16 < textFontSize && textFontSize <= 18) {
-    if (isMobile) rootNode.style.bottom = MOBILE_CONTAINER_BOTTOMS[0];
+    rootNode.style.bottom = MOBILE_CONTAINER_BOTTOMS[0];
     if (!isMobile) rootNode.style.width = CONTAINER_WIDTHS[2];
   }
 
   if (18 < textFontSize && textFontSize <= 22) {
-    if (isMobile) rootNode.style.bottom = MOBILE_CONTAINER_BOTTOMS[2];
+    rootNode.style.bottom = MOBILE_CONTAINER_BOTTOMS[1];
     if (!isMobile) rootNode.style.width = CONTAINER_WIDTHS[3];
   }
 
   if (textFontSize > 22) {
-    if (isMobile) rootNode.style.bottom = MOBILE_CONTAINER_BOTTOMS[3];
+    rootNode.style.bottom = MOBILE_CONTAINER_BOTTOMS[3];
   }
 };
 
