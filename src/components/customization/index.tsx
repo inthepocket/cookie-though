@@ -41,8 +41,6 @@ const Customization: FunctionalComponent<Props> = ({
 }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
-  const acceptance = useRef<HTMLDivElement>();
-  const acceptanceHeight = useRef<number>(undefined);
   const acceptButtonLabel = useMemo(() => {
     if (!isActive && !isAnOptionEnabled(options)) {
       return permissionLabels.acceptAll;
@@ -52,11 +50,6 @@ const Customization: FunctionalComponent<Props> = ({
   }, [isActive, options, permissionLabels.accept, permissionLabels.acceptAll]);
 
   useEffect(() => {
-    /*
-      Because the height calculations of the collapse component doesn't take into account
-      the acceptance buttons, we calculate it here and pass it down to the component
-    */
-    acceptanceHeight.current = +getComputedStyle(acceptance.current).height.slice(0, -2);
     setOptions(cookieOptions);
   }, [cookieOptions]);
 
@@ -95,7 +88,7 @@ const Customization: FunctionalComponent<Props> = ({
         isActive={isActive}
         toggleCustomization={() => setIsActive(prevState => !prevState)}
       />
-      <Collapse isOpen={isActive} acceptanceHeight={acceptanceHeight.current}>
+      <Collapse isOpen={isActive}>
         <Options
           isOpen={isActive}
           options={options}
@@ -103,7 +96,7 @@ const Customization: FunctionalComponent<Props> = ({
           cookiePolicy={cookiePolicy}
         />
       </Collapse>
-      <div className="ct-acceptance" ref={acceptance}>
+      <div className="ct-acceptance">
         <Button
           label={permissionLabels.decline}
           className="ct-button-secondary"

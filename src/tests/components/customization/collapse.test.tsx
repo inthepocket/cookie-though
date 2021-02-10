@@ -6,7 +6,7 @@ import Collapse from '../../../components/customization/collapse';
 describe('collapse', () => {
   it('can render in a collapsed state', () => {
     const wrapper = shallow(
-      <Collapse isOpen={false} acceptanceHeight={0}>
+      <Collapse isOpen={false}>
         <p></p>
       </Collapse>,
     );
@@ -20,7 +20,7 @@ describe('collapse', () => {
       });
       const wrapper = mount(
         <div className="visible">
-          <Collapse isOpen={true} acceptanceHeight={1}>
+          <Collapse isOpen={true}>
             <p></p>
           </Collapse>
           <div class="ct-acceptance"></div>
@@ -31,10 +31,10 @@ describe('collapse', () => {
 
     it('will render with an overflow: scroll if the collapse is too big', () => {
       // Setting innerHeight to minus will make it overflow
-      global.innerHeight = 0;
+      global.innerHeight = -1;
       const wrapper = mount(
         <div className="visible">
-          <Collapse isOpen={true} acceptanceHeight={10}>
+          <Collapse isOpen={true}>
             <p></p>
           </Collapse>
         </div>,
