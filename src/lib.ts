@@ -24,10 +24,11 @@ export const configure = (conf: Config) => {
   cssLink.setAttribute('rel', 'stylesheet');
   cssLink.setAttribute(
     'href',
+    'https://unpkg.com/cookie-though@0.5.1-dev.1/dist/lib.css',
     /* istanbul ignore next */
-    ['staging', 'development'].find(x => x == process.env.NODE_ENV)
-      ? 'src.77de5100.css'
-      : `https://unpkg.com/cookie-though@${process.env.GIT_TAG!}/dist/lib.css`,
+    // ['staging', 'development'].find(x => x == process.env.NODE_ENV)
+    //   ? 'src.77de5100.css'
+    //   : `https://unpkg.com/cookie-though@${process.env.GIT_TAG!}/dist/lib.css`,
   );
 
   shadowRoot.appendChild(cssLink);

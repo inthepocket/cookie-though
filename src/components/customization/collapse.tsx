@@ -4,11 +4,10 @@ import './css/collapse.css';
 
 interface Props {
   isOpen: boolean;
-  acceptanceHeight: number;
   children: ComponentChild;
 }
 
-const Collapse: FunctionalComponent<Props> = ({ isOpen, acceptanceHeight, children }) => {
+const Collapse: FunctionalComponent<Props> = ({ isOpen, children }) => {
   const collapsibleDiv = useRef<HTMLDivElement>(null);
 
   const collapse = () => {
@@ -25,8 +24,10 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, acceptanceHeight, childr
 
       const rootHeight = +height.slice(0, -2);
       const rootPadding = +bottom.slice(0, -2) * 2;
+      const containerOffset = +bottom.slice(0, -2) * 2;
+      const containerHeight = rootHeight + rootPadding;
 
-      const maxCollapseHeight = windowHeight - rootHeight - rootPadding - acceptanceHeight;
+      const maxCollapseHeight = windowHeight - containerHeight - containerOffset;
       if (maxCollapseHeight < collapseHeight) {
         collapsibleDiv.current.style.height = `${maxCollapseHeight}px`;
         collapsibleDiv.current.style.overflow = 'scroll';
@@ -39,7 +40,7 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, acceptanceHeight, childr
       return expand();
     }
     return collapse();
-  }, [acceptanceHeight, isOpen]);
+  }, [isOpen]);
 
   return (
     <div className="ct-collapse" ref={collapsibleDiv} aria-expanded={isOpen}>
