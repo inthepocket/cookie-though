@@ -52,6 +52,10 @@ const Customization: FunctionalComponent<Props> = ({
   }, [isActive, options, permissionLabels.accept, permissionLabels.acceptAll]);
 
   useEffect(() => {
+    /*
+      Because the height calculations of the collapse component doesn't take into account
+      the acceptance buttons, we calculate it here and pass it down to the component
+    */
     acceptanceHeight.current = +getComputedStyle(acceptance.current).height.slice(0, -2);
     setOptions(cookieOptions);
   }, [cookieOptions]);
