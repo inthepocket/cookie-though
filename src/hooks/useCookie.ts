@@ -12,7 +12,7 @@ interface Options {
 
 export const getCookie = (cookieKey: string) => {
   const rawCookies = decodeURIComponent(document.cookie).split(';');
-  const currentPreferences = rawCookies.reduce<CookiePreference['id'][] | undefined>(
+  const currentPreferences = rawCookies.reduce<string[] | undefined>(
     (cookiePreferences, cookie) => {
       if (cookiePreferences) return cookiePreferences;
 
@@ -23,6 +23,14 @@ export const getCookie = (cookieKey: string) => {
   );
 
   if (!currentPreferences) {
+    return undefined;
+  }
+
+  /*
+    Clear old cookie preferences
+  */
+  if (currentPreferences[0].includes('cookieOptions')) {
+    document.cookie = `${cookieKey}= ; expires= Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
     return undefined;
   }
 

@@ -107,4 +107,19 @@ describe('useCookie', () => {
       });
     });
   });
+
+  describe('when the cookie is stored in a deprecated way', () => {
+    it('will clear the cookie', () => {
+      document.cookie = `${COOKIE_PREFERENCES_KEY}=${JSON.stringify({
+        cookieOptions,
+        isCustomised: true,
+      })}`;
+      const { getCookiePreferences } = useCookie({ cookieOptions });
+      expect(getCookiePreferences()).toEqual({
+        cookieOptions,
+        isCustomised: false,
+      });
+      expect(getCookie(COOKIE_PREFERENCES_KEY)).toBeUndefined();
+    });
+  });
 });
