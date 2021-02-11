@@ -9,12 +9,6 @@ exports[`Customization should render properly 1`] = `
   />
   <Collapse
     isOpen={false}
-    rootStyles={
-      Object {
-        "bottom": 1,
-        "height": 1,
-      }
-    }
   >
     <Options
       isOpen={false}

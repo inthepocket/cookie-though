@@ -45,7 +45,12 @@ describe('Customization', () => {
   const getOptionalCookie = (wrapper: ReactWrapper) => wrapper.find('.ct-option').at(1);
 
   test('clicking the ToggleButton component toggles the isActive state', () => {
-    const wrapper = mount(<Customization {...defaultProps} />);
+    const wrapper = mount(
+      <div className="visible">
+        <Customization {...defaultProps} />
+      </div>,
+      { attachTo: document.body },
+    );
     const acceptButtonLabel = () => {
       return wrapper.find(Button).last().find('button').text();
     };
