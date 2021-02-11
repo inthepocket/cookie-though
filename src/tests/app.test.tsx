@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { englishMockPolicies } from './__mocks__/policies';
-import { COOKIE_PREFERENCES_KEY } from '../hooks/useCookie';
+import { COOKIE_PREFERENCES_KEY, formatToCookie } from '../hooks/useCookie';
 import { englishMockConfig } from './__mocks__/config';
 import App, {
   CONTAINER_BOTTOMS,
@@ -67,10 +67,9 @@ describe('Cookie Though', () => {
     };
 
     it('should not show the cookie wall', () => {
-      document.cookie = `${COOKIE_PREFERENCES_KEY}=${JSON.stringify({
-        ...DEFAULT_COOKIE_PREFERENCES,
-        isCustomised: true,
-      })}`;
+      document.cookie = `${COOKIE_PREFERENCES_KEY}=${formatToCookie(
+        DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+      )}`;
       mount(
         <div className="cookie-though">
           <App

@@ -1,7 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 import ToggleButton from './toggleButton';
 import './css/customization.css';
-import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useMemo, useState } from 'preact/hooks';
 import Options from './options';
 import Collapse from './collapse';
 import Button from '../button';
