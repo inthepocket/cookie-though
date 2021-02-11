@@ -10,7 +10,7 @@
       "groupName": "devDependencies (non-major)"
     }
   ],
-  "stabilityDays": 14,
+  "stabilityDays": 3,
   "dependencyDashboard": true,
   "prConcurrentLimit": 10
 }
