@@ -5,7 +5,6 @@ import { useEffect } from 'preact/hooks';
 import { Config, CookieOption, CookieOptions } from '../types';
 import useCookie from '../hooks/useCookie';
 import './app.css';
-
 import { setVisible, isEssential } from '../utils';
 import { EventEmitter } from 'events';
 
@@ -20,7 +19,10 @@ export const MOBILE_CONTAINER_BOTTOMS = ['-400px', '-500px', '-650px'];
 /**
  * Sets the width of the modal in case the user has a larger font size
  */
-const setModalWidth = (rootNode: HTMLDivElement, textFontSize: number) => {
+const setModalWidth = () => {
+  const rootNode = document.querySelector('.cookie-though') as HTMLDivElement;
+  const textNode = rootNode.shadowRoot!.querySelector('.ct-banner-explanation') as HTMLDivElement;
+  const textFontSize = +window.getComputedStyle(textNode).fontSize.slice(0, -2);
   const isMobile = window.innerWidth < 640;
 
   rootNode.style.bottom = CONTAINER_BOTTOMS[0];
@@ -91,10 +93,7 @@ const App: FunctionalComponent<Props> = ({
   const cookiePreferences = getCookieOptions();
 
   useEffect(() => {
-    const rootNode = document.querySelector('.cookie-though') as HTMLDivElement;
-    const textNode = rootNode.shadowRoot!.querySelector('.ct-banner-explanation') as HTMLDivElement;
-    const textFontSize = +window.getComputedStyle(textNode).fontSize.slice(0, -2);
-    setModalWidth(rootNode, +textFontSize);
+    setModalWidth();
     if (!cookiePreferences.isCustomised) {
       setVisible(true);
     }

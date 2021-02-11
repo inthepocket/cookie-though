@@ -1,9 +1,8 @@
 import { CookiePreference, CookiePreferences } from '../types';
+import { EventEmitter } from 'events';
 
 export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
 export const COOKIE_PREFERENCES_CHANGED_EVENT = 'preferences_changed';
-
-import { EventEmitter } from 'events';
 
 interface Options {
   cookieOptions: CookiePreference[];
