@@ -1,5 +1,6 @@
+import { formatToCookie } from './../../hooks/useCookie';
 import { EventEmitter } from 'events';
-import { CookiePreferences } from './../../types';
+import { CookiePreferences, CookiePreference } from './../../types';
 import {
   COOKIE_PREFERENCES_CHANGED_EVENT,
   COOKIE_PREFERENCES_KEY,
@@ -10,10 +11,11 @@ import mockConfig from '../__mocks__/config';
 import clearCookies from '../utils/clearCookies';
 
 describe('useCookie', () => {
-  const DEFAULT_COOKIE_PREFERENCES: CookiePreferences = {
-    isCustomised: false,
-    cookieOptions: mockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
-  };
+  let cookieOptions: CookiePreference[];
+
+  beforeEach(() => {
+    cookieOptions = mockConfig.policies.map(policy => ({ id: policy.id, isEnabled: false }));
+  });
 
   afterEach(() => {
     clearCookies();
@@ -21,90 +23,72 @@ describe('useCookie', () => {
 
   it('can get the cookie preferences', () => {
     document.cookie = `cookie=value`;
-    document.cookie = `cookie-preferences=${JSON.stringify(DEFAULT_COOKIE_PREFERENCES)}`;
+    document.cookie = `cookie-preferences=${formatToCookie(cookieOptions)}`;
     document.cookie = `foo=bar`;
-    const { getCookiePreferences } = useCookie({
-      cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
-      ee: new EventEmitter(),
-    });
-    expect(getCookiePreferences()).toEqual({
-      isCustomised: false,
-      cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
-    });
+    const { getCookiePreferences } = useCookie({ cookieOptions, ee: new EventEmitter() });
+    expect(getCookiePreferences()).toEqual({ isCustomised: true, cookieOptions });
   });
 
   it('can get the customised cookie preferences', () => {
-    const cookieOptions = DEFAULT_COOKIE_PREFERENCES.cookieOptions.map(cookieOption => ({
-      ...cookieOption,
-      isEnabled: true,
-    }));
+    cookieOptions = cookieOptions.map(cookieOption => ({ ...cookieOption, isEnabled: true }));
     document.cookie = `cookie=value`;
-    document.cookie = `cookie-preferences=${JSON.stringify({
-      cookieOptions,
-      isCustomised: true,
-    })}`;
-    const { getCookiePreferences } = useCookie({
-      cookieOptions: cookieOptions,
-      ee: new EventEmitter(),
-    });
-    expect(getCookiePreferences()).toEqual({
-      isCustomised: true,
-      cookieOptions: cookieOptions,
-    });
+    document.cookie = `cookie-preferences=${formatToCookie(cookieOptions)}`;
+    const { getCookiePreferences } = useCookie({ cookieOptions, ee: new EventEmitter() });
+    expect(getCookiePreferences()).toEqual({ isCustomised: true, cookieOptions });
   });
 
   it('will return the default preferences when initialised and getting the cookie preferences for the first time', () => {
-    const { getCookiePreferences } = useCookie({
-      cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
-      ee: new EventEmitter(),
-    });
-    expect(getCookiePreferences()).toEqual(DEFAULT_COOKIE_PREFERENCES);
+    const { getCookiePreferences } = useCookie({ cookieOptions, ee: new EventEmitter() });
+    expect(getCookiePreferences()).toEqual({ isCustomised: false, cookieOptions });
     expect(getCookie(COOKIE_PREFERENCES_KEY)).toBeUndefined();
   });
 
   it('will call the listener when the options are set', () => {
     const onPreferencesChanged = jest.fn((preferences: CookiePreferences) => {
-      expect(preferences).toEqual(DEFAULT_COOKIE_PREFERENCES);
+      expect(preferences).toEqual({ isCustomised: true, cookieOptions });
     });
     const ee = new EventEmitter();
     const { setCookiePreferences } = useCookie({
-      cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+      cookieOptions,
       ee,
     });
     ee.on(COOKIE_PREFERENCES_CHANGED_EVENT, onPreferencesChanged);
-    setCookiePreferences(DEFAULT_COOKIE_PREFERENCES);
-    expect(getCookie(COOKIE_PREFERENCES_KEY)).toEqual(DEFAULT_COOKIE_PREFERENCES);
+    setCookiePreferences({ isCustomised: true, cookieOptions });
+    expect(getCookie(COOKIE_PREFERENCES_KEY)).toEqual({
+      isCustomised: true,
+      cookieOptions,
+    });
 
     expect(onPreferencesChanged).toBeCalledTimes(1);
   });
 
   it('will not call the cookies_changed event when there is no event emitter', () => {
     const { setCookiePreferences } = useCookie({
-      cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+      cookieOptions,
     });
-    setCookiePreferences(DEFAULT_COOKIE_PREFERENCES);
-    expect(getCookie(COOKIE_PREFERENCES_KEY)).toEqual(DEFAULT_COOKIE_PREFERENCES);
+    setCookiePreferences({ isCustomised: true, cookieOptions });
+    expect(getCookie(COOKIE_PREFERENCES_KEY)).toEqual({
+      isCustomised: true,
+      cookieOptions,
+    });
   });
 
   describe('when the policies get updated', () => {
     beforeEach(() => {
-      document.cookie = `cookie-preferences=${JSON.stringify({
-        cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
-        isCustomised: true,
-      })}`;
+      document.cookie = `cookie-preferences=${formatToCookie(cookieOptions)}`;
     });
 
     it('will do nothing if the policy have remained the same', () => {
       const { getCookiePreferences } = useCookie({
-        cookieOptions: DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+        cookieOptions,
         ee: new EventEmitter(),
       });
-      expect(getCookiePreferences()).toEqual({ ...DEFAULT_COOKIE_PREFERENCES, isCustomised: true });
+      expect(getCookiePreferences()).toEqual({ cookieOptions, isCustomised: true });
     });
 
     it('will merge the preferences of the user with the new policies', () => {
       const newCookieOptions = [
-        ...DEFAULT_COOKIE_PREFERENCES.cookieOptions,
+        ...cookieOptions,
         {
           id: 'id',
           label: 'label',

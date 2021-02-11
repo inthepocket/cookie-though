@@ -12,12 +12,27 @@ interface Options {
 
 export const getCookie = (cookieKey: string) => {
   const rawCookies = decodeURIComponent(document.cookie).split(';');
-  return rawCookies.reduce<CookiePreferences | undefined>((cookiePreferences, cookie) => {
-    if (cookiePreferences) return cookiePreferences;
+  const currentPreferences = rawCookies.reduce<CookiePreference['id'][] | undefined>(
+    (cookiePreferences, cookie) => {
+      if (cookiePreferences) return cookiePreferences;
 
-    const [key, value] = cookie.split('=');
-    if (key.trim() === cookieKey) return JSON.parse(value) as CookiePreferences;
-  }, undefined);
+      const [key, value] = cookie.split('=');
+      if (key.trim() === cookieKey) return value.split('|');
+    },
+    undefined,
+  );
+
+  if (!currentPreferences) {
+    return undefined;
+  }
+
+  return {
+    isCustomised: true,
+    cookieOptions: currentPreferences.map(preference => {
+      const [id, isEnabled] = preference.split(':');
+      return { id, isEnabled: !!+isEnabled };
+    }),
+  };
 };
 
 export const getNextYear = () => {
@@ -66,6 +81,14 @@ export const getCookiePreferences = (options: CookiePreference[], cookiePreferen
   return { cookieOptions, isCustomised: false };
 };
 
+export const formatToCookie = (cookiePreferences: CookiePreference[]) => {
+  return cookiePreferences.reduce((formattedCookieValue, preference, i) => {
+    return `${formattedCookieValue}${i !== 0 ? '|' : ''}${preference.id}:${
+      preference.isEnabled ? '1' : '0'
+    }`;
+  }, '');
+};
+
 const useCookie = ({
   cookieOptions,
   cookiePreferenceKey = COOKIE_PREFERENCES_KEY,
@@ -73,8 +96,8 @@ const useCookie = ({
 }: Options) => {
   const setCookiePreferences = (cookiePreferences: CookiePreferences) => {
     const expires = getNextYear();
-    document.cookie = `${cookiePreferenceKey}=${JSON.stringify(
-      cookiePreferences,
+    document.cookie = `${cookiePreferenceKey}=${formatToCookie(
+      cookiePreferences.cookieOptions,
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     )}; expires=${expires}; path=/; SameSite=Strict`;
     if (ee) {
