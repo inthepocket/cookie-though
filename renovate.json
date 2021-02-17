@@ -7,6 +7,7 @@
     {
       "depTypeList": ["devDependencies"],
       "updateTypes": ["patch", "minor"],
+      "stabilityDays": 1,
       "groupName": "devDependencies (non-major)"
     }
   ],
