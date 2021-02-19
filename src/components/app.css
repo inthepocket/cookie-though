@@ -1,4 +1,5 @@
 :host(.cookie-though) {
+  display: block !important;
   font-family: var(--ct-primary-font);
   position: fixed;
   left: var(--ct-default-padding);
