@@ -1,3 +1,8 @@
+---
+layout: docs
+title: configuration
+---
+
 # Configuration of the app
 
 The plugin will not support multiple languages. In order to switch languages at runtime, you will have to call the configure function with a new config.

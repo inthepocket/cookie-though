@@ -1,3 +1,7 @@
+---
+layout: docs
+title: google tag manager
+---
 # GTM Support
 
 ## 1. Ensure Cookie Though is&nbsp;[installed](/docs/installation)

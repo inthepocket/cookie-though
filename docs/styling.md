@@ -1,3 +1,7 @@
+---
+layout: docs
+title: styling
+---
 # Styling
 
 You can easily define your own CSS on top of the CSS that is already included by default:

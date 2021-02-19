@@ -1,3 +1,7 @@
+---
+layout: docs
+title: installation
+---
 # Installation of the app
 
 There's 2 ways of installing the app within your site/platform:

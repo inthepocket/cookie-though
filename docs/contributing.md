@@ -1,3 +1,7 @@
+---
+layout: docs
+title: Contributing
+---
 # Contributing
 
 Thanks for your interest in contributing to Cookie Though! Please take a moment to review this document **before submitting a pull request**.
