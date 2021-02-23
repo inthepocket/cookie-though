@@ -28,7 +28,7 @@ test:
 build:site:
   stage: build
   script:
-    - NODE_ENV=staging npm run build:site
+    - npm run build:site
   artifacts:
     paths:
       - public
@@ -37,7 +37,7 @@ build:site:
 build:lib:
   stage: build
   script:
-    - GIT_TAG=$CI_COMMIT_TAG npm run build:lib
+    - npm run build:lib
   artifacts:
       paths:
         - dist

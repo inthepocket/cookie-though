@@ -18,8 +18,8 @@
   ],
   "scripts": {
     "docs": "docsify serve",
-    "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public --no-content-hash",
-    "build:lib": "parcel build src/lib.ts --no-source-maps --global CookieThough --out-dir dist --experimental-scope-hoisting",
+    "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public --no-content-hash && ./scripts/replace_css.sh staging",
+    "build:lib": "parcel build src/lib.ts --no-source-maps --global CookieThough --out-dir dist --experimental-scope-hoisting && ./scripts/replace_css.sh",
     "dev": "parcel src/index.html --global CookieThough",
     "types": "tsc",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
