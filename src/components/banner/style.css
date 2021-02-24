@@ -48,7 +48,7 @@
 }
 
 .ct-banner-explanation {
-  font-family: var(--ct-secondary-font);
+  font-family: var(--ct-secondary-font), Arial, Helvetica, sans-serif;
   color: var(--ct-gray-400);
   font-weight: 400;
 }
