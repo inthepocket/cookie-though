@@ -52,27 +52,27 @@ table {
 	border-spacing: 0;
 }
 
+img {
+    max-width: 100%;
+}
+
 @font-face {
     font-family: 'Flama';
     src: url('../fonts/Flama-Semibold.woff2') format('woff2'),
         url('../fonts/Flama-Semibold.woff') format('woff'),
         url('../fonts/Flama-Semibold.svg#Flama-Semibold') format('svg');
-    font-weight: 600;
+    font-weight: bold;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Flama';
-    src: url('../fonts/Flama-Medium.woff2') format('woff2'),
-        url('../fonts/Flama-Medium.woff') format('woff'),
-        url('../fonts/Flama-Medium.svg#Flama-Medium') format('svg');
-    font-weight: 500;
+    src: url('../fonts/Flama-Semicondensed-Book') format('woff');
+    font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
-
-
 
 html {
     background: #EFF0FC;
@@ -112,8 +112,79 @@ a:hover {
     color: black;
 }
 
-main {
+header {
+    background: #EFF0FC;
+}
+
+.header-teaser {
+    background: url('../images/shapes.svg') no-repeat left center;
+    background-size: contain;
+}
+
+nav {
+    background: #EFF0FC
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nav li {
+    margin-bottom: 1em;
+}
+
+.button,
+.button:hover {
+    display: inline-block;
+    padding: 1rem 3rem;
+    text-decoration: none;
     background: #fff;
+    color: #009;
+    border-radius: 5px;
+}
+
+.button--primary,
+.button--primary:hover {
+    background: #009;
+    color: #fff;
+}
+
+.button[rel="external"]::before {
+    content: url('data: image/svg+xml; utf8, \
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                    <style>\
+                        path { stroke: navy; }\
+                    </style>\
+                    <path d="M15 10.8333V15.8333C15 16.2754 14.8244 16.6993 14.5118 17.0118C14.1993 17.3244 13.7754 17.5 13.3333 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V6.66667C2.5 6.22464 2.67559 5.80072 2.98816 5.48816C3.30072 5.17559 3.72464 5 4.16667 5H9.16667" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                    <path d="M12.5 2.5H17.5V7.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                    <path d="M8.33334 11.6667L17.5 2.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                </svg>\
+            ');
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+    top: .2rem;
+    margin-right: .5rem;
+}
+
+.button--primary[rel="external"]::before {
+    content: url('data: image/svg+xml; utf8, \
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\
+                    <style>\
+                        path { stroke: white; }\
+                    </style>\
+                    <path d="M15 10.8333V15.8333C15 16.2754 14.8244 16.6993 14.5118 17.0118C14.1993 17.3244 13.7754 17.5 13.3333 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V6.66667C2.5 6.22464 2.67559 5.80072 2.98816 5.48816C3.30072 5.17559 3.72464 5 4.16667 5H9.16667" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                    <path d="M12.5 2.5H17.5V7.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                    <path d="M8.33334 11.6667L17.5 2.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>\
+                </svg>\
+            ');
+}
+
+main {
+    background: rgb(239,240,252);
+    background: linear-gradient(30deg, rgba(239,240,252,1) 0%, rgba(239,240,252,1) 35%, rgba(255,255,255,1) 35%, rgba(255,255,255,1) 100%);
 }
 
 main ul li {
@@ -131,16 +202,26 @@ main ul li::before{
 }
 
 aside {
-    background: #7676;
+    background: #7676EC;
+}
+
+aside .title {
+    color: #fff;
 }
 
 footer {
+    padding-top: 1rem;
     background: #009;
     color: #fff;
 }
 
-header, nav, main, aside, footer {
-    padding: 0 1rem;
+footer a {
+    color: #fff;
+}
+
+.container {
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .tagline {
@@ -151,15 +232,6 @@ header, nav, main, aside, footer {
 
 .tagline strong {
     color: #66f;
-}
-
-.ct-popup {
-  background: #fff;
-  padding: 1rem;
-  border-radius: 1rem;
-  color: #78787a;
-  border: 1px solid #EFF0FC;
-  box-shadow: 0px 51px 83px rgba(239, 240, 252, 0.6), 0px 21.4909px 36.9532px rgba(239, 240, 252, 0.338532), 0px 10.004px 21.8506px rgba(239, 240, 252, 0.261477), 0px 4.72871px 13.1087px rgba(239, 240, 252, 0.213265), 0px 1.81011px 6.25172px rgba(239, 240, 252, 0.160663);
 }
 
 
