@@ -2,6 +2,16 @@ aside {
     background: #7676EC;
 }
 
+.container--aside {
+    @include mq(bp3) {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+}
+
 aside .title {
     color: #fff;
 }

@@ -1,8 +1,35 @@
 header {
     background: #EFF0FC;
+    @include mq(bp3) {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+}
+
+@include mq(bp3) {
+    .container--header {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        & > * {
+            width: 50%;
+        }
+    } 
+}
+
+.site-title {
+    @include mq(bp3) {
+        font-size: 2rem;
+        position: absolute ;
+        top: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 .header-teaser {
+    display: flex;
     background: url('../images/shapes.svg') no-repeat left center;
     background-size: contain;
 }
@@ -10,9 +37,15 @@ header {
 .tagline {
     font-size: 1.5rem;
     color: #336;
-    font-weight: 400;
+    @include mq(bp3) {
+        font-size: 5.25rem;
+        line-height: 1.2;
+    }
 }
 
 .tagline strong {
     color: #66f;
+    @include mq(bp3) {
+        display: block;
+    }
 }

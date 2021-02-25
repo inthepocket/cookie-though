@@ -1,5 +1,23 @@
 nav {
-    background: #EFF0FC
+    background: #EFF0FC;
+    @include mq(bp4) {
+        position: absolute;
+        top: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        background: transparent;
+    }
+}
+
+.container--nav {
+    @include mq(bp3) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: .5rem;
+        padding-bottom: 1.5rem;
+    }
 }
 
 .nav {

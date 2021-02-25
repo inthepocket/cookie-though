@@ -1,4 +1,10 @@
 .container {
     padding-left: 1rem;
     padding-right: 1rem;
+    
+    @include mq(bp4) {
+        max-width: 90rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
