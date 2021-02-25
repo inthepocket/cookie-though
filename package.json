@@ -30,7 +30,10 @@
     "deploy:site": "firebase deploy --token $FIREBASE_TOKEN --only hosting:site",
     "deploy:docs": "./scripts/docsify.sh && firebase deploy --token $FIREBASE_TOKEN --only hosting:docs",
     "test": "jest",
-    "test:coverage": "jest --coverage --reporters=jest-junit"
+    "test:coverage": "jest --coverage --reporters=jest-junit",
+    "build:sass": "dart-sass --style=compressed docs/_scss/docs.scss:docs/css/docs.min.css",
+    "build:jekyll": "bundle exec jekyll build --trace",
+    "build:docs": "npm run build:sass && npm run build:jekyll"
   },
   "eslintIgnore": [
     "dist/*"
@@ -53,6 +56,7 @@
     "@types/lodash.throttle": "4.1.6",
     "@typescript-eslint/eslint-plugin": "4.16.1",
     "@typescript-eslint/parser": "4.16.1",
+    "dart-sass": "^1.25.0",
     "docsify-cli": "4.4.2",
     "enzyme": "3.11.0",
     "enzyme-adapter-preact-pure": "3.0.0",
