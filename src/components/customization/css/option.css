@@ -4,7 +4,7 @@
   margin-bottom: var(--ct-seperator-padding);
   display: flex;
   font-size: var(--ct-text-font-size);
-  font-family: var(--ct-secondary-font);
+  font-family: var(--ct-secondary-font), Arial, Helvetica, sans-serif;
   transition: background-color 250ms linear, color 250ms linear, border-color 250ms linear;
 }
 

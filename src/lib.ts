@@ -21,17 +21,24 @@ export const configure = (conf: Config) => {
   container.style.bottom = '-600px';
   container.style.display = 'none';
   const shadowRoot = container.attachShadow({ mode: 'open' });
-  const cssLink = document.createElement('link');
-  cssLink.setAttribute('rel', 'stylesheet');
-  cssLink.setAttribute(
-    'href',
-    /* istanbul ignore next */
-    ['staging', 'development'].find(x => x == process.env.NODE_ENV)
-      ? 'src.77de5100.css'
-      : `https://unpkg.com/cookie-though@${process.env.GIT_TAG!}/dist/lib.css`,
-  );
+  let css: HTMLStyleElement | HTMLLinkElement;
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV === 'development') {
+    css = document.createElement('link');
+    css.setAttribute('rel', 'stylesheet');
+    css.setAttribute('href', 'src.77de5100.css');
+  } else {
+    css = document.createElement('style');
+    /*
+      In order for the CI to do it's job, make sure minified-css remains
+      The CI will build the css, minify it and replace 'minified-css'
+      with the actual minified css, which means it doesn't have to be fetched
+      from a cdn and thus speeds up the load of the app.
+    */
+    css.textContent = 'minified-css';
+  }
 
-  shadowRoot.appendChild(cssLink);
+  shadowRoot.appendChild(css);
 
   const previousInstance = document.querySelector('.cookie-though') as HTMLElement;
   if (previousInstance && previousInstance.shadowRoot) {
