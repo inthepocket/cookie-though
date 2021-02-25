@@ -37,6 +37,7 @@
   ],
   "dependencies": {
     "events": "3.2.0",
+    "lodash.throttle": "4.1.1",
     "preact": "10.5.12"
   },
   "browserslist": [
@@ -49,6 +50,7 @@
     "@babel/plugin-transform-react-jsx": "7.12.12",
     "@types/enzyme": "3.10.8",
     "@types/jest": "26.0.20",
+    "@types/lodash.throttle": "4.1.6",
     "@typescript-eslint/eslint-plugin": "4.15.1",
     "@typescript-eslint/parser": "4.15.1",
     "docsify-cli": "4.4.2",
