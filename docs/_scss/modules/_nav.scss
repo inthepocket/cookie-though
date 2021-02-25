@@ -1,0 +1,13 @@
+nav {
+    background: #EFF0FC
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nav li {
+    margin-bottom: 1em;
+}

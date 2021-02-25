@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Flama';
+    src: url('../fonts/Flama-Semibold.woff2') format('woff2'),
+        url('../fonts/Flama-Semibold.woff') format('woff'),
+        url('../fonts/Flama-Semibold.svg#Flama-Semibold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Flama';
+    src: url('../fonts/Flama-Semicondensed-Book') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #009;
+}
+
+h2 {
+    font-size: 2.625rem;
+    font-weight: bold;
+    color: #009;
+}
+
+
+a {
+    color: #211551;
+    transition: .2s ease-out color;
+}
+
+a:hover {
+    color: black;
+}
