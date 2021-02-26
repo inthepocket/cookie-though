@@ -9,6 +9,7 @@ exports[`Customization should render properly 1`] = `
   />
   <Collapse
     isOpen={false}
+    onWindowResize={[MockFunction]}
   >
     <Options
       isOpen={false}

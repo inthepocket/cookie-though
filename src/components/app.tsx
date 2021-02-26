@@ -108,6 +108,7 @@ const App: FunctionalComponent<Props> = ({
         customizeLabel={customizeLabel}
         permissionLabels={permissionLabels}
         setCookiePreferences={setCookiePreferences}
+        onWindowResize={setModalWidth}
       />
     </Fragment>
   );

@@ -22,6 +22,7 @@ const defaultProps = {
   cookieOptions: englishMockConfig.policies.map(policy => ({ ...policy, isEnabled: false })),
   permissionLabels: englishMockConfig.permissionLabels,
   setCookiePreferences: jest.fn(),
+  onWindowResize: jest.fn(),
 };
 
 describe('Customization', () => {

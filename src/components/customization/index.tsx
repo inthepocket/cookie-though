@@ -14,6 +14,7 @@ interface Props {
   permissionLabels: Config['permissionLabels'];
   cookiePolicy?: Config['cookiePolicy'];
   setCookiePreferences(cookiePreferences: CookiePreferences): CookiePreferences;
+  onWindowResize(): void;
 }
 
 const isAnOptionEnabled = (cookieOptions: CookieOption[]) => {
@@ -38,6 +39,7 @@ const Customization: FunctionalComponent<Props> = ({
   permissionLabels,
   cookiePolicy,
   setCookiePreferences,
+  onWindowResize,
 }) => {
   const [options, setOptions] = useState(() => cookieOptions);
   const [isActive, setIsActive] = useState(false);
@@ -88,7 +90,7 @@ const Customization: FunctionalComponent<Props> = ({
         isActive={isActive}
         toggleCustomization={() => setIsActive(prevState => !prevState)}
       />
-      <Collapse isOpen={isActive}>
+      <Collapse isOpen={isActive} onWindowResize={onWindowResize}>
         <Options
           isOpen={isActive}
           options={options}
