@@ -23,7 +23,7 @@ const setModalWidth = () => {
   const rootNode = document.querySelector('.cookie-though') as HTMLDivElement;
   const textNode = rootNode.shadowRoot!.querySelector('.ct-banner-explanation') as HTMLDivElement;
   const textFontSize = +window.getComputedStyle(textNode).fontSize.slice(0, -2);
-  const isMobile = window.innerWidth < 640;
+  const isMobile = window.innerWidth < 768;
 
   rootNode.style.bottom = CONTAINER_BOTTOMS[0];
 
