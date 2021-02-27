@@ -4,6 +4,46 @@ footer {
     color: #fff;
 }
 
+.container--footer {
+    @include mq(bp3) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: .5rem;
+        padding-bottom: 1.5rem;
+    }
+}
+
 footer a {
     color: #fff;
+
+    &:hover {
+        color: rgba(255,255,255,.8);
+    }
+}
+
+.footer-title {
+    &::before {
+        content: url('../images/cookiethough-white.svg');
+        margin-right: .5rem;
+        position: relative;
+        top: .75rem;
+    }
+}
+
+.inthepocket {
+    span {
+        @include visually-hidden;
+    }
+
+    &::before {
+        content: url('../images/itp.svg');
+        position: relative;
+        top: .5rem;
+        margin-left: .3rem;
+    }
+
+    &:hover {
+        opacity: .8;
+    }
 }

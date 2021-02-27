@@ -3,9 +3,11 @@
 
 {% include head.html %}
 
-<body class="{% if page.modifier %}{{page.modifier}}{% endif %}">
+<body class="layout--default {% if page.modifier %}{{page.modifier}}{% endif %}">
 
 		{{ content }}
+
+		{% include footer.html %}
 
 </body>
 </html>

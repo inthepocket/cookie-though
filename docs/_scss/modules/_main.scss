@@ -1,4 +1,4 @@
-main {
+.layout--default main {
     background: rgb(239,240,252);
     background: linear-gradient(30deg, rgba(239,240,252,1) 0%, rgba(239,240,252,1) 35%, rgba(255,255,255,1) 35%, rgba(255,255,255,1) 100%);
 }
@@ -15,6 +15,10 @@ main {
 main ul li {
     position: relative;
     padding-left: 1.5rem;
+
+    @include mq(bp3) {
+        margin-bottom: 1rem;
+    }
 }
 
 main ul li::before{

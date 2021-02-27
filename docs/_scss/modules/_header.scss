@@ -16,9 +16,20 @@ header {
             width: 50%;
         }
     } 
+
+    header p {
+        font-size: 1.5rem;
+        font-weight: normal;
+    }
 }
 
 .site-title {
+    &::before {
+        content: url('../images/cookiethough.svg');
+        margin-right: 1rem;
+        position: relative;
+        top: .75rem;
+    }
     @include mq(bp3) {
         font-size: 2rem;
         position: absolute ;

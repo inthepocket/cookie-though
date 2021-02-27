@@ -3,9 +3,18 @@
 
 {% include head.html %}
 
-<body class="{% if page.modifier %}{{page.modifier}}{% endif %}">
+<body class="layout--docs {% if page.modifier %}{{page.modifier}}{% endif %}">
+	<div class="container container--docs">
+		<nav class="docs-nav">
+			{% include sidebar.html %}
+		</nav>
 
+		<main>
 		{{ content }}
+		</main>
+	</div>
+
+	{% include footer.html %}
 
 </body>
 </html>
