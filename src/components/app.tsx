@@ -25,6 +25,10 @@ const setModalWidth = () => {
   const textFontSize = +window.getComputedStyle(textNode).fontSize.slice(0, -2);
   const isMobile = window.innerWidth < 768;
 
+  if (isMobile) {
+    rootNode.style.removeProperty('width');
+  }
+
   rootNode.style.bottom = CONTAINER_BOTTOMS[0];
 
   if (13 < textFontSize && textFontSize <= 14) {
