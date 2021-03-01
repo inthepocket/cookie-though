@@ -37,7 +37,7 @@
     "watch:jekyll": "chokidar 'docs/**' '_config.yml' -c 'npm run build:jekyll && browser-sync reload'",
     "build:docs": "npm run build:sass && npm run build:jekyll",
     "serve": "browser-sync start --http --server _site",
-    "dev:docs": "npm run build:sass -s && npm-run-all -p serve watch:sass watch:jekyll"
+    "dev:docs": "npm run build:sass -s && npm run build:jekyll && npm-run-all -p serve watch:sass watch:jekyll"
   },
   "eslintIgnore": [
     "dist/*"
