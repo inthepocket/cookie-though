@@ -7,7 +7,7 @@
   "types": "dist/types/lib.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://git.inthepocket.org/inthepocket/cookie-though/cookie-though-preact.git"
+    "url": "https://github.com/inthepocket/cookie-though"
   },
   "keywords": [
     "cookies",
