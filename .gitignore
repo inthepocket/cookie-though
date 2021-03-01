@@ -1,13 +1,20 @@
-node_modules
+# Parcel cache
 /.cache
+
+# Build folders
 /dist
-/*.log
-.DS_Store
 /public
-.firebase
-/coverage
-junit.xmldocs/README.md
-doc
-.jekyll-cache
 _site
+
+# Library development
+node_modules
+/coverage
+
+# Docs development
+vendor
+.bundle
+.jekyll-cache
 docs/css
+
+# MacOSX
+.DS_Store
