@@ -1,8 +1,8 @@
 .ct-collapse {
-  margin-bottom: var(--ct-seperator-padding);
   overflow: hidden;
   transition: height 250ms ease-out;
   height: 0;
+  padding: 0 var(--ct-default-padding);
 }
 
 @media(prefers-reduced-motion) {

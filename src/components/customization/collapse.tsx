@@ -25,14 +25,13 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children, onWindowResize
 
       const rootHeight = +height.slice(0, -2);
       const rootPadding = +bottom.slice(0, -2) * 2;
-      const containerOffset = +bottom.slice(0, -2) * 2;
       const containerHeight = isResize ? initialHeight! + rootPadding : rootHeight + rootPadding;
 
       if (isResize) {
         collapsibleDiv.current.style.transition = 'height 0ms ease-out';
       }
 
-      const maxCollapseHeight = windowHeight - containerHeight - containerOffset;
+      const maxCollapseHeight = windowHeight - containerHeight;
       if (maxCollapseHeight < collapseHeight) {
         collapsibleDiv.current.style.height = `${maxCollapseHeight}px`;
         collapsibleDiv.current.style.overflow = 'scroll';

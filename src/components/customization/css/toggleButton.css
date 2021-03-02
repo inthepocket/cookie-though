@@ -4,17 +4,17 @@
   border: none;
   outline: none;
   background-color: inherit;
-  padding: 0;
+  padding: 0.125rem;
   color: var(--ct-text);
   display: flex;
   align-items: baseline;
   cursor: pointer;
-  margin-bottom: var(--ct-seperator-padding);
+  margin-left: calc(var(--ct-default-padding) - 0.125rem);
 }
 
 .ct-customization-button:focus-visible {
-  outline: 3px solid var(--ct-primary-200);
-  outline-offset: 3px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px 3px var(--ct-primary-200);
 }
 
 .ct-customization-button svg {

@@ -3,22 +3,14 @@
   font-family: var(--ct-primary-font), Arial, Helvetica, sans-serif;
   position: fixed;
   left: var(--ct-default-padding);
-  /* left positioning and left/right padding */
-  width: calc(100vw - calc(var(--ct-default-padding) * 4));
-  max-height: calc(100% - calc(var(--ct-default-padding) * 4));
+  width: 343px;
+  max-height: calc(100% - var(--ct-default-padding) * 2);
   border-radius: 20px;
   box-shadow: 0px 2px 19px -4px rgba(1, 1, 63, 0.1);
   background: var(--ct-white);
-  padding: var(--ct-default-padding);
   transition: bottom 250ms linear;
   box-sizing: content-box !important;
   z-index: var(--ct-z-index);
-}
-
-@media only screen and (min-width: 768px) {
-  :host(.cookie-though) {
-    width: 311px;
-  }
 }
 
 @media (prefers-reduced-motion) {

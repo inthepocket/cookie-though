@@ -12,7 +12,7 @@
 }
 
 .ct-button:focus-visible {
-  outline: 3px solid var(--ct-primary-200);
+  box-shadow: 0px 0px 0px 3px var(--ct-primary-200);
 }
 
 .ct-button-secondary {

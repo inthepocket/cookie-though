@@ -1,3 +1,7 @@
+.ct-acceptance {
+  padding: var(--ct-default-padding);
+}
+
 .ct-acceptance button:not(:first-child) {
   margin-left: var(--ct-seperator-padding);
 }

@@ -1,6 +1,6 @@
 .ct-banner {
   font-size: var(--ct-text-font-size);
-  margin-bottom: var(--ct-default-padding);
+  padding: var(--ct-default-padding);
 }
 
 .ct-banner-header {
