@@ -13,6 +13,13 @@
   z-index: var(--ct-z-index);
 }
 
+@media only screen and (max-width: 480px) {
+  :host(.cookie-though) {
+    /* left positioning and left/right padding */
+    width: calc(100vw - calc(var(--ct-default-padding) * 2));
+  }
+}
+
 @media (prefers-reduced-motion) {
   :host(.cookie-though) {
     transition: none;
