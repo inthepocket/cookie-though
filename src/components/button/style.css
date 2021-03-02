@@ -16,5 +16,5 @@
 }
 
 .ct-button-secondary {
-  background: var(--ct-primary-300);
+  background: var(--ct-button-secondary);
 }

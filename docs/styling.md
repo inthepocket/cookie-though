@@ -10,13 +10,28 @@ You can easily define your own CSS on top of the CSS that is already included by
   --ct-primary-200: #e0e0ff;
   --ct-primary-100: #f0f0ff;
 
-  /* The colors used to style the text and the disabled pill button colors */
-  --ct-gray-400: #6b7280;
-  --ct-gray-300: #d1d5db;
+  /* The colors used to style: customizationButton, headerDescription and cookiePolicy */
+  --ct-text: #6b7280;
 
-  /* The colors used to style the pill buttons when they are enabled */
-  --ct-slider-400: #4c4cff;
-  --ct-slider-300: #b3b3ff;
+  /* The colors used to style the title elements */
+  --ct-subtitle: var(--ct-primary-300);
+  --ct-title: var(--ct-primary-400);
+
+  /* The color used to style the cookie svg */
+  --ct-cookie: var(--ct-primary-400);
+
+  /* The colors used to style a policy */
+  --ct-policy: var(--ct-white);
+  --ct-policy-enabled: var(--ct-primary-400);
+  --ct-policy-text: var(--ct-primary-400);
+  --ct-policy-text-enabled: var(--ct-white);
+  --ct-policy-essential: var(--ct-primary-100);
+
+  /* The colors used to style the sliders */
+  --ct-slider-primary: var(--gray-400);
+  --ct-slider-secondary: var(--gray-300);
+  --ct-slider-enabled-primary: #4c4cff;
+  --ct-slider-enabled-secondary: #b3b3ff;
 
   /* The font color of the text inside a policy when it's enabled  */
   --ct-enabled-option-color: var(--ct-white);

@@ -41,11 +41,20 @@
   --ct-primary-300: #6161e8;
   --ct-primary-200: #e0e0ff;
   --ct-primary-100: #f0f0ff;
-  --ct-gray-400: #6b7280;
-  --ct-gray-300: #d1d5db;
-  --ct-slider-400: #4c4cff;
-  --ct-slider-300: #b3b3ff;
-  --ct-enabled-option-color: var(--ct-white);
+  --ct-text: #6b7280;
+  --ct-title: var(--ct-primary-400);
+  --ct-subtitle: var(--ct-primary-300);
+  --ct-cookie: var(--ct-primary-400);
+  --ct-policy: var(--ct-white);
+  --ct-policy-enabled: var(--ct-primary-400);
+  --ct-policy-text: var(--ct-primary-400);
+  --ct-policy-text-enabled: var(--ct-white);
+  --ct-policy-essential: var(--ct-primary-100);
+  --ct-slider-primary: var(--ct-text);
+  --ct-slider-secondary: #d1d5db;
+  --ct-slider-enabled-primary: #4c4cff;
+  --ct-slider-enabled-secondary: #b3b3ff;
+  --ct-button-secondary: var(--ct-primary-300);
   --ct-white: #ffffff;
   --ct-text-margin: 0.25rem;
   --ct-default-padding: 1rem;
@@ -58,3 +67,4 @@
   --ct-secondary-font: Geneva, sans-serif;
   --ct-z-index: 9999;
 }
+

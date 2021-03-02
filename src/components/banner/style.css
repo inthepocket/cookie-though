@@ -16,7 +16,7 @@
 .ct-banner h1 {
   font-size: var(--ct-heading-font-size);
   font-weight: 700;
-  color: var(--ct-primary-400);
+  color: var(--ct-title);
 }
 
 .ct-banner p {
@@ -31,7 +31,7 @@
 
 .ct-banner-intro p {
   font-size: var(--ct-sub-heading-font-size);
-  color: var(--ct-primary-300);
+  color: var(--ct-subtitle);
 }
 
 .ct-banner-logo {
@@ -42,13 +42,13 @@
 .ct-banner-logo path {
   fill-rule: evenodd;
   clip-rule: evenodd;
-  fill: var(--ct-primary-400);
+  fill: var(--ct-cookie);
   stroke: var(--ct-white);
   stroke-width: 0;
 }
 
 .ct-banner-explanation {
   font-family: var(--ct-secondary-font), Arial, Helvetica, sans-serif;
-  color: var(--ct-gray-400);
+  color: var(--ct-text);
   font-weight: 400;
 }

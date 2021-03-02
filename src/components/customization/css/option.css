@@ -9,21 +9,21 @@
 }
 
 .ct-enabled {
-  background-color: var(--ct-primary-400);
-  border-color: var(--ct-primary-400);
+  background-color: var(--ct-policy-enabled);
+  border-color: var(--ct-policy-enabled);
 }
 
 .ct-essential {
-  background-color: var(--ct-primary-100);
-  border-color: var(--ct-primary-100);
+  background-color: var(--ct-policy-essential);
+  border-color: var(--ct-policy-essential);
 }
 
 .ct-essential .ct-slider {
-  color: var(--ct-gray-400);
+  color: var(--ct-text);
 }
 
 .ct-enabled .ct-option-info p {
-  color: var(--ct-enabled-option-color);
+  color: var(--ct-policy-text-enabled);
 }
 
 .ct-option input[type="checkbox"]{
@@ -48,7 +48,7 @@
 }
 
 .ct-option-info p, .ct-essential strong {
-  color: var(--ct-primary-400);
+  color: var(--ct-policy-text);
 }
 
 .ct-option-info p {
@@ -77,7 +77,7 @@ input[type="checkbox"]:not(:disabled) + label .ct-slider {
   appearance: none;
   -webkit-appearance: none;
   position: relative;
-  background: var(--ct-gray-300);
+  background: var(--ct-slider-secondary);
   width: 1.625rem;
   height: .5rem;
   border-radius: 9999px;
@@ -93,17 +93,17 @@ input[type="checkbox"]:not(:disabled) + label .ct-slider::after {
   left: 0;
   width: 1rem;
   height: 1rem;
-  background: var(--ct-gray-400);
+  background: var(--ct-slider-primary);
   border-radius: 2rem;
   transition: 250ms ease-out background, 250ms ease-out left;
 }
 
 input[type="checkbox"]:not(:disabled):checked + label .ct-slider {
-  background-color: var(--ct-slider-400);
+  background-color: var(--ct-slider-enabled-primary);
 }
 
 input[type="checkbox"]:not(:disabled):checked + label .ct-slider::after {
-  background: var(--ct-slider-300);
+  background: var(--ct-slider-enabled-secondary);
   left: 50%;
 }
 

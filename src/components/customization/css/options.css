@@ -7,7 +7,7 @@
 }
 
 .ct-declaration a {
-  color: var(--ct-gray-400);
+  color: var(--ct-text);
   outline: 0;
 }
 
