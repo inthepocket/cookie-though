@@ -1,20 +1,65 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" id="docs">
 
 {% include head.html %}
 
 <body class="layout--docs {% if page.modifier %}{{page.modifier}}{% endif %}">
 	<div class="container container--docs">
-		<nav class="docs-nav">
-			{% include sidebar.html %}
-		</nav>
+		<button class="sidebar-toggle" aria-label="Menu">
+			<div class="sidebar-toggle-button">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</button>
+
+		<aside class="sidebar">
+			<nav class="docs-nav">
+				{% include sidebar.html %}
+			</nav>
+		</aside>
 
 		<main>
-		{{ content }}
+			<article class="markdown-section">
+					{{ content }}
+			</article>
 		</main>
 	</div>
+	<script>
+		// Active class on nav
+		const url = window.location.href.split('/')[3].toLowerCase();
+		const links = document.querySelectorAll('.docs-nav a')
+		links.forEach(link => link.textContent.toLowerCase() === url ? link.classList.add('active') : '');
 
-	{% include footer.html %}
+		let isClosed = false;
+		const evaluate = () => {
+			const width = window.innerWidth;
+				if (width > 768) {
+					document.querySelector('.sidebar').classList.remove('closed');
+					document.querySelector('main').classList.remove('closed');
+				}
 
+				if (width < 768) {
+					document.querySelector('.sidebar').classList.add('closed');
+					document.querySelector('main').classList.add('closed');
+				}
+		}
+
+		let isThrottled = false;
+		window.addEventListener('resize', e => {
+			if (isThrottled) return;
+
+			isThrottled = true;
+			evaluate();
+			setTimeout(() => isThrottled = false, 100);
+		});
+
+		// Toggle sidebar
+		document.querySelector('.sidebar-toggle').addEventListener('click', () => {
+			document.querySelector('.sidebar').classList.toggle('closed');
+			document.querySelector('main').classList.toggle('closed');
+		});
+		evaluate();
+	</script>
 </body>
 </html>

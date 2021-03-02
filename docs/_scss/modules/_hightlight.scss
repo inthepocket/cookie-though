@@ -7,6 +7,13 @@
     overflow: auto;
     line-height: 2;
 }
+p code {
+    font-family: 'Fira Code';
+    font-size: 0.875rem;
+    background-color: #bbdaff;
+    color: #003f8e;
+    padding: 3px 5px;
+}
 .highlight, .highlight pre, .highlight table { background: #002451 !important; color: #ffffff !important; }
 .highlight .hll { background-color: #003f8e !important; }
 .highlight .c { color: #7285b7 !important; } /* Comment */

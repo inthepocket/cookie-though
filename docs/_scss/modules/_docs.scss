@@ -1,4 +1,39 @@
+#docs, #docs body {
+    height: 100%;
+}
+
+#docs body {
+    overflow-x: hidden;
+}
+
 .layout--docs main {
     background: #fff;
-    padding: 3rem;
+    padding-top: 60px;
+    position: absolute;
+    top: 0;
+    left: 300px;
+    bottom: 0;
+    right: 0;
+    transition: left .25s ease;
+
+    @media screen and (max-width: 768px) {
+        width: 100vw;
+
+        &:not(.closed) {
+            position: static;
+            transform: translateX(300px);
+            transition: transform .25s ease;
+        }
+    }
+}
+
+.layout--docs main.closed {
+    left: 0;
+}
+
+.layout--docs .markdown-section {
+    margin: 0 auto;
+    max-width: 80%;
+    padding: 30px 15px 40px;
+    position: relative;
 }

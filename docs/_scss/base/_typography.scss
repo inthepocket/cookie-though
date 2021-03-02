@@ -1,17 +1,23 @@
 @font-face {
-    font-family: 'Flama';
-    src: url('../fonts/Flama-Semibold.woff2') format('woff2'),
-        url('../fonts/Flama-Semibold.woff') format('woff'),
-        url('../fonts/Flama-Semibold.svg#Flama-Semibold') format('svg');
-    font-weight: bold;
+    font-family: 'Source Sans Pro';
+    src: url('../fonts/SourceSansPro-Regular.ttf');
+    font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Flama';
-    src: url('../fonts/Flama-Semicondensed-Book') format('woff');
-    font-weight: normal;
+    font-family: 'Source Sans Pro';
+    src: url('../fonts/SourceSansPro-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../fonts/SourceSansPro-SemiBold.ttf');
+    font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
@@ -30,6 +36,10 @@ h1 {
 h2 {
     font-size: 2.625rem;
     font-weight: bold;
+    color: #009;
+}
+
+h3 {
     color: #009;
 }
 

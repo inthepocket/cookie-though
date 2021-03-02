@@ -1,0 +1,55 @@
+.markdown-section {
+  > :first-child {
+    margin-top: 0 !important;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 1rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin: 45px 0 0.8rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin: 40px 0 .6rem;
+  }
+
+  h1, h2, h3, h4, strong {
+    font-weight: 600;
+  }
+
+  ol, p, ul {
+    line-height: 1.6rem;
+    word-spacing: 0.05rem;
+  }
+
+  p {
+    margin: 1.2em 0;
+  }
+
+  ol, ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+
+  li::marker {
+    color: #7676ec;
+  }
+
+  li::before {
+    content: '';
+  }
+
+  a {
+    font-weight: 600;
+  }
+}

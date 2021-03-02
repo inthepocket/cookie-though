@@ -32,7 +32,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage --reporters=jest-junit",
     "build:sass": "dart-sass --style=compressed docs/_scss/docs.scss:docs/css/docs.min.css",
-    "watch:sass": "chokidar 'docs/_scss/**/*' -c 'npm run build:sass && browser-sync reload'",
+    "watch:sass": "chokidar 'docs/_scss/**/*' -c 'npm run build:sass'",
     "build:jekyll": "bundle exec jekyll build --trace",
     "watch:jekyll": "chokidar 'docs/**' '_config.yml' -c 'npm run build:jekyll && browser-sync reload'",
     "build:docs": "npm run build:sass && npm run build:jekyll",

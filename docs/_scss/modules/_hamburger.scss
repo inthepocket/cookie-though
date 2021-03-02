@@ -1,0 +1,32 @@
+.sidebar-toggle {
+  position: fixed;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  transition: opacity .3s;
+  width: 284px;
+  z-index: 30;
+  cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    width: auto;
+    padding: 30px 30px 10px 10px;
+  }
+}
+
+.sidebar-toggle:hover span {
+  opacity: 0.4;
+}
+
+.sidebar-toggle span {
+  background-color: #009;
+  display: block;
+  margin-bottom: 4px;
+  width: 16px;
+  height: 2px;
+}
