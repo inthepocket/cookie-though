@@ -16,6 +16,11 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Fira Code';
+    src: url('../fonts/FiraCode-Regular.ttf')
+}
+
 h1 {
     font-size: 3rem;
     font-weight: bold;

@@ -1,10 +1,11 @@
 /*! tomorrow night blue; https://github.com/MozMorris/tomorrow-pygments */
 .highlight code {
     display: block;
-    font-family: monospace;
+    font-family: 'Fira Code';
+    font-size: 0.875rem;
     padding: 1rem;
     overflow: auto;
-    line-height: 1.5;
+    line-height: 2;
 }
 .highlight, .highlight pre, .highlight table { background: #002451 !important; color: #ffffff !important; }
 .highlight .hll { background-color: #003f8e !important; }
