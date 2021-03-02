@@ -3,10 +3,12 @@
   transition: height 250ms ease-out;
   height: 0;
   padding: 0 var(--ct-default-padding);
+  scroll-behavior: smooth;
 }
 
 @media(prefers-reduced-motion) {
   .ct-collapse {
     transition: none;
+    scroll-behavior: auto;
   }
 }

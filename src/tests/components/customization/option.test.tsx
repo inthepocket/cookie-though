@@ -35,4 +35,18 @@ describe('Option', () => {
 
     expect(onToggle).toBeCalledTimes(1);
   });
+
+  it('scrolls into view when an option is focused', () => {
+    const scrollIntoView = jest.fn();
+    window.HTMLElement.prototype.scrollIntoView = scrollIntoView;
+    const onToggle = jest.fn();
+    const wrapper = mount(
+      <div>
+        <Option {...defaultProps(false)} onToggle={onToggle} />
+      </div>,
+    );
+
+    wrapper.find('input').simulate('focus');
+    expect(scrollIntoView).toBeCalledTimes(1);
+  });
 });

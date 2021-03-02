@@ -25,6 +25,7 @@ const Option: FunctionalComponent<Props> = ({ isOpen, option, onToggle }) => {
         disabled={isEssentialCookie}
         checked={option.isEnabled}
         onClick={onToggle}
+        onFocus={e => e.currentTarget.parentElement!.scrollIntoView()}
         tabIndex={isOpen ? 0 : -1}
         aria-hidden={!isOpen}
       />

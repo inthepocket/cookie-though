@@ -35,6 +35,8 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children, onWindowResize
       if (maxCollapseHeight < collapseHeight) {
         collapsibleDiv.current.style.height = `${maxCollapseHeight}px`;
         collapsibleDiv.current.style.overflow = 'scroll';
+        collapsibleDiv.current.style.scrollBehavior = 'auto';
+        collapsibleDiv.current.scrollTop = 0;
       } else {
         collapsibleDiv.current.style.height = `${collapseHeight}px`;
       }
@@ -42,12 +44,13 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children, onWindowResize
       if (isResize) {
         setTimeout(() => (collapsibleDiv.current.style.transition = 'height 250ms ease-out'), 100);
       }
+
+      setTimeout(() => collapsibleDiv.current.style.removeProperty('scroll-behavior'), 250);
     },
     [initialHeight],
   );
 
   const collapse = () => {
-    collapsibleDiv.current.scrollTop = 0;
     collapsibleDiv.current.style.height = '0px';
   };
 
@@ -67,7 +70,7 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children, onWindowResize
   }, [isOpen]);
 
   return (
-    <div className="ct-collapse" ref={collapsibleDiv} aria-expanded={isOpen}>
+    <div className="ct-collapse" ref={collapsibleDiv} aria-expanded={isOpen} tabIndex={-1}>
       {children}
     </div>
   );

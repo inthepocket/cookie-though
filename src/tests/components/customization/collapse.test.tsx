@@ -71,6 +71,11 @@ describe('collapse', () => {
     });
 
     describe('when the window gets resized', () => {
+      const wait = async (ms: number) => {
+        return new Promise(resolve => {
+          return setTimeout(resolve, ms);
+        });
+      };
       it('will resize to fit the new window properties', async () => {
         global.innerHeight = 600;
         const onWindowResize = jest.fn();
@@ -92,10 +97,14 @@ describe('collapse', () => {
         expect(transition()).toBe('height 0ms ease-out');
 
         // Wait for the transition to be set again
-        await new Promise(resolve => {
-          return setTimeout(resolve, 100);
-        });
+        await wait(100);
         expect(transition()).toBe('height 250ms ease-out');
+
+        // Wait for the scroll-behavior to be reset
+        await wait(150);
+        const scollBehavior = () =>
+          getStyleAttribute(wrapper, 'div.ct-collapse', 'scroll-behavior');
+        expect(scollBehavior()).toBeUndefined();
       });
     });
   });
