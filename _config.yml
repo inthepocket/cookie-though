@@ -18,7 +18,7 @@ highlighter: rouge
 permalink: pretty
 
 # Exclude from processing.
-exclude: ["sass", "node_modules", "package-lock.json", "package.json", ".stylelintrc", ".eslintignore", ".eslintrc", ".npmrc", "Gemfile", "Gemfile.lock", "gulpfile.js", "CONTRIBUTING.md", "README.md", "cors-config.json"]
+exclude: ["scss", "node_modules", "package-lock.json", "package.json", ".stylelintrc", ".eslintignore", ".eslintrc", ".npmrc", "Gemfile", "Gemfile.lock", "gulpfile.js", "CONTRIBUTING.md", "README.md", "cors-config.json"]
 
 # Keep files on build
 keep_files: ["css"]
