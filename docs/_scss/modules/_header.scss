@@ -15,7 +15,7 @@ header {
         & > * {
             width: 50%;
         }
-    } 
+    }
 
     header p {
         font-size: 1.5rem;
@@ -41,8 +41,17 @@ header {
 
 .header-teaser {
     display: flex;
-    background: url('../images/shapes.svg') no-repeat left center;
+    align-self: stretch;
+    background: url('../images/shapes.svg') no-repeat center;
     background-size: contain;
+
+    &-wrapper img {
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 65%;
+    }
 }
 
 .tagline {

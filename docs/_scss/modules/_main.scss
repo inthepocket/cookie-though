@@ -10,6 +10,14 @@
         justify-content: space-evenly;
         align-items: center;
     }
+
+    .ct-example {
+        .wrapper {
+            padding: 5% 0%;
+            max-width: 60%;
+            margin: auto;
+        }
+    }
 }
 
 main ul li {
