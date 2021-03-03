@@ -27,5 +27,15 @@
 }
 
 .nav li {
+    font-size: 1.5rem;
     margin-bottom: 1em;
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            color: #211551;
+            text-decoration: underline;
+        }
+    }
 }

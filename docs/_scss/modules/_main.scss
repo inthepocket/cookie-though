@@ -1,9 +1,11 @@
 .layout--default main {
     background: rgb(239,240,252);
-    background: linear-gradient(30deg, rgba(239,240,252,1) 0%, rgba(239,240,252,1) 35%, rgba(255,255,255,1) 35%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(30deg, rgba(239,240,252,1) 0%, rgba(239,240,252,1) 30%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 100%);
 }
 
 .container--main {
+    padding: 5rem 0;
+
     @include mq(bp3) {
         display: flex;
         flex-direction: row-reverse;
@@ -13,11 +15,22 @@
 
     .ct-example {
         .wrapper {
-            padding: 5% 0%;
             max-width: 60%;
             margin: auto;
         }
     }
+
+    .ct-usp {
+        max-width: 50%;
+    }
+}
+
+main h2 {
+    margin-bottom: 2rem;
+}
+
+main ul {
+    padding-left: 1rem;
 }
 
 main ul li {
@@ -25,15 +38,15 @@ main ul li {
     padding-left: 1.5rem;
 
     @include mq(bp3) {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
     }
-}
 
-main ul li::before{
-    content: "\2022";
-    font-size: 1.5rem;
-    color: #7676EC;
-    position: absolute;
-    left: 0;
-    margin-top: -.25em;
+    &::before{
+        content: "\2022";
+        font-size: 2rem;
+        color: #7676EC;
+        position: absolute;
+        left: 0;
+        margin-top: -0.65rem;
+    }
 }

@@ -4,12 +4,11 @@ aside {
 
 .container--aside {
     @include mq(bp3) {
-        max-width: 74rem;
         display: flex;
         justify-content: space-evenly;
-        align-items: center;
+        align-items: self-end;
         padding-top: 4rem;
-        padding-bottom: 4rem;
+        padding-bottom: 5rem;
     }
 
     > * {

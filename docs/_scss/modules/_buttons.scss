@@ -12,7 +12,7 @@
 .button--primary,
 .button--primary:hover {
     background: #009;
-    color: #fff;
+    color: #fff !important;
 }
 
 .button[rel="external"]::before {

@@ -1,5 +1,5 @@
 footer {
-    padding-top: 1rem;
+    height: 80px;
     background: #009;
     color: #fff;
 }
@@ -7,10 +7,35 @@ footer {
 .container--footer {
     @include mq(bp3) {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: .5rem;
-        padding-bottom: 1.5rem;
+        // justify-content: space-between;
+        align-items: baseline;
+        margin: auto
+    }
+
+    ul, p {
+        margin: 0;
+    }
+
+    h3 {
+        margin-right: 6rem;
+    }
+
+    ul {
+        width: 50%;
+        display: flex;
+
+        li:not(:last-of-type) {
+            margin-right: 6rem;
+        }
+
+        li a {
+            text-decoration: none;
+            font-weight: 300;
+        }
+    }
+
+    p {
+        margin-left: auto;
     }
 }
 
