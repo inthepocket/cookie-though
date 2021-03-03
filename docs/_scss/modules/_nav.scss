@@ -20,15 +20,23 @@
     }
 }
 
+.layout--default nav {
+    display: none;
+
+    @include mq(bp3) {
+        display: block;
+    }
+}
+
 .nav {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin: 0;
 }
 
 .nav li {
     font-size: 1.5rem;
-    margin-bottom: 1em;
 
     a {
         text-decoration: none;

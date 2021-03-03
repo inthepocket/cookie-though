@@ -10,7 +10,11 @@
 
 .layout--default {
     background: #EFF0FC;
-    font-size: 20px;
+    font-size: 18px;
+
+    @include mq(bp3) {
+        font-size: 20px;
+    }
 }
 
 .layout--docs {

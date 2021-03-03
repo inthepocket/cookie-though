@@ -1,31 +1,40 @@
 footer {
-    height: 80px;
     background: #009;
     color: #fff;
+
+    @include mq(bp3) {
+        height: 80px;
+    }
 }
 
 .container--footer {
-    @include mq(bp3) {
-        display: flex;
-        // justify-content: space-between;
-        align-items: baseline;
-        margin: auto
+    text-align: center;
+
+    h3 {
+        margin-bottom: 1rem;
     }
+
 
     ul, p {
         margin: 0;
     }
 
-    h3 {
-        margin-right: 6rem;
-    }
-
     ul {
-        width: 50%;
-        display: flex;
+        li {
+            margin-bottom: 0.5rem;
+        }
 
-        li:not(:last-of-type) {
-            margin-right: 6rem;
+        @include mq(bp3) {
+            display: flex;
+            width: 50%;
+
+            li {
+                margin-bottom: 0;
+            }
+
+            li:not(:last-of-type) {
+                margin-right: 6rem;
+            }
         }
 
         li a {
@@ -36,6 +45,19 @@ footer {
 
     p {
         margin-left: auto;
+    }
+
+    @include mq(bp3) {
+        display: flex;
+        // justify-content: space-between;
+        align-items: baseline;
+        margin: auto;
+        text-align: left;
+
+        h3 {
+            margin-bottom: 0;
+            margin-right: 6rem;
+        }
     }
 }
 

@@ -9,13 +9,17 @@ aside {
         align-items: self-end;
         padding-top: 4rem;
         padding-bottom: 5rem;
-    }
 
-    > * {
-        width: 50%;
+        > * {
+            width: 50%;
+        }
     }
 }
 
 aside .title {
     color: #fff;
+}
+
+.container--aside .nav a {
+    font-size: 16px;
 }
