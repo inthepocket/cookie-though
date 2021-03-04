@@ -62,7 +62,7 @@ deploy:site:
 deploy:docs:
   stage: deploy
   only:
-    - tags
+    - master
   script:
     - npm run deploy:docs
 publish:
