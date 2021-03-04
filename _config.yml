@@ -11,14 +11,29 @@ github: https://github.com/inthepocket/cookie-though/
 
 url: https://cookiethough.dev
 # Build settings
-source: "docs"
+source: "docs/jekyll"
 
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 
 # Exclude from processing.
-exclude: ["scss", "node_modules", "package-lock.json", "package.json", ".stylelintrc", ".eslintignore", ".eslintrc", ".npmrc", "Gemfile", "Gemfile.lock", "gulpfile.js", "CONTRIBUTING.md", "README.md", "cors-config.json"]
+exclude: [
+  "scss",
+  "node_modules",
+  "package-lock.json",
+  "package.json",
+  ".stylelintrc",
+  ".eslintignore",
+  ".eslintrc",
+  ".npmrc",
+  "Gemfile",
+  "Gemfile.lock",
+  "gulpfile.js",
+  "CONTRIBUTING.md",
+  "README.md",
+  "cors-config.json"
+]
 
 # Keep files on build
 keep_files: ["css"]

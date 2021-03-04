@@ -1,4 +1,4 @@
-image: node:lts
+image: timbru31/ruby-node:2.7-fermium
 
 stages:
   - dependencies
@@ -13,6 +13,7 @@ dependencies:
   stage: dependencies
   script:
     - npm ci
+    - bundle install
   variables:
     SYSTEM: "build"
 test:
@@ -34,6 +35,13 @@ build:site:
       - public
   dependencies:
     - dependencies
+build:docs:
+  stage: build
+  script:
+    - npm run build:docs
+  artifacts:
+    paths:
+      - _site
 build:lib:
   stage: build
   script:

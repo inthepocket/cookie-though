@@ -28,16 +28,16 @@
     "prettier": "prettier \"src/**/*.{js,ts,tsx}\"",
     "prepare": "./scripts/postinstall-local.sh",
     "deploy:site": "firebase deploy --token $FIREBASE_TOKEN --only hosting:site",
-    "deploy:docs": "./scripts/docsify.sh && firebase deploy --token $FIREBASE_TOKEN --only hosting:docs",
+    "deploy:docs": "firebase deploy --token $FIREBASE_TOKEN --only hosting:docs",
     "test": "jest",
     "test:coverage": "jest --coverage --reporters=jest-junit",
-    "build:sass": "dart-sass --style=compressed docs/_scss/docs.scss:docs/css/docs.min.css",
+    "build:sass": "dart-sass --style=compressed docs/_scss/docs.scss:docs/jekyll/css/docs.min.css",
     "watch:sass": "chokidar 'docs/_scss/**/*' -c 'npm run build:sass'",
     "build:jekyll": "bundle exec jekyll build --trace",
-    "watch:jekyll": "chokidar 'docs/**' '_config.yml' -c 'npm run build:jekyll && browser-sync reload'",
-    "build:docs": "npm run build:sass && npm run build:jekyll",
+    "watch:jekyll": "chokidar 'docs/jekyll/**' '_config.yml' -c 'npm run build:jekyll && browser-sync reload'",
     "serve": "browser-sync start --http --server _site",
-    "dev:docs": "npm run build:sass -s && npm run build:jekyll && npm-run-all -p serve watch:sass watch:jekyll"
+    "watch:site": "./scripts/site_exist.sh && npm-run-all -p serve watch:sass watch:jekyll",
+    "build:docs": "npm run build:sass && npm run build:jekyll"
   },
   "eslintIgnore": [
     "dist/*"
