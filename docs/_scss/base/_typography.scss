@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../fonts/SourceSansPro-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../fonts/SourceSansPro-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../fonts/SourceSansPro-SemiBold.ttf');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('../fonts/FiraCode-Regular.ttf')
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #009;
+}
+
+h2 {
+    font-size: 2.625rem;
+    font-weight: bold;
+    color: #009;
+}
+
+
+a {
+    color: #211551;
+    transition: .2s ease-out color;
+}
+
+a:hover {
+    color: black;
+}

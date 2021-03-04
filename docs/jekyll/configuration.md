@@ -1,3 +1,8 @@
+---
+layout: docs
+title: configuration
+---
+
 # Configuration of the app
 
 The plugin will not support multiple languages. In order to switch languages at runtime, you will have to call the configure function with a new config.
@@ -10,12 +15,12 @@ More information about the configuration options:
 
 The config object consists of (? means it's optional):
 
-* policies: [policy](###policy)[]
-* [permissionLabels](###permissionLabels)
-* [cookiePreferenceKey?](###cookiePreferenceKey): string
-* [header?](###header)
-* [customizeLabel](###customizeLabel): string
-* [cookiePolicy](###cookiePolicy)?
+* policies: [policy](#policy)[]
+* [permissionLabels](#permissionlabels)
+* [cookiePreferenceKey?](#cookiepreferencekey): string
+* [header?](#header)
+* [customizeLabel](#customizelabel): string
+* [cookiePolicy](#cookiepolicy)?
 
 ### policy
 
@@ -23,10 +28,10 @@ We need to support **policies**
 
 A policy consists of:
 
-* id: string | a unique string, this is the key stored in the cookie preferences array
-* label: string | the title to thow in the UI for this policy
-* description: string | the describtion in the UI that describes what the policy does
-* category: string | essential, social, statistics, functional, personalisation, marketing
+* id: string &#124; a unique string, this is the key stored in the cookie preferences array
+* label: string &#124; the title to thow in the UI for this policy
+* description: string &#124; the describtion in the UI that describes what the policy does
+* category: string &#124; essential, social, statistics, functional, personalisation, marketing
 
 Remark: policies of type essential can not be disabled.
 
@@ -36,9 +41,9 @@ These are the labels that are displayed on the buttons to accept or deny the pre
 
 The labels consist of:
 
-* accept: string | the value of the accept button when a user has customised some of the policies
-* acceptAll: string | the value of the accept button when a user accepts all policies
-* decline: string | the value of the decline button
+* accept: string &#124; the value of the accept button when a user has customised some of the policies
+* acceptAll: string &#124; the value of the accept button when a user accepts all policies
+* decline: string &#124; the value of the decline button
 
 ### cookiePreferenceKey
 
@@ -60,8 +65,8 @@ The label that is shown on the toggleButton for the policies.
 
 An optional object that contains the values used to link a user to the cookie policy
 
-* url: URL | link to a pdf or website explaining the complete cookie policy
-* label: string | text that is used for the link
+* url: URL &#124; link to a pdf or website explaining the complete cookie policy
+* label: string &#124; text that is used for the link
 
 ### Example
 

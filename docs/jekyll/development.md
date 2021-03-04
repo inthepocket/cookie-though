@@ -1,3 +1,7 @@
+---
+layout: docs
+title: development
+---
 # Development
 
 ## Getting started

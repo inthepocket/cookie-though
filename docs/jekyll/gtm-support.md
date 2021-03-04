@@ -1,3 +1,7 @@
+---
+layout: docs
+title: google tag manager
+---
 # GTM Support
 
 ## 1. Ensure Cookie Though is&nbsp;[installed](/docs/installation)
@@ -21,8 +25,8 @@ Create two triggers for each policy:
 
 In order for the triggers to work with a policy, you'll have to link it to the Cookie Though variable and make sure to add the policy. An example of the two triggers with analytics:
 
-![analytics-allow](images/analytics-allow.png)
-![analytics-init](images/analytics-init.png)
+![analytics-allow](/images/analytics-allow.png)
+![analytics-init](/images/analytics-init.png)
 
 In the custom event you can see it's also linked to an event name. This is the event the app needs to push to the dataLayer when the preferences change. This can be done easily by adding the following code to the [onPreferencesChanged](/api##onPreferencesChanged) function:
 

@@ -1,0 +1,39 @@
+title: Cookie though
+author: In the pocket
+description: >-
+  Easy to use, minimal footprint application that manages cookie preferences.
+  So delicious, you'll never need another library again 😄
+
+keywords: cookie policy, in the pocket, metomic, cookie banner, open source
+social:
+  image: /images/social.png
+github: https://github.com/inthepocket/cookie-though/
+
+url: https://cookiethough.dev
+# Build settings
+source: "docs/jekyll"
+
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Exclude from processing.
+exclude: [
+  "scss",
+  "node_modules",
+  "package-lock.json",
+  "package.json",
+  ".stylelintrc",
+  ".eslintignore",
+  ".eslintrc",
+  ".npmrc",
+  "Gemfile",
+  "Gemfile.lock",
+  "gulpfile.js",
+  "CONTRIBUTING.md",
+  "README.md",
+  "cors-config.json"
+]
+
+# Keep files on build
+keep_files: ["css"]

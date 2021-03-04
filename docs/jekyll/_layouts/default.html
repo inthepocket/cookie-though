@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+{% include head.html %}
+
+<body class="layout--default {% if page.modifier %}{{page.modifier}}{% endif %}">
+
+		{{ content }}
+
+		{% include footer.html %}
+
+</body>
+</html>

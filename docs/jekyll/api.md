@@ -1,3 +1,7 @@
+---
+layout: docs
+title: API
+---
 # API
 
 ## init

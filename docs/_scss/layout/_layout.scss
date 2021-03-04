@@ -1,0 +1,37 @@
+.container {
+    padding: 1rem;
+
+    @include mq(bp4) {
+        max-width: 90rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.layout--default {
+    background: #EFF0FC;
+    font-size: 18px;
+
+    @include mq(bp2) {
+        font-size: 20px;
+    }
+}
+
+.layout--docs {
+    font-family: 'Source Sans Pro';
+    font-size: 15px;
+
+    .container--docs {
+        padding-top: 0;
+        display: block;
+        position: relative;
+        width: 100vw;
+        max-width: 100vw;
+        height: 100%;
+        z-index: 0;
+
+        @media screen and (max-width: 768px) {
+            padding: 0;
+        }
+    }
+}
