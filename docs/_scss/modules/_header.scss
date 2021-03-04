@@ -72,11 +72,13 @@ header {
 }
 
 .header-teaser {
-    margin-top: 7rem;
-    margin-bottom: 1rem;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     display: flex;
     align-self: stretch;
     background: url('../images/shapes.svg') no-repeat center;
+    background-size: cover;
 
     @include mq(bp3) {
         margin-top: 0;
