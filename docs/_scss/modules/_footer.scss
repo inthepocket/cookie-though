@@ -2,7 +2,7 @@ footer {
     background: #009;
     color: #fff;
 
-    @include mq(bp3) {
+    @include mq(bp4) {
         height: 80px;
     }
 }
@@ -24,13 +24,20 @@ footer {
             margin-bottom: 0.5rem;
         }
 
-        @include mq(bp3) {
+        @include mq(bp4) {
             display: flex;
-            width: 50%;
 
             li {
                 margin-bottom: 0;
             }
+
+            li:not(:last-of-type) {
+                margin-right: 3rem;
+            }
+        }
+
+        @include mq(bp5) {
+            width: 50%;
 
             li:not(:last-of-type) {
                 margin-right: 6rem;
@@ -47,7 +54,7 @@ footer {
         margin-left: auto;
     }
 
-    @include mq(bp3) {
+    @include mq(bp4) {
         display: flex;
         // justify-content: space-between;
         align-items: baseline;

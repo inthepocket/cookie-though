@@ -12,7 +12,7 @@
     background: #EFF0FC;
     font-size: 18px;
 
-    @include mq(bp3) {
+    @include mq(bp2) {
         font-size: 20px;
     }
 }

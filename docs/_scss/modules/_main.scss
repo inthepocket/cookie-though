@@ -12,14 +12,40 @@
         align-items: center;
     }
 
-    .ct-example {
-        max-width: 80%;
+    .ct-usp {
+        @include mq(bp2) {
+            max-width: 568px;
+            margin: auto;
+        }
+    }
+
+    .ct-example .wrapper {
         margin: auto;
 
+        @include mq(bp1) {
+            max-width: 90%;
+        }
+
+        @include mq(bp2) {
+            max-width: 65%;
+        }
+
         @include mq(bp3) {
-            .wrapper {
-                max-width: 60%;
-            }
+            max-width: 80%;
+        }
+
+        @include mq(bp4) {
+            max-width: 65%;
+        }
+    }
+
+
+    h2 {
+        text-align: center;
+
+        @include mq(bp3) {
+            text-align: left;
+            margin-bottom: 2rem;
         }
     }
 
@@ -28,10 +54,6 @@
             max-width: 50%;
         }
     }
-}
-
-main h2 {
-    margin-bottom: 2rem;
 }
 
 main ul {

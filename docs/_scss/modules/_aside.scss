@@ -3,21 +3,69 @@ aside {
 }
 
 .container--aside {
+    p {
+        color: #211551;
+    }
+
+    .nav {
+        justify-content: flex-start;
+
+        li:first-of-type {
+            margin-right: 1rem;
+        }
+    }
+
     @include mq(bp3) {
         display: flex;
         justify-content: space-evenly;
-        align-items: self-end;
+        align-items: center;
         padding-top: 4rem;
         padding-bottom: 5rem;
 
         > * {
             width: 50%;
         }
+
+        .nav {
+            justify-content: center !important;
+            padding-bottom: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+
+            .button {
+                padding: 0.65rem 0.65rem;
+            }
+        }
+
+        .ct-read {
+            width: 47%;
+            margin-left: auto;
+        }
+    }
+
+    @include mq(bp4) {
+        .nav {
+            justify-content: flex-start !important;
+        }
+
+        .nav .button {
+            padding: 1rem 2rem;
+        }
+
+        .ct-read {
+            width: 42.5%;
+            margin-left: auto;
+        }
     }
 }
 
 aside .title {
+    text-align: center;
     color: #fff;
+
+    @include mq(bp3) {
+        text-align: left;
+    }
 }
 
 .container--aside .nav a {

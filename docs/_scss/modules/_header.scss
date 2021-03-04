@@ -9,6 +9,13 @@ header {
 .container--header {
     display: flex;
     flex-direction: column-reverse;
+
+    .header-intro > p {
+        @include mq(bp2) {
+            max-width: 568px;
+            margin: auto;
+        }
+    }
 }
 
 @include mq(bp3) {
@@ -45,6 +52,7 @@ header {
     top: 1rem;
     left: 50%;
     transform: translateX(-50%);
+    margin-bottom: 1rem;
 
     &::before {
         content: url('../images/cookiethough.svg');
@@ -64,7 +72,8 @@ header {
 }
 
 .header-teaser {
-    margin-top: 5rem;
+    margin-top: 7rem;
+    margin-bottom: 1rem;
     display: flex;
     align-self: stretch;
     background: url('../images/shapes.svg') no-repeat center;
@@ -79,13 +88,18 @@ header {
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+        border-radius: 22px;
+
+        @include mq(bp1) {
+            max-width: 90%;
+        }
 
         @include mq(bp2) {
-            max-width: 80%;
+            max-width: 65%;
         }
 
         @include mq(bp3) {
-            max-width: 75%;
+            max-width: 80%;
         }
 
         @include mq(bp4) {
@@ -95,16 +109,27 @@ header {
 }
 
 .tagline {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: #336;
     margin-top: 0;
     text-align: center;
 
+    @include mq(bp2) {
+        font-size: 2.25rem;
+    }
+
     @include mq(bp3) {
-        text-align: center;
-        font-size: 5.25rem;
+        font-size: 3.5rem;
         line-height: 1.2;
         margin-top: 1rem;
+    }
+
+    @include mq(bp4) {
+        font-size: 4.75rem;
+    }
+
+    @include mq(bp5) {
+        font-size: 5.25rem;
     }
 }
 
