@@ -21,6 +21,7 @@
     "build:lib": "parcel build src/lib.ts --no-source-maps --global CookieThough --out-dir dist --experimental-scope-hoisting && ./scripts/replace_css.sh",
     "build:docs": "npm run build:sass && npm run build:jekyll",
     "dev": "parcel src/index.html --global CookieThough",
+    "dev:site": "./scripts/site_exist.sh && npm-run-all -p serve watch:sass watch:jekyll",
     "types": "tsc",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "markdown:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
@@ -35,8 +36,7 @@
     "watch:sass": "chokidar 'docs/_scss/**/*' -c 'npm run build:sass'",
     "build:jekyll": "bundle exec jekyll build --trace",
     "watch:jekyll": "chokidar 'docs/jekyll/**' '_config.yml' -c 'npm run build:jekyll && browser-sync reload'",
-    "serve": "browser-sync start --http --server _site",
-    "watch:site": "./scripts/site_exist.sh && npm-run-all -p serve watch:sass watch:jekyll"
+    "serve": "browser-sync start --http --server _site"
   },
   "eslintIgnore": [
     "dist/*"
