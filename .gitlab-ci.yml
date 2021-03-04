@@ -13,7 +13,6 @@ dependencies:
   stage: dependencies
   script:
     - npm ci
-    - bundle install
   variables:
     SYSTEM: "build"
 test:
@@ -38,6 +37,7 @@ build:site:
 build:docs:
   stage: build
   script:
+    - bundle install
     - npm run build:docs
   artifacts:
     paths:
