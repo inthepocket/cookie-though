@@ -2,7 +2,7 @@
   "name": "cookie-though",
   "version": "1.0.0",
   "license": "MIT",
-  "homepage": "https://cookie-though-docs.web.app",
+  "homepage": "https://cookiethough.dev",
   "main": "dist/lib.js",
   "types": "dist/types/lib.d.ts",
   "repository": {
