@@ -1,6 +1,7 @@
 import { ComponentChild, FunctionalComponent, h } from 'preact';
-import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
+import { useCallback, useEffect, useRef } from 'preact/hooks';
 import useWindowResize from '../../hooks/useWindowResize';
+import getContainerHeights from '../../utils/getContainerHeights';
 import './css/collapse.css';
 
 interface Props {
@@ -11,44 +12,32 @@ interface Props {
 
 const Collapse: FunctionalComponent<Props> = ({ isOpen, children, onWindowResize }) => {
   const collapsibleDiv = useRef<HTMLDivElement>(null);
-  const [initialHeight, setInitialHeight] = useState<number | null>(null);
 
-  const expand = useCallback(
-    (isResize = false) => {
-      const rootNode = document.querySelector('.visible') as HTMLDivElement;
-      const { height, bottom } = window.getComputedStyle(rootNode);
-      if (initialHeight === null) {
-        setInitialHeight(+height.slice(0, -2));
-      }
-      const windowHeight = window.innerHeight;
-      const collapseHeight = collapsibleDiv.current.scrollHeight;
+  const expand = useCallback((isResize = false) => {
+    const { collapsedHeight, containerOffset } = getContainerHeights();
+    const windowHeight = window.innerHeight;
+    const collapseHeight = collapsibleDiv.current.scrollHeight;
 
-      const rootHeight = +height.slice(0, -2);
-      const rootPadding = +bottom.slice(0, -2) * 2;
-      const containerHeight = isResize ? initialHeight! + rootPadding : rootHeight + rootPadding;
+    if (isResize) {
+      collapsibleDiv.current.style.transition = 'height 0ms ease-out';
+    }
 
-      if (isResize) {
-        collapsibleDiv.current.style.transition = 'height 0ms ease-out';
-      }
+    const maxCollapseHeight = windowHeight - collapsedHeight - containerOffset;
+    if (maxCollapseHeight < collapseHeight) {
+      collapsibleDiv.current.style.height = `${maxCollapseHeight}px`;
+      collapsibleDiv.current.style.overflow = 'scroll';
+      collapsibleDiv.current.style.scrollBehavior = 'auto';
+      collapsibleDiv.current.scrollTop = 0;
+    } else {
+      collapsibleDiv.current.style.height = `${collapseHeight}px`;
+    }
 
-      const maxCollapseHeight = windowHeight - containerHeight;
-      if (maxCollapseHeight < collapseHeight) {
-        collapsibleDiv.current.style.height = `${maxCollapseHeight}px`;
-        collapsibleDiv.current.style.overflow = 'scroll';
-        collapsibleDiv.current.style.scrollBehavior = 'auto';
-        collapsibleDiv.current.scrollTop = 0;
-      } else {
-        collapsibleDiv.current.style.height = `${collapseHeight}px`;
-      }
+    if (isResize) {
+      setTimeout(() => (collapsibleDiv.current.style.transition = 'height 250ms ease-out'), 100);
+    }
 
-      if (isResize) {
-        setTimeout(() => (collapsibleDiv.current.style.transition = 'height 250ms ease-out'), 100);
-      }
-
-      setTimeout(() => collapsibleDiv.current.style.removeProperty('scroll-behavior'), 250);
-    },
-    [initialHeight],
-  );
+    setTimeout(() => collapsibleDiv.current.style.removeProperty('scroll-behavior'), 250);
+  }, []);
 
   const collapse = () => {
     collapsibleDiv.current.style.height = '0px';
