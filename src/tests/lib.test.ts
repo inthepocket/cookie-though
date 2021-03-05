@@ -1,6 +1,6 @@
 import { englishMockConfig, dutchMockConfig } from './__mocks__/config';
 import { init, getPreferences, onPreferencesChanged, hide, configure, show } from '../lib';
-import clearCookies from './utils/clearCookies';
+import clearCookies from './helpers/clearCookies';
 import { CookiePreferences } from '../types';
 
 describe('Cookie Though', () => {

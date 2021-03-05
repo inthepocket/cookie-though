@@ -9,7 +9,7 @@ import App, {
   CONTAINER_WIDTHS,
   MOBILE_CONTAINER_BOTTOMS,
 } from '../components/app';
-import clearCookies from './utils/clearCookies';
+import clearCookies from './helpers/clearCookies';
 import { CookiePreferences } from '../types';
 
 jest.mock('../utils/dom', () => ({

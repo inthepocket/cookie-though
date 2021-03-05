@@ -8,7 +8,7 @@ import {
 } from '../../hooks/useCookie';
 import useCookie from '../../hooks/useCookie';
 import mockConfig from '../__mocks__/config';
-import clearCookies from '../utils/clearCookies';
+import clearCookies from '../helpers/clearCookies';
 
 describe('useCookie', () => {
   let cookieOptions: CookiePreference[];
