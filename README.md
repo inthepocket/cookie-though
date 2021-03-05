@@ -6,10 +6,10 @@ So delicious, you'll never need another library again 😄
 [![Package Version](https://img.shields.io/npm/v/cookie-though.svg)](https://npm.im/cookie-though)
 
 <div align="center">
-    <img src="https://cookie-though-docs.web.app/assets/logo.png" width="100" height="auto"/>
+    <img src="https://cookiethough.dev/logo.png" width="100" height="auto"/>
 </div>
 
-view the documentation on how to [install](https://cookie-though-docs.web.app/#/docs/installation) and [configure](https://cookie-though-docs.web.app/#/docs/configuration) the app
+view the documentation on how to [install](https://cookiethough.dev/installation/) and [configure](https://cookiethough.dev/configuration/) the app
 
 ## Features
 
@@ -21,4 +21,4 @@ view the documentation on how to [install](https://cookie-though-docs.web.app/#/
 
 ## Contributing
 
-If you're interesting in contributing to Cookie Though, please read our [contributing docs](https://cookie-though-docs.web.app/#/docs/contributing) **before submitting a pull request**.
+If you're interesting in contributing to Cookie Though, please read our [contributing docs](https://cookiethough.dev/contributing/) **before submitting a pull request**.
