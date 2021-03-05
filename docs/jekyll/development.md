@@ -50,6 +50,17 @@ Parcel is used to build the project. You can build the project via npm:
 npm run build
 ```
 
+## Documentation
+
+In order to run the documentation you need to install Jekyll, you can do this by following the instructions on the [official Jekyll documentation](https://jekyllrb.com/docs/installation/)
+
+After having installed Ruby and running `bundle install`
+you can get the markiting site/documentation up and running via npm:
+
+```sh
+npm run dev:site
+```
+
 ## Deployment
 
 Deploy is done via Gitlab on Firebase Hosting. An example integration can be found on [Cookie Though Web App](https://cookie-though.web.app/)
@@ -59,6 +70,8 @@ Deploy is done via Gitlab on Firebase Hosting. An example integration can be fou
 * `npm install`: Installs dependencies
 
 * `npm run dev`: Run a development server
+
+* `npm run dev:site`: Run a development server for the marketing site and docs
 
 * `npm run build`: Production-ready build
 
