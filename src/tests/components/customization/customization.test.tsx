@@ -2,9 +2,6 @@ import { h } from 'preact';
 import toJson from 'enzyme-to-json';
 import { mount, ReactWrapper, shallow } from 'enzyme';
 import { englishMockConfig } from '../../__mocks__/config';
-jest.mock('../../../utils/dom', () => ({
-  setVisible: jest.fn(),
-}));
 import { setVisible } from '../../../utils/dom';
 
 import Button from '../../../components/button';
@@ -24,6 +21,15 @@ const defaultProps = {
   setCookiePreferences: jest.fn(),
   onWindowResize: jest.fn(),
 };
+
+jest.mock('../../../utils/dom', () => ({
+  setVisible: jest.fn(),
+}));
+
+jest.mock('../../../utils/getContainerHeights', () => ({
+  __esModule: true,
+  default: () => ({ collapsedHeight: 0, containerOffset: 0 }),
+}));
 
 describe('Customization', () => {
   afterEach(() => {

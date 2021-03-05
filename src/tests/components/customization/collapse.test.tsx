@@ -3,6 +3,11 @@ import { mount, ReactWrapper, shallow } from 'enzyme';
 
 import Collapse from '../../../components/customization/collapse';
 
+jest.mock('../../../utils/getContainerHeights', () => ({
+  __esModule: true,
+  default: () => ({ collapsedHeight: 0, containerOffset: 0 }),
+}));
+
 describe('collapse', () => {
   const onWindowResize = jest.fn();
 
