@@ -89,11 +89,14 @@ footer a {
 }
 
 .footer-title {
-    &::before {
-        content: url('../images/cookiethough-white.svg');
-        margin-right: .5rem;
+    > svg {
         position: relative;
-        top: .75rem;
+        top: 0.3rem;
+        fill-rule: evenodd;
+        clip-rule: evenodd;
+        fill: #fff;
+        stroke: #009;
+        stroke-width: 0;
     }
 }
 
