@@ -10,10 +10,29 @@ header {
     display: flex;
     flex-direction: column-reverse;
 
-    .header-intro > p {
+    .header-intro > p, .header-intro > .example {
         @include mq(bp2) {
             max-width: 568px;
             margin: auto;
+        }
+    }
+
+    .header-intro > p:last-of-type {
+        margin-bottom: 1rem;
+    }
+
+    .header-intro button {
+        font-size: 16px;
+        padding: 0.5rem 0.75rem;
+        text-decoration: none;
+        background: #009;
+        color: #fff;
+        border-radius: 5px;
+        border: 0;
+        cursor: pointer;
+
+        @include mq(bp3) {
+            padding: 1rem 3rem;
         }
     }
 }
