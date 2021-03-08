@@ -4,7 +4,7 @@ title: google tag manager
 ---
 # GTM Support
 
-## 1. Ensure Cookie Though is&nbsp;[installed](/docs/installation)
+## 1. Ensure Cookie Though is&nbsp;[installed](/installation)
 
 ## 2. Enable GTM in your app
 
@@ -14,7 +14,7 @@ Create the project on GTM and add the [GTM scripts](https://developers.google.co
 
 ### B) Create the Cookie Though variable
 
-After creating on project, create a variable with a direct cookie type and link it to [cookiePreferenceKey](/docs/configuration###cookiePreferenceKey) (cookie-preferences by default).
+After creating on project, create a variable with a direct cookie type and link it to [cookiePreferenceKey](/configuration###cookiePreferenceKey) (cookie-preferences by default).
 
 ### C) Create the triggers for adding tags
 
