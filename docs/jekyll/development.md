@@ -63,7 +63,7 @@ npm run dev:site
 
 ## Deployment
 
-Deploy is done via Gitlab on Firebase Hosting. An example integration can be found on [Cookie Though Web App](https://cookie-though.web.app/)
+Deploy is done via Gitlab on Firebase Hosting. An example integration can be found on the [homepage](https://cookiethough.dev/)
 
 ## Overview CLI Commands
 

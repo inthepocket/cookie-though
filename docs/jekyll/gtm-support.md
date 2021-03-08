@@ -14,7 +14,7 @@ Create the project on GTM and add the [GTM scripts](https://developers.google.co
 
 ### B) Create the Cookie Though variable
 
-After creating on project, create a variable with a direct cookie type and link it to [cookiePreferenceKey](/configuration###cookiePreferenceKey) (cookie-preferences by default).
+After creating on project, create a variable with a direct cookie type and link it to [cookiePreferenceKey](/configuration/#cookiepreferencekey) (cookie-preferences by default).
 
 ### C) Create the triggers for adding tags
 
@@ -28,7 +28,7 @@ In order for the triggers to work with a policy, you'll have to link it to the C
 ![analytics-allow](/images/analytics-allow.png)
 ![analytics-init](/images/analytics-init.png)
 
-In the custom event you can see it's also linked to an event name. This is the event the app needs to push to the dataLayer when the preferences change. This can be done easily by adding the following code to the [onPreferencesChanged](/api##onPreferencesChanged) function:
+In the custom event you can see it's also linked to an event name. This is the event the app needs to push to the dataLayer when the preferences change. This can be done easily by adding the following code to the [onPreferencesChanged](/api/#onpreferenceschanged) function:
 
 ```js
 // With cdn
