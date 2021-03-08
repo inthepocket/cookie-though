@@ -13,12 +13,9 @@ header {
     .header-intro > p, .header-intro > .example {
         @include mq(bp2) {
             max-width: 568px;
-            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
         }
-    }
-
-    .header-intro > p:last-of-type {
-        margin-bottom: 1rem;
     }
 
     .header-intro button {
@@ -73,19 +70,22 @@ header {
     transform: translateX(-50%);
     margin-bottom: 1rem;
 
-    &::before {
-        content: url('../images/cookiethough.svg');
-        margin-right: 0.5rem;
+    > svg {
         position: relative;
-        top: .7rem;
+        top: 0.1rem;
+        fill-rule: evenodd;
+        clip-rule: evenodd;
+        fill: #009;
+        stroke: #fff;
+        stroke-width: 0;
     }
 
     @include mq(bp3) {
         font-size: 2rem;
         top: 2rem;
 
-        &::before {
-            top: 0.9 rem
+        > svg {
+            top: 0.3rem;
         }
     }
 }
@@ -140,9 +140,9 @@ header {
     }
 
     @include mq(bp3) {
+        text-align: left;
         font-size: 3.5rem;
         line-height: 1.2;
-        margin-top: 1rem;
     }
 
     @include mq(bp4) {
