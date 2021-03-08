@@ -12,6 +12,7 @@ export const englishMockConfig = {
 
 export const dutchMockConfig = {
   policies: dutchMockPolicies,
+  essentialLabel: 'Altijd aan',
   header: {
     subTitle: 'Je hebt waarschijnlijk genoeg van deze banners...',
     title: 'cookie though?',

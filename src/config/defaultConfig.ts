@@ -4,7 +4,7 @@ export const defaultPolicies: Policy[] = [
   {
     id: 'essential',
     label: 'Strictly necessary cookies',
-    description: 'Always on',
+    description: 'These cookies are required to run the site.',
     category: 'essential',
   },
   {
@@ -41,6 +41,7 @@ export const defaultPolicies: Policy[] = [
 
 const defaultConfig = {
   policies: defaultPolicies,
+  essentialLabel: 'Always on',
   header: {
     subTitle: "You're probably fed up with these banners...",
     title: 'cookie though?',

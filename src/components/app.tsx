@@ -75,6 +75,7 @@ const App: FunctionalComponent<Props> = ({
   customizeLabel,
   cookiePolicy,
   permissionLabels,
+  essentialLabel,
   ee,
 }) => {
   const { getCookiePreferences, setCookiePreferences } = useCookie({
@@ -111,6 +112,7 @@ const App: FunctionalComponent<Props> = ({
         cookiePolicy={cookiePolicy}
         customizeLabel={customizeLabel}
         permissionLabels={permissionLabels}
+        essentialLabel={essentialLabel}
         setCookiePreferences={setCookiePreferences}
         onWindowResize={setModalWidth}
       />

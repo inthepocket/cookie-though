@@ -1,15 +1,16 @@
 import { FunctionalComponent, h } from 'preact';
 import './css/option.css';
-import { CookieOption } from '../../types';
+import { Config, CookieOption } from '../../types';
 import { isEssential } from '../../utils';
 
 interface Props {
   isOpen: boolean;
   option: CookieOption;
+  essentialLabel?: Config['essentialLabel'];
   onToggle: () => void;
 }
 
-const Option: FunctionalComponent<Props> = ({ isOpen, option, onToggle }) => {
+const Option: FunctionalComponent<Props> = ({ isOpen, option, essentialLabel, onToggle }) => {
   const isEssentialCookie = isEssential(option.category);
 
   return (
@@ -32,9 +33,9 @@ const Option: FunctionalComponent<Props> = ({ isOpen, option, onToggle }) => {
       <label htmlFor={option.id} className="ct-option-info">
         <p>
           <strong>{option.label}</strong>
-          {!isEssentialCookie && option.description}
+          {option.description}
         </p>
-        <span className="ct-slider">{isEssentialCookie && option.description}</span>
+        <span className="ct-slider">{isEssentialCookie && essentialLabel}</span>
       </label>
     </div>
   );

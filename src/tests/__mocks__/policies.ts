@@ -4,7 +4,7 @@ export const dutchMockPolicies: Policy[] = [
   {
     id: 'essential',
     label: 'Strict noodzakelijke cookies',
-    description: 'Altijd aan',
+    description: 'Deze cookies zijn noodzakelijk om de website te doen draaien.',
     category: 'essential',
   },
   {
@@ -31,7 +31,7 @@ export const englishMockPolicies: Policy[] = [
   {
     id: 'essential',
     label: 'Strictly necessary cookies',
-    description: 'Always on',
+    description: 'These cookies are required to run the site.',
     category: 'essential',
   },
   {

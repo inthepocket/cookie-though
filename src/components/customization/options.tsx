@@ -7,12 +7,25 @@ interface Props {
   isOpen: boolean;
   options: CookieOption[];
   cookiePolicy?: Config['cookiePolicy'];
+  essentialLabel?: Config['essentialLabel'];
   onToggle: (key: number) => void;
 }
 
-const Options: FunctionalComponent<Props> = ({ isOpen, options, cookiePolicy, onToggle }) => {
+const Options: FunctionalComponent<Props> = ({
+  isOpen,
+  options,
+  cookiePolicy,
+  essentialLabel,
+  onToggle,
+}) => {
   const cookies = options.map((option, i) => (
-    <Option key={i} isOpen={isOpen} option={option} onToggle={() => onToggle(i)} />
+    <Option
+      key={i}
+      isOpen={isOpen}
+      option={option}
+      essentialLabel={essentialLabel}
+      onToggle={() => onToggle(i)}
+    />
   ));
 
   return (

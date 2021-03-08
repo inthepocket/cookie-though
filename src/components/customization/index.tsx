@@ -13,6 +13,7 @@ interface Props {
   customizeLabel: Config['customizeLabel'];
   permissionLabels: Config['permissionLabels'];
   cookiePolicy?: Config['cookiePolicy'];
+  essentialLabel?: Config['essentialLabel'];
   setCookiePreferences(cookiePreferences: CookiePreferences): CookiePreferences;
   onWindowResize(): void;
 }
@@ -38,6 +39,7 @@ const Customization: FunctionalComponent<Props> = ({
   customizeLabel,
   permissionLabels,
   cookiePolicy,
+  essentialLabel,
   setCookiePreferences,
   onWindowResize,
 }) => {
@@ -94,8 +96,9 @@ const Customization: FunctionalComponent<Props> = ({
         <Options
           isOpen={isActive}
           options={options}
-          onToggle={toggleOption}
           cookiePolicy={cookiePolicy}
+          essentialLabel={essentialLabel}
+          onToggle={toggleOption}
         />
       </Collapse>
       <div className="ct-acceptance">

@@ -21,7 +21,7 @@ exports[`Cookie Though should render properly 1`] = `
         Array [
           Object {
             "category": "essential",
-            "description": "Always on",
+            "description": "These cookies are required to run the site.",
             "id": "essential",
             "label": "Strictly necessary cookies",
           },
