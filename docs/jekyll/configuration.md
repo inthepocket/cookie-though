@@ -16,6 +16,7 @@ More information about the configuration options:
 The config object consists of (? means it's optional):
 
 * policies: [policy](#policy)[]
+* [essentialLabel?](#essentiallabel): string
 * [permissionLabels](#permissionlabels)
 * [cookiePreferenceKey?](#cookiepreferencekey): string
 * [header?](#header)
@@ -34,6 +35,10 @@ A policy consists of:
 * category: string &#124; essential, social, statistics, functional, personalisation, marketing
 
 Remark: policies of type essential can not be disabled.
+
+### essentialLabel
+
+This is the label that will be displayed instead of the slider if essential cookies are present.
 
 ### permissionLabels
 
@@ -98,6 +103,7 @@ An optional object that contains the values used to link a user to the cookie po
       "description": "We need to save some social cookies, for the website to function properly.",
     },
   ],
+  "essentialLabel": "Always on",
   "permissionLabels": {
     "accept": "Accept",
     "acceptAll": "Accept all",

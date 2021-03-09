@@ -23,6 +23,7 @@ export interface Policy {
 
 export interface Config {
   policies: Policy[];
+  essentialLabel?: string;
   permissionLabels: {
     accept: string;
     acceptAll: string;

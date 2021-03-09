@@ -18,6 +18,7 @@
 }
 
 .ct-essential {
+  color: var(--ct-policy-enabled);
   background-color: var(--ct-policy-essential);
   border-color: var(--ct-policy-essential);
 }
@@ -26,7 +27,7 @@
   color: var(--ct-text);
 }
 
-.ct-enabled .ct-option-info p {
+.ct-enabled:not(.ct-essential) .ct-option-info p {
   color: var(--ct-policy-text-enabled);
 }
 
@@ -64,7 +65,7 @@
   display: block;
 }
 
-input[type="checkbox"]:not(:disabled) + .ct-option-info strong {
+input[type="checkbox"] + .ct-option-info strong {
   margin-bottom: var(--ct-text-margin);
 }
 
