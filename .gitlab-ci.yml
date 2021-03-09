@@ -65,6 +65,8 @@ deploy:docs:
     - master
   script:
     - npm run deploy:docs
+  dependencies:
+    - build:docs
 publish:
   stage: publish
   only:
