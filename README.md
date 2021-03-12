@@ -4,6 +4,7 @@ Easy to use, minimal footprint application that manages cookie preferences. <br>
 So delicious, you'll never need another library again 😄
 
 [![Package Version](https://img.shields.io/npm/v/cookie-though.svg)](https://npm.im/cookie-though)
+[![Gzip Size](http://img.badgesize.io/https://unpkg.com/cookie-though/dist/lib.js?compression=gzip&label=gzip%20size)](https://unpkg.com/cookie-though)
 
 <div align="center">
     <img src="https://cookiethough.dev/logo.png" width="100" height="auto"/>
