@@ -22,4 +22,4 @@ view the documentation on how to [install](https://cookiethough.dev/installation
 
 ## Contributing
 
-If you're interesting in contributing to Cookie Though, please read our [contributing docs](https://cookiethough.dev/contributing/) **before submitting a pull request**.
+If you're interesting in contributing to Cookie Though, please read our [contribution guidelines](https://github.com/inthepocket/cookie-though/blob/master/CONTRIBUTING.md) **before submitting a pull request**.
