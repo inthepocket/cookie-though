@@ -34,7 +34,7 @@ describe('collapse', () => {
       const wrapper = mount(
         <div className="visible">
           <Collapse isOpen={true} onWindowResize={onWindowResize}>
-            <p></p>
+            <div className="ct-policies"></div>
           </Collapse>
           <div class="ct-acceptance"></div>
         </div>,
@@ -49,7 +49,7 @@ describe('collapse', () => {
       const wrapper = mount(
         <div className="visible">
           <Collapse isOpen={true} onWindowResize={onWindowResize}>
-            <p></p>
+            <div className="ct-policies"></div>
           </Collapse>
           <div class="ct-acceptance"></div>
         </div>,
@@ -67,7 +67,7 @@ describe('collapse', () => {
       const wrapper = mount(
         <div className="visible">
           <Collapse isOpen={true} onWindowResize={onWindowResize}>
-            <p></p>
+            <div className="ct-policies"></div>
           </Collapse>
         </div>,
       );
@@ -87,7 +87,7 @@ describe('collapse', () => {
         const wrapper = mount(
           <div className="visible">
             <Collapse isOpen={true} onWindowResize={onWindowResize}>
-              <p></p>
+              <div className="ct-policies"></div>
             </Collapse>
           </div>,
         );

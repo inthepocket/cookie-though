@@ -119,6 +119,7 @@ describe('Cookie Though', () => {
 
   describe('if the user has a different browser font setting', () => {
     const renderApp = (fontSize: string) => {
+      container.style.fontSize = fontSize;
       return mount(
         <App
           customizeLabel="customize"

@@ -29,7 +29,7 @@ const Options: FunctionalComponent<Props> = ({
   ));
 
   return (
-    <div>
+    <div className="ct-policies">
       {cookies}
       {cookiePolicy && (
         <div className="ct-declaration">

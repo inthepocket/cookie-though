@@ -33,6 +33,7 @@ module.exports = {
       files: ['*.js', '*.ts', '*.tsx', '*.d.ts'],
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
       },
     },
   ],

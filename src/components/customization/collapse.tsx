@@ -16,7 +16,7 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children, onWindowResize
   const expand = useCallback((isResize = false) => {
     const { collapsedHeight, containerOffset } = getContainerHeights();
     const windowHeight = window.innerHeight;
-    const collapseHeight = collapsibleDiv.current.scrollHeight;
+    const collapseHeight = collapsibleDiv.current.querySelector('.ct-policies')!.scrollHeight;
 
     if (isResize) {
       collapsibleDiv.current.style.transition = 'height 0ms ease-out';
