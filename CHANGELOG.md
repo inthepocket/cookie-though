@@ -8,6 +8,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Nothing yet!
 
+## [1.1.3] - 2021-04-12
+
+### Added
+
+- Added license badge to README.MD
+- Added Codecov badge to README.MD and coverage report on pull requests
+- Added issues templates
+- Added stale detection for issues
+
+### Changed
+
+- Updated (dev)dependencies to latest versions
+
 ## [1.1.3] - 2021-03-16
 
 ### Fixed
