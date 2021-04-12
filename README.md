@@ -6,6 +6,7 @@ So delicious, you'll never need another library again 😄
 [![Package Version](https://img.shields.io/npm/v/cookie-though.svg)](https://npm.im/cookie-though)
 [![Gzip Size](http://img.badgesize.io/https://unpkg.com/cookie-though/dist/lib.js?compression=gzip&label=gzip%20size)](https://unpkg.com/cookie-though)
 [![codecov](https://codecov.io/gh/inthepocket/cookie-though/branch/master/graph/badge.svg?token=LI5IA6E55V)](https://codecov.io/gh/inthepocket/cookie-though)
+![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 <div align="center">
     <img src="https://cookiethough.dev/logo.png" width="100" height="auto"/>
