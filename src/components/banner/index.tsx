@@ -3,18 +3,14 @@ import { Config } from '../../types';
 import './style.css';
 
 interface Props {
-  header?: Config['header'];
+  header: Config['header'];
 }
 
 const Banner: FunctionalComponent<Props> = ({ header }) => {
   const keyExists = (key: keyof NonNullable<Config['header']>) => {
-    if (!header || !Object.keys(header).length) {
-      return false;
-    }
-
     return key in header;
   };
-  const getValue = (key: keyof NonNullable<Config['header']>) => header![key];
+  const getValue = (key: keyof NonNullable<Config['header']>) => header[key];
 
   return (
     <div className="ct-banner">
@@ -40,9 +36,7 @@ const Banner: FunctionalComponent<Props> = ({ header }) => {
           </svg>
         </div>
       </div>
-      {keyExists('description') && (
-        <div className="ct-banner-explanation">{getValue('description')}</div>
-      )}
+      <div className="ct-banner-explanation">{getValue('description')}</div>
     </div>
   );
 };

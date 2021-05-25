@@ -5,8 +5,9 @@ import mockConfig from '../../__mocks__/config';
 import Banner from '../../../components/banner';
 
 describe('Banner', () => {
-  it('can render without a header', () => {
-    const wrapper = shallow(<Banner />);
+  it('can render without a title and subTitle', () => {
+    const { description } = mockConfig.header;
+    const wrapper = shallow(<Banner header={{ description }} />);
     expect(wrapper.find('.ct-banner-header').children().exists()).toBeFalsy();
   });
 

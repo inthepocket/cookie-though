@@ -19,7 +19,7 @@ The config object consists of (? means it's optional):
 * [essentialLabel?](#essentiallabel): string
 * [permissionLabels](#permissionlabels)
 * [cookiePreferenceKey?](#cookiepreferencekey): string
-* [header?](#header)
+* [header](#header)
 * [customizeLabel](#customizelabel): string
 * [cookiePolicy](#cookiepolicy)?
 
@@ -56,10 +56,10 @@ This is an an optional string that allows the developer to specify the name of t
 
 ### header
 
-An optional object that contains the values that are show in the banner of the cookie though modal
+An object that contains the values that are show in the banner of the cookie though modal
 
-* title: string
-* subtitle: string
+* title?: string
+* subtitle?: string
 * description: string
 
 ### customizeLabel

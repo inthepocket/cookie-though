@@ -8,6 +8,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Nothing yet!
 
+## [1.1.5] - 2021-05-26
+
+### Added
+
+- Added missing customizeLabel
+
+### Fixed
+
+- Fix header description being optional to avoid errors
+
+### Changed
+
+- Updated (dev)dependencies to latest versions
+
 ## [1.1.4] - 2021-04-12
 
 ### Added
