@@ -81,6 +81,6 @@
     "parcel-bundler": "1.12.5",
     "preact-render-to-string": "5.1.19",
     "prettier": "2.3.0",
-    "typescript": "4.2.4"
+    "typescript": "4.3.2"
   }
 }
