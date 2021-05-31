@@ -10,6 +10,11 @@ exports[`Cookie Though should render properly 1`] = `
   >
     <App
       customizeLabel="customize"
+      header={
+        Object {
+          "description": "Everybody wants to show his best side - and so do we. That's why we use cookies to guarantee you a better experience.",
+        }
+      }
       permissionLabels={
         Object {
           "accept": "Accept",

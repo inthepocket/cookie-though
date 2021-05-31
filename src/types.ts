@@ -30,10 +30,10 @@ export interface Config {
     decline: string;
   };
   cookiePreferenceKey?: string;
-  header?: {
+  header: {
     title?: string;
     subTitle?: string;
-    description?: string;
+    description: string;
   };
   customizeLabel: string;
   cookiePolicy?: {

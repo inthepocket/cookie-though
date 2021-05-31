@@ -16,6 +16,7 @@ jest.mock('../utils/dom', () => ({
   setVisible: jest.fn().mockImplementation(() => 'You have called setVisible'),
 }));
 import { setVisible } from '../utils/dom';
+const { description } = englishMockConfig.header;
 
 describe('Cookie Though', () => {
   let container: HTMLDivElement;
@@ -50,6 +51,7 @@ describe('Cookie Though', () => {
       mount(
         <App
           customizeLabel="customize"
+          header={{ description }}
           policies={englishMockConfig.policies}
           permissionLabels={englishMockConfig.permissionLabels}
         />,
@@ -74,6 +76,7 @@ describe('Cookie Though', () => {
         <div className="cookie-though">
           <App
             customizeLabel="customize"
+            header={{ description }}
             policies={englishMockPolicies}
             permissionLabels={englishMockConfig.permissionLabels}
           />
@@ -90,6 +93,7 @@ describe('Cookie Though', () => {
         <div className="cookie-though">
           <App
             customizeLabel="customize"
+            header={{ description }}
             policies={englishMockPolicies}
             permissionLabels={englishMockConfig.permissionLabels}
           />
@@ -108,6 +112,7 @@ describe('Cookie Though', () => {
         <div className="cookie-though">
           <App
             customizeLabel="customize"
+            header={{ description }}
             policies={englishMockPolicies}
             permissionLabels={englishMockConfig.permissionLabels}
           />
@@ -123,6 +128,7 @@ describe('Cookie Though', () => {
       return mount(
         <App
           customizeLabel="customize"
+          header={{ description }}
           policies={englishMockPolicies}
           permissionLabels={englishMockConfig.permissionLabels}
         />,
