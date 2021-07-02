@@ -40,4 +40,5 @@ export interface Config {
     url: string;
     label: string;
   };
+  containerElement?: keyof HTMLElementTagNameMap;
 }
