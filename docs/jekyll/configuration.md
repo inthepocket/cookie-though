@@ -22,6 +22,7 @@ The config object consists of (? means it's optional):
 * [header](#header)
 * [customizeLabel](#customizelabel): string
 * [cookiePolicy](#cookiepolicy)?
+* [containerElement](#containerElement)?
 
 ### policy
 
@@ -73,6 +74,11 @@ An optional object that contains the values used to link a user to the cookie po
 * url: URL &#124; link to a pdf or website explaining the complete cookie policy
 * label: string &#124; text that is used for the link
 
+### containerElement
+
+Optionally provide the HTML element you want to use for the wrapper container cookie-though is displayed in.
+Defaults to `aside`.
+
 ### Example
 
 ```json
@@ -120,5 +126,6 @@ An optional object that contains the values used to link a user to the cookie po
     "label":"Read the full cookie declaration",
   },
   "customizeLabel": "Customize",
+  "containerElement": "div"
 };
 ```
