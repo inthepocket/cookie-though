@@ -11,36 +11,38 @@ interface Props {
 }
 
 const Collapse: FunctionalComponent<Props> = ({ isOpen, children, onWindowResize }) => {
-  const collapsibleDiv = useRef<HTMLDivElement>(null);
+  const collapsibleDivRef = useRef<HTMLDivElement>(null);
 
   const expand = useCallback((isResize = false) => {
     const { collapsedHeight, containerOffset } = getContainerHeights();
     const windowHeight = window.innerHeight;
-    const collapseHeight = collapsibleDiv.current.querySelector('.ct-policies')!.scrollHeight;
+    const collapsibleDiv = collapsibleDivRef.current as HTMLElement;
+    const collapseHeight = collapsibleDiv.querySelector('.ct-policies')!.scrollHeight;
 
     if (isResize) {
-      collapsibleDiv.current.style.transition = 'height 0ms ease-out';
+      collapsibleDiv.style.transition = 'height 0ms ease-out';
     }
 
     const maxCollapseHeight = windowHeight - collapsedHeight - containerOffset;
     if (maxCollapseHeight < collapseHeight) {
-      collapsibleDiv.current.style.height = `${maxCollapseHeight}px`;
-      collapsibleDiv.current.style.overflow = 'scroll';
-      collapsibleDiv.current.style.scrollBehavior = 'auto';
-      collapsibleDiv.current.scrollTop = 0;
+      collapsibleDiv.style.height = `${maxCollapseHeight}px`;
+      collapsibleDiv.style.overflow = 'scroll';
+      collapsibleDiv.style.scrollBehavior = 'auto';
+      collapsibleDiv.scrollTop = 0;
     } else {
-      collapsibleDiv.current.style.height = `${collapseHeight}px`;
+      collapsibleDiv.style.height = `${collapseHeight}px`;
     }
 
     if (isResize) {
-      setTimeout(() => (collapsibleDiv.current.style.transition = 'height 250ms ease-out'), 100);
+      setTimeout(() => (collapsibleDiv.style.transition = 'height 250ms ease-out'), 100);
     }
 
-    setTimeout(() => collapsibleDiv.current.style.removeProperty('scroll-behavior'), 250);
+    setTimeout(() => collapsibleDiv.style.removeProperty('scroll-behavior'), 250);
   }, []);
 
   const collapse = () => {
-    collapsibleDiv.current.style.height = '0px';
+    const collapsibleDiv = collapsibleDivRef.current as HTMLElement;
+    collapsibleDiv.style.height = '0px';
   };
 
   const handleWindowResize = () => {
@@ -59,7 +61,7 @@ const Collapse: FunctionalComponent<Props> = ({ isOpen, children, onWindowResize
   }, [isOpen]);
 
   return (
-    <div className="ct-collapse" ref={collapsibleDiv} aria-expanded={isOpen} tabIndex={-1}>
+    <div className="ct-collapse" ref={collapsibleDivRef} aria-expanded={isOpen} tabIndex={-1}>
       {children}
     </div>
   );
