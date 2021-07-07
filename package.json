@@ -55,7 +55,7 @@
     "@babel/core": "7.14.6",
     "@babel/plugin-transform-react-jsx": "7.14.5",
     "@types/enzyme": "3.10.8",
-    "@types/jest": "26.0.23",
+    "@types/jest": "26.0.24",
     "@types/lodash.throttle": "4.1.6",
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "@typescript-eslint/parser": "4.28.2",
