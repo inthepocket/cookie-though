@@ -54,7 +54,6 @@ const defaultConfig = {
     decline: 'Decline',
   },
   customizeLabel: 'Customize',
-  containerElement: 'aside',
 };
 
 export default defaultConfig;

@@ -16,7 +16,7 @@ const ee = new EventEmitter();
 
 export const configure = (conf: Config) => {
   config = conf;
-  const container = document.createElement(config.containerElement);
+  const container = document.createElement('aside');
   container.className = 'cookie-though';
   container.style.bottom = '-600px';
   container.style.display = 'none';
