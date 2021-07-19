@@ -119,6 +119,6 @@ An optional object that contains the values used to link a user to the cookie po
     "url":"https://inthepocket.com/cookie-policy",
     "label":"Read the full cookie declaration",
   },
-  "customizeLabel": "Customize",
+  "customizeLabel": "Customize"
 };
 ```
