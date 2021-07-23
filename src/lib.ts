@@ -1,3 +1,5 @@
+import { useADPC } from './utils/ADPC';
+import { hasADPC } from './utils/ADPC';
 import App from './components/app';
 import { EventEmitter } from 'events';
 import { setVisible } from './utils/dom';
@@ -16,6 +18,8 @@ const ee = new EventEmitter();
 
 export const configure = (conf: Config) => {
   config = conf;
+  // TODO: set up event emitter here
+  if (hasADPC()) return;
   const container = document.createElement('aside');
   container.className = 'cookie-though';
   container.style.bottom = '-600px';
@@ -58,7 +62,8 @@ export const onPreferencesChanged = (listener: (cookiePreferences: CookiePrefere
   ee.on(COOKIE_PREFERENCES_CHANGED_EVENT, listener);
 };
 
-export const getPreferences = () => {
+export const getPreferences = async () => {
+  if (hasADPC()) return useADPC(config.policies);
   if (!config) configure(defaultConfig);
 
   return getCookiePreferences(
@@ -71,12 +76,14 @@ export const getPreferences = () => {
 };
 
 export const show = () => {
+  if (hasADPC()) return;
   if (!config) init(defaultConfig);
 
   return setVisible(true);
 };
 
 export const hide = () => {
+  if (hasADPC()) return;
   if (!config) init(defaultConfig);
 
   return setVisible(false);

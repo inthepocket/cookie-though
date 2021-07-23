@@ -41,5 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('manage-cookie-though')?.addEventListener('click', () => {
     show();
   });
-  console.log('current preferences', getPreferences());
+  getPreferences()
+    .then(preferences => console.log('current preferences', preferences))
+    .catch(error => console.error(error));
 });
