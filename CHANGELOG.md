@@ -8,6 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Nothing yet!
 
+## [1.2.0] - 2021-07-19
+
+### Added
+
+- Make use of aside container instead of div
+
+### Changed
+
+- Updated (dev)dependencies to latest versions
+
 ## [1.1.5] - 2021-05-26
 
 ### Added
