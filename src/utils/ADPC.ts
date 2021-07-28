@@ -1,20 +1,39 @@
-import { Config, CookiePreferences } from '../types';
+import { COOKIE_PREFERENCES_CHANGED_EVENT } from './../hooks/useCookie';
+import { EventEmitter } from 'events';
+import { Config } from '../types';
 
 export const hasADPC = () => !!navigator.dataProtectionControl;
 
-export const useADPC = async (policies: Config['policies']): Promise<CookiePreferences> => {
+export const getADPCPreferences = (policies: Config['policies']) => {
   const request = policies.map(policy => ({
     id: policy.category,
     text: `${policy.category}: ${policy.description}`,
   }));
 
-  const { consent } = await navigator.dataProtectionControl!.request(request);
+  return navigator
+    .dataProtectionControl!.request(request)
+    .then(({ consent }) => {
+      return consent;
+    })
+    .catch(error => console.error(error));
+};
 
-  return {
-    isCustomised: true,
-    cookieOptions: policies.map(policy => ({
-      id: policy.id,
-      isEnabled: consent.indexOf(policy.category) !== -1,
-    })),
-  };
+export const useADPC = (policies: Config['policies'], ee: EventEmitter) => {
+  const request = policies.map(policy => ({
+    id: policy.category,
+    text: `${policy.category}: ${policy.description}`,
+  }));
+
+  navigator
+    .dataProtectionControl!.request(request)
+    .then(({ consent }) => {
+      return ee.emit(COOKIE_PREFERENCES_CHANGED_EVENT, {
+        isCustomised: true,
+        cookieOptions: policies.map(policy => ({
+          id: policy.id,
+          isEnabled: consent.indexOf(policy.category) !== -1,
+        })),
+      });
+    })
+    .catch(error => console.error(error));
 };

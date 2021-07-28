@@ -1,4 +1,4 @@
-import { useADPC } from './utils/ADPC';
+import { useADPC, getADPCPreferences } from './utils/ADPC';
 import { hasADPC } from './utils/ADPC';
 import App from './components/app';
 import { EventEmitter } from 'events';
@@ -18,8 +18,11 @@ const ee = new EventEmitter();
 
 export const configure = (conf: Config) => {
   config = conf;
-  // TODO: set up event emitter here
-  if (hasADPC()) return;
+
+  if (config.experimental?.enableADPC) {
+    if (hasADPC()) return useADPC(config.policies, ee);
+  }
+
   const container = document.createElement('aside');
   container.className = 'cookie-though';
   container.style.bottom = '-600px';
@@ -63,8 +66,8 @@ export const onPreferencesChanged = (listener: (cookiePreferences: CookiePrefere
 };
 
 export const getPreferences = async () => {
-  if (hasADPC()) return useADPC(config.policies);
   if (!config) configure(defaultConfig);
+  if (hasADPC()) return getADPCPreferences(config.policies);
 
   return getCookiePreferences(
     config.policies.map(policy => ({
@@ -76,14 +79,14 @@ export const getPreferences = async () => {
 };
 
 export const show = () => {
-  if (hasADPC()) return;
+  if (config.experimental?.enableADPC && hasADPC()) return;
   if (!config) init(defaultConfig);
 
   return setVisible(true);
 };
 
 export const hide = () => {
-  if (hasADPC()) return;
+  if (config.experimental?.enableADPC && hasADPC()) return;
   if (!config) init(defaultConfig);
 
   return setVisible(false);

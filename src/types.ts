@@ -40,4 +40,7 @@ export interface Config {
     url: string;
     label: string;
   };
+  experimental?: {
+    enableADPC?: boolean;
+  };
 }

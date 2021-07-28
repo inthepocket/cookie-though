@@ -8,6 +8,9 @@ export const englishMockConfig = {
     url: '#',
     label: 'Read the full cookie declaration',
   },
+  experimental: {
+    enableADPC: true,
+  },
 };
 
 export const dutchMockConfig = {
