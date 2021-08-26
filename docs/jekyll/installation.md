@@ -19,7 +19,7 @@ Add the following script tags in your html:
 
 ```html
 <head>
-  <script src="https://unpkg.com/cookie-though@<version>"></script>
+  <script src="https://cookiethough.dev/lib/<version>"></script>
 </head>
 <html>
   <body>
