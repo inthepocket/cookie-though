@@ -61,7 +61,7 @@
     "@types/jest": "27.0.1",
     "@types/lodash.throttle": "4.1.6",
     "@typescript-eslint/eslint-plugin": "4.31.0",
-    "@typescript-eslint/parser": "4.31.0",
+    "@typescript-eslint/parser": "4.31.1",
     "browser-sync": "2.27.5",
     "chokidar": "3.5.2",
     "chokidar-cli": "3.0.0",
