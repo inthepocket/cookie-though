@@ -60,7 +60,7 @@
     "@types/enzyme": "3.10.9",
     "@types/jest": "27.0.2",
     "@types/lodash.throttle": "4.1.6",
-    "@typescript-eslint/eslint-plugin": "4.32.0",
+    "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.32.0",
     "browser-sync": "2.27.5",
     "chokidar": "3.5.2",
