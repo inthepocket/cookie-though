@@ -43,12 +43,15 @@ describe('Cookie Though', () => {
 
     it('can toggle the cookie wall with the setVisible function', () => {
       init({ ...englishMockConfig });
+      const container = document.querySelector('aside');
 
       hide();
-      expect(document.querySelector('.visible')).toBeNull();
+      expect(container?.classList).not.toContain('visible');
+      expect(container?.getAttribute('aria-hidden')).toBe('true');
 
       show();
-      expect(document.querySelector('.visible')).toBeDefined();
+      expect(container?.classList).toContain('visible');
+      expect(container?.getAttribute('aria-hidden')).toBe('false');
     });
 
     it('will return the preferences with the getPreferences function', () => {
