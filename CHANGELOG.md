@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Nothing yet!
 
+## [1.3.0] - 2021-11-05
+
+### Added
+
+- use aria-hidden/display none instead of tab index to hide the div
+- add font-weight property to styling
+- updated packages
+
 ## [1.2.0] - 2021-07-19
 
 ### Added
