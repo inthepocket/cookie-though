@@ -64,11 +64,13 @@ You can easily define your own CSS on top of the CSS that is already included by
   /* The font size of the customize button and permission button labels */
   --ct-button-font-size: 0.8125rem;
 
-  /* The font used in the app */
+  /* The font and font weight used in the app */
   --ct-primary-font: 'Arial';
+  --ct-primary-font-weight: 400;
 
-  /* The font used for header description and policy description */
+  /* The font and font weight used for header description and policy description */
   --ct-secondary-font: 'Times';
+  --ct-secondary-font-weight: 400;
 
   /* The z-index you want the root container to have */
   --ct-z-index: 9999;

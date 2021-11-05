@@ -5,6 +5,7 @@
   display: flex;
   font-size: var(--ct-text-font-size);
   font-family: var(--ct-secondary-font), Arial, Helvetica, sans-serif;
+  font-weight: var(--ct-secondary-font-weight);
   transition: background-color 250ms linear, color 250ms linear, border-color 250ms linear;
 }
 

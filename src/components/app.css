@@ -1,6 +1,7 @@
 :host(.cookie-though) {
   display: block !important;
   font-family: var(--ct-primary-font), Arial, Helvetica, sans-serif;
+  font-weight: var(--ct-primary-font-weight);
   position: fixed;
   left: var(--ct-default-padding);
   width: 343px;
@@ -32,6 +33,7 @@
 
 :host(.cookie-though) {
   font-family: var(--ct-primary-font), Arial, Helvetica, sans-serif;
+  font-weight: var(--ct-primary-font-weight);
   font-size: var(--ct-text-font-size);
 }
 
@@ -63,7 +65,9 @@
   --ct-text-font-size: 0.75rem;
   --ct-button-font-size: 0.8125rem;
   --ct-primary-font: Geneva, sans-serif;
+  --ct-primary-font-weight: 400;
   --ct-secondary-font: Geneva, sans-serif;
+  --ct-secondary-font-weight: 400;
   --ct-z-index: 9999;
 }
 
