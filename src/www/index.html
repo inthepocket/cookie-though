@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Cookie Though?</title>
+    <link rel="icon" href="assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      @font-face {
+        font-family: 'Flama';
+        src: url('./assets/FlamaSemicondensed-Basic.woff');
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        font-weight: 400;
+      }
+
+      @font-face {
+        font-family: 'Flama';
+        src: url('./assets/FlamaSemicondensed-Medium.woff');
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        font-weight: 500;
+      }
+
+      .cookie-though {
+        --ct-font-family: 'Flama';
+      }
+    </style>
+  </head>
+  <body>
+    <button id="manage">Manage cookies</button>
+    <!-- TODO: add switch config -->
+    <!-- <button id="switch-config">Switch config</button> -->
+    <script type="module">
+      import { init, show, getCookiePreferences } from '../lib.ts';
+
+      document.getElementById('manage').addEventListener('click', show);
+      init();
+      console.log(getCookiePreferences());
+    </script>
+  </body>
+</html>
