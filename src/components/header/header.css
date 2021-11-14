@@ -1,0 +1,33 @@
+header {
+  margin-bottom: var(--ct-spacing-4);
+}
+
+h2 {
+  display: flex;
+  max-width: calc(100% - 33px - var(--ct-spacing-2));
+  flex-direction: column;
+  color: var(--ct-tagline-title-color);
+  font-size: var(--ct-tagline-size);
+  font-weight: 500;
+}
+
+h2 > strong {
+  font-size: var(--ct-tagline-title-size);
+  font-weight: var(--ct-tagline-title-weight);
+}
+
+.tagline {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--ct-spacing-2);
+}
+
+svg {
+  margin-left: auto;
+}
+
+header p {
+  color: var(--ct-explanation-color);
+  font-size: var(--ct-explanation-size);
+  font-weight: var(--ct-explanation-weight);
+}

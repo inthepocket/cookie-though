@@ -13,21 +13,19 @@ repos:
           - commit
       - id: check-added-large-files
         args:
-          - "--maxkb=5120"
+          - '--maxkb=5120'
         stages:
           - commit
 
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.2.1
+    rev: v2.4.1
     hooks:
       - id: prettier
         name: Run Prettier
         files: \.[jt]sx?$
         stages:
           - commit
-  # endregion
 
-  # region: Custom scripts and executables
   - repo: local
     hooks:
       - id: eslint

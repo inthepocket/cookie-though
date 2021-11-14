@@ -1,83 +1,37 @@
-import App from './components/app';
-import { EventEmitter } from 'events';
-import { setVisible } from './utils/dom';
-import { Config, CookiePreferences } from './types';
-import {
-  COOKIE_PREFERENCES_CHANGED_EVENT,
-  COOKIE_PREFERENCES_KEY,
-  getCookiePreferences,
-} from './hooks/useCookie';
 import { h, render } from 'preact';
-import { isEssential } from './utils/category';
-import defaultConfig from './config/defaultConfig';
 
-let config: Config;
-const ee = new EventEmitter();
+import App from './components/app';
+import defaultConfig, { Config, COOKIE_PREFERENCES_KEY } from './config';
+import { createNewContainer, getContainer, toggleContainer } from './utils/container';
+import { getPreferences } from './utils/preferences';
 
-export const configure = (conf: Config) => {
-  config = conf;
-  const container = document.createElement('aside');
-  container.className = 'cookie-though';
-  container.style.bottom = '-600px';
-  container.style.display = 'none';
-  const shadowRoot = container.attachShadow({ mode: 'open' });
-  let css: HTMLStyleElement | HTMLLinkElement;
-  /* istanbul ignore if */
-  if (process.env.NODE_ENV === 'development') {
-    css = document.createElement('link');
-    css.setAttribute('rel', 'stylesheet');
-    css.setAttribute('href', 'src.77de5100.css');
-  } else {
-    css = document.createElement('style');
-    /*
-      In order for the CI to do it's job, make sure minified-css remains
-      The CI will build the css, minify it and replace 'minified-css'
-      with the actual minified css, which means it doesn't have to be fetched
-      from a cdn and thus speeds up the load of the app.
-    */
-    css.textContent = 'minified-css';
-  }
+export const BANNER_SPACING = 'var(--ct-banner-spacing)';
 
-  shadowRoot.appendChild(css);
+let cookiePrefencesKey = COOKIE_PREFERENCES_KEY;
 
-  const previousInstance = document.querySelector('.cookie-though') as HTMLElement;
+export const configure = (config: Config = defaultConfig) => {
+  if (config.cookiePreferencesKey) cookiePrefencesKey = config.cookiePreferencesKey;
+
+  const previousInstance = getContainer();
   if (previousInstance && previousInstance.shadowRoot) {
-    render(h(App, { ...config, ee }), previousInstance.shadowRoot);
-    return;
+    render(h(App, { config, container: previousInstance }), previousInstance.shadowRoot);
+    return previousInstance;
   }
 
+  const { container, shadowRoot } = createNewContainer(config.ariaLabel);
   document.body.prepend(container);
-  render(h(App, { ...config, ee }), shadowRoot);
+  render(h(App, { config, container }), shadowRoot);
+  return container;
 };
 
 export const init = configure;
 
-export const onPreferencesChanged = (listener: (cookiePreferences: CookiePreferences) => void) => {
-  if (!config) init(defaultConfig);
+export const show = () => toggleContainer(true, BANNER_SPACING);
 
-  ee.on(COOKIE_PREFERENCES_CHANGED_EVENT, listener);
-};
+export const hide = () => toggleContainer(false);
 
-export const getPreferences = () => {
-  if (!config) configure(defaultConfig);
+export const getCookiePreferences = () => {
+  const preferences = getPreferences(cookiePrefencesKey);
 
-  return getCookiePreferences(
-    config.policies.map(policy => ({
-      id: policy.id,
-      isEnabled: isEssential(policy.category),
-    })),
-    config.cookiePreferenceKey ?? COOKIE_PREFERENCES_KEY,
-  );
-};
-
-export const show = () => {
-  if (!config) init(defaultConfig);
-
-  return setVisible(true);
-};
-
-export const hide = () => {
-  if (!config) init(defaultConfig);
-
-  return setVisible(false);
+  return { isCustomised: !!preferences, preferences };
 };

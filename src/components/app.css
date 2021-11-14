@@ -1,73 +1,141 @@
-:host(.cookie-though) {
-  display: block !important;
-  font-family: var(--ct-primary-font), Arial, Helvetica, sans-serif;
-  font-weight: var(--ct-primary-font-weight);
-  position: fixed;
-  left: var(--ct-default-padding);
-  width: 343px;
-  max-height: calc(100% - var(--ct-default-padding) * 2);
-  border-radius: 20px;
-  box-shadow: 0px 2px 19px -4px rgba(1, 1, 63, 0.1);
-  background: var(--ct-white);
-  transition: bottom 250ms linear;
-  box-sizing: content-box !important;
-  z-index: var(--ct-z-index);
-}
-
-@media only screen and (max-width: 480px) {
-  :host(.cookie-though) {
-    /* left positioning and left/right padding */
-    width: calc(100vw - calc(var(--ct-default-padding) * 2));
-  }
-}
-
-@media (prefers-reduced-motion) {
-  :host(.cookie-though) {
-    transition: none;
-  }
-}
-
-:host(.cookie-though.visible) {
-  bottom: var(--ct-default-padding) !important;
-}
-
-:host(.cookie-though) {
-  font-family: var(--ct-primary-font), Arial, Helvetica, sans-serif;
-  font-weight: var(--ct-primary-font-weight);
-  font-size: var(--ct-text-font-size);
-}
-
 :host {
-  --ct-primary-400: #000099;
+  /* PRIMITIVES */
+
+  /* Colors */
+  --ct-primary-400: #009;
   --ct-primary-300: #6161e8;
   --ct-primary-200: #e0e0ff;
   --ct-primary-100: #f0f0ff;
-  --ct-text: #6b7280;
-  --ct-title: var(--ct-primary-400);
-  --ct-subtitle: var(--ct-primary-300);
-  --ct-cookie: var(--ct-primary-400);
-  --ct-policy: var(--ct-white);
-  --ct-policy-enabled: var(--ct-primary-400);
-  --ct-policy-text: var(--ct-primary-400);
-  --ct-policy-text-enabled: var(--ct-white);
-  --ct-policy-essential: var(--ct-primary-100);
-  --ct-slider-primary: var(--ct-text);
-  --ct-slider-secondary: #d1d5db;
-  --ct-slider-enabled-primary: #4c4cff;
-  --ct-slider-enabled-secondary: #b3b3ff;
-  --ct-button-secondary: var(--ct-primary-300);
-  --ct-white: #ffffff;
-  --ct-text-margin: 0.25rem;
-  --ct-default-padding: 1rem;
-  --ct-seperator-padding: 0.5rem;
-  --ct-heading-font-size: 1.25rem;
-  --ct-sub-heading-font-size: 0.875rem;
-  --ct-text-font-size: 0.75rem;
-  --ct-button-font-size: 0.8125rem;
-  --ct-primary-font: Geneva, sans-serif;
-  --ct-primary-font-weight: 400;
-  --ct-secondary-font: Geneva, sans-serif;
-  --ct-secondary-font-weight: 400;
-  --ct-z-index: 9999;
+  --ct-neutral-400: #6b7280;
+  --ct-neutral-300: #d1d5db;
+  --ct-neutral-000: #fff;
+
+  /* Typography */
+  --ct-font-family-default:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    blinkmacsystemfont,
+    'Segoe UI',
+    roboto,
+    'Helvetica Neue',
+    arial,
+    'Noto Sans',
+    sans-serif;
+  --ct-font-family: var(--ct-font-family-default);
+  --ct-font-size: 16px;
+
+  /* Spacing */
+  --ct-spacing-1: 4px;
+  --ct-spacing-2: 8px;
+  --ct-spacing-3: 12px;
+  --ct-spacing-4: 16px;
+
+  /* Transition */
+  --ct-transition-duration: 300ms;
+
+  /* ELEMENTS */
+
+  /* Banner */
+  --ct-banner-z-index: 10000;
+  --ct-banner-spacing: var(--ct-spacing-4);
+
+  /* Intro */
+  --ct-intro-color: var(--ct-primary-300);
+  --ct-intro-weight: 500;
+  --ct-intro-size: 0.75rem;
+
+  /* Tagline */
+  --ct-tagline-size: calc(var(--ct-font-size) * 0.875);
+  --ct-tagline-title-color: var(--ct-primary-400);
+  --ct-tagline-title-weight: 700;
+  --ct-tagline-title-size: calc(var(--ct-font-size) * 1.25);
+
+  /* Cookie icon */
+  --ct-cookie-color: var(--ct-primary-400);
+
+  /* Explanation */
+  --ct-explanation-color: var(--ct-neutral-400);
+  --ct-explanation-weight: inherit;
+  --ct-explanation-size: calc(var(--ct-font-size) * 0.875);
+
+  /* Customize label */
+  --ct-customize-label-color: var(--ct-neutral-400);
+  --ct-customize-label-size: calc(var(--ct-font-size) * 0.9375);
+
+  /* Option */
+  --ct-option-size: calc(var(--ct-font-size) * 0.875);
+  --ct-option-max-width: 70%;
+  --ct-option-background: var(--ct-neutral-000);
+  --ct-option-background--enabled: var(--ct-primary-400);
+  --ct-option-background--essential: var(--ct-primary-100);
+  --ct-option-color: var(--ct-primary-400);
+  --ct-option-color--enabled: var(--ct-neutral-000);
+  --ct-option-color--essential: var(--ct-primary-400);
+  --ct-option-focus-color: var(--ct-primary-400);
+  --ct-option-focus-color--enabled: var(--ct-neutral-000);
+
+  /* Pill (switch) */
+  --ct-pill: var(--ct-neutral-300);
+  --ct-pill--enabled: #4c4cff;
+  --ct-pill-switch: var(--ct-neutral-400);
+  --ct-pill-switch--enabled: #b3b3ff;
+
+  /* Essential label */
+  --ct-essential-label-color: var(--ct-neutral-400);
+
+  /* Declaration */
+  --ct-declaration-color: var(--ct-neutral-400);
+  --ct-declaration-size: calc(var(--ct-font-size) * 0.875);
+
+  /* Buttons */
+  --ct-button-color--primary: var(--ct-neutral-000);
+  --ct-button-color--secondary: var(--ct-neutral-000);
+  --ct-button-background--primary: var(--ct-primary-400);
+  --ct-button-background--secondary: var(--ct-primary-300);
+  --ct-button-focus-color--primary: var(--ct-neutral-000);
+  --ct-button-focus-color--secondary: var(--ct-neutral-000);
+  --ct-button-size: calc(var(--ct-font-size) * 0.9375);
 }
 
+:host(.cookie-though) {
+  position: fixed;
+  z-index: var(--ct-banner-z-index);
+  left: var(--ct-banner-spacing);
+  display: block !important;
+
+  /* Max height is defined by the width of the the entire browser minus twice time the --ct-banner-spacing */
+  width: calc(100vw - calc(var(--ct-banner-spacing) * 2));
+  max-height: calc(100% - var(--ct-default-padding) * 2);
+  box-sizing: border-box !important;
+  padding: var(--ct-banner-spacing);
+  background-color: var(--ct-neutral-000);
+  border-radius: 20px;
+  box-shadow: 0 2px 19px -4px rgba(1, 1, 63, 0.1);
+  font-family: var(--ct-font-family), var(--ct-font-family-default) !important;
+  font-size: var(--ct-font-size);
+}
+
+@media only screen and (min-width: 640px) {
+  :host(.cookie-though) {
+    /* Properties should only be set on desktop */
+    width: 343px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :host(.cookie-though) {
+    transition: bottom var(--ct-transition-duration) ease-in-out;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+}

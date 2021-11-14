@@ -1,0 +1,125 @@
+.option {
+  display: flex;
+}
+
+.option:not(:last-of-type) {
+  margin-bottom: var(--ct-spacing-2);
+}
+
+label {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: var(--ct-spacing-3);
+  border: 1px solid var(--ct-primary-200);
+  background-color: var(--ct-option-background);
+  border-radius: 5px;
+  color: var(--ct-option-color);
+  cursor: pointer;
+  font-size: var(--ct-option-size);
+  user-select: none;
+}
+
+label strong {
+  display: block;
+  margin-bottom: var(--ct-text-margin);
+  font-weight: 500;
+}
+
+label > span:first-of-type {
+  max-width: var(--ct-option-max-width);
+}
+
+.pill-switch,
+.essential-label {
+  margin-left: auto;
+}
+
+.essential-label {
+  color: var(--ct-essential-label-color);
+}
+
+input + label .pill-switch,
+input + label .pill-switch::after {
+  border-radius: 9999px;
+}
+
+input:checked + label {
+  border-color: var(--ct-option-background--enabled);
+  background-color: var(--ct-option-background--enabled);
+  color: var(--ct-option-color--enabled);
+}
+
+input:disabled + label {
+  border-color: var(--ct-option-background--essential);
+  background-color: var(--ct-option-background--essential);
+  color: var(--ct-option-color--essential);
+  cursor: default;
+}
+
+input:focus + label,
+input:not(:disabled):active + label {
+  box-shadow:
+    inset 0 0 0 3px var(--ct-option-background),
+    inset 0 0 0 5px var(--ct-option-focus-color);
+}
+
+input:checked:focus + label,
+input:not(:disabled):checked:active + label {
+  box-shadow:
+    inset 0 0 0 3px var(--ct-option-background--enabled),
+    inset 0 0 0 5px var(--ct-option-focus-color--enabled);
+}
+
+input + label .pill-switch {
+  position: relative;
+  width: 26px;
+  height: 8px;
+  background-color: var(--ct-pill);
+}
+
+input:checked + label .pill-switch {
+  background-color: var(--ct-pill--enabled);
+}
+
+input + label .pill-switch::after {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background-color: var(--ct-pill-switch);
+  content: '';
+}
+
+input:checked + label .pill-switch::after {
+  left: 50%;
+  background-color: var(--ct-pill-switch--enabled);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  label {
+    transition-duration: var(--ct-transition-duration);
+    transition-property: color, background-color, border-color;
+    transition-timing-function: ease-in-out;
+  }
+
+  label:focus,
+  input:not(:disabled):active,
+  input:checked + label:active,
+  input:checked + label:focus {
+    transition-duration: var(--ct-transition-duration);
+    transition-property: box-shadow;
+    transition-timing-function: ease-in-out;
+  }
+
+  input + label .pill-switch {
+    transition: background-color var(--ct-transition-duration) ease-in-out;
+  }
+
+  input + label .pill-switch::after {
+    transition-duration: var(--ct-transition-duration);
+    transition-property: background-color, left;
+    transition-timing-function: ease-in-out;
+  }
+}
