@@ -1,0 +1,13 @@
+{
+  "extends": "@parcel/config-default",
+  "optimizers": {
+    "bundle-text:*.css": [
+      "@parcel/optimizer-cssnano"
+    ]
+  },
+  "transformers": {
+    "*.{ts,tsx}": [
+      "@parcel/transformer-typescript-tsc"
+    ]
+  }
+}

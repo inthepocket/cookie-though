@@ -1,14 +1,26 @@
 {
   "name": "cookie-though",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "license": "MIT",
   "homepage": "https://cookiethough.dev",
-  "main": "dist/lib.js",
+  "source": "src/lib.ts",
+  "module": "dist/lib.js",
   "types": "dist/types/lib.d.ts",
+  "targets": {
+    "module": {
+      "includeNodeModules": [
+        "preact"
+      ],
+      "optimize": true
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/inthepocket/cookie-though"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "cookies",
     "cookie",
@@ -16,74 +28,137 @@
     "browser",
     "universal"
   ],
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public --no-content-hash && ./scripts/replace_css.sh staging",
-    "build:lib": "parcel build src/lib.ts --no-source-maps --global CookieThough --out-dir dist --experimental-scope-hoisting && ./scripts/replace_css.sh",
-    "build:docs": "npm run build:sass && npm run build:jekyll",
-    "dev": "parcel src/index.html --global CookieThough",
-    "dev:site": "./scripts/site_exist.sh && npm-run-all -p serve watch:sass watch:jekyll",
-    "types": "tsc",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "markdown:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
-    "prettier:fix": "npm run prettier -- --write",
-    "prettier": "prettier \"src/**/*.{js,ts,tsx}\"",
+    "dev": "parcel src/www/index.html",
+    "build": "parcel build --no-source-maps --reporter @parcel/reporter-bundle-analyzer",
+    "lint": "npm run lint:script && npm run lint:style",
+    "lint:script": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "lint:style": "stylelint src/**/*.{css,scss,sass} --fix",
     "prepare": "./scripts/postinstall-local.sh",
-    "deploy:site": "firebase deploy --token $FIREBASE_TOKEN --only hosting:site",
-    "deploy:docs": "firebase deploy --token $FIREBASE_TOKEN --only hosting:docs",
     "test": "jest",
-    "test:coverage": "jest --coverage --reporters=jest-junit",
-    "build:sass": "dart-sass --style=compressed docs/_scss/docs.scss:docs/jekyll/css/docs.min.css",
-    "watch:sass": "chokidar 'docs/_scss/**/*' -c 'npm run build:sass'",
-    "build:jekyll": "bundle exec jekyll build --trace",
-    "watch:jekyll": "chokidar 'docs/jekyll/**' '_config.yml' -c 'npm run build:jekyll && browser-sync reload'",
-    "serve": "browser-sync start --http --server _site"
+    "test:coverage": "npm run test -- --coverage"
   },
-  "eslintIgnore": [
-    "dist/*"
-  ],
-  "dependencies": {
-    "events": "3.3.0",
-    "lodash.throttle": "4.1.1",
-    "preact": "10.5.15"
-  },
-  "browserslist": [
-    "> 0.25%",
-    "last 2 versions",
-    "IE >= 9"
-  ],
+  "author": "",
   "devDependencies": {
-    "@babel/core": "7.16.0",
-    "@babel/plugin-transform-react-jsx": "7.16.0",
-    "@types/enzyme": "3.10.10",
-    "@types/jest": "27.0.2",
-    "@types/lodash.throttle": "4.1.6",
-    "@typescript-eslint/eslint-plugin": "4.33.0",
-    "@typescript-eslint/parser": "4.33.0",
-    "browser-sync": "2.27.7",
-    "chokidar": "3.5.2",
-    "chokidar-cli": "3.0.0",
-    "dart-sass": "1.25.0",
-    "enzyme": "3.11.0",
-    "enzyme-adapter-preact-pure": "3.2.0",
-    "enzyme-to-json": "3.6.2",
-    "eslint": "7.32.0",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.26.1",
-    "eslint-plugin-react-hooks": "4.2.0",
-    "firebase-tools": "9.22.0",
-    "jest": "27.3.1",
-    "jest-junit": "13.0.0",
-    "jest-preset-preact": "4.0.5",
-    "markdownlint-cli": "0.29.0",
-    "npe": "1.1.4",
-    "npm-run-all": "4.1.5",
-    "parcel-bundler": "1.12.5",
-    "preact-render-to-string": "5.1.19",
-    "prettier": "2.4.1",
-    "typescript": "4.4.4"
+    "@parcel/config-default": "^2.0.1",
+    "@parcel/packager-ts": "^2.0.1",
+    "@parcel/reporter-bundle-analyzer": "^2.0.1",
+    "@parcel/transformer-inline-string": "^2.0.1",
+    "@parcel/transformer-typescript-tsc": "^2.0.1",
+    "@parcel/transformer-typescript-types": "^2.0.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/preact": "^2.0.1",
+    "@testing-library/preact-hooks": "^1.1.0",
+    "@types/jest": "^27.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-config-preact": "^1.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest": "^24.7.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "jest": "^27.3.1",
+    "jest-junit": "^13.0.0",
+    "jest-matchmedia-mock": "^1.1.0",
+    "parcel": "^2.0.1",
+    "prettier": "^2.4.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-idiomatic-order": "^8.1.0",
+    "stylelint-config-standard": "^22.0.0",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "preact": "^10.5.15"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "jest": true
+    },
+    "extends": [
+      "preact",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      "plugin:import/typescript",
+      "plugin:jsx-a11y/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "ignorePatterns": "**/coverage/**/*",
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module",
+      "project": "./tsconfig.json"
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "simple-import-sort",
+      "import",
+      "jsx-a11y"
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
+      "import/first": "error",
+      "import/newline-after-import": "error",
+      "import/no-duplicates": "error"
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/**/*.{ts,tsx,js}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/@types/",
+      "<rootDir>/coverage/",
+      "<rootDir>/jest",
+      "<rootDir>/www/"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover",
+      "cobertura"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "moduleNameMapper": {
+      "bundle-text:*": "<rootDir>/jest/bundle-text.ts"
+    },
+    "preset": "ts-jest",
+    "rootDir": "src",
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest/jest.setup.ts"
+    ],
+    "testEnvironment": "jsdom"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-idiomatic-order"
+    ]
   }
 }
