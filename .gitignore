@@ -1,20 +1,23 @@
-# Parcel cache
-/.cache
+.vscode
 
-# Build folders
-/dist
-/public
-_site
+.parcel-cache
+parcel-bundle-reports
 
-# Library development
 node_modules
-/coverage
 
+dist
+
+junit.xml
+coverage
+
+# MacOSX
+.DS_Store
+
+# TODO: remove these
 # Docs development
 vendor
 .bundle
 .jekyll-cache
 /docs/jekyll/css
-
-# MacOSX
-.DS_Store
+/public
+_site
