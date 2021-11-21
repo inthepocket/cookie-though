@@ -41,3 +41,15 @@ npm run dev
 ```
 
 This will create a running site in the `/dist` folder which you can view in your browser at [localhost:1234](localhost:1234).
+
+## Publishing a new version
+
+Before publishing a new version, make sure your git history is clean and
+that the [changelog](https://github.com/inthepocket/cookie-though/blob/master/CHANGELOG.md) has been updated.
+In order to publish a new version, you can make use of the npm command, for example:
+
+```console
+npm version minor
+```
+
+This will take care of updating the package.json & creating a new tag.
