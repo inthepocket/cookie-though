@@ -6,6 +6,9 @@ stages:
   - build
   - publish
 
+variables:
+  SYSTEM: 'build'
+
 cache:
   paths:
     - node_modules/
@@ -14,8 +17,6 @@ dependencies:
   stage: dependencies
   script:
     - npm ci
-  variables:
-    SYSTEM: 'build'
 
 test:
   stage: test
