@@ -51,7 +51,7 @@ describe('useAnimateDetails', () => {
     const animateMock = jest.fn(() => ({ cancel: cancelMock } as unknown as Animation));
     const mockAnimate = (content: HTMLDivElement) => (content.animate = animateMock);
 
-    const getDetailsRef = () => {
+    const getDetailsRef = (hasCookiePolicy: boolean) => {
       const details = document.createElement('details');
       const summary = document.createElement('summary');
       details.appendChild(summary);
@@ -59,13 +59,20 @@ describe('useAnimateDetails', () => {
       const content = document.createElement('div');
       mockAnimate(content);
       content.classList.add('content');
+
+      if (hasCookiePolicy) {
+        content.appendChild(document.createElement('fieldset'));
+        // Cookie Policy
+        content.appendChild(document.createElement('div'));
+      }
+
       details.appendChild(content);
 
       return { detailsRef: { current: details }, summary };
     };
 
-    const setup = () => {
-      const { detailsRef, summary } = getDetailsRef();
+    const setup = (hasCookiePolicy = false) => {
+      const { detailsRef, summary } = getDetailsRef(hasCookiePolicy);
       const { container } = createNewContainer(ariaLabel);
       container.style.paddingBottom = '0px';
       container.appendChild(document.createElement('header'));
@@ -158,6 +165,28 @@ describe('useAnimateDetails', () => {
 
         expect(result.current?.isOpen).toBeFalsy();
         expect(detailsRef.current).not.toHaveAttribute('style');
+      });
+
+      describe('A cookie policy is present', () => {
+        it('will toggle the details element with offsets', async () => {
+          const { container, detailsRef, summary } = setup(true);
+          const wrapper: FunctionComponent = ({ children }) => (
+            <ContainerProvider container={container} children={children} />
+          );
+          const { result } = renderHook(() => useAnimateDetails(detailsRef), { wrapper });
+
+          // Open
+          await toggleSummary(summary);
+
+          expect(result.current?.isOpen).toBeTruthy();
+          expect(detailsRef.current).not.toHaveAttribute('style');
+
+          // Close
+          await toggleSummary(summary, 1);
+
+          expect(result.current?.isOpen).toBeFalsy();
+          expect(detailsRef.current).not.toHaveAttribute('style');
+        });
       });
 
       describe('The wantedOffset is higher than the maxOffset', () => {

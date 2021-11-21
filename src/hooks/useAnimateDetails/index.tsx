@@ -41,6 +41,8 @@ const getOpenHeight = (details: HTMLDetailsElement) => {
   return { hasOverflow, openHeight, maxHeight: `${maxHeight}px` };
 };
 
+const getAnimatedHeight = (height: string) => `${parseFloat(height) + contentMarginBottom}px`;
+
 type AnimateParams = {
   details: HTMLDetailsElement;
   isOpen: boolean;
@@ -70,11 +72,14 @@ const useAnimateDetails = (detailsRef: RefObject<HTMLDetailsElement>) => {
     (e: MouseEvent) => {
       e.preventDefault();
       const content = details!.querySelector<HTMLDivElement>('.content')!;
+      const hasCookiePolicy = content.childElementCount > 1;
 
       const animate = ({ details, isOpen }: AnimateParams) => {
         const content = details.querySelector<HTMLDivElement>('.content')!;
         const { openHeight, hasOverflow } = getOpenHeight(details);
-        const height = isOpen ? [CLOSED_SIZE, openHeight] : [openHeight, CLOSED_SIZE];
+        const height = isOpen
+          ? [CLOSED_SIZE, hasCookiePolicy ? getAnimatedHeight(openHeight) : openHeight]
+          : [content.style.height, CLOSED_SIZE];
 
         const animation = content.animate({ height }, { duration, easing });
         animation.onfinish = () => {
@@ -85,7 +90,9 @@ const useAnimateDetails = (detailsRef: RefObject<HTMLDetailsElement>) => {
           }
 
           content.style.height = openHeight;
-          content.style.marginBottom = `${contentMarginBottom}px`;
+          if (hasCookiePolicy || hasOverflow) {
+            content.style.marginBottom = `${contentMarginBottom}px`;
+          }
 
           return hasOverflow
             ? (content.style.overflowY = 'scroll')
@@ -94,7 +101,12 @@ const useAnimateDetails = (detailsRef: RefObject<HTMLDetailsElement>) => {
       };
 
       const closeDetails = () => {
-        return window.requestAnimationFrame(() => animate({ details: details!, isOpen: false }));
+        return window.requestAnimationFrame(() => {
+          const offset = getOffset(content);
+          content.style.height = `${offset}px`;
+          content.style.marginBottom = '0px';
+          animate({ details: details!, isOpen: false });
+        });
       };
 
       const openDetails = () => {
