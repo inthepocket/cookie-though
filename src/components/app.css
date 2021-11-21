@@ -111,7 +111,7 @@
   padding: var(--ct-banner-spacing);
   background-color: var(--ct-neutral-000);
   border-radius: 20px;
-  box-shadow: 0 2px 19px -4px rgba(1, 1, 63, 0.1);
+  box-shadow: 0 2px 19px -4px rgb(1 1 63 / 10%);
   font-family: var(--ct-font-family), var(--ct-font-family-default) !important;
   font-size: var(--ct-font-size);
 }
