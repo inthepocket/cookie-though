@@ -116,6 +116,7 @@
     "collectCoverageFrom": [
       "<rootDir>/**/*.{ts,tsx,js}"
     ],
+    "coverageDirectory": "../coverage",
     "coveragePathIgnorePatterns": [
       "<rootDir>/@types/",
       "<rootDir>/coverage/",

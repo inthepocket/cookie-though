@@ -1,72 +1,43 @@
-image: timbru31/ruby-node:2.7-fermium
+image: node:lts-gallium
 
 stages:
   - dependencies
   - test
   - build
-  - deploy
   - publish
+
 cache:
   paths:
     - node_modules/
+
 dependencies:
   stage: dependencies
   script:
     - npm ci
   variables:
-    SYSTEM: "build"
+    SYSTEM: 'build'
+
 test:
   stage: test
-  script: npm run test:coverage
+  script: npm run test:coverage -- --ci --detectOpenHandles
   coverage: /All\sfiles.*?\s+(\d+.\d+)/
   dependencies:
-      - dependencies
+    - dependencies
   artifacts:
     reports:
       junit: junit.xml
       cobertura: coverage/cobertura-coverage.xml
-build:site:
+
+build:
   stage: build
   script:
-    - npm run build:site
+    - npm run build
   artifacts:
     paths:
-      - public
+      - dist
   dependencies:
     - dependencies
-build:docs:
-  stage: build
-  script:
-    - bundle install
-    - npm run build:docs
-  artifacts:
-    paths:
-      - _site
-build:lib:
-  stage: build
-  script:
-    - npm run build:lib
-  artifacts:
-      paths:
-        - dist
-  dependencies:
-    - dependencies
-deploy:site:
-  stage: deploy
-  only:
-    - master
-  script:
-    - npm run deploy:site
-  dependencies:
-    - build:site
-deploy:docs:
-  stage: deploy
-  only:
-    - master
-  script:
-    - npm run deploy:docs
-  dependencies:
-    - build:docs
+
 publish:
   stage: publish
   only:
@@ -74,8 +45,6 @@ publish:
   script:
     - npm set registry "https://registry.npmjs.org"
     - npm set //registry.npmjs.org/:_authToken $COOKIETHOUGH_GITLAB_NPM_TOKEN
-    - npx npe version $CI_COMMIT_TAG
-    - ./scripts/types.sh
-    - npm publish --tag $(./scripts/extract_tag.sh $CI_COMMIT_TAG)
+    - npm publish
   dependencies:
-    - build:lib
+    - build

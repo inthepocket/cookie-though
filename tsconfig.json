@@ -3,7 +3,6 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "declaration": true,
-    "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
