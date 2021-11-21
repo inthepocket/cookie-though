@@ -6,9 +6,6 @@ stages:
   - build
   - publish
 
-variables:
-  SYSTEM: 'build'
-
 cache:
   paths:
     - node_modules/
@@ -17,6 +14,8 @@ dependencies:
   stage: dependencies
   script:
     - npm ci
+  variables:
+    SYSTEM: 'build'
 
 test:
   stage: test
@@ -46,6 +45,6 @@ publish:
   script:
     - npm set registry "https://registry.npmjs.org"
     - npm set //registry.npmjs.org/:_authToken $COOKIETHOUGH_GITLAB_NPM_TOKEN
-    - npm publish
+    - npm publish --tag $(./scripts/extract_tag.sh $CI_COMMIT_TAG)
   dependencies:
     - build
