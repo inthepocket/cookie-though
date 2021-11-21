@@ -5,6 +5,7 @@
     <title>Cookie Though?</title>
     <link rel="icon" href="assets/favicon.ico" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script type="module" src="./index.ts"></script>
     <style>
       @font-face {
         font-family: 'Flama';
@@ -31,12 +32,5 @@
     <button id="manage">Manage cookies</button>
     <!-- TODO: add switch config -->
     <!-- <button id="switch-config">Switch config</button> -->
-    <script type="module">
-      import { init, show, getCookiePreferences } from '../lib.ts';
-
-      document.getElementById('manage').addEventListener('click', show);
-      init();
-      console.log(getCookiePreferences());
-    </script>
   </body>
 </html>
