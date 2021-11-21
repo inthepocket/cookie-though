@@ -18,7 +18,7 @@ h2 > strong {
 
 .tagline {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: var(--ct-spacing-2);
 }
 
