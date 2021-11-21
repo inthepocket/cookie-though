@@ -96,10 +96,6 @@ const defaultConfig = {
     acceptAll: 'Accept all',
     decline: 'Decline',
   },
-  cookiePolicy: {
-    label: 'smiling',
-    url: '',
-  },
   customizeLabel: 'Customize',
   cookiePreferencesKey: COOKIE_PREFERENCES_KEY,
 };
