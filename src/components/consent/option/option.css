@@ -75,11 +75,13 @@ input + label .pill-switch {
   position: relative;
   width: 26px;
   height: 8px;
-  background-color: var(--ct-pill);
+  background: linear-gradient(to right, var(--ct-pill--enabled) 50%, var(--ct-pill) 50%);
+  background-position: right;
+  background-size: 200%;
 }
 
 input:checked + label .pill-switch {
-  background-color: var(--ct-pill--enabled);
+  background-position: left;
 }
 
 input + label .pill-switch::after {
@@ -98,23 +100,8 @@ input:checked + label .pill-switch::after {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  label {
-    transition-duration: var(--ct-transition-duration);
-    transition-property: color, background-color, border-color;
-    transition-timing-function: ease-in-out;
-  }
-
-  label:focus,
-  input:not(:disabled):active,
-  input:checked + label:active,
-  input:checked + label:focus {
-    transition-duration: var(--ct-transition-duration);
-    transition-property: box-shadow;
-    transition-timing-function: ease-in-out;
-  }
-
   input + label .pill-switch {
-    transition: background-color var(--ct-transition-duration) ease-in-out;
+    transition: background-position var(--ct-transition-duration) ease-in-out;
   }
 
   input + label .pill-switch::after {
