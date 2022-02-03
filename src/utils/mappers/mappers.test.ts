@@ -11,14 +11,14 @@ const DEFAULT_OPTIONS = [
   },
   {
     category: 'functional',
-    description: 'We’ll remember the basics such as language.',
+    description: "We'll remember the basics such as language.",
     id: 'functional',
     isEnabled: false,
     label: 'Functional cookies',
   },
   {
     category: 'statistics',
-    description: 'We’ll know where we should improve your experience.',
+    description: "We'll know where we should improve your experience.",
     id: 'statistics',
     isEnabled: false,
     label: 'Statistics',
@@ -39,7 +39,7 @@ const DEFAULT_OPTIONS = [
   },
   {
     category: 'personalisation',
-    description: 'We’ll only show you content that interests you.',
+    description: "We'll only show you content that interests you.",
     id: 'personalisation',
     isEnabled: false,
     label: 'Personalisation',

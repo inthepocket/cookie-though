@@ -1,4 +1,4 @@
-import { Config, COOKIE_PREFERENCES_KEY } from '../config';
+import defaultConfig, { Config, COOKIE_PREFERENCES_KEY } from '../config';
 import { ContainerProvider } from '../context/container';
 import { OnPreferencesChangedProvider } from '../context/onPreferencesChanged';
 import useLayoutEffectOnce from '../hooks/useLayoutEffectOnce';
@@ -17,8 +17,8 @@ interface Props {
 }
 
 const App = ({ config, container }: Props) => {
-  const { title, intro, description } = config.header;
   const {
+    header = defaultConfig.header,
     policies,
     cookiePreferencesKey = COOKIE_PREFERENCES_KEY,
     customizeLabel,
@@ -41,13 +41,13 @@ const App = ({ config, container }: Props) => {
   return (
     <OnPreferencesChangedProvider onPreferencesChanged={config.onPreferencesChanged}>
       <ContainerProvider container={container}>
-        <Header intro={intro} title={title} description={description} />
+        <Header intro={header.intro} title={header.title} description={header.description} />
         <Consent
-          customizeLabel={customizeLabel}
-          optionsAriaLabel={optionsAriaLabel}
+          customizeLabel={customizeLabel ?? defaultConfig.customizeLabel}
+          optionsAriaLabel={optionsAriaLabel ?? defaultConfig.optionsAriaLabel}
           consent={consent}
-          essentialLabel={essentialLabel}
-          permissionLabels={permissionLabels}
+          essentialLabel={essentialLabel ?? defaultConfig.essentialLabel}
+          permissionLabels={permissionLabels ?? defaultConfig.permissionLabels}
           cookiePolicy={cookiePolicy}
           cookiePreferencesKey={cookiePreferencesKey}
         />

@@ -6,31 +6,22 @@ import { getContainer } from './utils/container';
 new MatchMedia();
 
 describe('configure', () => {
-  it('can render the app with a custom configuration', () => {
-    configure({
-      ariaLabel: 'Cookie Banner',
-      optionsAriaLabel: 'Cookie options',
-      policies: [
-        {
-          id: 'essential',
-          label: 'Strictly necessary cookies',
-          description: 'These cookies are required to run the site.',
-          category: 'essential',
-        },
-      ],
-      permissionLabels: {
-        accept: 'Accept',
-        acceptAll: 'Accept All',
-        decline: 'Decline',
-      },
-      header: {
-        description: 'Cookies are good for you!',
-      },
-      customizeLabel: 'Customize',
-    });
+  describe('an aria label was not provided in the custom configuration', () => {
+    it('will create a container with the default aria label', () => {
+      configure({
+        policies: [
+          {
+            id: 'essential',
+            label: 'Strictly necessary cookies',
+            description: 'These cookies are required to run the site.',
+            category: 'essential',
+          },
+        ],
+      });
 
-    const container = document.querySelector('.cookie-though');
-    expect(container).toHaveAttribute('aria-hidden', 'true');
+      const container = document.querySelector('.cookie-though');
+      expect(container).toHaveAttribute('aria-hidden', 'true');
+    });
   });
 
   describe('a previous instance already exists', () => {
@@ -63,6 +54,33 @@ describe('configure', () => {
 
       expect(getContainer()).toHaveAttribute('aria-hidden', 'true');
     });
+  });
+
+  it('can render the app with a custom configuration', () => {
+    configure({
+      ariaLabel: 'Cookie Banner',
+      optionsAriaLabel: 'Cookie options',
+      policies: [
+        {
+          id: 'essential',
+          label: 'Strictly necessary cookies',
+          description: 'These cookies are required to run the site.',
+          category: 'essential',
+        },
+      ],
+      permissionLabels: {
+        accept: 'Accept',
+        acceptAll: 'Accept All',
+        decline: 'Decline',
+      },
+      header: {
+        description: 'Cookies are good for you!',
+      },
+      customizeLabel: 'Customize',
+    });
+
+    const container = document.querySelector('.cookie-though');
+    expect(container).toHaveAttribute('aria-hidden', 'true');
   });
 });
 

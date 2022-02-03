@@ -18,7 +18,7 @@ export const configure = (config: Config = defaultConfig) => {
     return previousInstance;
   }
 
-  const { container, shadowRoot } = createNewContainer(config.ariaLabel);
+  const { container, shadowRoot } = createNewContainer(config.ariaLabel || defaultConfig.ariaLabel);
   document.body.prepend(container);
   render(h(App, { config, container }), shadowRoot);
   return container;

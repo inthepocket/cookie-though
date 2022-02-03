@@ -12,7 +12,6 @@ const {
   customizeLabel,
   optionsAriaLabel,
   essentialLabel,
-  permissionLabels,
   cookiePreferencesKey,
   policies,
 } = defaultConfig;
@@ -38,10 +37,10 @@ window.HTMLElement.prototype.scrollIntoView = scrollIntoViewSpy;
 describe('Consent', () => {
   afterEach(() => jest.clearAllMocks());
 
-  const renderConsent = () => {
+  const renderConsent = (permissionLabels?: Config['permissionLabels']) => {
     const { container } = createNewContainer(ariaLabel);
 
-    const { getAllByRole, getByText } = render(
+    const { getAllByRole, getByText, getByRole } = render(
       <ContainerProvider container={container}>
         <Consent
           customizeLabel={customizeLabel}
@@ -57,11 +56,11 @@ describe('Consent', () => {
 
     const [details] = getAllByRole('group') as HTMLDetailsElement[];
 
-    return { details, getAllByRole, getByText };
+    return { details, getAllByRole, getByText, getByRole };
   };
 
   it('can accept all options', () => {
-    const { details, getAllByRole } = renderConsent();
+    const { details, getAllByRole } = renderConsent(defaultConfig.permissionLabels);
     const [, acceptButton] = getAllByRole('button');
     fireEvent.click(acceptButton);
 
@@ -74,7 +73,7 @@ describe('Consent', () => {
   });
 
   it('can decline all options', () => {
-    const { details, getAllByRole } = renderConsent();
+    const { details, getAllByRole } = renderConsent(defaultConfig.permissionLabels);
     const [declineButton] = getAllByRole('button');
     fireEvent.click(declineButton);
 
@@ -87,7 +86,7 @@ describe('Consent', () => {
   });
 
   it('can toggle an option', () => {
-    const { details, getAllByRole } = renderConsent();
+    const { details, getAllByRole } = renderConsent(defaultConfig.permissionLabels);
     const [, functionalOption] = getAllByRole('checkbox');
     const [, acceptButton] = getAllByRole('button');
 
@@ -105,5 +104,57 @@ describe('Consent', () => {
 
     jest.runOnlyPendingTimers();
     expect(details.open).toBeFalsy();
+  });
+
+  describe('permission labels were not provided in the custom configuration', () => {
+    it('will render the consent component with default permission labels', () => {
+      const { getAllByRole } = renderConsent(undefined);
+
+      expect(getAllByRole('button')).toHaveLength(2);
+    });
+  });
+
+  describe('An accept label was not provided in the custom configuration', () => {
+    it('will render the consent component with default accept label', () => {
+      const { getByRole } = renderConsent({ acceptAll: 'Accept all', decline: 'Decline' });
+
+      const functionalOption = getByRole('checkbox', { name: DEFAULT_CONSENT.options[1].label });
+      fireEvent.click(functionalOption);
+
+      expect(
+        getByRole('button', { name: defaultConfig.permissionLabels.accept }),
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe('An accept all label was not provided in the custom configuration', () => {
+    it('will render the consent component with default accept all label', () => {
+      const { getByRole } = renderConsent({ accept: 'Accept', decline: 'Decline' });
+
+      expect(
+        getByRole('button', { name: defaultConfig.permissionLabels.acceptAll }),
+      ).toBeInTheDocument();
+    });
+
+    it('can accept all options', () => {
+      const { getByRole } = renderConsent({ accept: 'Accept', decline: 'Decline' });
+
+      const acceptAllButton = getByRole('button', {
+        name: defaultConfig.permissionLabels.acceptAll,
+      });
+      fireEvent.click(acceptAllButton);
+
+      expect(document.cookie).toBe(ACCEPTED_PREFERENCES);
+    });
+  });
+
+  describe('A decline label was not provided in the custom configuration', () => {
+    it('will render the consent component with default decline label', () => {
+      const { getByRole } = renderConsent({ accept: 'Accept', acceptAll: 'Accept all' });
+
+      expect(
+        getByRole('button', { name: defaultConfig.permissionLabels.decline }),
+      ).toBeInTheDocument();
+    });
   });
 });

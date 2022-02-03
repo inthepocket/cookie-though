@@ -1,6 +1,6 @@
 import { useMemo, useReducer, useRef } from 'preact/hooks';
-import { Config } from 'src/config';
 
+import defaultConfig, { Config } from '../../config';
 import { useContainer } from '../../context/container';
 import { useOnPreferencesChanged } from '../../context/onPreferencesChanged';
 import useAnimateDetails from '../../hooks/useAnimateDetails';
@@ -11,11 +11,11 @@ import { Consent as ConsentType, isEssential, Option as OptionType } from '../..
 import Option from './option';
 
 interface Props {
-  customizeLabel: Config['essentialLabel'];
-  optionsAriaLabel: Config['optionsAriaLabel'];
+  customizeLabel: string;
+  optionsAriaLabel: string;
   consent: ConsentType;
-  essentialLabel: Config['essentialLabel'];
-  permissionLabels: Config['permissionLabels'];
+  essentialLabel: string;
+  permissionLabels?: Config['permissionLabels'];
   cookiePolicy: Config['cookiePolicy'];
   cookiePreferencesKey: string;
 }
@@ -45,7 +45,7 @@ const Consent = ({
   optionsAriaLabel,
   consent,
   essentialLabel,
-  permissionLabels,
+  permissionLabels = defaultConfig.permissionLabels,
   cookiePolicy,
   cookiePreferencesKey,
 }: Props) => {
@@ -58,8 +58,8 @@ const Consent = ({
 
   const acceptLabel = useMemo(() => {
     return (!isOpen && !isAnOptionEnabled(options)) || areAllOptionsEnabled(options)
-      ? permissionLabels.acceptAll
-      : permissionLabels.accept;
+      ? permissionLabels.acceptAll ?? defaultConfig.permissionLabels.acceptAll
+      : permissionLabels.accept ?? defaultConfig.permissionLabels.accept;
   }, [isOpen, options, permissionLabels.accept, permissionLabels.acceptAll]);
 
   const closeContainer = () => {
@@ -76,7 +76,8 @@ const Consent = ({
     dispatch({
       type: 'accept',
       cookiePreferencesKey,
-      areAllOptionsEnabled: acceptLabel === permissionLabels.acceptAll,
+      areAllOptionsEnabled:
+        acceptLabel === (permissionLabels.acceptAll ?? defaultConfig.permissionLabels.acceptAll),
       onPreferencesChanged,
     });
     closeContainer();
@@ -110,7 +111,7 @@ const Consent = ({
       </details>
       <div class="acceptance">
         <button class="button button--secondary" onClick={declineAllOptions}>
-          {permissionLabels.decline}
+          {permissionLabels.decline ?? defaultConfig.permissionLabels.decline}
         </button>
         <button class="button button--primary" onClick={acceptOptions}>
           {acceptLabel}

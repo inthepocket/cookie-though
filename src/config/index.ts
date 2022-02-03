@@ -18,22 +18,22 @@ export interface Policy {
 }
 
 export interface Config {
-  ariaLabel: string;
-  optionsAriaLabel: string;
+  ariaLabel?: string;
+  optionsAriaLabel?: string;
   policies: Policy[];
   essentialLabel?: string;
-  permissionLabels: {
-    accept: string;
-    acceptAll: string;
-    decline: string;
+  permissionLabels?: {
+    accept?: string;
+    acceptAll?: string;
+    decline?: string;
   };
   cookiePreferencesKey?: string;
-  header: {
-    intro?: string;
-    title?: string;
-    description: string;
+  header?: {
+    intro?: string | null;
+    title?: string | null;
+    description?: string | null;
   };
-  customizeLabel: string;
+  customizeLabel?: string;
   cookiePolicy?: {
     url: string;
     label: string;
@@ -51,13 +51,13 @@ const defaultPolicies: Policy[] = [
   {
     id: 'functional',
     label: 'Functional cookies',
-    description: 'We’ll remember the basics such as language.',
+    description: "We'll remember the basics such as language.",
     category: 'functional',
   },
   {
     id: 'statistics',
     label: 'Statistics',
-    description: 'We’ll know where we should improve your experience.',
+    description: "We'll know where we should improve your experience.",
     category: 'statistics',
   },
   {
@@ -75,7 +75,7 @@ const defaultPolicies: Policy[] = [
   {
     id: 'personalisation',
     label: 'Personalisation',
-    description: 'We’ll only show you content that interests you.',
+    description: "We'll only show you content that interests you.",
     category: 'personalisation',
   },
 ];
