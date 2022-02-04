@@ -7,7 +7,7 @@ if [[ "$STR" == *"beta"* ]]; then
 elif [[ "$STR" == *"dev"* ]]; then
   echo "dev"
 elif [[ "$STR" == *"rc"* ]]; then
-  echo "rc"
+  echo "next"
 else
  echo "latest"
 fi
