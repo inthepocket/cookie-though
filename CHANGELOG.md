@@ -6,7 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
-- Nothing yet!
+### Changed
+
+- move docs to [dedicated repo](https://github.com/inthepocket/cookie-though-docs)
+- update src to new codebase (see new docs for migration guide!)
+- make config and labels optional
+- updated (dev)dependencies
 
 ## [1.3.0] - 2021-11-05
 
