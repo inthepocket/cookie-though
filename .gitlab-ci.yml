@@ -48,3 +48,5 @@ publish:
     - npm publish --tag $(./scripts/extract_tag.sh $CI_COMMIT_TAG)
   dependencies:
     - build
+  variables:
+    SYSTEM: 'build'
