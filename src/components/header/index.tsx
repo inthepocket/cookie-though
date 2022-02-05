@@ -35,7 +35,7 @@ const Header = ({ intro, title, description }: NonNullable<Config['header']>) =>
         )}
         <Logo />
       </div>
-      <p>{description || defaultConfig.header.description}</p>
+      {description !== null && <p>{description || defaultConfig.header.description}</p>}
     </header>
   );
 };
