@@ -12,12 +12,3 @@ coverage
 
 # MacOSX
 .DS_Store
-
-# TODO: remove these
-# Docs development
-vendor
-.bundle
-.jekyll-cache
-/docs/jekyll/css
-/public
-_site
