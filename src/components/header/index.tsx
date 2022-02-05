@@ -18,7 +18,6 @@ const Logo = () => (
   </svg>
 );
 
-// TODO: validate css if tagline is not present
 const Header = ({ intro, title, description }: NonNullable<Config['header']>) => {
   const hasHeading = intro !== null || title !== null;
 
