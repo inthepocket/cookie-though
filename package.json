@@ -67,7 +67,7 @@
     "chokidar-cli": "3.0.0",
     "dart-sass": "1.25.0",
     "enzyme": "3.11.0",
-    "enzyme-adapter-preact-pure": "3.2.0",
+    "enzyme-adapter-preact-pure": "3.4.0",
     "enzyme-to-json": "3.6.2",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
