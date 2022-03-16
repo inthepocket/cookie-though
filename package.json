@@ -62,7 +62,7 @@
     "@types/lodash.throttle": "4.1.6",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
-    "browser-sync": "2.27.7",
+    "browser-sync": "2.27.9",
     "chokidar": "3.5.2",
     "chokidar-cli": "3.0.0",
     "dart-sass": "1.25.0",
