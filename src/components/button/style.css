@@ -1,13 +1,13 @@
 .ct-button {
   font-family: inherit;
   font-size: var(--ct-button-font-size);
-  background: var(--ct-primary-400);
-  color: var(--ct-white);
-  padding: 0.5rem;
+  background: var(--ct-button);
+  color: var(--ct-button-color);
+  padding: var(--ct-button-padding);
   appearance: none;
   cursor: pointer;
-  border: 0;
-  border-radius: 2px;
+  border: var(--ct-button-border);
+  border-radius: var(--ct-button-radius);
   outline: 0;
 }
 
@@ -17,4 +17,6 @@
 
 .ct-button-secondary {
   background: var(--ct-button-secondary);
+  color: var(--ct-button-secondary-color);
+  border: var(--ct-button-secondary-border);
 }

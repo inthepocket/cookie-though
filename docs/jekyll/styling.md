@@ -61,8 +61,16 @@ You can easily define your own CSS on top of the CSS that is already included by
   /* The font size of text */
   --ct-text-font-size: 0.75rem;
 
-  /* The font size of the customize button and permission button labels */
+  /* The styling of the customize button and permission buttons */
   --ct-button-font-size: 0.8125rem;
+  --ct-button-radius: 2px;
+  --ct-button-border: 0;
+  --ct-button-padding: 0.5rem;
+  --ct-button: var(--ct-primary-400);
+  --ct-button-color: var(--ct-white);
+  --ct-button-secondary-border: 0;
+  --ct-button-secondary: var(--ct-primary-300);
+  --ct-button-secondary-color: var(--ct-white);
 
   /* The font and font weight used in the app */
   --ct-primary-font: 'Arial';
