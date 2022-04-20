@@ -1,6 +1,6 @@
 {
   "name": "cookie-though",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "license": "MIT",
   "homepage": "https://cookiethough.dev",
   "main": "dist/lib.js",
