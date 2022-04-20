@@ -2,5 +2,6 @@
     "commands-show-output": false,
     "line-length": false,
     "no-inline-html":false,
+    "single-h1": false,
     "first-line-heading": false
   }
