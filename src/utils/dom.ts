@@ -7,5 +7,6 @@ export const setVisible = (value: boolean) => {
   }
   container.setAttribute('aria-hidden', 'true');
   container.classList.remove('visible');
+  /* istanbul ignore next */
   setTimeout(() => (container.style.display = 'none'), 250);
 };

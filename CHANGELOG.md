@@ -8,6 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Nothing yet!
 
+## [1.4.0] - 2022-20-04
+
+### Added
+
+- add more options to style the buttons
+
+### Changed
+
+- Updated (dev)dependencies to latest versions
+
 ## [1.3.0] - 2021-11-05
 
 ### Added
