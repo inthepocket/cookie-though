@@ -73,6 +73,7 @@ const App: FunctionalComponent<Props> = ({
   cookiePreferenceKey,
   header,
   customizeLabel,
+  domain,
   cookiePolicy,
   permissionLabels,
   essentialLabel,
@@ -85,6 +86,7 @@ const App: FunctionalComponent<Props> = ({
     })),
     ee,
     cookiePreferenceKey,
+    domain,
   });
   const getCookieOptions = (): CookieOptions => {
     const preferences = getCookiePreferences();
