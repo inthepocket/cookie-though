@@ -21,7 +21,8 @@ The config object consists of (? means it's optional):
 * [cookiePreferenceKey?](#cookiepreferencekey): string
 * [header](#header)
 * [customizeLabel](#customizelabel): string
-* [cookiePolicy](#cookiepolicy)?
+* [cookiePolicy?](#cookiepolicy)
+* [domain?](#domain)
 
 ### policy
 
@@ -72,6 +73,12 @@ An optional object that contains the values used to link a user to the cookie po
 
 * url: URL &#124; link to a pdf or website explaining the complete cookie policy
 * label: string &#124; text that is used for the link
+
+### domain
+
+Domain is optional but can be defined if you want to share the cookie preferences across subdomains.
+
+eg. If you have docs.inthepocket.dev & inthepocket.dev. It could be relevant to pass inthepocket.dev as the domain to share the preferences.
 
 ### Example
 
