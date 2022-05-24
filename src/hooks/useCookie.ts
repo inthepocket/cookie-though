@@ -106,7 +106,6 @@ const useCookie = ({
 }: Options) => {
   const setCookiePreferences = (cookiePreferences: CookiePreferences) => {
     const expires = getNextYear();
-    console.log('domain', domain);
     document.cookie = `${cookiePreferenceKey}=${formatToCookie(
       cookiePreferences.cookieOptions,
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
