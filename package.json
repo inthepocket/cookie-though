@@ -1,6 +1,6 @@
 {
   "name": "cookie-though",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "license": "MIT",
   "homepage": "https://cookiethough.dev",
   "main": "dist/lib.js",
@@ -62,7 +62,7 @@
     "@types/lodash.throttle": "4.1.7",
     "@typescript-eslint/eslint-plugin": "5.20.0",
     "@typescript-eslint/parser": "5.20.0",
-    "browser-sync": "2.27.9",
+    "browser-sync": "2.27.10",
     "chokidar": "3.5.3",
     "chokidar-cli": "3.0.0",
     "dart-sass": "1.25.0",
