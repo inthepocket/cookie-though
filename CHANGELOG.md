@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Nothing yet!
 
+## [1.5.0] - 2022-25-05
+
+### Added
+
+- add support for sharing cookie preferences across sub domains
+
 ## [1.4.0] - 2022-20-04
 
 ### Added

@@ -7,6 +7,7 @@ export const COOKIE_PREFERENCES_CHANGED_EVENT = 'preferences_changed';
 interface Options {
   cookieOptions: CookiePreference[];
   cookiePreferenceKey?: string;
+  domain?: string;
   ee?: EventEmitter;
 }
 
@@ -99,6 +100,7 @@ export const formatToCookie = (cookiePreferences: CookiePreference[]) => {
 
 const useCookie = ({
   cookieOptions,
+  domain,
   cookiePreferenceKey = COOKIE_PREFERENCES_KEY,
   ee,
 }: Options) => {
@@ -107,7 +109,7 @@ const useCookie = ({
     document.cookie = `${cookiePreferenceKey}=${formatToCookie(
       cookiePreferences.cookieOptions,
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    )}; expires=${expires}; path=/; SameSite=Strict`;
+    )}; expires=${expires}; path=/; SameSite=Strict;${domain ? `Domain=${domain}` : ''}`;
     if (ee) {
       ee.emit(COOKIE_PREFERENCES_CHANGED_EVENT, cookiePreferences);
     }
