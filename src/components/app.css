@@ -86,6 +86,14 @@
   --ct-button-background--secondary: var(--ct-primary-300);
   --ct-button-focus-color--primary: var(--ct-neutral-000);
   --ct-button-focus-color--secondary: var(--ct-neutral-000);
+  --ct-button-border-radius--primary: 2px;
+  --ct-button-border-radius--secondary: 2px;
+  --ct-button-padding--primary: var(--ct-spacing-2);
+  --ct-button-padding--secondary: var(--ct-spacing-2);
+  --ct-button-focus--primary: inset 0 0 0 3px var(--ct-button-background--primary),
+    inset 0 0 0 5px var(--ct-button-focus-color--primary);
+  --ct-button-focus--secondary: inset 0 0 0 3px var(--ct-button-background--secondary),
+    inset 0 0 0 5px var(--ct-button-focus-color--secondary);
   --ct-button-size: calc(var(--ct-font-size) * 0.9375);
 }
 
