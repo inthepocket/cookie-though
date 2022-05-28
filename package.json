@@ -37,6 +37,9 @@
     "test:coverage": "npm run test -- --coverage"
   },
   "author": "Lukas Cornille <lukascornille@hotmail.com> (https://github.com/LukasCornille)",
+  "dependencies": {
+    "preact": "^10.7.2"
+  },
   "devDependencies": {
     "@inthepocket/eslint-config-preact": "^1.2.9",
     "@preact/preset-vite": "^2.2.0",
@@ -55,45 +58,5 @@
     "ts-jest": "^27.0.7",
     "typescript": "^4.4.4",
     "vite": "^2.9.9"
-  },
-  "dependencies": {
-    "preact": "^10.5.15"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "<rootDir>/**/*.{ts,tsx,js}"
-    ],
-    "coverageDirectory": "../coverage",
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/jest",
-      "<rootDir>/vite-env.d.ts"
-    ],
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text",
-      "clover",
-      "cobertura"
-    ],
-    "reporters": [
-      "default",
-      "jest-junit"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100
-      }
-    },
-    "moduleNameMapper": {
-      "bundle-text:*": "<rootDir>/jest/bundle-text.ts"
-    },
-    "preset": "ts-jest",
-    "rootDir": "src",
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest/jest.setup.ts"
-    ],
-    "testEnvironment": "jsdom"
   }
 }

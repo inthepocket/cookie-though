@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import path from 'path';
+const path = require('path');
 import preact from '@preact/preset-vite';
 
 // https://vitejs.dev/config/
