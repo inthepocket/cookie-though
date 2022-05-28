@@ -3,15 +3,13 @@
   "version": "2.0.0-rc.3",
   "license": "MIT",
   "homepage": "https://cookiethough.dev",
-  "source": "src/lib.ts",
-  "module": "dist/lib.js",
+  "main": "dist/cookie-though.umd.js",
+  "module": "dist/cookie-though.es.js",
   "types": "dist/types/lib.d.ts",
-  "targets": {
-    "module": {
-      "includeNodeModules": [
-        "preact"
-      ],
-      "optimize": true
+  "exports": {
+    ".": {
+      "import": "./dist/cookie-though.es.js",
+      "require": "./dist/cookie-though.umd.js"
     }
   },
   "repository": {
@@ -29,8 +27,8 @@
     "universal"
   ],
   "scripts": {
-    "dev": "parcel src/www/index.html",
-    "build": "parcel build --no-source-maps --reporter @parcel/reporter-bundle-analyzer",
+    "dev": "vite",
+    "build": "tsc && vite build",
     "lint": "npm run lint:script && npm run lint:style",
     "lint:script": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "lint:style": "stylelint src/**/*.{css,scss,sass} --fix",
@@ -41,12 +39,7 @@
   "author": "Lukas Cornille <lukascornille@hotmail.com> (https://github.com/LukasCornille)",
   "devDependencies": {
     "@inthepocket/eslint-config-preact": "^1.2.9",
-    "@parcel/config-default": "^2.0.1",
-    "@parcel/packager-ts": "^2.0.1",
-    "@parcel/reporter-bundle-analyzer": "^2.0.1",
-    "@parcel/transformer-inline-string": "^2.0.1",
-    "@parcel/transformer-typescript-tsc": "^2.0.1",
-    "@parcel/transformer-typescript-types": "^2.0.1",
+    "@preact/preset-vite": "^2.2.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/preact": "^2.0.1",
     "@testing-library/preact-hooks": "^1.1.0",
@@ -54,14 +47,14 @@
     "jest": "^27.3.1",
     "jest-junit": "^13.0.0",
     "jest-matchmedia-mock": "^1.1.0",
-    "parcel": "^2.0.1",
     "prettier": "^2.4.1",
     "stylelint": "^14.1.0",
     "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",
     "ts-jest": "^27.0.7",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "vite": "^2.9.9"
   },
   "dependencies": {
     "preact": "^10.5.15"

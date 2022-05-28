@@ -3,4 +3,5 @@
  */
 module.exports = {
   extends: ['@inthepocket/eslint-config-preact'],
+  ignorePatterns: 'vite.config.ts',
 };

@@ -11,17 +11,8 @@
   --ct-neutral-000: #fff;
 
   /* Typography */
-  --ct-font-family-default:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    blinkmacsystemfont,
-    'Segoe UI',
-    roboto,
-    'Helvetica Neue',
-    arial,
-    'Noto Sans',
-    sans-serif;
+  --ct-font-family-default: ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI',
+    roboto, 'Helvetica Neue', arial, 'Noto Sans', sans-serif;
   --ct-font-family: var(--ct-font-family-default);
   --ct-font-size: 16px;
 

@@ -1,7 +1,6 @@
 import { getFloat } from '../../hooks/useAnimateDetails';
 import { getTransitionTime } from '../../hooks/useTransitionDuration';
 import { init } from '../../lib';
-import inlineCSS from '../css';
 
 export const CONTAINER_CLASS = 'cookie-though';
 
@@ -11,10 +10,6 @@ const createNewContainer = (ariaLabel: string) => {
   container.setAttribute('aria-label', ariaLabel);
 
   const shadowRoot = container.attachShadow({ mode: 'open' });
-  const style = document.createElement('style');
-  style.textContent = inlineCSS();
-
-  shadowRoot.appendChild(style);
 
   return { container, shadowRoot };
 };

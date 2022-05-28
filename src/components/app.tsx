@@ -7,11 +7,14 @@ import { BANNER_SPACING } from '../lib';
 import getConsent from '../utils/consent';
 import { getHiddenContainerBottom, toggleContainer } from '../utils/container';
 
+import appCSS from './app.css?inline';
+import buttonCSS from './button/button.css?inline';
 import Consent from './consent';
+import consentCSS from './consent/consent.css?inline';
+import optionCSS from './consent/option/option.css?inline';
 import Header from './header';
-
-/* istanbul ignore if */
-if (process.env.NODE_ENV === 'development') require('preact/debug');
+import headerCSS from './header/header.css?inline';
+import resetCSS from './reset.css?inline';
 
 interface Props {
   config: Config;
@@ -54,6 +57,14 @@ const App = ({ config, container }: Props) => {
           cookiePreferencesKey={cookiePreferencesKey}
         />
       </ContainerProvider>
+      <style>
+        {resetCSS}
+        {appCSS}
+        {buttonCSS}
+        {headerCSS}
+        {consentCSS}
+        {optionCSS}
+      </style>
     </OnPreferencesChangedProvider>
   );
 };
