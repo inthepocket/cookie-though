@@ -81,11 +81,16 @@ const useAnimateDetails = (detailsRef: RefObject<HTMLDetailsElement>) => {
           ? [CLOSED_SIZE, hasCookiePolicy ? getAnimatedHeight(openHeight) : openHeight]
           : [content.style.height, CLOSED_SIZE];
 
+        if (!isOpen) {
+          details.classList.add('closing');
+        }
+
         const animation = content.animate({ height }, { duration, easing });
         animation.onfinish = () => {
           if (!isOpen) {
             details.open = isOpen;
             setIsOpen(isOpen);
+            details.classList.remove('closing');
             return content.removeAttribute('style');
           }
 

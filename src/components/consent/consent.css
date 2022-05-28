@@ -25,6 +25,10 @@ details[open] summary > svg {
   transform: rotate(-180deg);
 }
 
+details[open].closing summary > svg {
+  transform: rotate(0deg);
+}
+
 .declaration {
   text-align: center;
 }
@@ -46,7 +50,7 @@ summary:focus,
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  details[open] summary > svg {
+  details summary > svg {
     transition: transform var(--ct-transition-duration) ease-in-out;
   }
 }
