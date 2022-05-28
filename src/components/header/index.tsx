@@ -1,4 +1,5 @@
-import defaultConfig, { Config } from '../../config';
+import type { Config } from '../../config';
+import defaultConfig from '../../config';
 
 const Logo = () => (
   <svg

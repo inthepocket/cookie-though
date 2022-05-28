@@ -1,10 +1,12 @@
-import defaultConfig, { Config, COOKIE_PREFERENCES_KEY } from '../config';
+import type { Config } from '../config';
+import defaultConfig, { COOKIE_PREFERENCES_KEY } from '../config';
 import { ContainerProvider } from '../context/container';
 import { OnPreferencesChangedProvider } from '../context/onPreferencesChanged';
 import useLayoutEffectOnce from '../hooks/useLayoutEffectOnce';
 import { BANNER_SPACING } from '../lib';
 import getConsent from '../utils/consent';
 import { getHiddenContainerBottom, toggleContainer } from '../utils/container';
+
 import Consent from './consent';
 import Header from './header';
 

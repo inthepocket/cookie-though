@@ -1,7 +1,8 @@
 import { renderHook } from '@testing-library/preact-hooks';
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 
 import { ContainerProvider } from '../../context/container';
+
 import useTransitionDuration from '.';
 
 describe('useTransitionDuration', () => {

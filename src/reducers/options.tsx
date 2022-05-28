@@ -1,5 +1,6 @@
-import { OnPreferencesChanged } from '../context/onPreferencesChanged';
-import { isEssential, Option } from '../utils/mappers';
+import type { OnPreferencesChanged } from '../context/onPreferencesChanged';
+import type { Option } from '../utils/mappers';
+import { isEssential } from '../utils/mappers';
 import { setPreferences } from '../utils/preferences';
 
 type Action =

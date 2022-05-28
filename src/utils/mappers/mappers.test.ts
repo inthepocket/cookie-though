@@ -1,5 +1,7 @@
 import defaultConfig from '../../config';
-import { mapToConsent, mapToCookie, mapToPreferences, Preference } from '.';
+
+import type { Preference } from '.';
+import { mapToConsent, mapToCookie, mapToPreferences } from '.';
 
 const DEFAULT_OPTIONS = [
   {

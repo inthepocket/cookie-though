@@ -1,6 +1,7 @@
 import MatchMediaMock from 'jest-matchmedia-mock';
 
 import defaultConfig from '../../config';
+
 import {
   CONTAINER_CLASS,
   createNewContainer,

@@ -1,7 +1,8 @@
-import { ComponentChildren, createContext } from 'preact';
+import type { ComponentChildren } from 'preact';
+import { createContext } from 'preact';
 import { useContext, useState } from 'preact/hooks';
 
-import { Preference } from '../../utils/mappers';
+import type { Preference } from '../../utils/mappers';
 
 type CookiePreferences = { isCustomised: boolean; preferences: Preference[] | undefined };
 

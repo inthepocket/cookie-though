@@ -1,6 +1,10 @@
-import defaultConfig, { Policy } from '../../config';
-import { Consent, mapToConsent, mapToPreferences, Option, Preference } from '../mappers';
+import type { Policy } from '../../config';
+import defaultConfig from '../../config';
+import type { Consent, Option, Preference } from '../mappers';
+import { mapToConsent, mapToPreferences } from '../mappers';
+
 import { setPreferences } from './../preferences';
+
 import getConsent from '.';
 
 const { policies, cookiePreferencesKey } = defaultConfig;

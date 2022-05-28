@@ -1,7 +1,8 @@
 import { h, render } from 'preact';
 
 import App from './components/app';
-import defaultConfig, { Config, COOKIE_PREFERENCES_KEY } from './config';
+import type { Config } from './config';
+import defaultConfig, { COOKIE_PREFERENCES_KEY } from './config';
 import { createNewContainer, getContainer, toggleContainer } from './utils/container';
 import { getPreferences } from './utils/preferences';
 

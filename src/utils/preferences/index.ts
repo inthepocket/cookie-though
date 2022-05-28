@@ -1,6 +1,7 @@
-import { OnPreferencesChanged } from '../../context/onPreferencesChanged';
+import type { OnPreferencesChanged } from '../../context/onPreferencesChanged';
 import { getNextYear } from '../date';
-import { mapToCookie, Option, Preference } from '../mappers';
+import type { Option, Preference } from '../mappers';
+import { mapToCookie } from '../mappers';
 
 interface MergePreferencesParams {
   currentPreferences: Preference[];

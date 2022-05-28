@@ -1,10 +1,13 @@
 import { fireEvent, render } from '@testing-library/preact';
 import MatchMedia from 'jest-matchmedia-mock';
 
-import defaultConfig, { Config } from '../../config';
+import type { Config } from '../../config';
+import defaultConfig from '../../config';
 import { ContainerProvider } from '../../context/container';
 import { createNewContainer } from '../../utils/container';
-import { Consent as ConsentType, mapToConsent, mapToPreferences } from '../../utils/mappers';
+import type { Consent as ConsentType } from '../../utils/mappers';
+import { mapToConsent, mapToPreferences } from '../../utils/mappers';
+
 import Consent from '.';
 
 const {

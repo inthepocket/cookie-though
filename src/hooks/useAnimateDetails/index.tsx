@@ -1,4 +1,4 @@
-import { RefObject } from 'preact';
+import type { RefObject } from 'preact';
 import { useCallback, useEffect, useLayoutEffect, useState } from 'preact/hooks';
 
 import { getContainer } from '../../utils/container';

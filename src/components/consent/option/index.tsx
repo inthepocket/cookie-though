@@ -1,6 +1,7 @@
 import { useRef } from 'preact/hooks';
 
-import { isEssential as isEssentialCategory, Option as OptionType } from '../../../utils/mappers';
+import type { Option as OptionType } from '../../../utils/mappers';
+import { isEssential as isEssentialCategory } from '../../../utils/mappers';
 
 interface Props {
   option: OptionType;

@@ -1,13 +1,14 @@
 import { fireEvent, waitFor } from '@testing-library/dom';
 import { renderHook } from '@testing-library/preact-hooks';
 import MatchMediaMock from 'jest-matchmedia-mock';
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 import { act } from 'preact/test-utils';
 
 import defaultConfig from '../../config';
 import { ContainerProvider } from '../../context/container';
 import { createNewContainer } from '../../utils/container';
 import { PREFERS_REDUCED_MOTION_NO_PREFERENCE } from '../usePrefersReducedMotion';
+
 import useAnimateDetails, { getFloat } from '.';
 
 const PREFERS_REDUCED_MOTION_REDUCE_QUERY = '(prefers-reduced-motion: reduce)';

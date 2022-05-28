@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/preact-hooks';
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 
 import { OnPreferencesChangedProvider, useOnPreferencesChanged } from '.';
 

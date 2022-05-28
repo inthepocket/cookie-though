@@ -1,6 +1,7 @@
 import { render } from '@testing-library/preact';
 
 import defaultConfig from '../../config';
+
 import Header from '.';
 
 const props = {

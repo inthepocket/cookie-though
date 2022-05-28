@@ -1,6 +1,7 @@
 import defaultConfig from '../../config';
 import { getNextYear } from '../date';
-import { Option, Preference } from '../mappers';
+import type { Option, Preference } from '../mappers';
+
 import { getPreferences, mergePreferences, preferencesHaveChanged, setPreferences } from '.';
 
 const currentPreferences: Preference[] = [

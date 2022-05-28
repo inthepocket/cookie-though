@@ -5,6 +5,7 @@ import defaultConfig from '../config';
 import { createNewContainer } from '../utils/container';
 import { mapToConsent, mapToPreferences } from '../utils/mappers';
 import { setPreferences } from '../utils/preferences';
+
 import App from './app';
 
 new MatchMedia();

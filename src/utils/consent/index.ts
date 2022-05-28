@@ -1,5 +1,6 @@
-import { Policy } from '../../config';
-import { Consent, mapToConsent, mapToPreferences } from '../mappers';
+import type { Policy } from '../../config';
+import type { Consent } from '../mappers';
+import { mapToConsent, mapToPreferences } from '../mappers';
 import { getPreferences, mergePreferences, preferencesHaveChanged } from '../preferences';
 
 interface Params {

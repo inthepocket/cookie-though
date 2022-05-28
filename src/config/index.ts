@@ -1,4 +1,4 @@
-import { OnPreferencesChanged } from './../context/onPreferencesChanged/index';
+import type { OnPreferencesChanged } from './../context/onPreferencesChanged/index';
 
 export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
 

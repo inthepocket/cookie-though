@@ -1,4 +1,4 @@
-import { Category, Policy } from '../../config';
+import type { Category, Policy } from '../../config';
 
 export const isEssential = (category: Category) => category === 'essential';
 

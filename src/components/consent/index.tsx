@@ -1,13 +1,16 @@
 import { useMemo, useReducer, useRef } from 'preact/hooks';
 
-import defaultConfig, { Config } from '../../config';
+import type { Config } from '../../config';
+import defaultConfig from '../../config';
 import { useContainer } from '../../context/container';
 import { useOnPreferencesChanged } from '../../context/onPreferencesChanged';
 import useAnimateDetails from '../../hooks/useAnimateDetails';
 import useTransitionDuration from '../../hooks/useTransitionDuration';
 import optionsReducer from '../../reducers/options';
 import { getHiddenContainerBottom, toggleContainer } from '../../utils/container';
-import { Consent as ConsentType, isEssential, Option as OptionType } from '../../utils/mappers';
+import type { Consent as ConsentType, Option as OptionType } from '../../utils/mappers';
+import { isEssential } from '../../utils/mappers';
+
 import Option from './option';
 
 interface Props {

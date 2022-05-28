@@ -40,6 +40,7 @@
   },
   "author": "Lukas Cornille <lukascornille@hotmail.com> (https://github.com/LukasCornille)",
   "devDependencies": {
+    "@inthepocket/eslint-config-preact": "^1.2.9",
     "@parcel/config-default": "^2.0.1",
     "@parcel/packager-ts": "^2.0.1",
     "@parcel/reporter-bundle-analyzer": "^2.0.1",
@@ -50,17 +51,6 @@
     "@testing-library/preact": "^2.0.1",
     "@testing-library/preact-hooks": "^1.1.0",
     "@types/jest": "^27.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
-    "eslint": "^8.4.1",
-    "eslint-config-preact": "^1.2.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-compat": "^4.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jest": "^26.0.0",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
     "jest": "^27.3.1",
     "jest-junit": "^13.0.0",
     "jest-matchmedia-mock": "^1.1.0",
@@ -68,50 +58,13 @@
     "prettier": "^2.4.1",
     "stylelint": "^14.1.0",
     "stylelint-config-idiomatic-order": "^8.1.0",
+    "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",
     "ts-jest": "^27.0.7",
     "typescript": "^4.4.4"
   },
   "dependencies": {
     "preact": "^10.5.15"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es6": true,
-      "jest": true
-    },
-    "extends": [
-      "preact",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:@typescript-eslint/recommended-requiring-type-checking",
-      "plugin:import/typescript",
-      "plugin:jsx-a11y/recommended",
-      "plugin:prettier/recommended"
-    ],
-    "ignorePatterns": "**/coverage/**/*",
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "ecmaVersion": 12,
-      "sourceType": "module",
-      "project": "./tsconfig.json"
-    },
-    "plugins": [
-      "@typescript-eslint",
-      "simple-import-sort",
-      "import",
-      "jsx-a11y"
-    ],
-    "rules": {
-      "@typescript-eslint/no-unused-vars": "error",
-      "@typescript-eslint/no-non-null-assertion": "off",
-      "@typescript-eslint/explicit-module-boundary-types": "off",
-      "simple-import-sort/imports": "error",
-      "simple-import-sort/exports": "error",
-      "import/first": "error",
-      "import/newline-after-import": "error",
-      "import/no-duplicates": "error"
-    }
   },
   "jest": {
     "collectCoverageFrom": [
@@ -151,26 +104,5 @@
       "<rootDir>/jest/jest.setup.ts"
     ],
     "testEnvironment": "jsdom"
-  },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "trailingComma": "all"
-  },
-  "stylelint": {
-    "extends": [
-      "stylelint-config-standard",
-      "stylelint-config-idiomatic-order"
-    ],
-    "rules": {
-      "string-quotes": "single",
-      "custom-property-pattern": "ct-.+",
-      "selector-class-pattern": [
-        "^(?:(?:o|c|u|t|s|is|has|_|js|qa)-)?[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:\\[.+\\])?$",
-        {
-          "message": "Class names should match the SUIT CSS naming convention"
-        }
-      ]
-    }
   }
 }
