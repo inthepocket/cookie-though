@@ -45,18 +45,21 @@ export interface Config {
    * Default: `Cookie Banner`.
    */
   ariaLabel?: string;
+
   /**
    * Announces a group of a cookie options to a user using a screenreader.
    *
    * Default: `Cookie options`.
    */
   optionsAriaLabel?: string;
+
   /**
    * An array of policies that are shown to the user.
    *
    * Default: a list of all possible policies.
    */
   policies: Policy[];
+
   /**
    * The label that is displayed instead of the checkbox for essential cookies.
    * Seeing as essential cookies can't be turned off, we display a label instead.
@@ -64,6 +67,7 @@ export interface Config {
    * Default:`Always on`.
    */
   essentialLabel?: string;
+
   /**
    * An object which contains the labels that are displayed to the user to accept (all) or decline cookies.
    */
@@ -72,12 +76,14 @@ export interface Config {
     acceptAll?: string;
     decline?: string;
   };
+
   /**
    * The key that is used for saving the cookie with the user's preferences.
    *
    * Default: `cookie-preferences`.
    */
   cookiePreferencesKey?: string;
+
   /**
    * An object which contains the labels that are displayed in the header.
    * In order for Cookie Though not to render one or more of these labels, pass `null` as the value.
@@ -90,12 +96,14 @@ export interface Config {
     /** Default: `Everybody wants to show his best side - and so do we. That's why we use cookies to guarantee you a better experience.` */
     description?: string | null;
   };
+
   /**
    * The label for the customize <summary> tag which opens and closes the cookie options.
    *
    * Default: `Customize`
    */
   customizeLabel?: string;
+
   /**
    * An object which contains a url and label which allow the user to read the full cookie policy.
    */
@@ -103,10 +111,16 @@ export interface Config {
     url: string;
     label: string;
   };
+
   /**
    * A function which will be called whenever the preferences of the user change.
    */
   onPreferencesChanged?: OnPreferencesChanged;
+
+  /**
+   * A string which will allow preferences to be saved across subdomains.
+   */
+  domain?: string;
 }
 
 const defaultPolicies: Policy[] = [

@@ -28,6 +28,7 @@ const App = ({ config, container }: Props) => {
     cookiePreferencesKey = COOKIE_PREFERENCES_KEY,
     customizeLabel,
     optionsAriaLabel,
+    domain,
     essentialLabel,
     permissionLabels,
     cookiePolicy,
@@ -51,6 +52,7 @@ const App = ({ config, container }: Props) => {
           customizeLabel={customizeLabel ?? defaultConfig.customizeLabel}
           optionsAriaLabel={optionsAriaLabel ?? defaultConfig.optionsAriaLabel}
           consent={consent}
+          domain={domain}
           essentialLabel={essentialLabel ?? defaultConfig.essentialLabel}
           permissionLabels={permissionLabels ?? defaultConfig.permissionLabels}
           cookiePolicy={cookiePolicy}

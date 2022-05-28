@@ -57,21 +57,24 @@ export const getPreferences = (cookiePreferencesKey: string) => {
 
 interface SetPreferencesParams {
   cookiePreferencesKey: string;
+  domain?: string;
   options: Option[];
   onPreferencesChanged?: OnPreferencesChanged;
 }
 
 export const setPreferences = ({
   cookiePreferencesKey,
+  domain,
   options,
   onPreferencesChanged,
 }: SetPreferencesParams) => {
   const cookiePreferencesValue = mapToCookie(options);
   const expires = `expires=${getNextYear()}`;
   const path = 'path=/';
-  const sameSite = 'SameSite=strict';
+  const SameSite = 'SameSite=strict';
+  const Domain = `${domain ? `Domain=${domain}` : ''}`;
 
-  document.cookie = `${cookiePreferencesKey}=${cookiePreferencesValue};${expires};${path};${sameSite}`;
+  document.cookie = `${cookiePreferencesKey}=${cookiePreferencesValue};${expires};${path};${SameSite};${Domain}`;
 
   if (onPreferencesChanged) {
     onPreferencesChanged({

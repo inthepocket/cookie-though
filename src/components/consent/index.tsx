@@ -17,6 +17,7 @@ interface Props {
   customizeLabel: string;
   optionsAriaLabel: string;
   consent: ConsentType;
+  domain?: string;
   essentialLabel: string;
   permissionLabels?: Config['permissionLabels'];
   cookiePolicy: Config['cookiePolicy'];
@@ -47,6 +48,7 @@ const Consent = ({
   customizeLabel,
   optionsAriaLabel,
   consent,
+  domain,
   essentialLabel,
   permissionLabels = defaultConfig.permissionLabels,
   cookiePolicy,
@@ -71,7 +73,7 @@ const Consent = ({
   };
 
   const declineAllOptions = () => {
-    dispatch({ type: 'decline', cookiePreferencesKey, onPreferencesChanged });
+    dispatch({ type: 'decline', cookiePreferencesKey, domain, onPreferencesChanged });
     closeContainer();
   };
 
@@ -79,6 +81,7 @@ const Consent = ({
     dispatch({
       type: 'accept',
       cookiePreferencesKey,
+      domain,
       areAllOptionsEnabled:
         acceptLabel === (permissionLabels.acceptAll ?? defaultConfig.permissionLabels.acceptAll),
       onPreferencesChanged,

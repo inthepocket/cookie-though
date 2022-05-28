@@ -7,12 +7,14 @@ type Action =
   | {
       type: 'decline';
       cookiePreferencesKey: string;
+      domain?: string;
       onPreferencesChanged?: OnPreferencesChanged;
     }
   | {
       type: 'accept';
       cookiePreferencesKey: string;
       areAllOptionsEnabled: boolean;
+      domain?: string;
       onPreferencesChanged?: OnPreferencesChanged;
     }
   | { type: 'toggle'; index: number };
@@ -22,12 +24,14 @@ const optionsReducer = (options: Option[], action: Action) => {
     case 'decline':
       return setPreferences({
         cookiePreferencesKey: action.cookiePreferencesKey,
+        domain: action.domain,
         options: options.map((option) => ({ ...option, isEnabled: isEssential(option.category) })),
         onPreferencesChanged: action.onPreferencesChanged,
       });
     case 'accept':
       return setPreferences({
         cookiePreferencesKey: action.cookiePreferencesKey,
+        domain: action.domain,
         options: action.areAllOptionsEnabled
           ? options.map((option) => ({ ...option, isEnabled: true }))
           : options,
