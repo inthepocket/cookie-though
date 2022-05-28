@@ -65,10 +65,8 @@
     ],
     "coverageDirectory": "../coverage",
     "coveragePathIgnorePatterns": [
-      "<rootDir>/@types/",
-      "<rootDir>/coverage/",
       "<rootDir>/jest",
-      "<rootDir>/www/"
+      "<rootDir>/vite-env.d.ts"
     ],
     "coverageReporters": [
       "json",

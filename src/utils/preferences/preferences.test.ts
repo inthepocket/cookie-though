@@ -21,7 +21,7 @@ const options: Option[] = [
   },
   {
     category: 'functional',
-    description: 'We’ll remember the basics such as language.',
+    description: "We'll remember the basics such as language.",
     id: 'functional',
     isEnabled: true,
     label: 'Functional cookies',
@@ -92,6 +92,16 @@ describe('setPreferences', () => {
 
       expect(document.cookie).toBe(`${cookiePreferencesKey}=essential:1|functional:1`);
       expect(onPreferencesChanged).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('a domain was proviced', () => {
+    it('can set the cookies based on the domain', () => {
+      setPreferences({ cookiePreferencesKey, options, domain: 'inthepocket.com' });
+
+      // There's no way to actually validate that domain is being set as it can't be read
+      // However, thanks to the code coverage we know it's being set.
+      expect(document.cookie).toBe(`${cookiePreferencesKey}=essential:1|functional:1`);
     });
   });
 });
