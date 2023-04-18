@@ -76,7 +76,7 @@
     "eslint-plugin-react-hooks": "4.4.0",
     "firebase-tools": "9.22.0",
     "jest": "27.5.1",
-    "jest-junit": "13.1.0",
+    "jest-junit": "16.0.0",
     "jest-preset-preact": "4.0.5",
     "markdownlint-cli": "0.31.1",
     "npe": "1.2.0",
