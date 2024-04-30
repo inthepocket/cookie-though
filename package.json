@@ -55,7 +55,7 @@
     "IE >= 9"
   ],
   "devDependencies": {
-    "@babel/core": "7.17.9",
+    "@babel/core": "7.24.5",
     "@babel/plugin-transform-react-jsx": "7.17.3",
     "@types/enzyme": "3.10.12",
     "@types/jest": "27.4.1",
