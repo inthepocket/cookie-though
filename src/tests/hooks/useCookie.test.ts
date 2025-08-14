@@ -59,7 +59,7 @@ describe('useCookie', () => {
       cookieOptions,
     });
 
-    expect(onPreferencesChanged).toBeCalledTimes(1);
+    expect(onPreferencesChanged).toHaveBeenCalledTimes(1);
   });
 
   it('will not call the cookies_changed event when there is no event emitter', () => {

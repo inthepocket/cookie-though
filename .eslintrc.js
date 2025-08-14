@@ -24,7 +24,7 @@ module.exports = {
   settings: {
     react: {
       pragma: 'h',
-      version: 'latest',
+      version: '18.0.0',
     },
   },
   ignorePatterns: ['jest.config.js', '.eslintrc.js'],

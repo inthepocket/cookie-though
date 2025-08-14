@@ -7,7 +7,7 @@ import './css/collapse.css';
 interface Props {
   isOpen: boolean;
   children: ComponentChild;
-  onWindowResize(): void;
+  onWindowResize(this: void): void;
 }
 
 const Collapse: FunctionalComponent<Props> = ({ isOpen, children, onWindowResize }) => {

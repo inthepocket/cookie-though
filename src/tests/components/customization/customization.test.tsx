@@ -102,7 +102,7 @@ describe('Customization', () => {
     const declineButton = wrapper.find('button.ct-button-secondary');
 
     declineButton.simulate('click').update();
-    expect(setCookiePreferences).toBeCalledWith({
+    expect(setCookiePreferences).toHaveBeenCalledWith({
       isCustomised: true,
       cookieOptions: defaultProps.cookieOptions.map(cookieOption => ({
         id: cookieOption.id,
@@ -137,7 +137,7 @@ describe('Customization', () => {
       const acceptButton = wrapper.find('button').last();
 
       acceptButton.simulate('click').update();
-      expect(setCookiePreferences).toBeCalledWith({
+      expect(setCookiePreferences).toHaveBeenCalledWith({
         isCustomised: true,
         cookieOptions: customisedCookies.map(customisedCookie => ({
           id: customisedCookie.id,
@@ -147,7 +147,7 @@ describe('Customization', () => {
       expect(getToggleButton(wrapper).hasClass('ct-active')).toBeFalsy();
       expect(isCustomizationCollapsed(wrapper)).toBeTruthy();
       expect(getOptionalCookie(wrapper).hasClass('ct-enabled')).toBeTruthy();
-      expect(setVisible).toBeCalledWith(false);
+      expect(setVisible).toHaveBeenCalledWith(false);
     });
 
     it('will accept all options if the user has none enabled and save the preferences', () => {
@@ -161,7 +161,7 @@ describe('Customization', () => {
       const acceptButton = wrapper.find('button').last();
 
       acceptButton.simulate('click').update();
-      expect(setCookiePreferences).toBeCalledWith({
+      expect(setCookiePreferences).toHaveBeenCalledWith({
         isCustomised: true,
         cookieOptions: defaultProps.cookieOptions.map(cookieOption => ({
           id: cookieOption.id,
@@ -174,7 +174,7 @@ describe('Customization', () => {
       optionalCookies.forEach(optionalCookie => {
         expect(optionalCookie.hasClass('ct-enabled')).toBeTruthy();
       });
-      expect(setVisible).toBeCalledWith(false);
+      expect(setVisible).toHaveBeenCalledWith(false);
     });
   });
 });
