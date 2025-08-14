@@ -1,5 +1,5 @@
 # Parcel cache
-/.cache
+/.parcel-cache
 
 # Build folders
 /dist

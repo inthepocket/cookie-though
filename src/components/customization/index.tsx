@@ -14,8 +14,8 @@ interface Props {
   permissionLabels: Config['permissionLabels'];
   cookiePolicy?: Config['cookiePolicy'];
   essentialLabel?: Config['essentialLabel'];
-  setCookiePreferences(cookiePreferences: CookiePreferences): CookiePreferences;
-  onWindowResize(): void;
+  setCookiePreferences(this: void, cookiePreferences: CookiePreferences): CookiePreferences;
+  onWindowResize(this: void): void;
 }
 
 const isAnOptionEnabled = (cookieOptions: CookieOption[]) => {

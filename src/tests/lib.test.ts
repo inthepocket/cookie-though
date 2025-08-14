@@ -80,7 +80,7 @@ describe('Cookie Though', () => {
       });
     });
 
-    it('will call the listener function passed to onPreferenchesChanged when the preferences are updated', () => {
+    it('will call the listener function passed to onPreferencesChanged when the preferences are updated', () => {
       const handlePreferencesChanged = jest.fn((preferences: CookiePreferences) => {
         expect(preferences).toEqual({
           cookieOptions: [
@@ -112,7 +112,7 @@ describe('Cookie Though', () => {
       );
       onPreferencesChanged(handlePreferencesChanged);
       acceptAllButton?.click();
-      expect(handlePreferencesChanged).toBeCalledTimes(1);
+      expect(handlePreferencesChanged).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -127,7 +127,7 @@ describe('Cookie Though', () => {
     let lib: Lib;
     beforeEach(() => {
       jest.resetModules();
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-assignment
       lib = require('../lib');
     });
     it('will initialise the app when a listener is attached to the cookie preferences changed event', () => {

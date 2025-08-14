@@ -18,7 +18,7 @@ describe('Button', () => {
     const wrapper = shallow(<Button {...defaultProps} />);
     wrapper.find('button').simulate('click');
 
-    expect(defaultProps.onClick).toBeCalledTimes(1);
+    expect(defaultProps.onClick).toHaveBeenCalledTimes(1);
   });
 
   it('can render with a className prop', () => {

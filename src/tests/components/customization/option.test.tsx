@@ -33,7 +33,7 @@ describe('Option', () => {
     const wrapper = mount(<Option {...defaultProps(false)} onToggle={onToggle} />);
     wrapper.find('input').simulate('click');
 
-    expect(onToggle).toBeCalledTimes(1);
+    expect(onToggle).toHaveBeenCalledTimes(1);
   });
 
   it('scrolls into view when an option is focused', () => {
@@ -47,6 +47,6 @@ describe('Option', () => {
     );
 
     wrapper.find('input').simulate('focus');
-    expect(scrollIntoView).toBeCalledTimes(1);
+    expect(scrollIntoView).toHaveBeenCalledTimes(1);
   });
 });

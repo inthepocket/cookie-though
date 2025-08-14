@@ -1,6 +1,5 @@
 {
   "arrowParens": "avoid",
-  "jsxBracketSameLine": false,
   "parser": "typescript",
   "printWidth": 100,
   "semi": true,
