@@ -27,6 +27,6 @@ describe('ToggleButton', () => {
     );
     wrapper.find('button').simulate('click');
 
-    expect(toggleCustomization).toBeCalledTimes(1);
+    expect(toggleCustomization).toHaveBeenCalledTimes(1);
   });
 });

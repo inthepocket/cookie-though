@@ -35,6 +35,6 @@ describe('Options', () => {
     const option = wrapper.find(Option).first();
     option.find('input').simulate('click');
 
-    expect(onToggle).toBeCalledTimes(1);
+    expect(onToggle).toHaveBeenCalledTimes(1);
   });
 });

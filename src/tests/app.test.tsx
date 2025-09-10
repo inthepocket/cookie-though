@@ -58,7 +58,7 @@ describe('Cookie Though', () => {
         { attachTo: container },
       );
 
-      expect(setVisible).toBeCalled();
+      expect(setVisible).toHaveBeenCalled();
     });
   });
 
@@ -101,7 +101,7 @@ describe('Cookie Though', () => {
         { attachTo: document.body },
       );
 
-      expect(setVisible).toBeCalled();
+      expect(setVisible).toHaveBeenCalled();
     });
   });
 

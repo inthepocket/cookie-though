@@ -95,7 +95,7 @@ describe('collapse', () => {
 
         // Simulate a resize event
         global.dispatchEvent(new Event('resize'));
-        expect(onWindowResize).toBeCalledTimes(1);
+        expect(onWindowResize).toHaveBeenCalledTimes(1);
         const collapsibleDiv = wrapper.find('div.ct-collapse');
         expect(collapsibleDiv.prop('aria-expanded')).toBeTruthy();
         const transition = () => getStyleAttribute(wrapper, 'div.ct-collapse', 'transition');
