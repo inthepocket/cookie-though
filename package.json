@@ -64,7 +64,7 @@
     "@types/enzyme": "3.10.19",
     "@types/jest": "30.0.0",
     "@types/lodash.throttle": "4.1.9",
-    "@types/node": "^18.19.122",
+    "@types/node": "^24.4.0",
     "@typescript-eslint/eslint-plugin": "8.39.0",
     "@typescript-eslint/parser": "8.39.0",
     "browser-sync": "3.0.4",
