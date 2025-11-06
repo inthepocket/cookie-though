@@ -59,7 +59,7 @@
     "@babel/plugin-transform-react-jsx": "7.27.1",
     "@parcel/config-default": "^2.15.4",
     "@parcel/packager-ts": "^2.15.4",
-    "@parcel/transformer-typescript-tsc": "^2.15.4",
+    "@parcel/transformer-typescript-tsc": "^2.16.1",
     "@parcel/transformer-typescript-types": "^2.15.4",
     "@types/enzyme": "3.10.19",
     "@types/jest": "30.0.0",
