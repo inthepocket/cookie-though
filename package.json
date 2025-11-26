@@ -20,9 +20,9 @@
   "scripts": {
     "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public --no-content-hash && ./scripts/replace_css.sh staging",
     "build:lib": "parcel build src/lib.ts --no-source-maps --global CookieThough --out-dir dist --experimental-scope-hoisting && ./scripts/replace_css.sh",
-    "build:docs": "npm run build:sass && npm run build:jekyll",
+    "build:docs": "astro build --root docs",
     "dev": "parcel src/index.html --global CookieThough",
-    "dev:site": "./scripts/site_exist.sh && npm-run-all -p serve watch:sass watch:jekyll",
+    "dev:docs": "astro dev --root docs",
     "types": "tsc",
     "typeCheck": "tsc --noEmit && tsc --project tsconfig.test.json --noEmit",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
@@ -49,17 +49,17 @@
     "IE >= 9"
   ],
   "devDependencies": {
+    "@astrojs/mdx": "^4.3.12",
+    "@astrojs/sitemap": "^3.6.0",
     "@babel/core": "7.17.9",
     "@babel/plugin-transform-react-jsx": "7.17.3",
     "@types/enzyme": "3.10.12",
     "@types/jest": "27.4.1",
     "@types/lodash.throttle": "4.1.7",
+    "@types/node": "^24.10.1",
     "@typescript-eslint/eslint-plugin": "5.20.0",
     "@typescript-eslint/parser": "5.20.0",
-    "browser-sync": "2.27.9",
-    "chokidar": "3.5.3",
-    "chokidar-cli": "3.0.0",
-    "dart-sass": "1.25.0",
+    "astro": "^5.16.1",
     "enzyme": "3.11.0",
     "enzyme-adapter-preact-pure": "4.1.0",
     "enzyme-to-json": "3.6.2",
@@ -78,6 +78,7 @@
     "parcel-bundler": "1.12.5",
     "preact-render-to-string": "5.1.21",
     "prettier": "2.6.2",
-    "typescript": "4.6.3"
+    "sass": "^1.94.2",
+    "typescript": "5.9.3"
   }
 }
