@@ -6,9 +6,9 @@ set -e
 ENV=$1
 if [[ "$ENV" == *"staging"* ]]; then
   echo "Replacing css for website"
-  sed -i "s/\"/'/g" ./public/src.77de5100.css
-  css=$(cat ./public/src.77de5100.css)
-  sed -i "s/minified-css/$css/g" ./public/src.77de5100.js
+  sed -i "s/\"/'/g" ./public/cookie-though.9f367d21.css
+  css=$(cat ./public/cookie-though.9f367d21.css)
+  sed -i "s/minified-css/$css/g" ./public/cookie-though.9f367d21.js
 else
   echo "Replacing css for library"
   sed -i "s/\"/'/g" ./dist/lib.css

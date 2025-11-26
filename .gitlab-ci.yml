@@ -1,4 +1,4 @@
-image: timbru31/ruby-node:2.7-fermium
+image: node:18
 
 stages:
   - dependencies
@@ -31,17 +31,16 @@ build:site:
     - npm run build:site
   artifacts:
     paths:
-      - public
+      - docs/public
   dependencies:
     - dependencies
 build:docs:
   stage: build
   script:
-    - bundle install
     - npm run build:docs
   artifacts:
     paths:
-      - _site
+      - docs/dist
 build:lib:
   stage: build
   script:

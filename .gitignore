@@ -2,7 +2,8 @@
 /.parcel-cache
 
 # Build folders
-/dist
+dist
+.astro
 /public
 _site
 

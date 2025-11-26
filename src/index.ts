@@ -3,7 +3,6 @@
   None of this code is part of the actual plugin ;)
 */
 if (process.env.NODE_ENV === 'development') {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
   require('preact/debug');
 }
 import { CookiePreferences } from './types';

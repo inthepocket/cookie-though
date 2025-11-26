@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const githubUrl = 'https://github.com/inthepocket/cookie-though/';
+---
+
+<BaseLayout title="cookie policy" modifier="cookie-policy">
+  <header>
+    <div class="container container--header">
+      <div class="header-intro">
+        <h1 class="site-title">
+          <a href="/">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 26 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M20.5 14C21.4008 14 22.251 13.7834 23.0014 13.3996C23.0005 13.4329 23 13.4664 23 13.5C23 15.0583 24.0184 16.3788 25.426 16.8321C23.7905 22.1414 18.8459 26 13 26C5.8203 26 0 20.1797 0 13C0 5.8203 5.8203 0 13 0C13.954 0 14.884 0.102758 15.7795 0.29781C15.292 0.899245 15 1.66552 15 2.5C15 3.53742 15.4514 4.46941 16.1684 5.11034C15.4364 6.04443 15 7.22125 15 8.5C15 11.5376 17.4624 14 20.5 14ZM11 7C11 7.55228 10.5523 8 10 8C9.44772 8 9 7.55228 9 7C9 6.44772 9.44772 6 10 6C10.5523 6 11 6.44772 11 7ZM12 13C12 14.1046 11.1046 15 10 15C8.89543 15 8 14.1046 8 13C8 11.8954 8.89543 11 10 11C11.1046 11 12 11.8954 12 13ZM17 20C17.5523 20 18 19.5523 18 19C18 18.4477 17.5523 18 17 18C16.4477 18 16 18.4477 16 19C16 19.5523 16.4477 20 17 20ZM10 19.5C10 20.3284 9.32843 21 8.5 21C7.67157 21 7 20.3284 7 19.5C7 18.6716 7.67157 18 8.5 18C9.32843 18 10 18.6716 10 19.5Z"
+                fill="#000099"
+              />
+            </svg>
+            cookie though
+          </a>
+        </h1>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <ul class="nav">
+        <li>
+          <a href="/installation">Documentation</a>
+        </li>
+        <li>
+          <a href={githubUrl} target="_blank" rel="noreferrer">Github repo</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <article class="container container--main">
+      <section class="ct-cookie-explanation">
+        <h2>Cookie policy</h2>
+        <p>Cookies are a small text files that are placed on your computer or mobile device by websites you visit. They are widely used in order to make a website work, or work more efficiently, as well as to provide information to the owners of the site. These cookies contain a unique code which allows us to recognize your browser during your visit to our website ( so-called a 'session' cookie) or later, repeated visits (so-called permanent cookies). The content of a cookie usually consists of the name of the server that placed the cookie, an expiration date and a unique numeric code.</p>
+        <p>Based on your surfing habits, a cookie remembers your preferences. These personal interests are stored on the hard drive of your computer. Cookies make the interaction between you, the visitor, and the website easier, faster and help you to navigate between the different parts of a website.  Cookies are also used to make the content of, or the publicity on a website more relevant for the visitor. Finally, a cookie will ensure that the content is adaptable to your personal taste and needs.</p>
+        <p>In The Pocket exercises no control over the use of cookies by third parties, such as, for example by advertisers, and also not on cookies resulting from the use of parts of the site. You can always check and/or erase cookies and you can set your browser so that cookies are blocked. You can also delete the already installed cookies at any time on your computer or mobile device. This means that you then have to reset your preferences on each visit and that some parts of the website may not always work properly.</p>
+      </section>
+      <section class="ct-cookie-list">
+        <h3>Why do we use cookies on our website?</h3>
+        <p>Cookies can have different purposes. At the website of Cookie Though we use cookies with only one goal:</p>
+        <ol>
+          <li>Strictly necessary cookies: Cloudflare sets a cookie to detect malicious visitors on our webiste and minimizes blocking legitimate users. It identifies inidividual clients behind a shared IP address and applies security settings on a per-client basis. It collects and anonymizes End User IP addresses using a one-way hash of certain values so they cannot be personally identified. The cookie is a session cookie that expires after 30 days.</li>
+          <li>Optional cookies: the demo application stores a first party cookie (cookie-preferences). It is set when running the Cookie Though demo and stores these preferences and is kept for one year.</li>
+        </ol>
+      </section>
+    </article>
+  </main>
+</BaseLayout>
+

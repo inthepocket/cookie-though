@@ -1,0 +1,72 @@
+---
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  modifier?: string;
+}
+
+const {
+  title = 'Cookie though',
+  description = 'Easy to use, minimal footprint application that manages cookie preferences. So delicious, you\'ll never need another library again 😄',
+  modifier = '',
+} = Astro.props;
+
+const siteTitle = 'Cookie though';
+const siteUrl = 'https://cookiethough.dev';
+const githubUrl = 'https://github.com/inthepocket/cookie-though/';
+const socialImage = '/images/social.png';
+const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+---
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline';" /> -->
+
+    <title>{fullTitle}</title>
+
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="cookie policy, in the pocket, metomic, cookie banner, open source" />
+
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={`${siteUrl}${socialImage}`} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:description" content={description} />
+    <meta property="og:title" content={siteTitle} />
+
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:creator" content="In the pocket" />
+    <meta property="twitter:site_name" content={siteTitle} />
+    <meta property="twitter:type" content="website" />
+    <meta property="twitter:image" content={`${siteUrl}${socialImage}`} />
+    <meta property="twitter:url" content={siteUrl} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:title" content={siteTitle} />
+    <meta name="author" content="In the pocket" />
+    <link rel="canonical" href={`${siteUrl}${Astro.url.pathname}`} />
+    <link rel="icon" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code" rel="stylesheet" />
+    {Astro.url.pathname === '/' && (
+      <script src="https://cookiethough.dev/lib/1.5.0" is:inline></script>
+    )}
+    <style lang="scss" is:global>
+      @use '../_scss/docs.scss';
+    </style>
+  </head>
+
+  <body class={`layout--default ${modifier ? modifier : ''}`}>
+    <slot />
+    <Footer githubUrl={githubUrl} />
+  </body>
+</html>
+

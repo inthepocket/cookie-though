@@ -1,10 +1,8 @@
 {
   "name": "cookie-though",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "license": "MIT",
   "homepage": "https://cookiethough.dev",
-  "main": "dist/lib.js",
-  "types": "dist/types/lib.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/inthepocket/cookie-though"
@@ -20,12 +18,13 @@
     "dist"
   ],
   "scripts": {
-    "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --dist-dir public --no-content-hash && ./scripts/replace_css.sh staging",
-    "build:lib": "parcel build src/lib.ts --no-source-maps --dist-dir dist && ./scripts/replace_css.sh",
+    "build:site": "tsc --noEmit && parcel build src/index.html --no-source-maps --global CookieThough --out-dir public --no-content-hash && ./scripts/replace_css.sh staging",
+    "build:lib": "parcel build src/lib.ts --no-source-maps --global CookieThough --out-dir dist --experimental-scope-hoisting && ./scripts/replace_css.sh",
     "build:docs": "npm run build:sass && npm run build:jekyll",
-    "dev": "parcel src/index.html",
+    "dev": "parcel src/index.html --global CookieThough",
     "dev:site": "./scripts/site_exist.sh && npm-run-all -p serve watch:sass watch:jekyll",
     "types": "tsc",
+    "typeCheck": "tsc --noEmit && tsc --project tsconfig.test.json --noEmit",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "markdown:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
     "prettier:fix": "npm run prettier -- --write",
@@ -34,12 +33,7 @@
     "deploy:site": "firebase deploy --token $FIREBASE_TOKEN --only hosting:site",
     "deploy:docs": "firebase deploy --token $FIREBASE_TOKEN --only hosting:docs",
     "test": "jest",
-    "test:coverage": "jest --coverage --reporters=jest-junit",
-    "build:sass": "dart-sass --style=compressed docs/_scss/docs.scss:docs/jekyll/css/docs.min.css",
-    "watch:sass": "chokidar 'docs/_scss/**/*' -c 'npm run build:sass'",
-    "build:jekyll": "bundle exec jekyll build --trace",
-    "watch:jekyll": "chokidar 'docs/jekyll/**' '_config.yml' -c 'npm run build:jekyll && browser-sync reload'",
-    "serve": "browser-sync start --http --server _site"
+    "test:coverage": "jest --coverage --reporters=jest-junit"
   },
   "eslintIgnore": [
     "dist/*"
@@ -55,28 +49,23 @@
     "IE >= 9"
   ],
   "devDependencies": {
-    "@babel/core": "7.28.0",
-    "@babel/plugin-transform-react-jsx": "7.27.1",
-    "@parcel/config-default": "^2.15.4",
-    "@parcel/packager-ts": "^2.15.4",
-    "@parcel/transformer-typescript-tsc": "^2.15.4",
-    "@parcel/transformer-typescript-types": "^2.15.4",
-    "@types/enzyme": "3.10.19",
-    "@types/jest": "30.0.0",
-    "@types/lodash.throttle": "4.1.9",
-    "@types/node": "^18.19.122",
-    "@typescript-eslint/eslint-plugin": "8.39.0",
-    "@typescript-eslint/parser": "8.39.0",
-    "browser-sync": "3.0.4",
-    "chokidar": "4.0.3",
+    "@babel/core": "7.17.9",
+    "@babel/plugin-transform-react-jsx": "7.17.3",
+    "@types/enzyme": "3.10.12",
+    "@types/jest": "27.4.1",
+    "@types/lodash.throttle": "4.1.7",
+    "@typescript-eslint/eslint-plugin": "5.20.0",
+    "@typescript-eslint/parser": "5.20.0",
+    "browser-sync": "2.27.9",
+    "chokidar": "3.5.3",
     "chokidar-cli": "3.0.0",
     "dart-sass": "1.25.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-preact-pure": "4.1.0",
     "enzyme-to-json": "3.6.2",
     "eslint": "8.57.1",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-prettier": "5.2.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^4.2.5",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
     "firebase-tools": "14.12.0",
@@ -86,9 +75,9 @@
     "markdownlint-cli": "0.45.0",
     "npe": "1.2.0",
     "npm-run-all": "4.1.5",
-    "parcel": "^2.15.4",
-    "preact-render-to-string": "6.5.13",
-    "prettier": "3.6.2",
-    "typescript": "5.9.2"
+    "parcel-bundler": "1.12.5",
+    "preact-render-to-string": "5.1.21",
+    "prettier": "2.6.2",
+    "typescript": "4.6.3"
   }
 }

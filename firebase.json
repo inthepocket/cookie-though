@@ -6,7 +6,7 @@
   },
   {
     "target":"docs",
-    "public": "_site",
+    "public": "docs/dist",
     "ignore": []
   }]
 }
