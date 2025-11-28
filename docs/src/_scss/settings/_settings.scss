@@ -1,0 +1,15 @@
+@use "sass:math";
+
+$breakpoints: (
+  bp1: math.div(375, 16) * 1em,
+  //Average phone portrait
+  bp2: math.div(568, 16) * 1em,
+  //Average phone landscape
+  bp3: math.div(768, 16) * 1em,
+  //Average tablet portrait
+  bp4: math.div(1024, 16) * 1em,
+  //Average tablet landscape
+  bp5: math.div(1440, 16) * 1em,
+  //Average desktop
+  bp6: math.div(1680, 16) * 1em //Large desktop,,,,,,,,,,,,,,
+) !default;

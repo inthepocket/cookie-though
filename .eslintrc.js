@@ -15,7 +15,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    project: './tsconfig.eslint.json',
+    project: './tsconfig.json',
   },
   rules: {
     'react/no-unknown-property': ['error', { ignore: ['class'] }],
@@ -27,7 +27,7 @@ module.exports = {
       version: '18.0.0',
     },
   },
-  ignorePatterns: ['jest.config.js', '.eslintrc.js'],
+  ignorePatterns: ['jest.config.js', '.eslintrc.js', 'astro.config.mjs'],
   overrides: [
     {
       files: ['*.js', '*.ts', '*.tsx', '*.d.ts'],
@@ -35,6 +35,12 @@ module.exports = {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-unsafe-argument': 'off',
+      },
+    },
+    {
+      files: ['*.test.ts', '*.test.tsx'],
+      parserOptions: {
+        project: './tsconfig.test.json',
       },
     },
   ],

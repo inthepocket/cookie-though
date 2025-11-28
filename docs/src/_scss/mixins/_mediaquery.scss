@@ -1,0 +1,20 @@
+//
+// Media Query mixin
+// @include mq(#point, #query1, #query2);
+//
+@use "sass:map";
+@use "../settings/settings";
+
+@mixin mq($breakpoint, $query1: min, $query2: width) {
+    $query: map.get(settings.$breakpoints, $breakpoint);
+
+    @if $query != null {
+        @media (#{$query1}-#{$query2}: #{$query}) {
+            @content;
+        }
+    } @else {
+        @media (#{$query1}-#{$query2}: $breakpoint) {
+            @content;
+        }
+    }
+}

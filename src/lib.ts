@@ -26,7 +26,7 @@ export const configure = (conf: Config) => {
   if (process.env.NODE_ENV === 'development') {
     css = document.createElement('link');
     css.setAttribute('rel', 'stylesheet');
-    css.setAttribute('href', 'src.77de5100.css');
+    css.setAttribute('href', 'cookie-though.9f367d21.css');
   } else {
     css = document.createElement('style');
     /*

@@ -1,0 +1,6 @@
+---
+const { href, text } = Astro.props;
+const isActive = Astro.url.pathname === href;
+---
+
+<a href={href} class:list={[isActive && 'active']}>{text}</a>

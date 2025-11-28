@@ -1,0 +1,49 @@
+---
+import NavLink from "./NavLink.astro";
+
+---
+
+<ul>
+  <li>
+    <NavLink href="/installation" text="Installation" />
+  </li>
+  <li>
+    <NavLink href="/configuration" text="Configuration" />
+  </li>
+  <li>
+    <NavLink href="/gtm-support" text="GTM Support" />
+  </li>
+  <li>
+    <NavLink href="/styling" text="Styling" />
+  </li>
+  <li>
+    <NavLink href="/api" text="API" />
+    <ul>
+      <li>
+        <NavLink href="/api#init" text="init" />
+      </li>
+      <li>
+        <NavLink href="/api#configure" text="configure" />
+      </li>
+      <li>
+        <NavLink href="/api#show" text="show" />
+      </li>
+      <li>
+        <NavLink href="/api#hide" text="hide" />
+      </li>
+      <li>
+        <NavLink href="/api#getPreferences" text="getPreferences" />
+      </li>
+      <li>
+        <NavLink href="/api#onPreferencesChanged" text="onPreferencesChanged" />
+      </li>
+    </ul>
+  </li>
+  <li>
+    <NavLink href="/development" text="Development" />
+  </li>
+  <li>
+    <NavLink href="/contributing" text="Contributing" />
+  </li>
+</ul>
+

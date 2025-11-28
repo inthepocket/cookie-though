@@ -18,7 +18,7 @@ jobs:
       - name: Run ESLint
         run: npm run lint
       - name: Run typecheck
-        run: npm run types -- --noEmit
+        run: npm run typeCheck
       - name: Run Tests
         run: npm run test:coverage
       - name: Upload test coverage to Codecov
