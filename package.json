@@ -30,8 +30,8 @@
     "prettier:fix": "npm run prettier -- --write",
     "prettier": "prettier \"src/**/*.{js,ts,tsx}\"",
     "prepare": "./scripts/postinstall-local.sh",
-    "deploy:site": "firebase deploy --token $FIREBASE_TOKEN --only hosting:site",
-    "deploy:docs": "firebase deploy --token $FIREBASE_TOKEN --only hosting:docs",
+    "deploy:site": "firebase deploy --only hosting:site",
+    "deploy:docs": "firebase deploy --only hosting:docs",
     "test": "jest",
     "test:coverage": "jest --coverage --reporters=jest-junit"
   },

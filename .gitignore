@@ -13,10 +13,7 @@ node_modules
 /coverage
 
 # Docs development
-vendor
-.bundle
-.jekyll-cache
-/docs/jekyll/css
+.firebase
 
 # MacOSX
 .DS_Store
