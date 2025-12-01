@@ -59,7 +59,7 @@
     "@typescript-eslint/eslint-plugin": "5.20.0",
     "@typescript-eslint/parser": "5.20.0",
     "browser-sync": "2.27.9",
-    "cheerio": "1.0.0-rc.3",
+    "cheerio": "1.1.2",
     "chokidar": "3.5.3",
     "chokidar-cli": "3.0.0",
     "dart-sass": "1.25.0",
