@@ -1,0 +1,13 @@
+diff --git a/node_modules/test-exclude/index.js b/node_modules/test-exclude/index.js
+index aecb72d..e7ad624 100644
+--- a/node_modules/test-exclude/index.js
++++ b/node_modules/test-exclude/index.js
+@@ -2,7 +2,7 @@
+
+ const path = require('path');
+ const { promisify } = require('util');
+-const glob = promisify(require('glob'));
++const glob = promisify(require('glob').glob);
+ const minimatch = require('minimatch');
+ const { defaults } = require('@istanbuljs/schema');
+ const isOutsideDir = require('./is-outside-dir');

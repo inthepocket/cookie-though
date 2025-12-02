@@ -1,0 +1,13 @@
+diff --git a/node_modules/@jest/reporters/build/CoverageReporter.js b/node_modules/@jest/reporters/build/CoverageReporter.js
+index 48ba4fe..1c1f6fb 100644
+--- a/node_modules/@jest/reporters/build/CoverageReporter.js
++++ b/node_modules/@jest/reporters/build/CoverageReporter.js
+@@ -372,7 +372,7 @@ class CoverageReporter extends _BaseReporter.default {
+               // of execution time.
+               if (filesByGlob[absoluteThresholdGroup] === undefined) {
+                 filesByGlob[absoluteThresholdGroup] = _glob()
+-                  .default.sync(absoluteThresholdGroup)
++                  .sync(absoluteThresholdGroup)
+                   .map(filePath => path().resolve(filePath));
+               }
+               if (filesByGlob[absoluteThresholdGroup].indexOf(file) > -1) {
