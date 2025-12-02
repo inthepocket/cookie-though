@@ -14,7 +14,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies
-        run: npm ci --ignore-scripts && npm run postinstall
+        run: npm ci --ignore-scripts
+      - name: Run postinstall
+        run: npm run postinstall
       - name: Run ESLint
         run: npm run lint
       - name: Run typecheck
