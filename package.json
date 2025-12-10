@@ -75,7 +75,7 @@
     "parcel-bundler": "1.12.5",
     "patch-package": "^8.0.1",
     "preact-render-to-string": "5.2.6",
-    "prettier": "2.8.8",
+    "prettier": "3.7.4",
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.94.2",
     "typescript": "5.9.3"
