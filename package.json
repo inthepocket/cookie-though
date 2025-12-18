@@ -74,7 +74,7 @@
     "markdownlint-cli": "^0.46.0",
     "parcel-bundler": "1.12.5",
     "patch-package": "^8.0.1",
-    "preact-render-to-string": "5.2.6",
+    "preact-render-to-string": "6.6.4",
     "prettier": "2.8.8",
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.94.2",
