@@ -57,7 +57,7 @@
     "@types/enzyme": "3.10.19",
     "@types/jest": "27.5.2",
     "@types/lodash.throttle": "4.1.9",
-    "@typescript-eslint/eslint-plugin": "5.20.0",
+    "@typescript-eslint/eslint-plugin": "8.51.0",
     "@typescript-eslint/parser": "5.62.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-preact-pure": "4.1.0",
