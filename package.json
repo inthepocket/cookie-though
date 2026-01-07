@@ -42,7 +42,7 @@
   "dependencies": {
     "events": "3.3.0",
     "lodash.throttle": "4.1.1",
-    "preact": "10.27.0"
+    "preact": "10.28.2"
   },
   "browserslist": [
     "> 0.25%",
