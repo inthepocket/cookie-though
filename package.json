@@ -51,7 +51,7 @@
   ],
   "devDependencies": {
     "@astrojs/mdx": "^4.3.12",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/sitemap": "^3.7.0",
     "@babel/core": "7.28.5",
     "@babel/plugin-transform-react-jsx": "7.27.1",
     "@types/enzyme": "3.10.19",
