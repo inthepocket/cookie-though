@@ -127,7 +127,7 @@ describe('Cookie Though', () => {
     let lib: Lib;
     beforeEach(() => {
       jest.resetModules();
-      // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-assignment
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-require-imports
       lib = require('../lib');
     });
     it('will initialise the app when a listener is attached to the cookie preferences changed event', () => {

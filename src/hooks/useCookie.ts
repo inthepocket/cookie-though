@@ -108,7 +108,6 @@ const useCookie = ({
     const expires = getNextYear();
     document.cookie = `${cookiePreferenceKey}=${formatToCookie(
       cookiePreferences.cookieOptions,
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     )}; expires=${expires}; path=/; SameSite=Strict;${domain ? `Domain=${domain}` : ''}`;
     if (ee) {
       ee.emit(COOKIE_PREFERENCES_CHANGED_EVENT, cookiePreferences);

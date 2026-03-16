@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from 'react';
 import { h } from 'preact';
 import { shallow, mount } from 'enzyme';
 import { englishMockConfig } from '../../__mocks__/config';
