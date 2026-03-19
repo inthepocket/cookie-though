@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from 'react';
 import { h } from 'preact';
 import { shallow, mount } from 'enzyme';
 
@@ -40,13 +41,21 @@ describe('Option', () => {
     const scrollIntoView = jest.fn();
     window.HTMLElement.prototype.scrollIntoView = scrollIntoView;
     const onToggle = jest.fn();
+    const option = {
+      ...defaultProps(false).option,
+      category: 'functional' as Policy['category'],
+    };
     const wrapper = mount(
       <div>
-        <Option {...defaultProps(false)} onToggle={onToggle} />
+        <Option {...defaultProps(false)} option={option} onToggle={onToggle} />
       </div>,
     );
 
-    wrapper.find('input').simulate('focus');
+    const input = wrapper.find('input').getDOMNode<HTMLInputElement>();
+    if (input.parentElement) {
+      input.parentElement.scrollIntoView = scrollIntoView;
+    }
+    input.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
     expect(scrollIntoView).toHaveBeenCalledTimes(1);
   });
 });

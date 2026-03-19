@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from 'react';
 import { h } from 'preact';
 import { mount, ReactWrapper, shallow } from 'enzyme';
 
@@ -11,10 +13,15 @@ jest.mock('../../../utils/getContainerHeights', () => ({
 describe('collapse', () => {
   const onWindowResize = jest.fn();
 
-  const getStyleAttribute = (wrapper: ReactWrapper, selector: string, attribute: string) => {
-    // @ts-expect-error: this is a helper function for enzyme
-    // eslint-disable-next-line
-    return wrapper.find(selector).getDOMNode().style._values[attribute] as string;
+  const getStyleAttribute = (
+    wrapper: ReactWrapper,
+    selector: string,
+    attribute: string,
+  ): string | undefined => {
+    const node = wrapper.find(selector).getDOMNode<HTMLElement>();
+    const style = node.style as CSSStyleDeclaration & Record<string, string>;
+    const value = style.getPropertyValue(attribute) || style[attribute];
+    return value || undefined;
   };
 
   it('can render in a collapsed state', () => {
@@ -36,7 +43,7 @@ describe('collapse', () => {
           <Collapse isOpen={true} onWindowResize={onWindowResize}>
             <div className="ct-policies"></div>
           </Collapse>
-          <div class="ct-acceptance"></div>
+          <div className="ct-acceptance"></div>
         </div>,
       );
       expect(wrapper.find(Collapse).prop('isOpen')).toBeTruthy();
@@ -51,7 +58,7 @@ describe('collapse', () => {
           <Collapse isOpen={true} onWindowResize={onWindowResize}>
             <div className="ct-policies"></div>
           </Collapse>
-          <div class="ct-acceptance"></div>
+          <div className="ct-acceptance"></div>
         </div>,
       );
       expect(wrapper.find(Collapse).prop('isOpen')).toBeTruthy();
@@ -107,9 +114,9 @@ describe('collapse', () => {
 
         // Wait for the scroll-behavior to be reset
         await wait(150);
-        const scollBehavior = () =>
+        const scrollBehavior = () =>
           getStyleAttribute(wrapper, 'div.ct-collapse', 'scroll-behavior');
-        expect(scollBehavior()).toBeUndefined();
+        expect(scrollBehavior()).toBeUndefined();
       });
     });
   });

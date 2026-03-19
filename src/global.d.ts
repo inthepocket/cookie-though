@@ -6,3 +6,7 @@ declare global {
     };
   }
 }
+
+export interface FunctionalComponent<Props> {
+  (props: Props): JSX.Element;
+}
