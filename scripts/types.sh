@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
-if [[ -d "dist/types" ]]
-then
-    rm -r dist/types
+DIST_TYPES_DIR="dist/types"
+
+if [[ -d "$DIST_TYPES_DIR" ]]; then
+  rm -r "$DIST_TYPES_DIR"
 fi
 
-mkdir dist/types
-npm run types
-mv src/lib.d.ts src/types.d.ts dist/types
+npm run types:lib
+
+# Keep only lib.d.ts and types.d.ts in dist/types.
+shopt -s extglob dotglob nullglob
+rm -rf "$DIST_TYPES_DIR"/!(lib.d.ts|types.d.ts)
+shopt -u extglob dotglob nullglob
+

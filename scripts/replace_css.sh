@@ -14,4 +14,5 @@ else
   sed -i '' "s/\"/'/g" ./dist/lib.css
   css=$(cat ./dist/lib.css)
   sed -i '' "s/minified-css/$css/g" ./dist/lib.js
+  rm ./dist/lib.css
 fi
