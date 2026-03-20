@@ -1,0 +1,54 @@
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+default:
+  image: node:24
+
+variables:
+  JEST_JUNIT_OUTPUT: junit.xml
+
+stages:
+  - install
+  - lint
+  - typecheck
+  - test
+
+install:
+  stage: install
+  script:
+    - npm ci --ignore-scripts
+    - npm run postinstall
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 week
+
+lint:
+  stage: lint
+  dependencies:
+    - install
+  script:
+    - npm run lint
+
+typecheck:
+  stage: typecheck
+  dependencies:
+    - install
+  script:
+    - npm run typeCheck
+
+test:
+  stage: test
+  dependencies:
+    - install
+  script:
+    - npm run test:coverage
+  artifacts:
+    when: always
+    reports:
+      junit: junit.xml
+    paths:
+      - coverage/
+    expire_in: 1 week
