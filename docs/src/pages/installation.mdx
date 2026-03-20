@@ -3,6 +3,9 @@ layout: ../layouts/DocsLayout.astro
 title: installation
 ---
 
+import pkg from '../../../package.json';
+import { Code } from 'astro/components';
+
 # Installation of the app
 
 There's 2 ways of installing the app within your site/platform:
@@ -18,16 +21,17 @@ After peforming the initialisation of the app, it should show the cookie though 
 
 Add the following script tags in your html:
 
-```html
-<head>
-  <script src="https://cookiethough.dev/lib/<version>"></script>
+<Code
+  lang="html"
+  code={`<head>
+  <script src="https://cookiethough.dev/lib/${pkg.version}"></script>
 </head>
 <html>
   <body>
     <script>CookieThough.init(config)</script>
   </body>
-</html>
-```
+</html>`}
+/>
 
 ## npm/yarn
 
