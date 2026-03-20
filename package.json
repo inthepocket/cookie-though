@@ -51,7 +51,7 @@
     "@astrojs/sitemap": "^3.7.1",
     "@babel/core": "7.29.0",
     "@babel/plugin-transform-react-jsx": "7.28.6",
-    "@babel/preset-env": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
     "@babel/preset-typescript": "^7.28.5",
     "@eslint/js": "^10.0.1",
     "@types/enzyme": "3.10.19",
