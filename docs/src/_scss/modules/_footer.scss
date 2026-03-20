@@ -109,7 +109,7 @@ footer a {
     }
 
     &::before {
-        content: url('../images/itp.svg');
+        content: url('/public/images/itp.svg');
         position: relative;
         top: .5rem;
         margin-left: .3rem;
