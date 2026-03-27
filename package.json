@@ -50,7 +50,7 @@
     "IE >= 9"
   ],
   "devDependencies": {
-    "@astrojs/mdx": "^5.0.1",
+    "@astrojs/mdx": "^5.0.3",
     "@astrojs/sitemap": "^3.7.1",
     "@babel/core": "7.29.0",
     "@babel/plugin-transform-react-jsx": "7.28.6",
