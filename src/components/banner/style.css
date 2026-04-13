@@ -7,13 +7,12 @@
   max-width: 85%;
 }
 
-.ct-banner p,
-.ct-banner h1 {
+.ct-banner p {
   margin-top: 0;
   margin-bottom: var(--ct-text-margin);
 }
 
-.ct-banner h1 {
+.ct-banner .ct-banner-title {
   font-size: var(--ct-heading-font-size);
   font-weight: 700;
   color: var(--ct-title);
