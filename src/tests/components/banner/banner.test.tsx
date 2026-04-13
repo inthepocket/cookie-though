@@ -15,8 +15,12 @@ describe('Banner', () => {
 
   it('can render with a header', () => {
     const wrapper = shallow(<Banner header={mockConfig.header} />);
-    expect(wrapper.find('.ct-banner-header').find('p').text()).toEqual(mockConfig.header.subTitle);
-    expect(wrapper.find('.ct-banner-header').find('h1').text()).toEqual(mockConfig.header.title);
+    expect(wrapper.find('.ct-banner-header').find('p:not(.ct-banner-title)').text()).toEqual(
+      mockConfig.header.subTitle,
+    );
+    expect(wrapper.find('.ct-banner-header').find('.ct-banner-title').text()).toEqual(
+      mockConfig.header.title,
+    );
     expect(wrapper.find('.ct-banner-explanation').text()).toEqual(mockConfig.header.description);
   });
 });
