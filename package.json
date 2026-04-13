@@ -1,6 +1,6 @@
 {
   "name": "cookie-though",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "license": "MIT",
   "homepage": "https://cookiethough.dev",
   "repository": {
@@ -37,7 +37,8 @@
     "deploy:site": "firebase deploy --only hosting:site",
     "deploy:docs": "firebase deploy --only hosting:docs",
     "test": "jest",
-    "test:coverage": "jest --coverage --reporters=jest-junit"
+    "test:coverage": "jest --coverage --reporters=jest-junit",
+    "publish:lib": "npm run build:lib && npm publish && npm run build:docs && npm run deploy:docs"
   },
   "dependencies": {
     "events": "3.3.0",
