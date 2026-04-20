@@ -82,7 +82,7 @@
     "prettier": "^3.8.1",
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.94.2",
-    "typescript": "5.9.3"
+    "typescript": "6.0.3"
   },
   "overrides": {
     "glob": "^13.0.6",
