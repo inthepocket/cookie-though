@@ -74,7 +74,7 @@
     "firebase-tools": "^15.10.0",
     "jest": "30.3.0",
     "jest-environment-jsdom": "^30.3.0",
-    "jest-junit": "16.0.0",
+    "jest-junit": "17.0.0",
     "markdownlint-cli": "^0.48.0",
     "parcel-bundler": "1.12.5",
     "patch-package": "^8.0.1",
