@@ -53,7 +53,7 @@
   "devDependencies": {
     "@astrojs/mdx": "^5.0.1",
     "@astrojs/sitemap": "^3.7.1",
-    "@babel/core": "7.29.0",
+    "@babel/core": "8.0.1",
     "@babel/plugin-transform-react-jsx": "7.28.6",
     "@babel/preset-env": "^7.29.0",
     "@babel/preset-typescript": "^7.28.5",
